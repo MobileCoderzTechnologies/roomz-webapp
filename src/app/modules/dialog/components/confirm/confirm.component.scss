@@ -1,0 +1,14 @@
+.confirm-container{
+  height: 100%;
+  width: 100%;
+  display: grid;
+  place-items: center;
+  p{
+    font-family: 'Times New Roman', Times, serif;
+  }
+  .buttons{
+    width: 100%;
+    display: flex;
+    justify-content: space-around;
+  }
+}

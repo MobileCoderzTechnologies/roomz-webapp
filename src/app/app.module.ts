@@ -7,25 +7,25 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { HttpService } from './services/http.service';
 import { AuthInterceptorService } from './interceptors/auth-interceptor.service';
-import { MatSnackBarModule } from '@angular/material/snack-bar';
-import { AlertService } from './services/alert.service';
-import { MaterialModule } from './modules/material/material.module';
+import { NotFoundComponent } from './components/not-found/not-found.component';
+import { DialogModule } from './modules/dialog/dialog.module';
+import { AlertModule } from './modules/alert/alert.module';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    NotFoundComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
     HttpClientModule,
-    MatSnackBarModule,
-    MaterialModule
+    DialogModule,
+    AlertModule
   ],
   providers: [
     HttpService,
-    AlertService,
     {
       provide: HTTP_INTERCEPTORS,
       useClass: AuthInterceptorService,

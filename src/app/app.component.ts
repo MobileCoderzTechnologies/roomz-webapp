@@ -1,5 +1,4 @@
 import { Component } from '@angular/core';
-import { AlertService } from './services/alert.service';
 
 @Component({
   selector: 'app-root',
@@ -8,4 +7,5 @@ import { AlertService } from './services/alert.service';
 })
 export class AppComponent {
   title = 'roomz-frontend';
+
 }

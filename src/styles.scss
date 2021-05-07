@@ -39,3 +39,7 @@ body {
 .alert-info {
   background-color: $info-color;
 }
+.confirm-dialog mat-dialog-container {
+  border-radius: 1rem !important;
+  padding: 2rem !important;
+}
