@@ -1,0 +1,41 @@
+@import "ng.theme";
+@import "core";
+/* You can add global styles to this file, and also import other style files */
+
+html,
+body {
+  height: 100%;
+}
+html {
+  font-size: 62.5%;
+}
+body {
+  margin: 0;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+}
+
+.txt-info {
+  color: $info-color;
+}
+
+.txt-danger {
+  color: $danger-color;
+}
+
+.txt-success {
+  color: $success-color;
+}
+
+.alert {
+  color: $alert-txt;
+}
+
+.alert-success {
+  background-color: $success-color;
+}
+.alert-danger {
+  background-color: $danger-color;
+}
+.alert-info {
+  background-color: $info-color;
+}

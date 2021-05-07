@@ -1,0 +1,42 @@
+/*
+** @Media Queries
+*/
+
+$mt-breakpoint: 600px; // Mobile and Tablet Break Point
+$td-breakpoint: 980px; // Tablet and Desktop Break Point
+
+@mixin mobile-device($status: true) {
+  @if $status {
+    @media screen and (max-width: $mt-breakpoint - 1px) {
+      @content;
+    }
+  } @else {
+    @media screen and (min-width: $mt-breakpoint) {
+      @content;
+    }
+  }
+}
+
+@mixin tablet-device($status: true) {
+  @if $status {
+    @media screen and (min-width: $mt-breakpoint) and (max-width: $td-breakpoint - 1px) {
+      @content;
+    }
+  } @else {
+    @media screen and (max-width: $mt-breakpoint -1) and (min-width: $td-breakpoint) {
+      @content;
+    }
+  }
+}
+
+@mixin desktop-device($status: true) {
+  @if $status {
+    @media screen and (min-width: $td-breakpoint) {
+      @content;
+    }
+  } @else {
+    @media screen and (max-width: $td-breakpoint - 1px) {
+      @content;
+    }
+  }
+}

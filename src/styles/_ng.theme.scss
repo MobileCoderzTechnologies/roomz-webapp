@@ -1,0 +1,23 @@
+@import "./core.theme";
+@import "~@angular/material/theming";
+
+@include mat-core();
+
+$roomz-frontend-primary: mat-palette($mat-indigo);
+$roomz-frontend-accent: mat-palette($mat-pink, A200, A100, A400);
+
+$roomz-frontend-warn: mat-palette($mat-red);
+
+$roomz-frontend-theme: mat-light-theme(
+  (
+    color: (
+      primary: $roomz-frontend-primary,
+      accent: $roomz-frontend-accent,
+      warn: $roomz-frontend-warn,
+    ),
+  )
+);
+
+@include angular-material-theme($roomz-frontend-theme);
+
+@include core-theming($roomz-frontend-theme);

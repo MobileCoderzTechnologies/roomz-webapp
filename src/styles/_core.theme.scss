@@ -1,0 +1,27 @@
+// @import "~@angular/material/theming";
+@import "~@angular/material/theming";
+
+@mixin core-theming($theme) {
+  $foreground: map-get($theme, "foreground");
+  $background: map-get($theme, "background");
+  $primary: map-get($theme, primary);
+  $accent: map-get($theme, accent);
+  $warn: map-get($theme, warn);
+
+  $primary-color: mat-color($primary);
+  $accent-color: mat-color($accent);
+  $warn-color: mat-color($warn);
+  $text-color: map-get($foreground, 'text');
+  $secondary-color: map-get($foreground, secondary-text);
+  $disabled-color: map-get($foreground, disabled-text);
+
+  .txt-primary{
+    color: $primary-color !important;
+  }
+  .txt-secondary{
+    color: $secondary-color !important;
+  }
+  .txt-warn{
+    color: $warn-color !important;
+  }
+}
