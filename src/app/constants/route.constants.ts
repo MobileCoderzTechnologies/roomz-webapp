@@ -1,3 +1,17 @@
+export const TRAVELLING_ROUTE = {
+  path: 'travelling',
+  get url(): string {
+    return `/${this.path}`;
+  }
+};
+
+export const HOSTING_ROUTE = {
+  path: 'hosting',
+  get url(): string {
+    return `/${this.path}`;
+  }
+};
+
 export const LOGIN_ROUTE = {
   path: 'login',
   get url(): string {

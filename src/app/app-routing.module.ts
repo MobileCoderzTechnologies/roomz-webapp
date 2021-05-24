@@ -1,13 +1,17 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { NotFoundComponent } from './components/not-found/not-found.component';
-import { LOGIN_ROUTE, SIGN_UP_ROUTE } from './constants/route.constants';
+import { LOGIN_ROUTE, SIGN_UP_ROUTE, TRAVELLING_ROUTE } from './constants/route.constants';
 
 const routes: Routes = [
   {
     path: '',
-    redirectTo: LOGIN_ROUTE.path,
+    redirectTo: TRAVELLING_ROUTE.path,
     pathMatch: 'full'
+  },
+  {
+    path: 'travelling',
+    loadChildren: () => import('./pages/travelling/travelling.module').then(m => m.TravellingModule)
   },
   {
     path: LOGIN_ROUTE.path,

@@ -24,4 +24,16 @@
   .txt-warn{
     color: $warn-color !important;
   }
+
+  .bg-primary{
+    background-color: $primary-color !important;
+  }
+
+  .bg-accent{
+    background-color: $accent-color !important;
+  }
+
+  .bg-warn{
+    background-color: $warn-color !important;
+  }
 }
