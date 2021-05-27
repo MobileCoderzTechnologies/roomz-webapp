@@ -1,1 +1,121 @@
-<p>login works!</p>
+<section class="d-flex align-items-center justify-content-center vh-100">
+  <div class="login_section">
+    <div class="d-flex align-items-center justify-content-between">
+      <h3 class="fz24 mb-0 semi_font">Log In with Phone Number.</h3>
+      <span class="medium_font">&#10005;</span>
+    </div>
+    <hr />
+    <form action="">
+      <div class="mb-3">
+        <label class="fz15">Phone Number</label>
+        <input
+          type="text"
+          class="form-control custom_form_control fz15"
+          placeholder="Enter Phone Number"
+        />
+      </div>
+      <div class="mb-3">
+        <label class="fz15">Passwords</label>
+        <input
+          type="password"
+          class="form-control custom_form_control fz15"
+          placeholder="Enter Password"
+        />
+      </div>
+      <div class="mb_20">
+        <button class="btn login_btn">LOG IN</button>
+      </div>
+      <div class="text-center mb_20">
+        <a href="javascript:void(0);" class="base_blue"
+          ><u>Forgot Password?</u></a
+        >
+      </div>
+      <div class="text-center mb_20 position-relative">
+        <hr class="or_hr" />
+        <p class="bg-white d-inline-block">or continue with</p>
+      </div>
+      <div class="row social_login">
+        <div class="col-6">
+          <div class="col_selector">
+            <button
+              class="btn rounded-pill"
+              data-bs-toggle="modal"
+              data-bs-target="#staticBackdrop"
+            >
+              <img
+                src="assets/images/email.png"
+                alt=""
+                class="icon"
+                style="top: 17px"
+              />
+              Email
+            </button>
+          </div>
+        </div>
+        <div class="col-6">
+          <div class="col_selector">
+            <button class="btn rounded-pill">
+              <img
+                src="assets/images/facebook.png"
+                alt=""
+                class="icon"
+              />Facebook
+            </button>
+          </div>
+        </div>
+        <div class="col-6">
+          <div class="col_selector">
+            <button class="btn rounded-pill">
+              <img src="assets/images/google.png" alt="" class="icon" />Google
+            </button>
+          </div>
+        </div>
+        <div class="col-6">
+          <div class="col_selector">
+            <button class="btn rounded-pill">
+              <img src="assets/images/apple.png" alt="" class="icon" />Apple
+            </button>
+          </div>
+        </div>
+      </div>
+      <div class="text-center mt-3">
+        <p>
+          Don't have an account?
+          <a href="javascript:void(0);" class="base_blue">Sign up</a>
+        </p>
+      </div>
+    </form>
+  </div>
+</section>
+
+<!-- Modal -->
+<div
+  class="modal fade"
+  id="staticBackdrop"
+  data-bs-backdrop="static"
+  data-bs-keyboard="false"
+  tabindex="-1"
+  aria-labelledby="staticBackdropLabel"
+  aria-hidden="true"
+>
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="staticBackdropLabel">Modal title</h5>
+        <button
+          type="button"
+          class="btn-close"
+          data-bs-dismiss="modal"
+          aria-label="Close"
+        ></button>
+      </div>
+      <div class="modal-body">...</div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+          Close
+        </button>
+        <button type="button" class="btn btn-primary">Understood</button>
+      </div>
+    </div>
+  </div>
+</div>

@@ -6,9 +6,9 @@ html,
 body {
   height: 100%;
 }
-html {
-  font-size: 62.5%;
-}
+// html {
+//   font-size: 62.5%;
+// }
 body {
   margin: 0;
   font-family: Roboto, "Helvetica Neue", sans-serif;
@@ -42,4 +42,181 @@ body {
 .confirm-dialog mat-dialog-container {
   border-radius: 1rem !important;
   padding: 2rem !important;
+}
+
+a,
+a:hover,
+a:focus,
+.btn,
+.btn:hover,
+.btn:focus {
+  text-decoration: none;
+
+  outline: 0;
+}
+
+a,
+a:hover {
+  color: inherit;
+
+  text-decoration: none;
+}
+
+.fz3 {
+  font-size: 3px !important;
+}
+
+.fz6 {
+  font-size: 6px !important;
+}
+.fz10 {
+  font-size: 10px !important;
+}
+.fz11 {
+  font-size: 11px !important;
+}
+.fz12 {
+  font-size: 12px !important;
+}
+.fz13 {
+  font-size: 13px !important;
+}
+.fz14 {
+  font-size: 14px !important;
+}
+.fz15 {
+  font-size: 15px !important;
+}
+.fz16 {
+  font-size: 16px !important;
+}
+.fz17 {
+  font-size: 17px !important;
+}
+.fz18 {
+  font-size: 18px !important;
+}
+.fz19 {
+  font-size: 19px !important;
+}
+.fz20 {
+  font-size: 20px !important;
+}
+.fz22 {
+  font-size: 22px !important;
+}
+.fz24 {
+  font-size: 24px !important;
+}
+.fz26 {
+  font-size: 26px !important;
+}
+.fz27 {
+  font-size: 27px !important;
+}
+.fz28 {
+  font-size: 28px !important;
+}
+.fz30 {
+  font-size: 30px !important;
+}
+.fz32 {
+  font-size: 32px !important;
+}
+.fz34 {
+  font-size: 34px !important;
+}
+.fz36 {
+  font-size: 36px !important;
+}
+.fz38 {
+  font-size: 38px !important;
+}
+.fz40 {
+  font-size: 40px !important;
+}
+.fz50 {
+  font-size: 50px !important;
+}
+.fz60 {
+  font-size: 60px !important;
+}
+.fz70 {
+  font-size: 70px !important;
+}
+.form-control:focus {
+  box-shadow: none;
+}
+
+.regular_font {
+  font-family: "montserratregular" !important;
+}
+
+.semi_font {
+  font-family: "montserratsemibold" !important;
+}
+
+.bold_font {
+  font-family: "montserratbold" !important;
+}
+
+.medium_font {
+  font-family: "montserratmedium" !important;
+}
+
+body {
+  font-family: "montserratregular" !important;
+}
+
+.mb_20 {
+  margin-bottom: 20px;
+}
+
+.base_blue {
+  color: #3ec4de;
+}
+
+.login_section {
+  width: 500px;
+  padding: 15px 30px;
+  border: 1px solid #cccccc;
+  background-color: #fff;
+  border-radius: 7px;
+}
+.custom_form_control {
+  height: 60px;
+  padding: 21px 18px;
+  font-size: 15px;
+}
+.or_hr {
+  position: absolute;
+  width: 100%;
+  top: -6px;
+}
+.login_btn {
+  width: 100%;
+  background-color: #f9537b;
+  color: #fff;
+  border-radius: 7px;
+  padding: 17px;
+}
+.login_section .social_login .btn {
+  height: 48px;
+  border: 1px solid #111719;
+  width: 100%;
+  margin-bottom: 12px;
+  position: relative;
+}
+
+.login_section .icon {
+  position: absolute;
+  top: 13px;
+  left: 33px;
+}
+.signup_section {
+  width: 880px;
+  padding: 15px 30px;
+  border: 1px solid #cccccc;
+  background-color: #fff;
+  border-radius: 7px;
 }
