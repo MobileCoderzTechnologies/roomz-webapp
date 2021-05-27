@@ -1,0 +1,17 @@
+<mat-toolbar>
+  <h1> {{'appName'|langTranslate}} </h1>
+  &nbsp;
+  <span>
+    {{'contactUs'|langTranslate}}
+  </span>
+  &nbsp;
+  <div>
+    <button (click)="setLang('en')">EN</button>
+    |
+    <button (click)="setLang('ar')">AR</button>
+  </div>
+</mat-toolbar>
+
+<p>
+  {{'content'|langTranslate}}
+</p>

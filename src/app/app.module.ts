@@ -9,11 +9,14 @@ import { HttpService } from './services/http.service';
 import { AuthInterceptorService } from './interceptors/auth-interceptor.service';
 import { NotFoundComponent } from './components/not-found/not-found.component';
 import { SharedModule } from './modules/shared/shared.module';
+import { HeaderComponent } from './components/header/header.component';
+import { LangTranslateService } from './services/lang-translate.service';
 
 @NgModule({
   declarations: [
     AppComponent,
-    NotFoundComponent
+    NotFoundComponent,
+    HeaderComponent
   ],
   imports: [
     BrowserModule,
@@ -28,7 +31,8 @@ import { SharedModule } from './modules/shared/shared.module';
       provide: HTTP_INTERCEPTORS,
       useClass: AuthInterceptorService,
       multi: true
-    }
+    },
+    LangTranslateService
   ],
   bootstrap: [AppComponent]
 })

@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { AlertModule } from '../alert/alert.module';
 import { DialogModule } from '../dialog/dialog.module';
 import { LangTranslateModule } from '../translate/lang-translate.module';
+import { MaterialModule } from '../material/material.module';
 
 
 
@@ -12,13 +13,15 @@ import { LangTranslateModule } from '../translate/lang-translate.module';
     CommonModule,
     AlertModule,
     DialogModule,
-    LangTranslateModule
+    LangTranslateModule,
+    MaterialModule
   ],
   exports: [
     CommonModule,
     AlertModule,
     DialogModule,
-    LangTranslateModule
+    LangTranslateModule,
+    MaterialModule
   ]
 })
 export class SharedModule { }

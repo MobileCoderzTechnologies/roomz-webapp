@@ -1,9 +1,7 @@
 {
-  "name": "pk",
-  "header": {
-    "appName": "Roomz",
-    "menus": {
-      "contactUs": "contact Us"
-    }
-  }
+
+  "appName": "RoomZ",
+  "contactUs": "Contact Us",
+  "content": "Roomz in English"
+
 }

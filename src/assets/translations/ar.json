@@ -1,10 +1,5 @@
 {
-  "header": {
-    "appName": "RoomZA",
-    "menus": [
-      {
-        "text": "Contact UsA"
-      }
-    ]
-  }
+  "appName": "RoomZ A",
+  "contactUs":"Contact Us A",
+  "content": "Roomz in Arbic"
 }
