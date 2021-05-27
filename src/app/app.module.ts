@@ -8,8 +8,7 @@ import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { HttpService } from './services/http.service';
 import { AuthInterceptorService } from './interceptors/auth-interceptor.service';
 import { NotFoundComponent } from './components/not-found/not-found.component';
-import { DialogModule } from './modules/dialog/dialog.module';
-import { AlertModule } from './modules/alert/alert.module';
+import { SharedModule } from './modules/shared/shared.module';
 
 @NgModule({
   declarations: [
@@ -21,8 +20,7 @@ import { AlertModule } from './modules/alert/alert.module';
     AppRoutingModule,
     BrowserAnimationsModule,
     HttpClientModule,
-    DialogModule,
-    AlertModule
+    SharedModule
   ],
   providers: [
     HttpService,
