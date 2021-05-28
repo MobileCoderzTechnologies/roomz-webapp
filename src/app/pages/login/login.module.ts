@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { LoginComponent } from './login.component';
 import { RouterModule, Routes } from '@angular/router';
 import { SharedModule } from 'src/app/modules/shared/shared.module';
+import { ValidateErrorModule } from 'src/app/modules/validate-error/validate-error.module';
 
 const routes: Routes = [
   {
@@ -17,12 +18,14 @@ const routes: Routes = [
   imports: [
     CommonModule,
     RouterModule.forChild(routes),
-    SharedModule
+    SharedModule,
+    ValidateErrorModule
   ],
   exports: [
     RouterModule,
     SharedModule,
-    LoginComponent
+    LoginComponent,
+    ValidateErrorModule
   ]
 })
 export class LoginModule { }

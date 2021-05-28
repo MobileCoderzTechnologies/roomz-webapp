@@ -4,6 +4,8 @@ import { Observable } from 'rxjs';
 import { AccessToken } from 'src/app/modals/accces-token.modal';
 import { User } from 'src/app/modals/user.modal';
 import { HttpService } from 'src/app/services/http.service';
+import { matchPasswords } from 'src/app/validators/password.validator';
+import { ageValidator } from 'src/app/validators/age.validator';
 
 @Injectable({
   providedIn: 'root'
@@ -16,6 +18,7 @@ export class SignUpService {
   ) { }
 
   signUpForm(): FormGroup {
+    // tslint:disable-next-line: deprecation
     return this.$fb.group({
       phone_number: [null, [Validators.minLength(10), Validators.maxLength(10)]],
       country_code: [null],
@@ -23,9 +26,13 @@ export class SignUpService {
       last_name: [null, Validators.required],
       email: [null, [Validators.email]],
       password: [null, Validators.required],
-      dob: [null, Validators.required]
-    });
+      confirm_password: [null, Validators.required],
+      dob: [null, [Validators.required]]
+    },
+      { validators: [matchPasswords('password', 'confirm_password')] }
+    );
   }
+
 
   checkAccount(data: any): Observable<
     {

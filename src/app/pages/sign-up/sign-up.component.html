@@ -1,74 +1,82 @@
 <section class="d-flex align-items-center justify-content-center py-5">
   <div class="signup_section">
     <div class="d-flex align-items-center justify-content-between">
-      <h3 class="fz24 mb-0 semi_font">Sign Up with Email</h3>
+      <h3 class="fz24 mb-0 semi_font"> {{'signUp.signUpWithEmail'|langTranslate}} </h3>
       <span class="bold_font">&#10005;</span>
     </div>
     <hr />
-    <form class="row g-3">
+    <form [formGroup]="signUpForm" class="row g-3">
       <div class="col-md-6">
         <div class="mb_20">
-          <label class="form-label">First Name</label>
-          <input
-            type="text"
-            class="form-control custom_form_control"
-            placeholder="Enter First Name"
-          />
+          <label class="form-label">{{'signUp.form.firstName'|langTranslate}} </label>
+          <input type="text" class="form-control custom_form_control" formControlName="first_name"
+            placeholder="{{'signUp.form.firstNamePlaceholder'|langTranslate}}" />
+          <small class="text-danger" *ngIf="signUpForm.controls.first_name.touched">
+            {{signUpForm.controls.first_name.errors|validateError: ('signUp.form.firstName'|langTranslate)}}
+          </small>
           <div id="emailHelp" class="form-text">
-            Make sure it matches the name on your government ID.
+            {{'signUp.form.firstNameHintMessage'|langTranslate}}
           </div>
         </div>
       </div>
+
       <div class="col-md-6">
         <div class="mb_20">
-          <label class="form-label">Last Name</label>
-          <input
-            type="text"
-            class="form-control custom_form_control"
-            placeholder="Enter Last Name"
-          />
+          <label class="form-label"> {{'signUp.form.lastName'|langTranslate}} </label>
+          <input type="text" class="form-control custom_form_control" formControlName="last_name"
+            placeholder="{{'signUp.form.lastNamePlaceholder'|langTranslate}}" />
+          <small class="text-danger" *ngIf="signUpForm.controls.last_name.touched">
+            {{signUpForm.controls.last_name.errors|validateError: ('signUp.form.lastName'|langTranslate)}}
+          </small>
         </div>
       </div>
+
       <div class="col-md-6">
         <div class="mb_20">
-          <label class="form-label">Email</label>
-          <input
-            type="email"
-            class="form-control custom_form_control"
-            placeholder="Enter Email"
-          />
+          <label class="form-label">{{'signUp.form.email'|langTranslate}}</label>
+          <input type="email" class="form-control custom_form_control" formControlName="email"
+            placeholder="{{'signUp.form.emailPlaceholder'|langTranslate}}" />
+          <small class="text-danger" *ngIf="signUpForm.controls.email.touched">
+            {{signUpForm.controls.email.errors|validateError: ('signUp.form.email'|langTranslate)}}
+          </small>
           <div id="emailHelp" class="form-text">
-            We'll email you a reservation confirmation.
+            {{'signUp.form.emailHintMessage'|langTranslate}}
           </div>
         </div>
       </div>
+
       <div class="col-md-6">
         <div class="mb_20">
-          <label class="form-label">Birtday</label>
-          <input type="date" class="form-control custom_form_control" />
+          <label class="form-label">{{'signUp.form.birthday'|langTranslate}}</label>
+          <input type="date" class="form-control custom_form_control" formControlName="dob" />
+          <small class="text-danger" *ngIf="signUpForm.controls.dob.touched">
+            {{signUpForm.controls.dob.errors|validateError: ('signUp.form.birthday'|langTranslate)}}
+          </small>
           <div id="emailHelp" class="form-text">
-            To sign up, you need to be at least 18. It won't be shown to others.
+            {{'signUp.form.birthdayHintMessage'|langTranslate}}
           </div>
         </div>
       </div>
+
       <div class="col-md-6">
         <div class="mb_20">
-          <label class="form-label">Password</label>
-          <input
-            type="password"
-            class="form-control custom_form_control"
-            placeholder="Enter Password"
-          />
+          <label class="form-label">{{'signUp.form.password'|langTranslate}}</label>
+          <input type="password" class="form-control custom_form_control" formControlName="password"
+            placeholder="{{'signUp.form.passwordPlaceholder'|langTranslate}}" />
+          <small class="text-danger" *ngIf="signUpForm.controls.password.touched">
+            {{signUpForm.controls.password.errors|validateError: ('signUp.form.password'|langTranslate)}}
+          </small>
         </div>
       </div>
       <div class="col-md-6">
         <div class="mb_20">
-          <label class="form-label">Confirm New Password</label>
-          <input
-            type="password"
-            class="form-control custom_form_control"
-            placeholder="Enter Password"
-          />
+          <label class="form-label">{{'signUp.form.confirmPassword'|langTranslate}}</label>
+          <input type="password" class="form-control custom_form_control"
+          formControlName="confirm_password"
+           placeholder="{{'signUp.form.passwordPlaceholder'|langTranslate}}" />
+           <small class="text-danger" *ngIf="signUpForm.controls.confirm_password.touched">
+             {{signUpForm.controls.confirm_password.errors|validateError: ('signUp.form.confirmPassword'|langTranslate)}}
+           </small>
         </div>
       </div>
       <div class="col-12">
@@ -76,19 +84,15 @@
           <p class="text-center fz14">
             By selecting <span class="semi_font">Agree and submit</span> below,
             I agree to app's
-            <a href="javascript:void(0);" class="base_blue medium_font"
-              ><u>Terms of service</u></a
-            >, and
-            <a href="javascript:void(0);" class="base_blue medium_font"
-              ><u>Payments</u></a
-            >.
+            <a href="javascript:void(0);" class="base_blue medium_font"><u>Terms of service</u></a>, and
+            <a href="javascript:void(0);" class="base_blue medium_font"><u>Payments</u></a>.
           </p>
         </div>
       </div>
       <div class="col-md-3"></div>
       <div class="col-md-6">
         <div class="col_selector">
-          <button class="btn login_btn mb_20">Agree and submit</button>
+          <button class="btn login_btn mb_20" (click)="onSubmit()">Agree and submit</button>
           <p class="text-center">
             Don't have an account?
             <a href="javascript:void(0);" class="base_blue"><u>Sign up</u></a>

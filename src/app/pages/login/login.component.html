@@ -1,87 +1,96 @@
 <section class="d-flex align-items-center justify-content-center vh-100">
   <div class="login_section">
     <div class="d-flex align-items-center justify-content-between">
-      <h3 class="fz24 mb-0 semi_font">Log In with Phone Number.</h3>
+      <h3 class="fz24 mb-0 semi_font" *ngIf="loginWith==='phone'">{{'login.loginWithPhone'|langTranslate}}</h3>
+      <h3 class="fz24 mb-0 semi_font" *ngIf="loginWith==='email'">{{'login.loginWithEmail'|langTranslate}}</h3>
       <span class="medium_font">&#10005;</span>
     </div>
     <hr />
-    <form action="">
-      <div class="mb-3">
-        <label class="fz15">Phone Number</label>
-        <input
-          type="text"
-          class="form-control custom_form_control fz15"
-          placeholder="Enter Phone Number"
-        />
+    <form [formGroup]="loginForm">
+      <div class="mb-3" *ngIf="loginWith==='phone'">
+        <label class="fz15"> {{'login.form.phoneNumber'|langTranslate}}</label>
+        <input type="text" class="form-control custom_form_control fz15" formControlName="phoneNumber"
+          placeholder="{{'login.form.phoneNumberPlaceholder'|langTranslate}}" />
+        <small class="text-danger" *ngIf="loginForm.controls.phoneNumber.touched">
+          {{loginForm.controls.phoneNumber.errors|validateError: ('login.form.phoneNumber'|langTranslate)}}
+        </small>
+      </div>
+      <div class="mb-3" *ngIf="loginWith==='email'">
+        <label class="fz15"> {{'login.form.email'|langTranslate}}</label>
+        <input type="text" class="form-control custom_form_control fz15" formControlName="email"
+          placeholder="{{'login.form.emailPlaceholder'|langTranslate}}" />
+          <small class="text-danger" *ngIf="loginForm.controls.email.touched">
+            {{loginForm.controls.email.errors|validateError: ('login.form.email'|langTranslate)}}
+          </small>
       </div>
       <div class="mb-3">
-        <label class="fz15">Passwords</label>
-        <input
-          type="password"
-          class="form-control custom_form_control fz15"
-          placeholder="Enter Password"
-        />
+        <label class="fz15">{{'login.form.password'|langTranslate}} </label>
+        <input type="password" class="form-control custom_form_control fz15" formControlName="password"
+          placeholder="{{'login.form.passwordPlaceholder'|langTranslate}}" />
+          <small class="text-danger" *ngIf="loginForm.controls.password.touched">
+            {{loginForm.controls.password.errors|validateError: ('login.form.password'|langTranslate)}}
+          </small>
       </div>
       <div class="mb_20">
-        <button class="btn login_btn">LOG IN</button>
+        <button type="submit" class="btn login_btn" (click)="onSubmit()">
+          {{'login.form.loginBtn'|langTranslate}} </button>
       </div>
       <div class="text-center mb_20">
-        <a href="javascript:void(0);" class="base_blue"
-          ><u>Forgot Password?</u></a
-        >
+        <a href="javascript:void(0);" class="base_blue"><u>{{'login.form.forgotPasswordBtn'|langTranslate}}</u></a>
       </div>
       <div class="text-center mb_20 position-relative">
         <hr class="or_hr" />
-        <p class="bg-white d-inline-block">or continue with</p>
+        <p class="bg-white d-inline-block"> {{'login.orContinueWith.text'|langTranslate}} </p>
       </div>
       <div class="row social_login">
+
+        <div class="col-6" *ngIf="loginWith!=='email'">
+          <div class="col_selector">
+            <button class="btn rounded-pill" (click)="onClickLoginWith('email')">
+              <img src="assets/images/email.png" alt="" class="icon" style="top: 17px" />
+              {{'login.orContinueWith.email'|langTranslate}}
+            </button>
+          </div>
+        </div>
+
+        <div class="col-6" *ngIf="loginWith!=='phone'">
+          <div class="col_selector">
+            <button class="btn rounded-pill" (click)="onClickLoginWith('phone')">
+              <img src="assets/images/phone.png" alt="" class="icon" />
+              {{'login.orContinueWith.phone'|langTranslate}}
+            </button>
+          </div>
+        </div>
+
         <div class="col-6">
           <div class="col_selector">
-            <button
-              class="btn rounded-pill"
-              data-bs-toggle="modal"
-              data-bs-target="#staticBackdrop"
-            >
-              <img
-                src="assets/images/email.png"
-                alt=""
-                class="icon"
-                style="top: 17px"
-              />
-              Email
+            <button class="btn rounded-pill">
+              <img src="assets/images/facebook.png" alt="" class="icon" />
+              {{'login.orContinueWith.facebook'|langTranslate}}
             </button>
           </div>
         </div>
         <div class="col-6">
           <div class="col_selector">
             <button class="btn rounded-pill">
-              <img
-                src="assets/images/facebook.png"
-                alt=""
-                class="icon"
-              />Facebook
+              <img src="assets/images/google.png" alt="" class="icon" />
+              {{'login.orContinueWith.google'|langTranslate}}
             </button>
           </div>
         </div>
         <div class="col-6">
           <div class="col_selector">
             <button class="btn rounded-pill">
-              <img src="assets/images/google.png" alt="" class="icon" />Google
-            </button>
-          </div>
-        </div>
-        <div class="col-6">
-          <div class="col_selector">
-            <button class="btn rounded-pill">
-              <img src="assets/images/apple.png" alt="" class="icon" />Apple
+              <img src="assets/images/apple.png" alt="" class="icon" />
+              {{'login.orContinueWith.apple'|langTranslate}}
             </button>
           </div>
         </div>
       </div>
       <div class="text-center mt-3">
         <p>
-          Don't have an account?
-          <a href="javascript:void(0);" class="base_blue">Sign up</a>
+          {{'login.noAccount'|langTranslate}}
+          <a href="javascript:void(0);" class="base_blue"> {{'login.signUpText'|langTranslate}} </a>
         </p>
       </div>
     </form>
@@ -89,25 +98,13 @@
 </section>
 
 <!-- Modal -->
-<div
-  class="modal fade"
-  id="staticBackdrop"
-  data-bs-backdrop="static"
-  data-bs-keyboard="false"
-  tabindex="-1"
-  aria-labelledby="staticBackdropLabel"
-  aria-hidden="true"
->
+<div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+  aria-labelledby="staticBackdropLabel" aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered">
     <div class="modal-content">
       <div class="modal-header">
         <h5 class="modal-title" id="staticBackdropLabel">Modal title</h5>
-        <button
-          type="button"
-          class="btn-close"
-          data-bs-dismiss="modal"
-          aria-label="Close"
-        ></button>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">...</div>
       <div class="modal-footer">

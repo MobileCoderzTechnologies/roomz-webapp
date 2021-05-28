@@ -1,7 +1,67 @@
 {
+  "login": {
+    "loginWithPhone": " Log In with Phone Number.",
+    "loginWithEmail": "Log In With Email.",
+    "form": {
+      "phoneNumber": " Phone Number",
+      "phoneNumberPlaceholder": " Enter Phone Number",
+      "email": "Email",
+      "emailPlaceholder": " Enter Email",
+      "password": "Password",
+      "passwordPlaceholder": "Enter Password",
+      "loginBtn": "LOG IN",
+      "forgotPasswordBtn": "Forgot Password?"
+    },
+    "orContinueWith": {
+      "text": "or continue with",
+      "email": "Email",
+      "facebook": "Facebook",
+      "google": "Google",
+      "apple": "Apple",
+      "phone": "Phone"
+    },
+    "noAccount": "Don't have an account?",
+    "signUpText": "Sign Up"
+  },
 
-  "appName": "RoomZ",
-  "contactUs": "Contact Us",
-  "content": "Roomz in English"
+  "validateErrorMessages": {
+    "charactersText": "characters.",
+    "fieldRequired": "is Required",
+    "minLength": "should be grater then equal to",
+    "maxLength": "should be less then equal to",
+    "notValid": "is not Valid",
+    "min": "should be greater then",
+    "max": "should be less then",
+    "fieldMismatch": " not Matched"
+  },
+
+  "signUp": {
+    "signUpWithEmail": "Sign Up With Email",
+    "signUpWithPhoneNumber": "Sign Up With Phone Number",
+    "form": {
+      "firstName": "First Name",
+      "firstNamePlaceholder": "Enter First Name",
+      "firstNameHintMessage": "Make sure it matches the name on your government ID.",
+      "lastName": "Last Name",
+      "lastNamePlaceholder": "Enter Last Name",
+      "email": "Email",
+      "emailPlaceholder":" Enter Email",
+      "emailHintMessage": "We'll email you a reservation confirmation.",
+      "birthday": "Birthday",
+      "birthdayPlaceholder": "dd/mm/yy",
+      "birthdayHintMessage": "To sign up, you need to at least 18. It won't be shown to others.",
+      "password": "Password",
+      "passwordPlaceholder": "Enter Password",
+      "confirmPassword": "Confirm Password",
+      "tosLineText1": "By Selecting",
+      "tosLineText2":"below, I agree to app's",
+      "tosLineText3": "Terms of Services",
+      "tosLineText4": "And",
+      "tosLineText5": "Payments",
+      "btnText": "Agree and Submit"
+    },
+    "haveAnAccount": "Already have an account",
+    "loginText": "Log In"
+  }
 
 }

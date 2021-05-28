@@ -10,7 +10,7 @@ import { HttpService } from 'src/app/services/http.service';
 export class LoginService {
 
   constructor(
-    private $http: HttpService
+    private $http: HttpService,
   ) { }
 
   login(data: any): Observable<LoginResp> {

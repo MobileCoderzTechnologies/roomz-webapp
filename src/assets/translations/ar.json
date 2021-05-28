@@ -1,5 +1,38 @@
 {
-  "appName": "RoomZ A",
-  "contactUs":"Contact Us A",
-  "content": "Roomz in Arbic"
+
+  "login": {
+    "loginWithPhone": " Log In with Phone Number. A",
+    "loginWithEmail": "Log In With Email.",
+    "form": {
+      "phoneNumber": " Phone Number A",
+      "phoneNumberPlaceholder": " Enter Phone Number A",
+      "email": "Email",
+      "emailPlaceholder": " Enter Email",
+      "password": "Password A",
+      "passwordPlaceholder": "Enter Password A",
+      "loginBtn": "LOG IN A",
+      "forgotPasswordBtn": "Forgot Password? A"
+    },
+    "orContinueWith": {
+      "text": "or continue with A",
+      "email": "Email A",
+      "facebook": "Facebook A",
+      "google": "Google A",
+      "apple": "Apple A",
+      "phone": "Phone A"
+    },
+    "noAccount": "Don't have an account? A",
+    "signUpText": "Sign Up A"
+  },
+
+  "validateErrorMessages": {
+    "charactersText": "characters. A",
+    "fieldRequired": "is Required A",
+    "minLength": "should be grater then equal to A",
+    "maxLength": "should be less then equal to A",
+    "notValid": "is not Valid A",
+    "min": "should be greater then A",
+    "max": "should be less then A"
+  }
+
 }

@@ -4,6 +4,7 @@ import { AlertModule } from '../alert/alert.module';
 import { DialogModule } from '../dialog/dialog.module';
 import { LangTranslateModule } from '../translate/lang-translate.module';
 import { MaterialModule } from '../material/material.module';
+import { ReactiveFormsModule } from '@angular/forms';
 
 
 
@@ -14,6 +15,7 @@ import { MaterialModule } from '../material/material.module';
     AlertModule,
     DialogModule,
     LangTranslateModule,
+    ReactiveFormsModule,
     MaterialModule
   ],
   exports: [
@@ -21,6 +23,7 @@ import { MaterialModule } from '../material/material.module';
     AlertModule,
     DialogModule,
     LangTranslateModule,
+    ReactiveFormsModule,
     MaterialModule
   ]
 })
