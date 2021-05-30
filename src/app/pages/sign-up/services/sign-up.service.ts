@@ -5,7 +5,6 @@ import { AccessToken } from 'src/app/modals/accces-token.modal';
 import { User } from 'src/app/modals/user.modal';
 import { HttpService } from 'src/app/services/http.service';
 import { matchPasswords } from 'src/app/validators/password.validator';
-import { ageValidator } from 'src/app/validators/age.validator';
 
 @Injectable({
   providedIn: 'root'
