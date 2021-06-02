@@ -14,7 +14,7 @@ body {
   font-family: Roboto, "Helvetica Neue", sans-serif;
 }
 
-input.ng-touched.ng-invalid{
+input.ng-touched.ng-invalid {
   border-color: $danger-color;
 }
 
@@ -139,6 +139,9 @@ a:hover {
 .fz40 {
   font-size: 40px !important;
 }
+.fz45 {
+  font-size: 45px !important;
+}
 .fz50 {
   font-size: 50px !important;
 }
@@ -148,6 +151,7 @@ a:hover {
 .fz70 {
   font-size: 70px !important;
 }
+
 .form-control:focus {
   box-shadow: none;
 }
@@ -223,4 +227,99 @@ body {
   border: 1px solid #cccccc;
   background-color: #fff;
   border-radius: 7px;
+}
+.img_columb {
+  position: absolute;
+  top: 0;
+  right: 0;
+}
+.explore_destination {
+  background-color: #f1efef;
+  padding-top: 30px;
+  padding-bottom: 54px;
+}
+header {
+  position: absolute;
+  width: 100%;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 99;
+}
+.location_low {
+  position: absolute;
+  top: 8px;
+  left: 15px;
+}
+.heading_text {
+  font-size: 30px !important;
+  text-align: center;
+  margin-bottom: 30px;
+}
+.most_popular {
+  padding-top: 30px;
+  padding-bottom: 54px;
+}
+.most_popular .carousel-indicators > button {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+}
+.most_popular .carousel-control-prev-icon {
+  background-color: #babdbe;
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+}
+.most_popular .carousel-control-next-icon {
+  background-color: #babdbe;
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+}
+.custom_body {
+  background-color: #f1efef;
+}
+.rentout_section {
+  padding-top: 60px;
+  padding-bottom: 60px;
+  background-color: #f1efef;
+}
+.rent_out_part {
+  padding: 28px 35px 25px 20px;
+}
+.rent_out_part .btn {
+  background-color: #3ec4de;
+  color: #fff;
+  padding: 13px;
+  border-radius: 7px;
+  font-size: 20px;
+  margin-top: 30px;
+}
+.student_section {
+  background-image: url(../../roomz-frontend/src/assets/images/student_section.png);
+  background-repeat: no-repeat;
+  padding-top: 223px;
+  padding-bottom: 30px;
+  color: #fff;
+  background-size: cover;
+}
+.student_section .btn {
+  background-color: #00000054;
+  padding: 14px 23px;
+}
+.partner_section {
+  padding: 81px 0;
+}
+.img_part {
+  margin-right: 50px;
+}
+footer {
+  background-color: #6d635f;
+  padding-top: 50px;
+  padding-bottom: 54px;
+}
+footer h3 {
+  color: #b7b1ae;
+  margin-bottom: 20px;
 }
