@@ -3,12 +3,12 @@
 }
 
 // .banner_section{
-  /*background-image: url('../images/banner.png');*/
-  /*background-repeat: no-repeat;*/
-  /*height: 530px;*/
+/*background-image: url('../images/banner.png');*/
+/*background-repeat: no-repeat;*/
+/*height: 530px;*/
 // }
 
-.banner_section .carousel-caption{
+.banner_section .carousel-caption {
   width: 100%;
   left: 0;
   right: 0;
@@ -17,26 +17,30 @@
   padding: 0;
 }
 
-.banner_section .nav-link{
+.banner_section .nav-link {
   color: #fff !important;
+  padding-left: 17.5px;
+  padding-right: 17.5px;
 }
 
-.book_room{
+.book_room {
   background-color: #07070770;
   padding: 21px 20px 34px;
   border-radius: 7px;
 }
 
-.book_room .btn{
-  background-color: #F9537B;
+.book_room .btn {
+  background-color: #f9537b;
   color: #fff;
 }
 
-.banner_section .carousel-control-next, .banner_section .carousel-control-prev{
+.banner_section .carousel-control-next,
+.banner_section .carousel-control-prev {
   width: 2%;
 }
 
-.banner_section .carousel-control-next>span, .banner_section .carousel-control-prev>span{
+.banner_section .carousel-control-next > span,
+.banner_section .carousel-control-prev > span {
   background-color: #707070;
   width: 40px;
   height: 60px;
