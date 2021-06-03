@@ -47,6 +47,10 @@ export class SignUpComponent implements OnInit, AfterViewInit {
   onSubmit(): void {
     const userData = this.signUpForm.value;
     if (this.data && this.data.createAccount) {
+      if (this.data.phone_number) {
+        userData.phone_number = this.data.phone_number;
+        userData.country_code = this.data.country_code;
+      }
       this.register(userData);
     } else {
       this.checkAccount(userData);

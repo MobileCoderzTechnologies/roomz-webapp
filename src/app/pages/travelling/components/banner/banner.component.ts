@@ -6,6 +6,7 @@ import { LoginComponent } from 'src/app/pages/login/login.component';
 import { LoginService } from 'src/app/pages/login/services/login.service';
 import { SignUpComponent } from 'src/app/pages/sign-up/sign-up.component';
 import { LangTranslateService } from 'src/app/services/lang-translate.service';
+import { OtpComponent } from '../otp/otp.component';
 
 @Component({
   selector: 'app-banner',
@@ -80,6 +81,30 @@ export class BannerComponent implements OnInit, AfterViewInit {
         }
         if (success.createAccount && !success.checkAccount) {
           this.onSignUp();
+        }
+        if (success.createAccount && success.phone_number) {
+          this.onEnterOtp(success);
+        }
+      }
+    });
+  }
+
+
+  private onEnterOtp(data): void {
+    const dialogRef = this.$dialog.open(OtpComponent, {
+      height: 'fit-content',
+      maxHeight: '90vh',
+      width: 'auto',
+      autoFocus: false,
+      data
+    });
+    dialogRef.afterClosed().subscribe(success => {
+      if (success) {
+        if (success.isVerified) {
+          this.onSignUp({
+            phone_number: data.phone_number,
+            country_code: data.country_code
+          });
         }
       }
     });

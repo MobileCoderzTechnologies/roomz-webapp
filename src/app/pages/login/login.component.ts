@@ -65,7 +65,8 @@ export class LoginComponent implements OnInit {
     const loginData = this.loginForm.value;
     if (loginData.phoneNumber) {
       loginData.phone_number = loginData.phoneNumber;
-      delete loginData.phone_number;
+      loginData.country_code = '+91';
+      delete loginData.phoneNumber;
     }
     if (this.data && this.data.login) {
       this.login(loginData);
@@ -78,6 +79,18 @@ export class LoginComponent implements OnInit {
     this.isSubmitting = true;
     loginData.login_type = this.loginWith.toUpperCase();
     this.$loginService.checkAccount(loginData).subscribe(data => {
+      if (data.status === 200) {
+        this.$dialogRef.close(
+          {
+            createAccount: true,
+            phone_number: loginData.phone_number,
+            country_code: loginData.country_code,
+            loginType: this.loginWith.toUpperCase(),
+            checkAccount: true,
+            message: data.body.message
+          }
+        );
+      }
       if (data.status === 202) {
         // this.$alert.success(data.body.message);
         this.login(loginData);
@@ -99,6 +112,8 @@ export class LoginComponent implements OnInit {
       this.$alert.danger(err.message);
     });
   }
+
+
 
   private login(loginData: any): void {
     this.$loginService.login(loginData).subscribe(data => {

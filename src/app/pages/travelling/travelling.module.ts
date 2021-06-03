@@ -14,6 +14,7 @@ import { PartnersComponent } from './components/partners/partners.component';
 import { FooterComponent } from './components/footer/footer.component';
 import { SignUpModule } from '../sign-up/sign-up.module';
 import { LoginModule } from '../login/login.module';
+import { OtpComponent } from './components/otp/otp.component';
 
 
 
@@ -27,7 +28,8 @@ import { LoginModule } from '../login/login.module';
     ValuesComponent,
     StudentAccommodationComponent,
     PartnersComponent,
-    FooterComponent
+    FooterComponent,
+    OtpComponent
   ],
   imports: [
     CommonModule,
