@@ -15,12 +15,8 @@ const routes: Routes = [
     loadChildren: () => import('./pages/travelling/travelling.module').then(m => m.TravellingModule)
   },
   {
-    path: LOGIN_ROUTE.path,
-    loadChildren: () => import('./pages/login/login.module').then(m => m.LoginModule)
-  },
-  {
-    path: SIGN_UP_ROUTE.path,
-    loadChildren: () => import('./pages/sign-up/sign-up.module').then(m => m.SignUpModule)
+    path: 'otp',
+    loadChildren: () => import('./modules/otp/otp.module').then(m => m.OtpModule)
   },
   {
     path: 'ar', children: [
@@ -33,14 +29,6 @@ const routes: Routes = [
         path: 'travelling',
         loadChildren: () => import('./pages/travelling/travelling.module').then(m => m.TravellingModule)
       },
-      {
-        path: LOGIN_ROUTE.path,
-        loadChildren: () => import('./pages/login/login.module').then(m => m.LoginModule)
-      },
-      {
-        path: SIGN_UP_ROUTE.path,
-        loadChildren: () => import('./pages/sign-up/sign-up.module').then(m => m.SignUpModule)
-      },
     ]
   },
   {
@@ -52,7 +40,7 @@ const routes: Routes = [
 @NgModule({
   imports: [RouterModule.forRoot(routes, {
     initialNavigation: 'enabled'
-})],
+  })],
   exports: [RouterModule]
 })
 export class AppRoutingModule { }
