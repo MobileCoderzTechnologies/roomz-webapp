@@ -1,9 +1,9 @@
-<section class="d-flex align-items-center justify-content-center vh-100">
+<section class="d-flex align-items-center justify-content-center">
   <div class="login_section">
     <div class="d-flex align-items-center justify-content-between">
       <h3 class="fz24 mb-0 semi_font" *ngIf="loginWith==='phone'">{{'login.loginWithPhone'|langTranslate}}</h3>
       <h3 class="fz24 mb-0 semi_font" *ngIf="loginWith==='email'">{{'login.loginWithEmail'|langTranslate}}</h3>
-      <span class="medium_font">&#10005;</span>
+      <span class="medium_font" style="cursor: pointer;" (click)="closeDialog()">&#10005;</span>
     </div>
     <hr />
     <form [formGroup]="loginForm">
@@ -19,21 +19,27 @@
         <label class="fz15"> {{'login.form.email'|langTranslate}}</label>
         <input type="text" class="form-control custom_form_control fz15" formControlName="email"
           placeholder="{{'login.form.emailPlaceholder'|langTranslate}}" />
-          <small class="text-danger" *ngIf="loginForm.controls.email.touched">
-            {{loginForm.controls.email.errors|validateError: ('login.form.email'|langTranslate)}}
-          </small>
+        <small class="text-danger" *ngIf="loginForm.controls.email.touched">
+          {{loginForm.controls.email.errors|validateError: ('login.form.email'|langTranslate)}}
+        </small>
       </div>
       <div class="mb-3">
         <label class="fz15">{{'login.form.password'|langTranslate}} </label>
         <input type="password" class="form-control custom_form_control fz15" formControlName="password"
           placeholder="{{'login.form.passwordPlaceholder'|langTranslate}}" />
-          <small class="text-danger" *ngIf="loginForm.controls.password.touched">
-            {{loginForm.controls.password.errors|validateError: ('login.form.password'|langTranslate)}}
-          </small>
+        <small class="text-danger" *ngIf="loginForm.controls.password.touched">
+          {{loginForm.controls.password.errors|validateError: ('login.form.password'|langTranslate)}}
+        </small>
       </div>
       <div class="mb_20">
-        <button type="submit" class="btn login_btn" (click)="onSubmit()">
-          {{'login.form.loginBtn'|langTranslate}} </button>
+        <button *ngIf="!isSubmitting" type="submit" class="btn login_btn" (click)="onSubmit()"
+          [disabled]="loginForm.invalid">
+          {{'login.form.loginBtn'|langTranslate}}
+        </button>
+        <button *ngIf="isSubmitting" class="btn login_btn" [disabled]="loginForm.invalid">
+          {{'login.form.loginBtn'|langTranslate}}
+          <div class="spinner-border text-info spinner-border-sm"></div>
+        </button>
       </div>
       <div class="text-center mb_20">
         <a href="javascript:void(0);" class="base_blue"><u>{{'login.form.forgotPasswordBtn'|langTranslate}}</u></a>

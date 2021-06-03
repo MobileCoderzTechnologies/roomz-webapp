@@ -19,12 +19,12 @@ const routes: Routes = [
     CommonModule,
     RouterModule.forChild(routes),
     SharedModule,
-    ValidateErrorModule
+    ValidateErrorModule,
   ],
   exports: [
     RouterModule,
     SharedModule,
-    ValidateErrorModule
+    ValidateErrorModule,
   ]
 })
 export class SignUpModule { }

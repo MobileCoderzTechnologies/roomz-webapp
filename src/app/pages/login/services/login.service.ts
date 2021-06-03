@@ -1,5 +1,6 @@
+import { HttpResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { BehaviorSubject, Observable } from 'rxjs';
 import { AccessToken } from 'src/app/modals/accces-token.modal';
 import { User } from 'src/app/modals/user.modal';
 import { HttpService } from 'src/app/services/http.service';
@@ -9,10 +10,38 @@ import { HttpService } from 'src/app/services/http.service';
 })
 export class LoginService {
 
+  public isLoggedIn = new BehaviorSubject<boolean>(false);
   constructor(
     private $http: HttpService,
-  ) { }
+  ) {
+    if (localStorage.getItem('accessToken')) {
+      this.isLoggedIn.next(true);
+    }
+  }
 
+  checkAccount(data: any): Observable<any> {
+    return this.$http.post('auth/check-account', data, {
+      observe: 'response' as 'body'
+    });
+  }
+
+  resendOtp(data: { phone_number: string, country_code: string }): Observable<
+    {
+      otpSid: string,
+      message: string
+    }
+  > {
+    return this.$http.post('auth/resend-otp', data);
+  }
+
+  verifyOtp(data: { phone_number: string, country_code: string, otp: number }): Observable<
+    {
+      status: string,
+      message: string
+    }
+  > {
+    return this.$http.post('auth/verify-otp', data);
+  }
   login(data: any): Observable<LoginResp> {
     return this.$http.post('auth/login', data);
   }

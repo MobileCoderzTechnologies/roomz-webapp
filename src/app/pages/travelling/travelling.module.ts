@@ -12,19 +12,35 @@ import { ValuesComponent } from './components/values/values.component';
 import { StudentAccommodationComponent } from './components/student-accommodation/student-accommodation.component';
 import { PartnersComponent } from './components/partners/partners.component';
 import { FooterComponent } from './components/footer/footer.component';
+import { SignUpModule } from '../sign-up/sign-up.module';
+import { LoginModule } from '../login/login.module';
 
 
 
 @NgModule({
-  declarations: [HomeComponent, BannerComponent, ExploreComponent, MostPopularComponent, RentOutComponent, ValuesComponent, StudentAccommodationComponent, PartnersComponent, FooterComponent],
+  declarations: [
+    HomeComponent,
+    BannerComponent,
+    ExploreComponent,
+    MostPopularComponent,
+    RentOutComponent,
+    ValuesComponent,
+    StudentAccommodationComponent,
+    PartnersComponent,
+    FooterComponent
+  ],
   imports: [
     CommonModule,
     TravellingRoutingModule,
     SharedModule,
+    SignUpModule,
+    LoginModule
   ],
   exports: [
     TravellingRoutingModule,
     SharedModule,
+    SignUpModule,
+    LoginModule
   ]
 })
 export class TravellingModule { }

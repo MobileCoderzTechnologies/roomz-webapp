@@ -33,36 +33,9 @@ export class SignUpService {
   }
 
 
-  checkAccount(data: any): Observable<
-    {
-      otpSid: string;
-      message: string;
-      email: string
-    }
-  > {
-    return this.$http.post('auth/check_account', data);
-  }
 
   register(data: any): Observable<SignUpResp> {
     return this.$http.post('auth/register', data);
-  }
-
-  resendOtp(data: { phone_number: string, country_code: string }): Observable<
-    {
-      otpSid: string,
-      message: string
-    }
-  > {
-    return this.$http.post('auth/resend_otp', data);
-  }
-
-  verifyOtp(data: { phone_number: string, country_code: string, otp: number }): Observable<
-    {
-      status: string,
-      message: string
-    }
-  > {
-    return this.$http.post('auth/verify_otp', data);
   }
 }
 interface SignUpResp {

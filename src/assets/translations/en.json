@@ -1,4 +1,20 @@
 {
+  "header": {
+    "home": "HOME",
+    "destinations": "DESTINATIONS",
+    "login": "LOG IN",
+    "signUp": "SIGN UP",
+    "btnListARoom": "LIST A ROOM"
+  },
+  "bannerSlider":{
+    "form": {
+      "lineOnTop": "Book a room in a home",
+      "locationPlaceholder": "Where do you want to go?",
+      "checkIn": "Check In",
+      "checkOut": "Check Out",
+      "searchBtn": "Search"
+    }
+  },
   "login": {
     "loginWithPhone": " Log In with Phone Number.",
     "loginWithEmail": "Log In With Email.",
@@ -55,8 +71,8 @@
       "confirmPassword": "Confirm Password",
       "tosLineText1": "By Selecting",
       "tosLineText2":"below, I agree to app's",
-      "tosLineText3": "Terms of Services",
-      "tosLineText4": "And",
+      "tosLineText3": "Terms of Services ",
+      "tosLineText4": " And",
       "tosLineText5": "Payments",
       "btnText": "Agree and Submit"
     },

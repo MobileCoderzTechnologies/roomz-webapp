@@ -23,20 +23,29 @@ export class HttpService {
     );
   }
 
-  post(url: string, data: any): Observable<any> {
-    return this.$http.post<any>(`${this.baseUrl}${url}`, data).pipe(
+  post(url: string, data: any, options?: any): Observable<any> {
+    return this.$http.post<any>(`${this.baseUrl}${url}`,
+      data,
+      options
+    ).pipe(
       catchError(this.errorHandler.bind(this))
     );
   }
 
-  put(url: string, data: any, params?: any): Observable<any> {
-    return this.$http.put<any>(`${this.baseUrl}${url}`, data, { params }).pipe(
+  put(url: string, data: any, options?: any): Observable<any> {
+    return this.$http.put<any>(`${this.baseUrl}${url}`,
+      data,
+      options
+    ).pipe(
       catchError(this.errorHandler.bind(this))
     );
   }
 
-  patch(url: string, data: any, params?: any): Observable<any> {
-    return this.$http.patch<any>(`${this.baseUrl}${url}`, data, { params }).pipe(
+  patch(url: string, data: any, options?: any): Observable<any> {
+    return this.$http.patch<any>(`${this.baseUrl}${url}`,
+      data,
+      options
+    ).pipe(
       catchError(this.errorHandler.bind(this))
     );
   }
@@ -52,7 +61,7 @@ export class HttpService {
   private errorHandler(response: any): Observable<{ error: string, message: string }> {
     const error = response.error;
     const status = response.status;
-    const message = response.message;
+    const message = error.message;
     if (status === 401) {
       sessionStorage.clear();
       localStorage.clear();
