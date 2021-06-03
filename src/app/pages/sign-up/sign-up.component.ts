@@ -1,8 +1,8 @@
-import { Component, Inject, OnInit } from '@angular/core';
+import { AfterViewInit, Component, Inject, OnInit } from '@angular/core';
 import { FormGroup } from '@angular/forms';
-import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { User } from 'src/app/modals/user.modal';
 import { AlertService } from 'src/app/modules/alert/alert.service';
-import { LoginComponent } from '../login/login.component';
 import { LoginService } from '../login/services/login.service';
 import { SignUpService } from './services/sign-up.service';
 
@@ -11,7 +11,7 @@ import { SignUpService } from './services/sign-up.service';
   templateUrl: './sign-up.component.html',
   styleUrls: ['./sign-up.component.scss']
 })
-export class SignUpComponent implements OnInit {
+export class SignUpComponent implements OnInit, AfterViewInit {
 
   signUpForm: FormGroup = this.$signUpService.signUpForm();
   isSubmitting = false;
@@ -19,30 +19,72 @@ export class SignUpComponent implements OnInit {
   loginType = 'EMAIL';
 
   constructor(
-    private $dialog: MatDialog,
     private $signUpService: SignUpService,
     private $loginService: LoginService,
     private $dialogRef: MatDialogRef<SignUpComponent>,
     private $alert: AlertService,
     @Inject(MAT_DIALOG_DATA) private data: any
   ) {
-    if (data.email) {
+    if (data && data.email) {
       this.loginType = data.loginType;
+      console.log(data.email);
       this.signUpForm.controls.email.setValue(data.email);
     }
   }
 
   ngOnInit(): void {
+    console.log(this.data);
+  }
+
+  ngAfterViewInit(): void {
+
   }
 
   closeDialog(): void {
     this.$dialogRef.close(null);
   }
 
-
   onSubmit(): void {
-    this.isSubmitting = true;
     const userData = this.signUpForm.value;
+    if (this.data && this.data.createAccount) {
+      this.register(userData);
+    } else {
+      this.checkAccount(userData);
+    }
+  }
+
+  private checkAccount(userData: any): void {
+    this.isSubmitting = true;
+    userData.login_type = this.loginType;
+    this.$loginService.checkAccount(
+      {
+        login_type: this.loginType,
+        email: userData.email
+      }
+    ).subscribe(data => {
+      if (data.status === 202) {
+        this.$alert.info(data.body.message, 5000);
+        this.$dialogRef.close(
+          {
+            login: true,
+            email: userData.email,
+            loginType: this.loginType,
+            checkAccount: true
+          }
+        );
+      }
+
+      if (data.status === 209) {
+        this.register(userData);
+      }
+    }, err => {
+      this.isSubmitting = false;
+      this.$alert.danger(err.message);
+    });
+  }
+
+  register(userData: User): void {
+    this.isSubmitting = true;
     const [yyyy, mm, dd] = userData.dob.split('-');
     userData.dob = `${dd}-${mm}-${yyyy}`;
     userData.login_type = this.loginType;
@@ -61,7 +103,10 @@ export class SignUpComponent implements OnInit {
 
 
   onLogin(): void {
-    this.$dialogRef.close('login');
+    this.$dialogRef.close({
+      login: true,
+      checkAccount: false
+    });
   }
 
 }

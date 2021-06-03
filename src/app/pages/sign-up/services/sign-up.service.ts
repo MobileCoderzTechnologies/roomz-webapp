@@ -23,7 +23,7 @@ export class SignUpService {
       country_code: [null],
       first_name: [null, Validators.required],
       last_name: [null, Validators.required],
-      email: [null, [Validators.email]],
+      email: [null, [Validators.email, Validators.required]],
       password: [null, Validators.required],
       confirm_password: [null, Validators.required],
       dob: [null, [Validators.required]]

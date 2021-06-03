@@ -15,7 +15,7 @@ export class AlertService {
     this.$snackBar.open(message, '', {
       duration,
       verticalPosition: 'top',
-      horizontalPosition: 'right',
+      horizontalPosition: 'left',
       panelClass: ['alert', 'alert-success']
     });
   }
@@ -24,7 +24,7 @@ export class AlertService {
     this.$snackBar.open(message, '', {
       duration,
       verticalPosition: 'top',
-      horizontalPosition: 'right',
+      horizontalPosition: 'left',
       panelClass: ['alert', 'alert-danger']
     });
   }
@@ -33,7 +33,7 @@ export class AlertService {
     this.$snackBar.open(message, '', {
       duration,
       verticalPosition: 'top',
-      horizontalPosition: 'right',
+      horizontalPosition: 'left',
       panelClass: ['alert', 'alert-info']
     });
   }

@@ -49,24 +49,38 @@ export class BannerComponent implements OnInit, AfterViewInit {
       height: 'fit-content',
       maxHeight: '90vh',
       width: 'auto',
+      autoFocus: false,
       data,
     });
     dialogRef.afterClosed().subscribe(success => {
-      if (success === 'login') {
-        this.onLogin();
+      if (success) {
+        if (success.login && success.checkAccount) {
+          this.onLogin(success);
+        }
+        if (success.login && !success.checkAccount) {
+          this.onLogin();
+        }
       }
+
     });
   }
 
-  onLogin(): void {
+  onLogin(data: any = null): void {
     const dialogRef = this.$dialog.open(LoginComponent, {
       height: 'fit-content',
       maxHeight: '90vh',
-      width: 'auto'
+      width: 'auto',
+      autoFocus: false,
+      data
     });
     dialogRef.afterClosed().subscribe(success => {
-      if (success.createAccount && success.email) {
-        this.onSignUp(success);
+      if (success) {
+        if (success.createAccount && success.email) {
+          this.onSignUp(success);
+        }
+        if (success.createAccount && !success.checkAccount) {
+          this.onSignUp();
+        }
       }
     });
   }

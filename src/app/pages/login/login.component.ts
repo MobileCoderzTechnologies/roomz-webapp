@@ -1,7 +1,8 @@
 import { HttpResponse } from '@angular/common/http';
-import { Component, OnInit } from '@angular/core';
+import { Component, Inject, OnInit } from '@angular/core';
+import { inject } from '@angular/core/testing';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { MatDialogRef } from '@angular/material/dialog';
+import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { AlertService } from 'src/app/modules/alert/alert.service';
 import { LoginService } from './services/login.service';
 
@@ -12,10 +13,11 @@ import { LoginService } from './services/login.service';
 })
 export class LoginComponent implements OnInit {
 
-  loginWith = 'phone';
+  loginWith = 'email';
   loginForm: FormGroup = new FormGroup({
-    phoneNumber: new FormControl(null, [Validators.required, Validators.maxLength(10), Validators.minLength(10)]),
-    email: new FormControl(null),
+    phoneNumber: new FormControl(null, [Validators.maxLength(10), Validators.minLength(10)]),
+    countryCode: new FormControl(null),
+    email: new FormControl(null, [Validators.required, Validators.email]),
     password: new FormControl(null, Validators.required)
   });
   isSubmitting = false;
@@ -23,7 +25,14 @@ export class LoginComponent implements OnInit {
     private $loginService: LoginService,
     private $dialogRef: MatDialogRef<LoginComponent>,
     private $alert: AlertService,
-  ) { }
+    @Inject(MAT_DIALOG_DATA) public data: any,
+  ) {
+    if (data && data.login && data.email) {
+      this.loginWith = data.loginType.toLowerCase();
+      // this.onClickLoginWith(this.loginWith);
+      this.loginForm.controls.email.setValue(data.email);
+    }
+  }
 
   ngOnInit(): void {
 
@@ -54,7 +63,15 @@ export class LoginComponent implements OnInit {
   onSubmit(): void {
     console.log(this.loginForm);
     const loginData = this.loginForm.value;
-    this.checkAccount(loginData);
+    if (loginData.phoneNumber) {
+      loginData.phone_number = loginData.phoneNumber;
+      delete loginData.phone_number;
+    }
+    if (this.data && this.data.login) {
+      this.login(loginData);
+    } else {
+      this.checkAccount(loginData);
+    }
   }
 
   private checkAccount(loginData: any): void {
@@ -72,6 +89,7 @@ export class LoginComponent implements OnInit {
             createAccount: true,
             email: loginData.email,
             loginType: this.loginWith.toUpperCase(),
+            checkAccount: true,
           }
         );
         this.$alert.info(data.body.message, 5000);
@@ -89,10 +107,21 @@ export class LoginComponent implements OnInit {
       this.$alert.success(data.message);
       this.$loginService.isLoggedIn.next(true);
       this.isSubmitting = false;
+      this.closeDialog();
     }, err => {
       this.isSubmitting = false;
       this.$alert.danger(err.message);
     });
+  }
+
+
+  onSignUp(): void {
+    this.$dialogRef.close(
+      {
+        createAccount: true,
+        checkAccount: false
+      }
+    );
   }
 
 }
