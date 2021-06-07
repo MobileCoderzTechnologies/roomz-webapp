@@ -23,7 +23,7 @@ export class ValidateErrorPipe implements PipeTransform {
         return `${fieldName} ${this.languageData.validateErrorMessages.minLength} ${errors.minlength.requiredLength} ${this.languageData.validateErrorMessages.charactersText}`;
       }
       if (errors.maxlength) {
-        return `${fieldName} ${this.languageData.validateErrorMessages.minLength} ${errors.maxlength.requiredLength} ${this.languageData.validateErrorMessages.charactersText}`;
+        return `${fieldName} ${this.languageData.validateErrorMessages.maxLength} ${errors.maxlength.requiredLength} ${this.languageData.validateErrorMessages.charactersText}`;
       }
       if (errors.min) {
         return `${fieldName} ${this.languageData.validateErrorMessages.min} ${errors.min.min}.`;
@@ -34,6 +34,11 @@ export class ValidateErrorPipe implements PipeTransform {
 
       if (errors.misMatch) {
         return `${fieldName} ${this.languageData.validateErrorMessages.fieldMismatch}`;
+      }
+
+      if (errors.age) {
+        const minDob = `${errors.minDob.getDay()}/${errors.minDob.getMonth() + 1}/${errors.minDob.getFullYear()}`;
+        return `${fieldName} ${this.languageData.validateErrorMessages.dob} ${minDob}`;
       }
     }
     return null;

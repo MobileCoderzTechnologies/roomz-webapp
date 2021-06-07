@@ -18,6 +18,7 @@ export class SignUpComponent implements OnInit, AfterViewInit {
 
   loginType = 'EMAIL';
 
+
   constructor(
     private $signUpService: SignUpService,
     private $loginService: LoginService,
@@ -33,7 +34,7 @@ export class SignUpComponent implements OnInit, AfterViewInit {
   }
 
   ngOnInit(): void {
-    console.log(this.data);
+    // console.log(this.data);
   }
 
   ngAfterViewInit(): void {
@@ -43,6 +44,7 @@ export class SignUpComponent implements OnInit, AfterViewInit {
   closeDialog(): void {
     this.$dialogRef.close(null);
   }
+
 
   onSubmit(): void {
     const userData = this.signUpForm.value;

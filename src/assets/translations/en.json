@@ -59,7 +59,8 @@
     "notValid": "is not Valid",
     "min": "should be greater then",
     "max": "should be less then",
-    "fieldMismatch": " not Matched"
+    "fieldMismatch": " not Matched",
+    "dob": "should be less then"
   },
 
   "signUp": {

@@ -4,6 +4,7 @@ import { Observable } from 'rxjs';
 import { AccessToken } from 'src/app/modals/accces-token.modal';
 import { User } from 'src/app/modals/user.modal';
 import { HttpService } from 'src/app/services/http.service';
+import { ageValidator } from 'src/app/validators/age.validator';
 import { matchPasswords } from 'src/app/validators/password.validator';
 
 @Injectable({
@@ -24,11 +25,11 @@ export class SignUpService {
       first_name: [null, Validators.required],
       last_name: [null, Validators.required],
       email: [null, [Validators.email, Validators.required]],
-      password: [null, Validators.required],
+      password: [null, [Validators.required, Validators.minLength(8), Validators.maxLength(20)]],
       confirm_password: [null, Validators.required],
       dob: [null, [Validators.required]]
     },
-      { validators: [matchPasswords('password', 'confirm_password')] }
+      { validators: [matchPasswords('password', 'confirm_password'), ageValidator('dob')] }
     );
   }
 

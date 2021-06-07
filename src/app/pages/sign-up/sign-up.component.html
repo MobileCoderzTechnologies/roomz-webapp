@@ -48,7 +48,7 @@
       <div class="col-md-6">
         <div class="mb_20">
           <label class="form-label">{{'signUp.form.birthday'|langTranslate}}</label>
-          <input type="date" class="form-control custom_form_control" formControlName="dob" />
+          <input type="date" class="form-control custom_form_control" formControlName="dob">
           <small class="text-danger" *ngIf="signUpForm.controls.dob.touched">
             {{signUpForm.controls.dob.errors|validateError: ('signUp.form.birthday'|langTranslate)}}
           </small>
@@ -82,18 +82,21 @@
         <div class="mb-24">
           <p class="text-center fz14">
             {{'signUp.form.tosLineText1'|langTranslate}}
-             <span class="semi_font">{{'signUp.form.btnText'|langTranslate}}</span> {{'signUp.form.tosLineText2'|langTranslate}}
-            <a href="javascript:void(0);" class="base_blue medium_font"><u>{{'signUp.form.tosLineText3'|langTranslate}}</u></a>{{'signUp.form.tosLineText4'|langTranslate}}
+            <span class="semi_font">{{'signUp.form.btnText'|langTranslate}}</span>
+            {{'signUp.form.tosLineText2'|langTranslate}}
+            <a href="javascript:void(0);"
+              class="base_blue medium_font"><u>{{'signUp.form.tosLineText3'|langTranslate}}</u></a>{{'signUp.form.tosLineText4'|langTranslate}}
             <a href="javascript:void(0);" class="base_blue medium_font"><u>
-              {{'signUp.form.tosLineText5'|langTranslate}}
-            </u></a>.
+                {{'signUp.form.tosLineText5'|langTranslate}}
+              </u></a>.
           </p>
         </div>
       </div>
       <div class="col-md-3"></div>
       <div class="col-md-6">
         <div class="col_selector">
-          <button type="submit" *ngIf="!isSubmitting" class="btn login_btn mb_20" (click)="onSubmit()" [disabled]="signUpForm.invalid">
+          <button type="submit" *ngIf="!isSubmitting" class="btn login_btn mb_20" (click)="onSubmit()"
+            [disabled]="signUpForm.invalid">
             {{'signUp.form.btnText'|langTranslate}}
           </button>
           <button *ngIf="isSubmitting" class="btn login_btn mb_20">
@@ -103,8 +106,8 @@
           <p class="text-center">
             {{'signUp.haveAnAccount'|langTranslate}}
             <a href="javascript:void(0);" class="base_blue" (click)="onLogin()"><u>
-              {{'signUp.loginText'|langTranslate}}
-            </u></a>
+                {{'signUp.loginText'|langTranslate}}
+              </u></a>
           </p>
         </div>
       </div>
