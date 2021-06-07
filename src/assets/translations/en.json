@@ -4,7 +4,9 @@
     "destinations": "DESTINATIONS",
     "login": "LOG IN",
     "signUp": "SIGN UP",
-    "btnListARoom": "LIST A ROOM"
+    "btnListARoom": "LIST A ROOM",
+    "profile": "PROFILE",
+    "logout": "LOG OUT"
   },
   "bannerSlider":{
     "form": {

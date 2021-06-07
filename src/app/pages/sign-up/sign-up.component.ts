@@ -95,6 +95,11 @@ export class SignUpComponent implements OnInit, AfterViewInit {
     this.$signUpService.register(userData).subscribe(data => {
       const token = data.data.accessToken.token;
       localStorage.setItem('accessToken', token);
+      const user = {
+        name: `${data.data.user.first_name} ${data.data.user.last_name}`,
+        profile: data.data.user.avatar
+      };
+      localStorage.setItem('currentUser', JSON.stringify(user));
       this.$loginService.isLoggedIn.next(true);
       this.isSubmitting = false;
       this.$alert.success(data.message);

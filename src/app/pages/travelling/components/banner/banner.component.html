@@ -1,25 +1,13 @@
 <section class="banner_section position-relative">
-  <div
-    id="demo"
-    class="carousel slide"
-    data-ride="carousel"
-    data-interval="30000000000000000"
-  >
+  <div id="demo" class="carousel slide" data-ride="carousel" data-interval="30000000000000000">
     <header class="">
       <div class="container">
         <nav class="navbar navbar-expand-lg navbar-light p-0">
           <a class="navbar-brand p-0" href="#">
             <img src="assets/images/logo.png" class="img-fluid" alt="" />
           </a>
-          <button
-            class="navbar-toggler"
-            type="button"
-            data-toggle="collapse"
-            data-target="#navbarSupportedContent"
-            aria-controls="navbarSupportedContent"
-            aria-expanded="false"
-            aria-label="Toggle navigation"
-          >
+          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
           </button>
 
@@ -29,15 +17,8 @@
                 <a class="nav-link" href="#">{{'header.home'|langTranslate}}</a>
               </li>
               <li class="nav-item dropdown">
-                <a
-                  class="nav-link dropdown-toggle"
-                  href="#"
-                  id="navbarDropdown"
-                  role="button"
-                  data-toggle="dropdown"
-                  aria-haspopup="true"
-                  aria-expanded="false"
-                >
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
+                  aria-haspopup="true" aria-expanded="false">
                   {{'header.destinations'|langTranslate}}
                 </a>
                 <div class="dropdown-menu" aria-labelledby="navbarDropdown">
@@ -47,48 +28,10 @@
                   <a class="dropdown-item" href="#">Something else here</a>
                 </div>
               </li>
-              <li class="nav-item dropdown" *ngIf="!isLoggedIn">
-                <a
-                  class="nav-link dropdown-toggle"
-                  id="navbarDropdown2"
-                  role="button"
-                  (click)="onSignUp()"
-                >
-                  {{'header.signUp'|langTranslate}}
-                </a>
-                <!-- <div class="dropdown-menu" aria-labelledby="navbarDropdown2">
-                  <a class="dropdown-item" href="#">Action</a>
-                  <a class="dropdown-item" href="#">Another action</a>
-                  <div class="dropdown-divider"></div>
-                  <a class="dropdown-item" href="#">Something else here</a>
-                </div> -->
-              </li>
-              <li class="nav-item dropdown" *ngIf="!isLoggedIn">
-                <a
-                  class="nav-link dropdown-toggle"
-                  id="navbarDropdown2"
-                  role="button"
-                  (click)="onLogin()"
-                >
-                  {{'header.login'|langTranslate}}
-                </a>
-                <!-- <div class="dropdown-menu" aria-labelledby="navbarDropdown2">
-                  <a class="dropdown-item" href="#">Action</a>
-                  <a class="dropdown-item" href="#">Another action</a>
-                  <div class="dropdown-divider"></div>
-                  <a class="dropdown-item" href="#">Something else here</a>
-                </div> -->
-              </li>
+
               <li class="nav-item dropdown">
-                <a
-                  class="nav-link dropdown-toggle"
-                  href="#"
-                  id="navbarDropdown2"
-                  role="button"
-                  data-toggle="dropdown"
-                  aria-haspopup="true"
-                  aria-expanded="false"
-                >
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown2" role="button" data-toggle="dropdown"
+                  aria-haspopup="true" aria-expanded="false">
                   {{selectedLanguage}}
                 </a>
                 <div class="dropdown-menu" aria-labelledby="navbarDropdown2">
@@ -102,6 +45,33 @@
               <li class="nav-item">
                 <a class="nav-link border" href="#">{{'header.btnListARoom'|langTranslate}} </a>
               </li>
+
+              <li class="nav-item dropdown" *ngIf="!isLoggedIn">
+                <a class="nav-link" role="button" (click)="onSignUp()">
+                  {{'header.signUp'|langTranslate}}
+                </a>
+              </li>
+              <li class="nav-item dropdown" *ngIf="!isLoggedIn">
+                <a class="nav-link" role="button" (click)="onLogin()">
+                  {{'header.login'|langTranslate}}
+                </a>
+              </li>
+
+              <li class="nav-item dropdown" *ngIf="isLoggedIn">
+                <a class="nav-link dropdown-toggle" id="profileDropdown" role="button" data-toggle="dropdown"
+                  aria-haspopup="true" aria-expanded="false">
+                  {{'header.profile'|langTranslate}}
+                </a>
+                <div class="dropdown-menu" aria-labelledby="profileDropdown">
+                  <div class="dropdown-item profile-box">
+                    <img *ngIf="!currentUser?.profile" src="assets/images/person.png">
+                    <img *ngIf="currentUser?.profile" src="{{currentUser?.profile}}">
+                  </div>
+                  <a class="dropdown-item user-name"> {{currentUser?.name}} </a>
+                  <a class="dropdown-item logout" (click)="onLogout()"> {{'header.logout'|langTranslate}} </a>
+                </div>
+              </li>
+
             </ul>
           </div>
         </nav>
@@ -114,11 +84,7 @@
     </ul>
     <div class="carousel-inner">
       <div class="carousel-item active">
-        <img
-          src="assets/images/banner.png"
-          alt="Los Angeles"
-          class="img-fluid w-100"
-        />
+        <img src="assets/images/banner.png" alt="Los Angeles" class="img-fluid w-100" />
         <div class="carousel-caption">
           <div class="container">
             <div class="row">
@@ -139,63 +105,33 @@
                   <div class="book_room">
                     <h4 class="fz20 mb-3 medium_font">{{'bannerSlider.form.lineOnTop'|langTranslate}}</h4>
                     <div class="mb-3 position-relative">
-                      <input
-                        type="text"
-                        class="form-control ps-5"
-                        name=""
-                        id=""
-                        placeholder="{{'bannerSlider.form.locationPlaceholder'|langTranslate}}"
-                      />
-                      <img
-                        src="assets/images/location-low.png"
-                        class="location_low"
-                        alt=""
-                      />
+                      <input type="text" class="form-control ps-5" name="" id=""
+                        placeholder="{{'bannerSlider.form.locationPlaceholder'|langTranslate}}" />
+                      <img src="assets/images/location-low.png" class="location_low" alt="" />
                     </div>
                     <div class="row">
                       <div class="col-md-5">
                         <div class="position-relative">
-                          <input
-                            type="text"
-                            class="form-control ps-5"
-                            placeholder="{{'bannerSlider.form.checkIn'|langTranslate}}"
-                          />
-                          <img
-                            src="assets/images/calendar.png"
-                            class="location_low"
-                            alt=""
-                          />
+                          <input type="text" class="form-control ps-5"
+                            placeholder="{{'bannerSlider.form.checkIn'|langTranslate}}" />
+                          <img src="assets/images/calendar.png" class="location_low" alt="" />
                         </div>
                       </div>
                       <div class="col-md-5 ps-0">
                         <div class="position-relative">
-                          <input
-                            type="text"
-                            class="form-control ps-5"
-                            placeholder="{{'bannerSlider.form.checkOut'|langTranslate}}"
-                          />
-                          <img
-                            src="assets/images/calendar.png"
-                            class="location_low"
-                            alt=""
-                          />
+                          <input type="text" class="form-control ps-5"
+                            placeholder="{{'bannerSlider.form.checkOut'|langTranslate}}" />
+                          <img src="assets/images/calendar.png" class="location_low" alt="" />
                         </div>
                       </div>
                       <div class="col-md-2 ps-0">
                         <div class="position-relative">
-                          <select
-                            class="form-control"
-                            style="padding-left: 40px"
-                          >
+                          <select class="form-control" style="padding-left: 40px">
                             <option>1</option>
                             <option>2</option>
                             <option>3</option>
                           </select>
-                          <img
-                            src="assets/images/user2.png"
-                            class="location_low"
-                            alt=""
-                          />
+                          <img src="assets/images/user2.png" class="location_low" alt="" />
                         </div>
                       </div>
                     </div>
@@ -207,9 +143,7 @@
               </div>
               <div class="col-12">
                 <div class="col_selector mt-5">
-                  <div
-                    class="d-flex align-items-center bg-white p-3 rounded border border-warning"
-                  >
+                  <div class="d-flex align-items-center bg-white p-3 rounded border border-warning">
                     <div class="me-2">
                       <img src="assets/images/lock.png" alt="" />
                     </div>
@@ -220,9 +154,7 @@
                         host before booking and travelling to your Homestay. For
                         all booking queries & cancellation terms, please visit
                         our
-                        <a href="javascript:void(0);" class="base_blue"
-                          >Help Centre.</a
-                        >
+                        <a href="javascript:void(0);" class="base_blue">Help Centre.</a>
                       </p>
                     </div>
                   </div>
@@ -233,22 +165,14 @@
         </div>
       </div>
       <div class="carousel-item">
-        <img
-          src="assets/images/banner.png"
-          alt="Chicago"
-          class="img-fluid w-100"
-        />
+        <img src="assets/images/banner.png" alt="Chicago" class="img-fluid w-100" />
         <div class="carousel-caption">
           <h3>Chicago</h3>
           <p>Thank you, Chicago!</p>
         </div>
       </div>
       <div class="carousel-item">
-        <img
-          src="assets/images/banner.png"
-          alt="New York"
-          class="img-fluid w-100"
-        />
+        <img src="assets/images/banner.png" alt="New York" class="img-fluid w-100" />
         <div class="carousel-caption">
           <h3>New York</h3>
           <p>We love the Big Apple!</p>
@@ -275,10 +199,8 @@
             </div>
             <div>
               <p class="mb-0 fz13 medium_font">
-                <i
-                  >Yoko and Aki are amazing hosts! They are incredibly helpful
-                  and kind by providing direc...</i
-                >
+                <i>Yoko and Aki are amazing hosts! They are incredibly helpful
+                  and kind by providing direc...</i>
               </p>
               <div class="mb-2">
                 <img src="assets/images/heart.png" alt="" class="me-1" />
@@ -288,11 +210,8 @@
                 <img src="assets/images/heart.png" alt="" class="me-1" />
               </div>
               <div>
-                <a
-                  href="javascript:void(0);"
-                  class="fz12 base_blue font-weight-bold medium_font"
-                  ><i>Read Marina's review ›</i></a
-                >
+                <a href="javascript:void(0);" class="fz12 base_blue font-weight-bold medium_font"><i>Read Marina's
+                    review ›</i></a>
               </div>
             </div>
           </div>
@@ -307,10 +226,8 @@
             </div>
             <div>
               <p class="mb-0 fz13 medium_font">
-                <i
-                  >Georgios was a really awesome host! we have only a brief
-                  visit but it worth it! Sepolia...</i
-                >
+                <i>Georgios was a really awesome host! we have only a brief
+                  visit but it worth it! Sepolia...</i>
               </p>
               <div class="mb-2">
                 <img src="assets/images/heart.png" alt="" class="me-1" />
@@ -320,11 +237,8 @@
                 <img src="assets/images/heart.png" alt="" class="me-1" />
               </div>
               <div>
-                <a
-                  href="javascript:void(0);"
-                  class="fz12 base_blue font-weight-bold medium_font"
-                  ><i>Read Marina's review ›</i></a
-                >
+                <a href="javascript:void(0);" class="fz12 base_blue font-weight-bold medium_font"><i>Read Marina's
+                    review ›</i></a>
               </div>
             </div>
           </div>
@@ -339,10 +253,8 @@
             </div>
             <div>
               <p class="mb-0 fz13 medium_font">
-                <i
-                  >Wonderful experience in the beautiful house of Tatiana. Big
-                  room and bathroom. Professi...</i
-                >
+                <i>Wonderful experience in the beautiful house of Tatiana. Big
+                  room and bathroom. Professi...</i>
               </p>
               <div class="mb-2">
                 <img src="assets/images/heart.png" alt="" class="me-1" />
@@ -352,11 +264,8 @@
                 <img src="assets/images/heart.png" alt="" class="me-1" />
               </div>
               <div>
-                <a
-                  href="javascript:void(0);"
-                  class="fz12 base_blue font-weight-bold medium_font"
-                  ><i>Read Marina's review ›</i></a
-                >
+                <a href="javascript:void(0);" class="fz12 base_blue font-weight-bold medium_font"><i>Read Marina's
+                    review ›</i></a>
               </div>
             </div>
           </div>

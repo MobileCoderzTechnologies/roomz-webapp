@@ -11,4 +11,5 @@ export interface User {
   updated_at: string;
   id: number;
   login_type: string;
+  avatar: string;
 }

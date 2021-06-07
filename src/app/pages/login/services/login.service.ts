@@ -45,6 +45,12 @@ export class LoginService {
   login(data: any): Observable<LoginResp> {
     return this.$http.post('auth/login', data);
   }
+
+  logout(): void {
+    localStorage.removeItem('currentUser');
+    localStorage.removeItem('accessToken');
+    this.isLoggedIn.next(false);
+  }
 }
 
 interface LoginResp {

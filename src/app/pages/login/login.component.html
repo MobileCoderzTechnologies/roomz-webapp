@@ -9,8 +9,13 @@
     <form [formGroup]="loginForm">
       <div class="mb-3" *ngIf="loginWith==='phone'">
         <label class="fz15"> {{'login.form.phoneNumber'|langTranslate}}</label>
-        <input type="text" class="form-control custom_form_control fz15" formControlName="phoneNumber"
-          placeholder="{{'login.form.phoneNumberPlaceholder'|langTranslate}}" />
+        <div class="phone-number">
+          <select class="form-control" formControlName="countryCode">
+            <option *ngFor="let cc of countryCodes" [value]="cc">{{cc}} </option>
+          </select>
+          <input type="text" class="form-control custom_form_control fz15" formControlName="phoneNumber"
+            placeholder="{{'login.form.phoneNumberPlaceholder'|langTranslate}}" />
+        </div>
         <small class="text-danger" *ngIf="loginForm.controls.phoneNumber.touched">
           {{loginForm.controls.phoneNumber.errors|validateError: ('login.form.phoneNumber'|langTranslate)}}
         </small>

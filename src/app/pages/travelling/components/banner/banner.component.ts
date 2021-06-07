@@ -17,6 +17,7 @@ export class BannerComponent implements OnInit, AfterViewInit {
 
   selectedLanguage: string;
   isLoggedIn = false;
+  currentUser: { name: string, profile: string };
   constructor(
     private $translate: LangTranslateService,
     private $dialog: MatDialog,
@@ -39,6 +40,7 @@ export class BannerComponent implements OnInit, AfterViewInit {
     ).subscribe(loginStatus => {
       if (loginStatus) {
         this.isLoggedIn = true;
+        this.currentUser = JSON.parse(localStorage.getItem('currentUser'));
       } else {
         this.isLoggedIn = false;
       }
@@ -109,6 +111,11 @@ export class BannerComponent implements OnInit, AfterViewInit {
         }
       }
     });
+  }
+
+
+  onLogout(): void {
+    this.$loginService.logout();
   }
 
 }

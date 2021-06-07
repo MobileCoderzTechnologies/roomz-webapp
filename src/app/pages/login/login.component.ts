@@ -21,6 +21,8 @@ export class LoginComponent implements OnInit {
     password: new FormControl(null, Validators.required)
   });
   isSubmitting = false;
+
+  countryCodes = ['+966', '+91', '+242', '+20', '+216'];
   constructor(
     private $loginService: LoginService,
     private $dialogRef: MatDialogRef<LoginComponent>,
@@ -50,6 +52,9 @@ export class LoginComponent implements OnInit {
       this.loginForm.controls.phoneNumber.clearValidators();
       this.loginForm.controls.phoneNumber.setValidators(null);
       this.loginForm.controls.phoneNumber.setErrors(null);
+      this.loginForm.controls.countryCode.clearValidators();
+      this.loginForm.controls.countryCode.setValidators(null);
+      this.loginForm.controls.countryCode.setErrors(null);
     }
 
     if (loginType === 'phone') {
@@ -57,6 +62,8 @@ export class LoginComponent implements OnInit {
       this.loginForm.controls.email.setValidators(null);
       this.loginForm.controls.email.setErrors(null);
       this.loginForm.controls.phoneNumber.setValidators([Validators.required, Validators.minLength(10), Validators.maxLength(10)]);
+      this.loginForm.controls.countryCode.setValidators(Validators.required);
+      this.loginForm.controls.countryCode.setValue('+966');
     }
   }
 
@@ -65,7 +72,7 @@ export class LoginComponent implements OnInit {
     const loginData = this.loginForm.value;
     if (loginData.phoneNumber) {
       loginData.phone_number = loginData.phoneNumber;
-      loginData.country_code = '+91';
+      loginData.country_code = loginData.countryCode;
       delete loginData.phoneNumber;
     }
     if (this.data && this.data.login) {
@@ -119,6 +126,11 @@ export class LoginComponent implements OnInit {
     this.$loginService.login(loginData).subscribe(data => {
       const token = data.data.accessToken.token;
       localStorage.setItem('accessToken', token);
+      const user = {
+        name: `${data.data.user.first_name} ${data.data.user.last_name}`,
+        profile: data.data.user.avatar
+      };
+      localStorage.setItem('currentUser', JSON.stringify(user));
       this.$alert.success(data.message);
       this.$loginService.isLoggedIn.next(true);
       this.isSubmitting = false;

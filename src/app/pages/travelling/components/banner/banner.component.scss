@@ -55,3 +55,26 @@
   scrollbar-width: none;
   overflow: -moz-scrollbars-none;
 }
+
+.profile-box{
+  display: flex;
+  justify-content: center;
+  img{
+    height: 80px;
+    width: 80px;
+    border-radius: 100%;
+  }
+  &:hover{
+    background-color: inherit !important;
+  }
+}
+
+.user-name{
+  &:hover{
+    background-color: inherit;
+  }
+}
+.logout{
+  cursor: pointer;
+}
+
