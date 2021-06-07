@@ -15,6 +15,7 @@ import { FooterComponent } from './components/footer/footer.component';
 import { SignUpModule } from '../sign-up/sign-up.module';
 import { LoginModule } from '../login/login.module';
 import { OtpComponent } from './components/otp/otp.component';
+import { NgOtpInputModule } from 'ng-otp-input';
 
 
 
@@ -36,13 +37,15 @@ import { OtpComponent } from './components/otp/otp.component';
     TravellingRoutingModule,
     SharedModule,
     SignUpModule,
-    LoginModule
+    LoginModule,
+    NgOtpInputModule
   ],
   exports: [
     TravellingRoutingModule,
     SharedModule,
     SignUpModule,
-    LoginModule
+    LoginModule,
+    NgOtpInputModule
   ]
 })
 export class TravellingModule { }

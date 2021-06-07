@@ -35,7 +35,7 @@ export class HttpService {
     );
   }
 
-  post(url: string, data: any, options?: any): Observable<any> {
+  post(url: string, data: any, options: any = {}): Observable<any> {
     options.headers = this.headers;
     return this.$http.post<any>(
       `${this.baseUrl}${url}`,
@@ -46,7 +46,7 @@ export class HttpService {
     );
   }
 
-  put(url: string, data: any, options?: any): Observable<any> {
+  put(url: string, data: any, options: any = {}): Observable<any> {
     options.headers = this.headers;
     return this.$http.put<any>(
       `${this.baseUrl}${url}`,
@@ -57,7 +57,7 @@ export class HttpService {
     );
   }
 
-  patch(url: string, data: any, options?: any): Observable<any> {
+  patch(url: string, data: any, options: any = {}): Observable<any> {
     options.headers = this.headers;
     return this.$http.patch<any>(
       `${this.baseUrl}${url}`,

@@ -15,6 +15,15 @@
       "searchBtn": "Search"
     }
   },
+
+  "otpInput": {
+    "confirmYourNumber": "Confirm your Number",
+    "hintLint1": "Enter the code we sent over SMS",
+    "btnText": "SUBMIT",
+    "didNotGetCode": "Didn't get a code?",
+    "resendText": "Resend"
+  },
+
   "login": {
     "loginWithPhone": " Log In with Phone Number.",
     "loginWithEmail": "Log In With Email.",

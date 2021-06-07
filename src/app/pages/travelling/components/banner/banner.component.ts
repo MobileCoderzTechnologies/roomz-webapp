@@ -94,7 +94,7 @@ export class BannerComponent implements OnInit, AfterViewInit {
     const dialogRef = this.$dialog.open(OtpComponent, {
       height: 'fit-content',
       maxHeight: '90vh',
-      width: 'auto',
+      width: 'fit-content',
       autoFocus: false,
       data
     });
@@ -102,6 +102,7 @@ export class BannerComponent implements OnInit, AfterViewInit {
       if (success) {
         if (success.isVerified) {
           this.onSignUp({
+            createAccount: true,
             phone_number: data.phone_number,
             country_code: data.country_code
           });
