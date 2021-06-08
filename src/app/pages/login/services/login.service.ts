@@ -34,13 +34,10 @@ export class LoginService {
     return this.$http.post('auth/resend-otp', data);
   }
 
-  verifyOtp(data: { phone_number: string, country_code: string, otp: number }): Observable<
-    {
-      status: string,
-      message: string
-    }
-  > {
-    return this.$http.post('auth/verify-otp', data);
+  verifyOtp(data: { phone_number: string, country_code: string, otp: number }): Observable<any> {
+    return this.$http.post('auth/verify-otp', data, {
+      observe: 'response' as 'body'
+    });
   }
   login(data: any): Observable<LoginResp> {
     return this.$http.post('auth/login', data);

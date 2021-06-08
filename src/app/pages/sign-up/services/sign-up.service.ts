@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Observable } from 'rxjs';
+import { PASSWORD } from 'src/app/constants/regex.constant';
 import { AccessToken } from 'src/app/modals/accces-token.modal';
 import { User } from 'src/app/modals/user.modal';
 import { HttpService } from 'src/app/services/http.service';
@@ -20,16 +21,16 @@ export class SignUpService {
   signUpForm(): FormGroup {
     // tslint:disable-next-line: deprecation
     return this.$fb.group({
-      phone_number: [null, [Validators.minLength(10), Validators.maxLength(10)]],
+      phone_number: [null, [Validators.minLength(9), Validators.maxLength(14)]],
       country_code: [null],
-      first_name: [null, Validators.required],
-      last_name: [null, Validators.required],
+      first_name: [null, [Validators.required, Validators.minLength(4), Validators.maxLength(14)]],
+      last_name: [null, [Validators.required, Validators.minLength(4), Validators.maxLength(14)]],
       email: [null, [Validators.email, Validators.required]],
-      password: [null, [Validators.required, Validators.minLength(8), Validators.maxLength(20)]],
+      password: [null, [Validators.required, Validators.minLength(9), Validators.maxLength(19), Validators.pattern(PASSWORD)]],
       confirm_password: [null, Validators.required],
       dob: [null, [Validators.required]]
     },
-      { validators: [matchPasswords('password', 'confirm_password'), ageValidator('dob')] }
+      { validators: [matchPasswords('password', 'confirm_password')] }
     );
   }
 

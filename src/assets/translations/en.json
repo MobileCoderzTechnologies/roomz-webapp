@@ -8,7 +8,7 @@
     "profile": "PROFILE",
     "logout": "LOG OUT"
   },
-  "bannerSlider":{
+  "bannerSlider": {
     "form": {
       "lineOnTop": "Book a room in a home",
       "locationPlaceholder": "Where do you want to go?",
@@ -36,6 +36,7 @@
       "emailPlaceholder": " Enter Email",
       "password": "Password",
       "passwordPlaceholder": "Enter Password",
+      "passwordPatternErrorMessage": "Password Should be contain at least one UpperCase one LowerCase one SpecialCharacter and OneNumber",
       "loginBtn": "LOG IN",
       "forgotPasswordBtn": "Forgot Password?"
     },
@@ -53,13 +54,13 @@
 
   "validateErrorMessages": {
     "charactersText": "characters.",
-    "fieldRequired": "is Required",
-    "minLength": "should be grater then equal to",
-    "maxLength": "should be less then equal to",
-    "notValid": "is not Valid",
+    "fieldRequired": "is required",
+    "minLength": "should be grater then",
+    "maxLength": "should be less then",
+    "notValid": "is not valid",
     "min": "should be greater then",
     "max": "should be less then",
-    "fieldMismatch": " not Matched",
+    "fieldMismatch": " not matched",
     "dob": "should be less then"
   },
 
@@ -70,19 +71,23 @@
       "firstName": "First Name",
       "firstNamePlaceholder": "Enter First Name",
       "firstNameHintMessage": "Make sure it matches the name on your government ID.",
+      "firstNameError": "Firstname",
       "lastName": "Last Name",
       "lastNamePlaceholder": "Enter Last Name",
+      "lastNameError": "Lastname",
       "email": "Email",
-      "emailPlaceholder":" Enter Email",
+      "emailPlaceholder": " Enter Email",
       "emailHintMessage": "We'll email you a reservation confirmation.",
       "birthday": "Birthday",
       "birthdayPlaceholder": "dd/mm/yy",
-      "birthdayHintMessage": "To sign up, you need to at least 18. It won't be shown to others.",
+      "birthdayHintMessage": "To sign up, you need to at least 13. It won't be shown to others.",
       "password": "Password",
       "passwordPlaceholder": "Enter Password",
+      "passwordPatternErrorMessage": "Password should be contain at least one uppercase one lowercase one specialcharacter and one number",
       "confirmPassword": "Confirm Password",
-      "tosLineText1": "By Selecting",
-      "tosLineText2":"below, I agree to app's",
+      "confirmPasswordError": "Confirm password",
+      "tosLineText1": "By Clicking",
+      "tosLineText2": "below, I agree to app's",
       "tosLineText3": "Terms of Services ",
       "tosLineText4": " And",
       "tosLineText5": "Payments",

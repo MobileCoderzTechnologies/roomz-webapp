@@ -10,11 +10,12 @@
       <div class="mb-3" *ngIf="loginWith==='phone'">
         <label class="fz15"> {{'login.form.phoneNumber'|langTranslate}}</label>
         <div class="phone-number">
-          <select class="form-control" formControlName="countryCode">
+          <select class="form-select country-code" formControlName="countryCode">
             <option *ngFor="let cc of countryCodes" [value]="cc">{{cc}} </option>
           </select>
           <input type="text" class="form-control custom_form_control fz15" formControlName="phoneNumber"
-            placeholder="{{'login.form.phoneNumberPlaceholder'|langTranslate}}" />
+            placeholder="{{'login.form.phoneNumberPlaceholder'|langTranslate}}"
+            oninput="this.value=this.value.replace(/\D/g,'')" />
         </div>
         <small class="text-danger" *ngIf="loginForm.controls.phoneNumber.touched">
           {{loginForm.controls.phoneNumber.errors|validateError: ('login.form.phoneNumber'|langTranslate)}}
@@ -28,12 +29,18 @@
           {{loginForm.controls.email.errors|validateError: ('login.form.email'|langTranslate)}}
         </small>
       </div>
-      <div class="mb-3">
+      <div class="mb-3" *ngIf="loginWith==='email'">
         <label class="fz15">{{'login.form.password'|langTranslate}} </label>
         <input type="password" class="form-control custom_form_control fz15" formControlName="password"
           placeholder="{{'login.form.passwordPlaceholder'|langTranslate}}" />
         <small class="text-danger" *ngIf="loginForm.controls.password.touched">
           {{loginForm.controls.password.errors|validateError: ('login.form.password'|langTranslate)}}
+        </small>
+        <small class="text-danger" *ngIf="loginForm.controls.password.touched
+           && loginForm.controls.password?.errors?.pattern
+            && !loginForm.controls.password?.errors?.minlength
+            && !loginForm.controls.password?.errors?.maxlength">
+          {{'signUp.form.passwordPatternErrorMessage'|langTranslate}}
         </small>
       </div>
       <div class="mb_20">

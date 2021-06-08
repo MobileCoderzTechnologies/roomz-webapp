@@ -3,8 +3,8 @@
 
 @include mat-core();
 
-$roomz-frontend-primary: mat-palette($mat-indigo);
-$roomz-frontend-accent: mat-palette($mat-pink, A200, A100, A400);
+$roomz-frontend-primary: mat-palette($mat-pink);
+$roomz-frontend-accent: mat-palette($mat-light-blue, A200, A100, A400);
 
 $roomz-frontend-warn: mat-palette($mat-red);
 

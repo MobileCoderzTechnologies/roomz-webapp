@@ -3,6 +3,7 @@ import { Component, Inject, OnInit } from '@angular/core';
 import { inject } from '@angular/core/testing';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { PASSWORD } from 'src/app/constants/regex.constant';
 import { AlertService } from 'src/app/modules/alert/alert.service';
 import { LoginService } from './services/login.service';
 
@@ -15,10 +16,10 @@ export class LoginComponent implements OnInit {
 
   loginWith = 'email';
   loginForm: FormGroup = new FormGroup({
-    phoneNumber: new FormControl(null, [Validators.maxLength(10), Validators.minLength(10)]),
+    phoneNumber: new FormControl(null, [Validators.maxLength(8), Validators.minLength(15)]),
     countryCode: new FormControl(null),
     email: new FormControl(null, [Validators.required, Validators.email]),
-    password: new FormControl(null, Validators.required)
+    password: new FormControl(null, [Validators.required, Validators.minLength(8), Validators.maxLength(20), Validators.pattern(PASSWORD)])
   });
   isSubmitting = false;
 
@@ -55,13 +56,23 @@ export class LoginComponent implements OnInit {
       this.loginForm.controls.countryCode.clearValidators();
       this.loginForm.controls.countryCode.setValidators(null);
       this.loginForm.controls.countryCode.setErrors(null);
+      this.loginForm.controls.password.setValidators(
+        [Validators.required,
+        Validators.minLength(9),
+        Validators.maxLength(19),
+        Validators.pattern(PASSWORD)
+        ]
+      );
     }
 
     if (loginType === 'phone') {
       this.loginForm.controls.email.clearValidators();
       this.loginForm.controls.email.setValidators(null);
       this.loginForm.controls.email.setErrors(null);
-      this.loginForm.controls.phoneNumber.setValidators([Validators.required, Validators.minLength(10), Validators.maxLength(10)]);
+      this.loginForm.controls.password.clearValidators();
+      this.loginForm.controls.password.setValidators(null);
+      this.loginForm.controls.password.setErrors(null);
+      this.loginForm.controls.phoneNumber.setValidators([Validators.required, Validators.minLength(9), Validators.maxLength(14)]);
       this.loginForm.controls.countryCode.setValidators(Validators.required);
       this.loginForm.controls.countryCode.setValue('+966');
     }

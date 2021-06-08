@@ -12,7 +12,7 @@
           <input type="text" class="form-control custom_form_control" formControlName="first_name"
             placeholder="{{'signUp.form.firstNamePlaceholder'|langTranslate}}" />
           <small class="text-danger" *ngIf="signUpForm.controls.first_name.touched">
-            {{signUpForm.controls.first_name.errors|validateError: ('signUp.form.firstName'|langTranslate)}}
+            {{signUpForm.controls.first_name.errors|validateError: ('signUp.form.firstNameError'|langTranslate)}}
           </small>
           <div id="emailHelp" class="form-text">
             {{'signUp.form.firstNameHintMessage'|langTranslate}}
@@ -26,7 +26,7 @@
           <input type="text" class="form-control custom_form_control" formControlName="last_name"
             placeholder="{{'signUp.form.lastNamePlaceholder'|langTranslate}}" />
           <small class="text-danger" *ngIf="signUpForm.controls.last_name.touched">
-            {{signUpForm.controls.last_name.errors|validateError: ('signUp.form.lastName'|langTranslate)}}
+            {{signUpForm.controls.last_name.errors|validateError: ('signUp.form.lastNameError'|langTranslate)}}
           </small>
         </div>
       </div>
@@ -48,7 +48,12 @@
       <div class="col-md-6">
         <div class="mb_20">
           <label class="form-label">{{'signUp.form.birthday'|langTranslate}}</label>
-          <input type="date" class="form-control custom_form_control" formControlName="dob">
+          <div class="date-picker">
+            <input type="text" class="form-control custom_form_control" formControlName="dob" placeholder="dd/mm/yyyy"
+              [max]="maxDate" [matDatepicker]="picker">
+            <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+            <mat-datepicker #picker></mat-datepicker>
+          </div>
           <small class="text-danger" *ngIf="signUpForm.controls.dob.touched">
             {{signUpForm.controls.dob.errors|validateError: ('signUp.form.birthday'|langTranslate)}}
           </small>
@@ -61,10 +66,23 @@
       <div class="col-md-6">
         <div class="mb_20">
           <label class="form-label">{{'signUp.form.password'|langTranslate}}</label>
-          <input type="password" class="form-control custom_form_control" formControlName="password"
-            placeholder="{{'signUp.form.passwordPlaceholder'|langTranslate}}" />
+          <div class="password-box">
+            <input [type]="passwordVisible?'text':'password'" class="form-control custom_form_control"
+              formControlName="password" placeholder="{{'signUp.form.passwordPlaceholder'|langTranslate}}"/>
+            <button mat-icon-button (click)="passwordVisible=!passwordVisible">
+              <mat-icon>
+                {{passwordVisible?'visibility_off':'visibility'}}
+              </mat-icon>
+            </button>
+          </div>
           <small class="text-danger" *ngIf="signUpForm.controls.password.touched">
             {{signUpForm.controls.password.errors|validateError: ('signUp.form.password'|langTranslate)}}
+          </small>
+          <small class="text-danger" *ngIf="signUpForm.controls.password.touched
+           && signUpForm.controls.password?.errors?.pattern
+            && !signUpForm.controls.password?.errors?.minlength
+            && !signUpForm.controls.password?.errors?.maxlength">
+            {{'signUp.form.passwordPatternErrorMessage'|langTranslate}}
           </small>
         </div>
       </div>
@@ -74,7 +92,7 @@
           <input type="password" class="form-control custom_form_control" formControlName="confirm_password"
             placeholder="{{'signUp.form.passwordPlaceholder'|langTranslate}}" />
           <small class="text-danger" *ngIf="signUpForm.controls.confirm_password.touched">
-            {{signUpForm.controls.confirm_password.errors|validateError: ('signUp.form.confirmPassword'|langTranslate)}}
+            {{signUpForm.controls.confirm_password.errors|validateError: ('signUp.form.confirmPasswordError'|langTranslate)}}
           </small>
         </div>
       </div>

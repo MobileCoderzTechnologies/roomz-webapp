@@ -1,0 +1,19 @@
+.date-picker {
+  display: flex;
+  position: relative;
+  mat-datepicker-toggle{
+    position: absolute;
+    right: 0%;
+    top: 8px;
+  }
+}
+
+.password-box{
+  display: flex;
+  position: relative;
+  button{
+    position: absolute;
+    right: 0%;
+    top: 8px;
+  }
+}

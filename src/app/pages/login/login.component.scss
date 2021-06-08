@@ -2,5 +2,10 @@
   display: grid;
   grid-template-columns: 2fr 7fr;
   gap: 5px;
-}
 
+  .country-code {
+    &:focus {
+      box-shadow: none !important;
+    }
+  }
+}

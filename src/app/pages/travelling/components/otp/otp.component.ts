@@ -58,12 +58,27 @@ export class OtpComponent implements OnInit {
       country_code: this.data.country_code,
     };
     this.$loginService.verifyOtp(verifyOtpData).subscribe(data => {
-      this.$alert.success(data.message);
-      this.$dialogRef.close({
-        isVerified: true,
-        phone_number: this.data.phone_number,
-        country_code: this.data.country_code,
-      });
+      this.$alert.success(data.body.message);
+      if (data.status === 200) {
+        const token = data.body.data.accessToken.token;
+        localStorage.setItem('accessToken', token);
+        const user = {
+          name: `${data.body.data.user.first_name} ${data.body.data.user.last_name}`,
+          profile: data.body.data.user.avatar
+        };
+        this.$loginService.isLoggedIn.next(true);
+        localStorage.setItem('currentUser', JSON.stringify(user));
+        this.$dialogRef.close(null);
+      }
+
+      if (data.status === 209) {
+        this.$dialogRef.close({
+          isVerified: true,
+          phone_number: this.data.phone_number,
+          country_code: this.data.country_code,
+        });
+      }
+
     }, err => {
       this.isLoading = false;
       this.$alert.danger(err.message);

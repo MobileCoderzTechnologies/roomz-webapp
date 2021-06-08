@@ -20,10 +20,10 @@ export class ValidateErrorPipe implements PipeTransform {
         return `${fieldName} ${this.languageData.validateErrorMessages.notValid}`;
       }
       if (errors.minlength) {
-        return `${fieldName} ${this.languageData.validateErrorMessages.minLength} ${errors.minlength.requiredLength} ${this.languageData.validateErrorMessages.charactersText}`;
+        return `${fieldName} ${this.languageData.validateErrorMessages.minLength} ${errors.minlength.requiredLength - 1} ${this.languageData.validateErrorMessages.charactersText}`;
       }
       if (errors.maxlength) {
-        return `${fieldName} ${this.languageData.validateErrorMessages.maxLength} ${errors.maxlength.requiredLength} ${this.languageData.validateErrorMessages.charactersText}`;
+        return `${fieldName} ${this.languageData.validateErrorMessages.maxLength} ${errors.maxlength.requiredLength + 1} ${this.languageData.validateErrorMessages.charactersText}`;
       }
       if (errors.min) {
         return `${fieldName} ${this.languageData.validateErrorMessages.min} ${errors.min.min}.`;

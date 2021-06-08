@@ -1,6 +1,7 @@
 import { AfterViewInit, Component, Inject, OnInit } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { LOWERCASE, NUMBERS, UPPERCASE } from 'src/app/constants/regex.constant';
 import { User } from 'src/app/modals/user.modal';
 import { AlertService } from 'src/app/modules/alert/alert.service';
 import { LoginService } from '../login/services/login.service';
@@ -17,7 +18,11 @@ export class SignUpComponent implements OnInit, AfterViewInit {
   isSubmitting = false;
 
   loginType = 'EMAIL';
+  minDate: Date;
+  maxDate: Date;
 
+  passwordVisible = false;
+  passwordError: string = null;
 
   constructor(
     private $signUpService: SignUpService,
@@ -26,6 +31,9 @@ export class SignUpComponent implements OnInit, AfterViewInit {
     private $alert: AlertService,
     @Inject(MAT_DIALOG_DATA) private data: any
   ) {
+    const date = new Date();
+    const currentYear = date.getTime();
+    this.maxDate = new Date(currentYear - (13 * 365 * 24 * 60 * 60 * 1000) - (3 * 24 * 60 * 60 * 1000));
     if (data && data.email) {
       this.loginType = data.loginType;
       console.log(data.email);
@@ -44,6 +52,24 @@ export class SignUpComponent implements OnInit, AfterViewInit {
   closeDialog(): void {
     this.$dialogRef.close(null);
   }
+
+  // passwordPatternError(password): void {
+  //   // const password: string = this.signUpForm.controls.password.value;
+  //   console.log(password);
+  //   if (!NUMBERS.test(password)) {
+  //     this.passwordError = 'validateErrorMessages.passwordPatternNumber';
+  //   }
+  //   else if (!LOWERCASE.test(password)) {
+  //     this.passwordError = 'validateErrorMessages.passwordPatternLowerCase';
+  //   }
+  //   else if (!UPPERCASE.test(password)) {
+  //     this.passwordError = 'validateErrorMessages.passwordPatternUpperCase';
+  //   }
+  //   else {
+  //     this.passwordError = 'validateErrorMessages.passwordPatternSpecialCharacters';
+  //   }
+
+  // }
 
 
   onSubmit(): void {
@@ -91,9 +117,10 @@ export class SignUpComponent implements OnInit, AfterViewInit {
 
   register(userData: User): void {
     this.isSubmitting = true;
-    const [yyyy, mm, dd] = userData.dob.split('-');
-    userData.dob = `${dd}-${mm}-${yyyy}`;
+    const date = new Date(userData.dob);
+    userData.dob = `${date.getDay()}-${date.getMonth()}-${date.getFullYear()}`;
     userData.login_type = this.loginType;
+    console.log(userData);
     this.$signUpService.register(userData).subscribe(data => {
       const token = data.data.accessToken.token;
       localStorage.setItem('accessToken', token);
