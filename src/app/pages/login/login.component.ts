@@ -96,7 +96,24 @@ export class LoginComponent implements OnInit {
   private checkAccount(loginData: any): void {
     this.isSubmitting = true;
     loginData.login_type = this.loginWith.toUpperCase();
-    this.$loginService.checkAccount(loginData).subscribe(data => {
+
+    let checkData;
+    if (loginData.country_code) {
+      checkData = {
+        country_code: loginData.country_code,
+        phone_number: loginData.phone_number,
+        login_type: loginData.login_type,
+      };
+    }
+
+    if (loginData.email) {
+      checkData = {
+        email: loginData.email,
+        password: loginData.password,
+        login_type: loginData.login_type,
+      };
+    }
+    this.$loginService.checkAccount(checkData).subscribe(data => {
       if (data.status === 200) {
         this.$dialogRef.close(
           {
@@ -134,7 +151,23 @@ export class LoginComponent implements OnInit {
 
 
   private login(loginData: any): void {
-    this.$loginService.login(loginData).subscribe(data => {
+    let lData;
+    if (loginData.country_code) {
+      lData = {
+        country_code: loginData.country_code,
+        phone_number: loginData.phone_number,
+        // login_type: loginData.login_type,
+      };
+    }
+
+    if (loginData.email) {
+      lData = {
+        email: loginData.email,
+        password: loginData.password,
+        // login_type: loginData.login_type,
+      };
+    }
+    this.$loginService.login(lData).subscribe(data => {
       const token = data.data.accessToken.token;
       localStorage.setItem('accessToken', token);
       const user = {

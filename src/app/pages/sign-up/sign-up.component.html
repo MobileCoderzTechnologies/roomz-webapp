@@ -69,7 +69,7 @@
           <div class="password-box">
             <input [type]="passwordVisible?'text':'password'" class="form-control custom_form_control"
               formControlName="password" placeholder="{{'signUp.form.passwordPlaceholder'|langTranslate}}"/>
-            <button mat-icon-button (click)="passwordVisible=!passwordVisible">
+            <button type="button" mat-icon-button (click)="passwordVisible=!passwordVisible">
               <mat-icon>
                 {{passwordVisible?'visibility_off':'visibility'}}
               </mat-icon>
