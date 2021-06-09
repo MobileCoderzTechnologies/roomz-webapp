@@ -1,5 +1,5 @@
 {
-  "/api/*": {
+  "/auth/*": {
     "target": "http://15.184.22.199",
     "secure": false,
     "logLevel": "debug"

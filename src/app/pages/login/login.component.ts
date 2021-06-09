@@ -19,7 +19,7 @@ export class LoginComponent implements OnInit {
     phoneNumber: new FormControl(null, [Validators.maxLength(8), Validators.minLength(15)]),
     countryCode: new FormControl(null),
     email: new FormControl(null, [Validators.required, Validators.email]),
-    password: new FormControl(null, [Validators.required, Validators.minLength(8), Validators.maxLength(20), Validators.pattern(PASSWORD)])
+    password: new FormControl(null, [Validators.required, Validators.minLength(8), Validators.maxLength(19), Validators.pattern(PASSWORD)])
   });
   isSubmitting = false;
 
@@ -58,7 +58,7 @@ export class LoginComponent implements OnInit {
       this.loginForm.controls.countryCode.setErrors(null);
       this.loginForm.controls.password.setValidators(
         [Validators.required,
-        Validators.minLength(9),
+        Validators.minLength(8),
         Validators.maxLength(19),
         Validators.pattern(PASSWORD)
         ]

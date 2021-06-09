@@ -26,7 +26,7 @@ export class SignUpService {
       first_name: [null, [Validators.required, Validators.minLength(4), Validators.maxLength(14)]],
       last_name: [null, [Validators.required, Validators.minLength(4), Validators.maxLength(14)]],
       email: [null, [Validators.email, Validators.required]],
-      password: [null, [Validators.required, Validators.minLength(9), Validators.maxLength(19), Validators.pattern(PASSWORD)]],
+      password: [null, [Validators.required, Validators.minLength(8), Validators.maxLength(19), Validators.pattern(PASSWORD)]],
       confirm_password: [null, Validators.required],
       dob: [null, [Validators.required]]
     },
