@@ -6,6 +6,7 @@ html,
 body {
   height: 100%;
 }
+
 // html {
 //   font-size: 62.5%;
 // }
@@ -37,12 +38,15 @@ input.ng-touched.ng-invalid {
 .alert-success {
   background-color: $success-color;
 }
+
 .alert-danger {
   background-color: $danger-color;
 }
+
 .alert-info {
   background-color: $info-color;
 }
+
 .confirm-dialog mat-dialog-container {
   border-radius: 1rem !important;
   padding: 2rem !important;
@@ -73,81 +77,107 @@ a:hover {
 .fz6 {
   font-size: 6px !important;
 }
+
 .fz10 {
   font-size: 10px !important;
 }
+
 .fz11 {
   font-size: 11px !important;
 }
+
 .fz12 {
   font-size: 12px !important;
 }
+
 .fz13 {
   font-size: 13px !important;
 }
+
 .fz14 {
   font-size: 14px !important;
 }
+
 .fz15 {
   font-size: 15px !important;
 }
+
 .fz16 {
   font-size: 16px !important;
 }
+
 .fz17 {
   font-size: 17px !important;
 }
+
 .fz18 {
   font-size: 18px !important;
 }
+
 .fz19 {
   font-size: 19px !important;
 }
+
 .fz20 {
   font-size: 20px !important;
 }
+
 .fz22 {
   font-size: 22px !important;
 }
+
 .fz24 {
   font-size: 24px !important;
 }
+
 .fz26 {
   font-size: 26px !important;
 }
+
 .fz27 {
   font-size: 27px !important;
 }
+
 .fz28 {
   font-size: 28px !important;
 }
+
 .fz30 {
   font-size: 30px !important;
 }
+
 .fz32 {
   font-size: 32px !important;
 }
+
 .fz34 {
   font-size: 34px !important;
 }
+
 .fz36 {
   font-size: 36px !important;
 }
+
 .fz38 {
   font-size: 38px !important;
 }
+
 .fz40 {
   font-size: 40px !important;
 }
+
 .fz45 {
   font-size: 45px !important;
 }
+
 .fz50 {
   font-size: 50px !important;
 }
+
 .fz60 {
   font-size: 60px !important;
 }
+
 .fz70 {
   font-size: 70px !important;
 }
@@ -191,16 +221,19 @@ body {
   background-color: #fff;
   border-radius: 7px;
 }
+
 .custom_form_control {
   height: 60px;
   padding: 21px 18px;
   font-size: 15px;
 }
+
 .or_hr {
   position: absolute;
   width: 100%;
   top: -6px;
 }
+
 .login_btn {
   width: 100%;
   background-color: #f9537b;
@@ -208,6 +241,7 @@ body {
   border-radius: 7px;
   padding: 17px;
 }
+
 .login_section .social_login .btn {
   height: 48px;
   border: 1px solid #111719;
@@ -221,6 +255,7 @@ body {
   top: 13px;
   left: 33px;
 }
+
 .signup_section {
   width: 880px;
   padding: 15px 30px;
@@ -228,16 +263,19 @@ body {
   background-color: #fff;
   border-radius: 7px;
 }
+
 .img_columb {
   position: absolute;
   top: 0;
   right: 0;
 }
+
 .explore_destination {
   background-color: #f1efef;
   padding-top: 30px;
   padding-bottom: 54px;
 }
+
 header {
   position: absolute;
   width: 100%;
@@ -246,48 +284,58 @@ header {
   right: 0;
   z-index: 99;
 }
+
 .location_low {
   position: absolute;
   top: 8px;
   left: 15px;
 }
+
 .heading_text {
   font-size: 30px !important;
   text-align: center;
   margin-bottom: 30px;
 }
+
 .most_popular {
   padding-top: 30px;
   padding-bottom: 54px;
 }
-.most_popular .carousel-indicators > button {
+
+.most_popular .carousel-indicators>button {
   width: 8px;
   height: 8px;
   border-radius: 50%;
 }
+
 .most_popular .carousel-control-prev-icon {
   background-color: #babdbe;
   width: 28px;
   height: 28px;
   border-radius: 50%;
 }
+
 .most_popular .carousel-control-next-icon {
   background-color: #babdbe;
   width: 28px;
   height: 28px;
   border-radius: 50%;
 }
+
 .custom_body {
   background-color: #f1efef;
 }
+
 .rentout_section {
   padding-top: 60px;
   padding-bottom: 60px;
   background-color: #f1efef;
 }
+
 .rent_out_part {
   padding: 28px 35px 25px 20px;
 }
+
 .rent_out_part .btn {
   background-color: #3ec4de;
   color: #fff;
@@ -296,29 +344,35 @@ header {
   font-size: 20px;
   margin-top: 30px;
 }
+
 .student_section {
-  background-image: url(../../roomz-frontend/src/assets/images/student_section.png);
+  background-image: url(assets/images/student_section.png);
   background-repeat: no-repeat;
   padding-top: 223px;
   padding-bottom: 30px;
   color: #fff;
   background-size: cover;
 }
+
 .student_section .btn {
   background-color: #00000054;
   padding: 14px 23px;
 }
+
 .partner_section {
   padding: 81px 0;
 }
+
 .img_part {
   margin-right: 50px;
 }
+
 footer {
   background-color: #6d635f;
   padding-top: 50px;
   padding-bottom: 54px;
 }
+
 footer h3 {
   color: #b7b1ae;
   margin-bottom: 20px;
