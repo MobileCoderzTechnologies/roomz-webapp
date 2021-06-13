@@ -11,10 +11,7 @@ import { ValuesComponent } from './components/values/values.component';
 import { StudentAccommodationComponent } from './components/student-accommodation/student-accommodation.component';
 import { PartnersComponent } from './components/partners/partners.component';
 import { FooterComponent } from './components/footer/footer.component';
-import { SignUpModule } from '../sign-up/sign-up.module';
 import { LoginModule } from '../login/login.module';
-import { OtpComponent } from './components/otp/otp.component';
-import { NgOtpInputModule } from 'ng-otp-input';
 
 
 
@@ -29,22 +26,17 @@ import { NgOtpInputModule } from 'ng-otp-input';
     StudentAccommodationComponent,
     PartnersComponent,
     FooterComponent,
-    OtpComponent
   ],
   imports: [
     CommonModule,
     TravellingRoutingModule,
     SharedModule,
-    SignUpModule,
     LoginModule,
-    NgOtpInputModule
   ],
   exports: [
     TravellingRoutingModule,
     SharedModule,
-    SignUpModule,
     LoginModule,
-    NgOtpInputModule
   ]
 })
 export class TravellingModule { }

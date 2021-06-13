@@ -1,8 +1,10 @@
 import { HttpResponse } from '@angular/common/http';
-import { Component, Inject, OnInit } from '@angular/core';
+import { AfterViewInit, Component, Inject, OnDestroy, OnInit } from '@angular/core';
 import { inject } from '@angular/core/testing';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { pipe, Subscription } from 'rxjs';
+import { delay } from 'rxjs/operators';
 import { PASSWORD } from 'src/app/constants/regex.constant';
 import { AlertService } from 'src/app/modules/alert/alert.service';
 import { LoginService } from './services/login.service';
@@ -12,33 +14,68 @@ import { LoginService } from './services/login.service';
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.scss']
 })
-export class LoginComponent implements OnInit {
+export class LoginComponent implements OnInit, OnDestroy, AfterViewInit {
 
+  pageTitle = 'login.pageTitleLoginOrSignUp';
+  isBackBtn = false;
+  isCloseBtn = true;
+  isEnterOtp = false;
+  isLoginForm = true;
+
+  phoneNumber: string;
+  countryCode: string;
   loginWith = 'email';
+
+  afterOtpVerified = { createAccount: false, isVerified: false };
+  otpSubs: Subscription;
   loginForm: FormGroup = new FormGroup({
     phoneNumber: new FormControl(null, [Validators.maxLength(8), Validators.minLength(15)]),
     countryCode: new FormControl(null),
     email: new FormControl(null, [Validators.required, Validators.email]),
-    password: new FormControl(null, [Validators.required, Validators.minLength(8), Validators.maxLength(19), Validators.pattern(PASSWORD)])
   });
   isSubmitting = false;
 
-  countryCodes = ['+966', '+91', '+242', '+20', '+216'];
+  countryCodes = [
+    {
+      name: 'India',
+      code: '+91'
+    },
+    {
+      name: 'Saudi Arabia',
+      code: '+966'
+    }
+  ];
   constructor(
     private $loginService: LoginService,
     private $dialogRef: MatDialogRef<LoginComponent>,
     private $alert: AlertService,
-    @Inject(MAT_DIALOG_DATA) public data: any,
   ) {
-    if (data && data.login && data.email) {
-      this.loginWith = data.loginType.toLowerCase();
-      // this.onClickLoginWith(this.loginWith);
-      this.loginForm.controls.email.setValue(data.email);
-    }
+
   }
 
   ngOnInit(): void {
 
+  }
+
+  ngAfterViewInit(): void {
+    this.otpSubs = this.$loginService.afterOtpVerified
+      .pipe(
+        delay(0)
+      ).subscribe(data => {
+        this.afterOtpVerified = data;
+        if (data) {
+          if (data.createAccount) {
+            this.pageTitle = 'signUp.addYourInfo';
+            this.isBackBtn = true;
+            this.isEnterOtp = false;
+            this.isCloseBtn = true;
+          } else {
+            this.isCloseBtn = true;
+            this.isEnterOtp = false;
+            this.loginForm.reset();
+          }
+        }
+      });
   }
 
   closeDialog(): void {
@@ -56,22 +93,19 @@ export class LoginComponent implements OnInit {
       this.loginForm.controls.countryCode.clearValidators();
       this.loginForm.controls.countryCode.setValidators(null);
       this.loginForm.controls.countryCode.setErrors(null);
-      this.loginForm.controls.password.setValidators(
-        [Validators.required,
-        Validators.minLength(8),
-        Validators.maxLength(19),
-        Validators.pattern(PASSWORD)
-        ]
-      );
+      // this.loginForm.controls.password.setValidators(
+      //   [Validators.required,
+      //   Validators.minLength(8),
+      //   Validators.maxLength(19),
+      //   Validators.pattern(PASSWORD)
+      //   ]
+      // );
     }
 
     if (loginType === 'phone') {
       this.loginForm.controls.email.clearValidators();
       this.loginForm.controls.email.setValidators(null);
       this.loginForm.controls.email.setErrors(null);
-      this.loginForm.controls.password.clearValidators();
-      this.loginForm.controls.password.setValidators(null);
-      this.loginForm.controls.password.setErrors(null);
       this.loginForm.controls.phoneNumber.setValidators([Validators.required, Validators.minLength(9), Validators.maxLength(14)]);
       this.loginForm.controls.countryCode.setValidators(Validators.required);
       this.loginForm.controls.countryCode.setValue('+966');
@@ -79,18 +113,14 @@ export class LoginComponent implements OnInit {
   }
 
   onSubmit(): void {
-    console.log(this.loginForm);
     const loginData = this.loginForm.value;
     if (loginData.phoneNumber) {
       loginData.phone_number = loginData.phoneNumber;
       loginData.country_code = loginData.countryCode;
       delete loginData.phoneNumber;
+      delete loginData.email;
     }
-    if (this.data && this.data.login) {
-      this.login(loginData);
-    } else {
-      this.checkAccount(loginData);
-    }
+    this.checkAccount(loginData);
   }
 
   private checkAccount(loginData: any): void {
@@ -109,26 +139,19 @@ export class LoginComponent implements OnInit {
     if (loginData.email) {
       checkData = {
         email: loginData.email,
-        password: loginData.password,
         login_type: loginData.login_type,
       };
     }
     this.$loginService.checkAccount(checkData).subscribe(data => {
       if (data.status === 200) {
-        this.$dialogRef.close(
-          {
-            createAccount: true,
-            phone_number: loginData.phone_number,
-            country_code: loginData.country_code,
-            loginType: this.loginWith.toUpperCase(),
-            checkAccount: true,
-            message: data.body.message
-          }
-        );
+        this.isCloseBtn = false;
+        this.isEnterOtp = true;
+        this.isLoginForm = false;
+        this.phoneNumber = checkData.phone_number;
+        this.countryCode = checkData.country_code;
       }
       if (data.status === 202) {
-        // this.$alert.success(data.body.message);
-        this.login(loginData);
+        // this.login(loginData);
       }
 
       if (data.status === 209) {
@@ -142,6 +165,8 @@ export class LoginComponent implements OnInit {
         );
         this.$alert.info(data.body.message, 5000);
       }
+
+      this.isSubmitting = false;
     }, err => {
       this.isSubmitting = false;
       this.$alert.danger(err.message);
@@ -187,12 +212,50 @@ export class LoginComponent implements OnInit {
 
 
   onSignUp(): void {
-    this.$dialogRef.close(
-      {
-        createAccount: true,
-        checkAccount: false
-      }
-    );
+
   }
+
+
+  backFromOtp(): void {
+    this.isCloseBtn = true;
+    this.isEnterOtp = false;
+    this.isLoginForm = true;
+    this.loginForm.reset();
+    this.loginForm.controls.countryCode.setValue(this.countryCode);
+  }
+
+
+  ngOnDestroy(): void {
+    this.isBackBtn = false;
+    this.isCloseBtn = true;
+    this.isEnterOtp = false;
+    this.isLoginForm = true;
+    this.phoneNumber = null;
+    this.countryCode = null;
+    this.loginWith = 'email';
+    this.afterOtpVerified = { createAccount: false, isVerified: false };
+    this.pageTitle = 'login.pageTitleLoginOrSignUp';
+  }
+
+
+  // backFromSignUp(event): void {
+  //   console.log(event);
+  //   if (event) {
+  //     this.$loginService.afterOtpVerified.next(
+  //       {
+  //         isVerified: false,
+  //         createAccount: false,
+  //       }
+  //     );
+  //     this.pageTitle = 'login.pageTitleLoginOrSignUp';
+  //     this.isBackBtn = false;
+  //     this.isEnterOtp = false;
+  //     this.isLoginForm = true;
+  //     this.loginWith = 'email';
+  //     this.loginForm.reset();
+  //     this.countryCode = null;
+  //     this.phoneNumber = null;
+  //   }
+  // }
 
 }

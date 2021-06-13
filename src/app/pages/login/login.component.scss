@@ -1,11 +1,28 @@
-.phone-number {
-  display: grid;
-  grid-template-columns: 2fr 7fr;
-  gap: 5px;
+.country-code {
+  &:focus {
+    box-shadow: none !important;
+  }
+}
 
-  .country-code {
-    &:focus {
-      box-shadow: none !important;
-    }
+.login_section {
+  position: relative;
+  z-index: 998;
+}
+
+.page-title {
+  position: sticky;
+  top: 0px;
+  height: 60px;
+  z-index: 999;
+  padding: 15px 30px;
+  background-color: white;
+}
+
+
+.otp_section {
+  padding: 15px 30px;
+
+  .otp_content {
+    padding: 0px 50px;
   }
 }

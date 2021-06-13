@@ -25,6 +25,7 @@ const routes: Routes = [
     NativeDateModule,
   ],
   exports: [
+    SignUpComponent,
     RouterModule,
     SharedModule,
     ValidateErrorModule,

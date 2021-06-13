@@ -1,134 +1,133 @@
-<section class="d-flex align-items-center justify-content-center">
-  <div class="signup_section">
-    <div class="d-flex align-items-center justify-content-between">
+<div class="signup_section">
+  <!--<div class="d-flex align-items-center justify-content-between">
       <h3 class="fz24 mb-0 semi_font"> {{'signUp.signUpWithEmail'|langTranslate}} </h3>
-      <span class="bold_font" style="cursor: pointer;" (click)="closeDialog()">&#10005;</span>
+      <span class="bold_font" style="cursor: pointer;">&#10005;</span>
     </div>
-    <hr />
-    <form [formGroup]="signUpForm" class="row g-3">
-      <div class="col-md-6">
-        <div class="mb_20">
-          <label class="form-label">{{'signUp.form.firstName'|langTranslate}} </label>
-          <input type="text" class="form-control custom_form_control" formControlName="first_name"
-            placeholder="{{'signUp.form.firstNamePlaceholder'|langTranslate}}" />
-          <small class="text-danger" *ngIf="signUpForm.controls.first_name.touched">
-            {{signUpForm.controls.first_name.errors|validateError: ('signUp.form.firstNameError'|langTranslate)}}
-          </small>
-          <div id="emailHelp" class="form-text">
-            {{'signUp.form.firstNameHintMessage'|langTranslate}}
-          </div>
+    <hr /> -->
+  <form [formGroup]="signUpForm" class="row g-3">
+    <div class="col-md-6">
+      <div class="mb_20">
+        <label class="form-label">{{'signUp.form.firstName'|langTranslate}} </label>
+        <input type="text" class="form-control custom_form_control" formControlName="first_name" [readonly]="readonlyEmail"
+          placeholder="{{'signUp.form.firstNamePlaceholder'|langTranslate}}" />
+        <small class="text-danger" *ngIf="signUpForm.controls.first_name.touched">
+          {{signUpForm.controls.first_name.errors|validateError: ('signUp.form.firstNameError'|langTranslate)}}
+        </small>
+        <div id="emailHelp" class="form-text">
+          {{'signUp.form.firstNameHintMessage'|langTranslate}}
         </div>
       </div>
+    </div>
 
-      <div class="col-md-6">
-        <div class="mb_20">
-          <label class="form-label"> {{'signUp.form.lastName'|langTranslate}} </label>
-          <input type="text" class="form-control custom_form_control" formControlName="last_name"
-            placeholder="{{'signUp.form.lastNamePlaceholder'|langTranslate}}" />
-          <small class="text-danger" *ngIf="signUpForm.controls.last_name.touched">
-            {{signUpForm.controls.last_name.errors|validateError: ('signUp.form.lastNameError'|langTranslate)}}
-          </small>
+    <div class="col-md-6">
+      <div class="mb_20">
+        <label class="form-label"> {{'signUp.form.lastName'|langTranslate}} </label>
+        <input type="text" class="form-control custom_form_control" formControlName="last_name"
+          placeholder="{{'signUp.form.lastNamePlaceholder'|langTranslate}}" />
+        <small class="text-danger" *ngIf="signUpForm.controls.last_name.touched">
+          {{signUpForm.controls.last_name.errors|validateError: ('signUp.form.lastNameError'|langTranslate)}}
+        </small>
+      </div>
+    </div>
+
+    <div class="col-md-6">
+      <div class="mb_20">
+        <label class="form-label">{{'signUp.form.email'|langTranslate}}</label>
+        <input type="email" class="form-control custom_form_control" formControlName="email"
+          placeholder="{{'signUp.form.emailPlaceholder'|langTranslate}}" />
+        <small class="text-danger" *ngIf="signUpForm.controls.email.touched">
+          {{signUpForm.controls.email.errors|validateError: ('signUp.form.email'|langTranslate)}}
+        </small>
+        <div id="emailHelp" class="form-text">
+          {{'signUp.form.emailHintMessage'|langTranslate}}
         </div>
       </div>
+    </div>
 
-      <div class="col-md-6">
-        <div class="mb_20">
-          <label class="form-label">{{'signUp.form.email'|langTranslate}}</label>
-          <input type="email" class="form-control custom_form_control" formControlName="email"
-            placeholder="{{'signUp.form.emailPlaceholder'|langTranslate}}" />
-          <small class="text-danger" *ngIf="signUpForm.controls.email.touched">
-            {{signUpForm.controls.email.errors|validateError: ('signUp.form.email'|langTranslate)}}
-          </small>
-          <div id="emailHelp" class="form-text">
-            {{'signUp.form.emailHintMessage'|langTranslate}}
-          </div>
+    <div class="col-md-6">
+      <div class="mb_20">
+        <label class="form-label">{{'signUp.form.birthday'|langTranslate}}</label>
+        <div class="date-picker">
+          <input type="text" class="form-control custom_form_control" formControlName="dob" placeholder="dd/mm/yyyy"
+            [max]="maxDate" [matDatepicker]="picker">
+          <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+          <mat-datepicker #picker></mat-datepicker>
+        </div>
+        <small class="text-danger" *ngIf="signUpForm.controls.dob.touched">
+          {{signUpForm.controls.dob.errors|validateError: ('signUp.form.birthday'|langTranslate)}}
+        </small>
+        <div id="emailHelp" class="form-text">
+          {{'signUp.form.birthdayHintMessage'|langTranslate}}
         </div>
       </div>
+    </div>
 
-      <div class="col-md-6">
-        <div class="mb_20">
-          <label class="form-label">{{'signUp.form.birthday'|langTranslate}}</label>
-          <div class="date-picker">
-            <input type="text" class="form-control custom_form_control" formControlName="dob" placeholder="dd/mm/yyyy"
-              [max]="maxDate" [matDatepicker]="picker">
-            <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-            <mat-datepicker #picker></mat-datepicker>
-          </div>
-          <small class="text-danger" *ngIf="signUpForm.controls.dob.touched">
-            {{signUpForm.controls.dob.errors|validateError: ('signUp.form.birthday'|langTranslate)}}
-          </small>
-          <div id="emailHelp" class="form-text">
-            {{'signUp.form.birthdayHintMessage'|langTranslate}}
-          </div>
+    <div class="col-md-6">
+      <div class="mb_20">
+        <label class="form-label">{{'signUp.form.password'|langTranslate}}</label>
+        <div class="password-box">
+          <input [type]="passwordVisible?'text':'password'" class="form-control custom_form_control"
+            formControlName="password" placeholder="{{'signUp.form.passwordPlaceholder'|langTranslate}}" />
+          <button type="button" mat-icon-button (click)="passwordVisible=!passwordVisible">
+            <mat-icon>
+              {{passwordVisible?'visibility_off':'visibility'}}
+            </mat-icon>
+          </button>
         </div>
-      </div>
-
-      <div class="col-md-6">
-        <div class="mb_20">
-          <label class="form-label">{{'signUp.form.password'|langTranslate}}</label>
-          <div class="password-box">
-            <input [type]="passwordVisible?'text':'password'" class="form-control custom_form_control"
-              formControlName="password" placeholder="{{'signUp.form.passwordPlaceholder'|langTranslate}}"/>
-            <button type="button" mat-icon-button (click)="passwordVisible=!passwordVisible">
-              <mat-icon>
-                {{passwordVisible?'visibility_off':'visibility'}}
-              </mat-icon>
-            </button>
-          </div>
-          <small class="text-danger" *ngIf="signUpForm.controls.password.touched">
-            {{signUpForm.controls.password.errors|validateError: ('signUp.form.password'|langTranslate)}}
-          </small>
-          <small class="text-danger" *ngIf="signUpForm.controls.password.touched
+        <small class="text-danger" *ngIf="signUpForm.controls.password.touched">
+          {{signUpForm.controls.password.errors|validateError: ('signUp.form.password'|langTranslate)}}
+        </small>
+        <small class="text-danger" *ngIf="signUpForm.controls.password.touched
            && signUpForm.controls.password?.errors?.pattern
             && !signUpForm.controls.password?.errors?.minlength
             && !signUpForm.controls.password?.errors?.maxlength">
-            {{'signUp.form.passwordPatternErrorMessage'|langTranslate}}
-          </small>
-        </div>
+          {{'signUp.form.passwordPatternErrorMessage'|langTranslate}}
+        </small>
       </div>
-      <div class="col-md-6">
-        <div class="mb_20">
-          <label class="form-label">{{'signUp.form.confirmPassword'|langTranslate}}</label>
-          <input type="password" class="form-control custom_form_control" formControlName="confirm_password"
-            placeholder="{{'signUp.form.passwordPlaceholder'|langTranslate}}" />
-          <small class="text-danger" *ngIf="signUpForm.controls.confirm_password.touched">
-            {{signUpForm.controls.confirm_password.errors|validateError: ('signUp.form.confirmPasswordError'|langTranslate)}}
-          </small>
-        </div>
+    </div>
+    <div class="col-md-6">
+      <div class="mb_20">
+        <label class="form-label">{{'signUp.form.confirmPassword'|langTranslate}}</label>
+        <input type="password" class="form-control custom_form_control" formControlName="confirm_password"
+          placeholder="{{'signUp.form.passwordPlaceholder'|langTranslate}}" />
+        <small class="text-danger" *ngIf="signUpForm.controls.confirm_password.touched">
+          {{signUpForm.controls.confirm_password.errors|validateError:
+          ('signUp.form.confirmPasswordError'|langTranslate)}}
+        </small>
       </div>
-      <div class="col-12">
-        <div class="mb-24">
-          <p class="text-center fz14">
-            {{'signUp.form.tosLineText1'|langTranslate}}
-            <span class="semi_font">{{'signUp.form.btnText'|langTranslate}}</span>
-            {{'signUp.form.tosLineText2'|langTranslate}}
-            <a href="javascript:void(0);"
-              class="base_blue medium_font"><u>{{'signUp.form.tosLineText3'|langTranslate}}</u></a>{{'signUp.form.tosLineText4'|langTranslate}}
-            <a href="javascript:void(0);" class="base_blue medium_font"><u>
-                {{'signUp.form.tosLineText5'|langTranslate}}
-              </u></a>.
-          </p>
-        </div>
+    </div>
+    <div class="col-12">
+      <div class="mb-24">
+        <p class="text-center fz14">
+          {{'signUp.form.tosLineText1'|langTranslate}}
+          <span class="semi_font">{{'signUp.form.btnText'|langTranslate}}</span>
+          {{'signUp.form.tosLineText2'|langTranslate}}
+          <a href="javascript:void(0);"
+            class="base_blue medium_font"><u>{{'signUp.form.tosLineText3'|langTranslate}}</u></a>{{'signUp.form.tosLineText4'|langTranslate}}
+          <a href="javascript:void(0);" class="base_blue medium_font"><u>
+              {{'signUp.form.tosLineText5'|langTranslate}}
+            </u></a>.
+        </p>
       </div>
-      <div class="col-md-3"></div>
-      <div class="col-md-6">
-        <div class="col_selector">
-          <button type="submit" *ngIf="!isSubmitting" class="btn login_btn mb_20" (click)="onSubmit()"
-            [disabled]="signUpForm.invalid">
-            {{'signUp.form.btnText'|langTranslate}}
-          </button>
-          <button *ngIf="isSubmitting" class="btn login_btn mb_20">
-            {{'signUp.form.btnText'|langTranslate}}
-            <div class="spinner-border text-info spinner-border-sm"></div>
-          </button>
-          <p class="text-center">
-            {{'signUp.haveAnAccount'|langTranslate}}
-            <a href="javascript:void(0);" class="base_blue" (click)="onLogin()"><u>
-                {{'signUp.loginText'|langTranslate}}
-              </u></a>
-          </p>
-        </div>
+    </div>
+    <div class="col-md-3"></div>
+    <div class="col-md-6">
+      <div class="col_selector">
+        <button type="submit" *ngIf="!isSubmitting" class="btn login_btn mb_20" (click)="onSubmit()"
+          [disabled]="signUpForm.invalid">
+          {{'signUp.form.btnText'|langTranslate}}
+        </button>
+        <button *ngIf="isSubmitting" class="btn login_btn mb_20">
+          {{'signUp.form.btnText'|langTranslate}}
+          <div class="spinner-border text-info spinner-border-sm"></div>
+        </button>
+        <p class="text-center">
+          {{'signUp.haveAnAccount'|langTranslate}}
+          <a href="javascript:void(0);" class="base_blue" (click)="onClickLogin()"><u>
+              {{'signUp.loginText'|langTranslate}}
+            </u></a>
+        </p>
       </div>
-    </form>
-  </div>
-</section>
+    </div>
+  </form>
+</div>

@@ -10,6 +10,8 @@ import { HttpService } from 'src/app/services/http.service';
 })
 export class LoginService {
 
+  public afterOtpVerified = new BehaviorSubject<{createAccount: boolean, isVerified: boolean}>(null);
+
   public isLoggedIn = new BehaviorSubject<boolean>(false);
   constructor(
     private $http: HttpService,

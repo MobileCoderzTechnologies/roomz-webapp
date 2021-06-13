@@ -1,20 +1,24 @@
-import { Component, Inject, OnInit, ViewChild } from '@angular/core';
+import { Component, Inject, Input, OnChanges, OnInit, Output, ViewChild } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { AlertService } from 'src/app/modules/alert/alert.service';
 import { LoginService } from 'src/app/pages/login/services/login.service';
+import { LoginComponent } from '../../login.component';
 
 @Component({
   selector: 'app-otp',
   templateUrl: './otp.component.html',
   styleUrls: ['./otp.component.scss']
 })
-export class OtpComponent implements OnInit {
+export class OtpComponent implements OnInit, OnChanges {
 
   isLoading = false;
   isOtpResending = false;
   otp: number;
   enableOtpBtn = false;
+  displayPhoneNumber: string;
 
+  @Input() countryCode: string;
+  @Input() phoneNumber: string;
   @ViewChild('ngOtpInput') ngOtpInput: any;
   config = {
     allowNumbersOnly: true,
@@ -29,24 +33,22 @@ export class OtpComponent implements OnInit {
   constructor(
     private $loginService: LoginService,
     private $alert: AlertService,
-    private $dialogRef: MatDialogRef<OtpComponent>,
-    @Inject(MAT_DIALOG_DATA) public data
+    private $dialogRef: MatDialogRef<LoginComponent>
   ) { }
 
   ngOnInit(): void {
   }
 
-
-  closeDialog(): void {
-    this.$dialogRef.close(null);
+  ngOnChanges(): void {
+    const lastTwo = this.phoneNumber.slice(-2);
+    this.displayPhoneNumber = `${''.padStart(this.phoneNumber.length - 2, 'x')}${lastTwo}`;
   }
+
 
   onOtpEnter(otp: string): void {
     if (otp.length === 4) {
       this.otp = Number(otp);
-      this.enableOtpBtn = true;
-    } else {
-      this.enableOtpBtn = false;
+      this.verifyOtp();
     }
   }
 
@@ -54,8 +56,8 @@ export class OtpComponent implements OnInit {
     this.isLoading = true;
     const verifyOtpData = {
       otp: this.otp,
-      phone_number: this.data.phone_number,
-      country_code: this.data.country_code,
+      phone_number: this.phoneNumber,
+      country_code: this.countryCode,
     };
     this.$loginService.verifyOtp(verifyOtpData).subscribe(data => {
       this.$alert.success(data.body.message);
@@ -68,19 +70,29 @@ export class OtpComponent implements OnInit {
         };
         this.$loginService.isLoggedIn.next(true);
         localStorage.setItem('currentUser', JSON.stringify(user));
+
+        this.$loginService.afterOtpVerified.next(
+          {
+            isVerified: true,
+            createAccount: false,
+          }
+        );
+
         this.$dialogRef.close(null);
       }
 
       if (data.status === 209) {
-        this.$dialogRef.close({
-          isVerified: true,
-          phone_number: this.data.phone_number,
-          country_code: this.data.country_code,
-        });
+        this.$loginService.afterOtpVerified.next(
+          {
+            isVerified: true,
+            createAccount: true,
+          }
+        );
       }
 
     }, err => {
       this.isLoading = false;
+      this.ngOtpInput.setValue(null);
       this.$alert.danger(err.message);
     });
   }
@@ -89,8 +101,8 @@ export class OtpComponent implements OnInit {
     this.ngOtpInput.setValue(null);
     this.isOtpResending = true;
     this.$loginService.resendOtp({
-      phone_number: this.data.phone_number,
-      country_code: this.data.country_code
+      phone_number: this.phoneNumber,
+      country_code: this.countryCode
     }).subscribe(data => {
       this.$alert.success(data.message);
       this.isOtpResending = false;

@@ -17,19 +17,18 @@
       "searchBtn": "Search"
     }
   },
-
   "otpInput": {
     "confirmYourNumber": "Confirm your Number",
-    "hintLint1": "Enter the code we sent over SMS",
+    "hintLint1": "Enter the code we sent over SMS to",
     "btnText": "SUBMIT",
     "didNotGetCode": "Didn't get a code?",
     "resendText": "Resend"
   },
-
   "login": {
-    "loginWithPhone": " Log In with Phone Number.",
-    "loginWithEmail": "Log In With Email.",
+    "pageTitleLoginOrSignUp": "Login or Sign up",
+    "confirmYourNumber": "Confirm your Number",
     "form": {
+      "countryCode": "Country Code",
       "phoneNumber": " Phone Number",
       "phoneNumberPlaceholder": " Enter Phone Number",
       "email": "Email",
@@ -51,7 +50,6 @@
     "noAccount": "Don't have an account?",
     "signUpText": "Sign Up"
   },
-
   "validateErrorMessages": {
     "charactersText": "characters.",
     "fieldRequired": "is required",
@@ -63,10 +61,8 @@
     "fieldMismatch": " not matched",
     "dob": "should be less then"
   },
-
   "signUp": {
-    "signUpWithEmail": "Sign Up With Email",
-    "signUpWithPhoneNumber": "Sign Up With Phone Number",
+    "addYourInfo": "Add Your Info",
     "form": {
       "firstName": "First Name",
       "firstNamePlaceholder": "Enter First Name",
@@ -96,5 +92,4 @@
     "haveAnAccount": "Already have an account",
     "loginText": "Log In"
   }
-
 }

@@ -1,0 +1,27 @@
+<div class="d-flex flex-column">
+  <h3 class="fz24 mb-0 semi_font text-center">{{'otpInput.confirmYourNumber'|langTranslate}}</h3>
+  <br>
+  <p class="text-center">
+    {{'otpInput.hintLint1'|langTranslate}}
+    <br *ngIf="displayPhoneNumber">
+    <span *ngIf="displayPhoneNumber"> {{displayPhoneNumber}}</span>
+  </p>
+  <br>
+  <div class="mx-auto">
+    <ng-otp-input #ngOtpInput [config]="config" (onInputChange)="onOtpEnter($event)"></ng-otp-input>
+    <br>
+    <br>
+  </div>
+  <br>
+  <div class="d-flex align-items-center justify-content-center">
+    <p>
+      {{'otpInput.didNotGetCode'|langTranslate}}
+      <a *ngIf="!isOtpResending" href="javascript:void(0);" class="base_blue" (click)="resendOtp()">
+        {{'otpInput.resendText'|langTranslate}}
+      </a>
+      <a *ngIf="isOtpResending" href="javascript:void(0);" class="base_blue">
+        {{'otpInput.resendText'|langTranslate}}
+      </a>
+    </p>
+  </div>
+</div>
