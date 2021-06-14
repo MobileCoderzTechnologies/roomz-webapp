@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { Observable } from 'rxjs';
+import { BehaviorSubject, Observable } from 'rxjs';
 import { PASSWORD } from 'src/app/constants/regex.constant';
 import { AccessToken } from 'src/app/modals/accces-token.modal';
 import { User } from 'src/app/modals/user.modal';
@@ -13,6 +13,7 @@ import { matchPasswords } from 'src/app/validators/password.validator';
 })
 export class SignUpService {
 
+  public isAddProfilePhoto = new BehaviorSubject<boolean>(false);
   constructor(
     private $http: HttpService,
     private $fb: FormBuilder

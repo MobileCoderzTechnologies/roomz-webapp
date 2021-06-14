@@ -27,6 +27,7 @@
   "login": {
     "pageTitleLoginOrSignUp": "Login or Sign up",
     "confirmYourNumber": "Confirm your Number",
+    "welcomeBack": "",
     "form": {
       "countryCode": "Country Code",
       "phoneNumber": " Phone Number",

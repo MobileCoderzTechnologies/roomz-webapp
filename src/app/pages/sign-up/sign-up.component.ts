@@ -22,11 +22,14 @@ export class SignUpComponent implements OnInit, AfterViewInit, OnChanges {
   passwordVisible = false;
   passwordError: string = null;
 
+  addProfilePhoto = false;
+
   @Input() phoneNumber: string;
   @Input() countryCode: string;
   @Input() email: string;
   readonlyEmail = false;
 
+  @Input() dialogRef: any;
   // tslint:disable-next-line: no-output-on-prefix
   @Output() onLogin = new EventEmitter<boolean>();
 
@@ -102,6 +105,8 @@ export class SignUpComponent implements OnInit, AfterViewInit, OnChanges {
       this.$loginService.isLoggedIn.next(true);
       this.isSubmitting = false;
       this.$alert.success(data.message);
+      this.$signUpService.isAddProfilePhoto.next(true);
+      this.addProfilePhoto = true;
     }, err => {
       this.isSubmitting = false;
       this.$alert.danger(err.message);

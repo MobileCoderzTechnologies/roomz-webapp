@@ -1,0 +1,62 @@
+<div class="modal-body p-0">
+    <section class="p-3">
+        <div class="">
+            <div class="text-center">
+                <!-- <span class="bold_font" style="cursor: pointer; float: left"
+            >&#10005;</span
+          > -->
+                <img src="assets/images/chevron-left.svg" alt="" style="cursor: pointer; float: left" class="mt-1"
+                    (click)="onBack()" />
+                <h3 class="fz24 mb-0 semi_font"> {{checkEmailResponse?.message}} </h3>
+            </div>
+            <hr />
+            <div class="">
+                <div class="mb-5 mt-4">
+                    <div class="mb-4 mt-5 text-center">
+                        <img src="assets/images/profile2121.png" class="img-fluid" alt="" />
+                    </div>
+                    <div>
+                        <p class="text-center">
+                            <a href="javascript:void(0);" class="btn mb-2">
+                                {{checkEmailResponse?.email}}
+                            </a>
+                        </p>
+                        <form [formGroup]="passwordForm">
+                            <div class="mb-4">
+                                <label>Password</label>
+                                <input type="password" formControlName="password" class="form-control custom_form_control"
+                                    placeholder="Enter Password" id="" />
+                                <small class="text-danger" *ngIf="passwordForm.controls.password.touched">
+                                    {{passwordForm.controls.password.errors|validateError:
+                                    ('login.form.password'|langTranslate)}}
+                                </small>
+                                <small class="text-danger" *ngIf="passwordForm.controls.password.touched
+                         && passwordForm.controls.password?.errors?.pattern
+                          && !passwordForm.controls.password?.errors?.minlength
+                          && !passwordForm.controls.password?.errors?.maxlength">
+                                    {{'signUp.form.passwordPatternErrorMessage'|langTranslate}}
+                                </small>
+                            </div>
+                            <div>
+                                <button type="submit" *ngIf="!isSubmitting" class="btn login_btn mb_20"
+                                    (click)="onSubmit()" [disabled]="passwordForm.invalid">LOGIN</button>
+
+                                <button *ngIf="isSubmitting" class="btn login_btn">
+                                    LOGIN
+                                    <div class="spinner-border text-info spinner-border-sm"></div>
+                                </button>
+                            </div>
+                        </form>
+                        <p class="text-center mt-4">
+                            <a href="javascript:void(0);" class="text-primary mb_20"><u>Forgot Password?</u></a>
+                        </p>
+                        <p class="text-center mt-4">
+                            Not yet?
+                            <a href="javascript:void(0);" class="text-primary mb_20"><u>Login with Another</u></a>
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>

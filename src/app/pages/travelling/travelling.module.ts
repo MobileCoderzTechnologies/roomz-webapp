@@ -12,6 +12,7 @@ import { StudentAccommodationComponent } from './components/student-accommodatio
 import { PartnersComponent } from './components/partners/partners.component';
 import { FooterComponent } from './components/footer/footer.component';
 import { LoginModule } from '../login/login.module';
+import { WelcomeComponent } from './components/welcome/welcome.component';
 
 
 
@@ -26,6 +27,7 @@ import { LoginModule } from '../login/login.module';
     StudentAccommodationComponent,
     PartnersComponent,
     FooterComponent,
+    WelcomeComponent,
   ],
   imports: [
     CommonModule,

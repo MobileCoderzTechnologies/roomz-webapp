@@ -1,4 +1,4 @@
-<div class="signup_section">
+<div class="signup_section" *ngIf="!addProfilePhoto">
   <!--<div class="d-flex align-items-center justify-content-between">
       <h3 class="fz24 mb-0 semi_font"> {{'signUp.signUpWithEmail'|langTranslate}} </h3>
       <span class="bold_font" style="cursor: pointer;">&#10005;</span>
@@ -8,14 +8,14 @@
     <div class="col-md-6">
       <div class="mb_20">
         <label class="form-label">{{'signUp.form.firstName'|langTranslate}} </label>
-        <input type="text" class="form-control custom_form_control" formControlName="first_name" [readonly]="readonlyEmail"
+        <input type="text" class="form-control custom_form_control" formControlName="first_name"
           placeholder="{{'signUp.form.firstNamePlaceholder'|langTranslate}}" />
         <small class="text-danger" *ngIf="signUpForm.controls.first_name.touched">
           {{signUpForm.controls.first_name.errors|validateError: ('signUp.form.firstNameError'|langTranslate)}}
         </small>
-        <div id="emailHelp" class="form-text">
+        <!-- <div id="emailHelp" class="form-text">
           {{'signUp.form.firstNameHintMessage'|langTranslate}}
-        </div>
+        </div> -->
       </div>
     </div>
 
@@ -33,14 +33,14 @@
     <div class="col-md-6">
       <div class="mb_20">
         <label class="form-label">{{'signUp.form.email'|langTranslate}}</label>
-        <input type="email" class="form-control custom_form_control" formControlName="email"
+        <input type="email" class="form-control custom_form_control" formControlName="email" [readonly]="readonlyEmail"
           placeholder="{{'signUp.form.emailPlaceholder'|langTranslate}}" />
         <small class="text-danger" *ngIf="signUpForm.controls.email.touched">
           {{signUpForm.controls.email.errors|validateError: ('signUp.form.email'|langTranslate)}}
         </small>
-        <div id="emailHelp" class="form-text">
+        <!-- <div id="emailHelp" class="form-text">
           {{'signUp.form.emailHintMessage'|langTranslate}}
-        </div>
+        </div> -->
       </div>
     </div>
 
@@ -56,9 +56,9 @@
         <small class="text-danger" *ngIf="signUpForm.controls.dob.touched">
           {{signUpForm.controls.dob.errors|validateError: ('signUp.form.birthday'|langTranslate)}}
         </small>
-        <div id="emailHelp" class="form-text">
+        <!-- <div id="emailHelp" class="form-text">
           {{'signUp.form.birthdayHintMessage'|langTranslate}}
-        </div>
+        </div> -->
       </div>
     </div>
 
@@ -130,4 +130,8 @@
       </div>
     </div>
   </form>
+</div>
+
+<div *ngIf="addProfilePhoto">
+  <app-add-photo [dialogRef]="dialogRef"></app-add-photo>
 </div>

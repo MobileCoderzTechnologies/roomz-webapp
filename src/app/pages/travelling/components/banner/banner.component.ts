@@ -5,6 +5,7 @@ import { AlertService } from 'src/app/modules/alert/alert.service';
 import { LoginComponent } from 'src/app/pages/login/login.component';
 import { LoginService } from 'src/app/pages/login/services/login.service';
 import { LangTranslateService } from 'src/app/services/lang-translate.service';
+import { WelcomeComponent } from '../welcome/welcome.component';
 
 @Component({
   selector: 'app-banner',
@@ -24,6 +25,10 @@ export class BannerComponent implements OnInit, AfterViewInit {
   ) { }
 
   ngOnInit(): void {
+    if (!localStorage.getItem('isWelcome')) {
+      localStorage.setItem('isWelcome', '1');
+      this.onWelcome();
+    }
     if (this.$translate.selectedLanguage === 'en') {
       this.selectedLanguage = 'ENGLISH';
     }
@@ -51,7 +56,7 @@ export class BannerComponent implements OnInit, AfterViewInit {
     const dialogRef = this.$dialog.open(LoginComponent, {
       height: 'fit-content',
       maxHeight: '90vh',
-      width: 'auto',
+      width: 'fit-content',
       autoFocus: false,
       data
     });
@@ -62,6 +67,18 @@ export class BannerComponent implements OnInit, AfterViewInit {
     });
   }
 
+  onWelcome(): void {
+    const dialogRef = this.$dialog.open(WelcomeComponent, {
+      height: 'fit-content',
+      maxHeight: '90vh',
+      width: 'fit-content',
+    });
+    dialogRef.afterClosed().subscribe(success => {
+      if (success) {
+        this.onLogin();
+      }
+    });
+  }
 
   // private onEnterOtp(data): void {
   //   const dialogRef = this.$dialog.open(OtpComponent, {

@@ -7,6 +7,7 @@ import { pipe, Subscription } from 'rxjs';
 import { delay } from 'rxjs/operators';
 import { PASSWORD } from 'src/app/constants/regex.constant';
 import { AlertService } from 'src/app/modules/alert/alert.service';
+import { SignUpService } from '../sign-up/services/sign-up.service';
 import { LoginService } from './services/login.service';
 
 @Component({
@@ -17,6 +18,7 @@ import { LoginService } from './services/login.service';
 export class LoginComponent implements OnInit, OnDestroy, AfterViewInit {
 
   pageTitle = 'login.pageTitleLoginOrSignUp';
+  pageTitleShow = true;
   isBackBtn = false;
   isCloseBtn = true;
   isEnterOtp = false;
@@ -26,6 +28,15 @@ export class LoginComponent implements OnInit, OnDestroy, AfterViewInit {
   countryCode: string;
   loginWith = 'email';
 
+  createAccountAddPhoto = false;
+  photoSubs: Subscription;
+  welcomeBack = false;
+  isAccountSetup = false;
+
+  signUpWithEmail = false;
+  email = '';
+
+  checkEmailResponse: any;
   afterOtpVerified = { createAccount: false, isVerified: false };
   otpSubs: Subscription;
   loginForm: FormGroup = new FormGroup({
@@ -47,7 +58,8 @@ export class LoginComponent implements OnInit, OnDestroy, AfterViewInit {
   ];
   constructor(
     private $loginService: LoginService,
-    private $dialogRef: MatDialogRef<LoginComponent>,
+    private $signUpService: SignUpService,
+    public $dialogRef: MatDialogRef<LoginComponent>,
     private $alert: AlertService,
   ) {
 
@@ -68,12 +80,26 @@ export class LoginComponent implements OnInit, OnDestroy, AfterViewInit {
             this.pageTitle = 'signUp.addYourInfo';
             this.isBackBtn = true;
             this.isEnterOtp = false;
+            this.pageTitleShow = true;
             this.isCloseBtn = true;
           } else {
             this.isCloseBtn = true;
             this.isEnterOtp = false;
+            this.pageTitleShow = true;
             this.loginForm.reset();
           }
+        }
+      });
+
+    this.photoSubs = this.$signUpService.isAddProfilePhoto
+      .pipe(
+        delay(0)
+      )
+      .subscribe(data => {
+        if (data) {
+          this.createAccountAddPhoto = true;
+          // this.signUpWithEmail = false;
+          this.pageTitleShow = false;
         }
       });
   }
@@ -93,13 +119,6 @@ export class LoginComponent implements OnInit, OnDestroy, AfterViewInit {
       this.loginForm.controls.countryCode.clearValidators();
       this.loginForm.controls.countryCode.setValidators(null);
       this.loginForm.controls.countryCode.setErrors(null);
-      // this.loginForm.controls.password.setValidators(
-      //   [Validators.required,
-      //   Validators.minLength(8),
-      //   Validators.maxLength(19),
-      //   Validators.pattern(PASSWORD)
-      //   ]
-      // );
     }
 
     if (loginType === 'phone') {
@@ -146,25 +165,33 @@ export class LoginComponent implements OnInit, OnDestroy, AfterViewInit {
       if (data.status === 200) {
         this.isCloseBtn = false;
         this.isEnterOtp = true;
+        this.pageTitleShow = false;
         this.isLoginForm = false;
         this.phoneNumber = checkData.phone_number;
         this.countryCode = checkData.country_code;
       }
       if (data.status === 202) {
-        // this.login(loginData);
+        this.checkEmailResponse = {
+          email: data.body.email,
+          message: data.body.message,
+        };
+        this.welcomeBack = true;
+        this.pageTitleShow = false;
+        this.isEnterOtp = false;
+        this.isCloseBtn = false;
+        this.isBackBtn = true;
+        this.isLoginForm = false;
       }
 
       if (data.status === 209) {
-        this.$dialogRef.close(
-          {
-            createAccount: true,
-            email: loginData.email,
-            loginType: this.loginWith.toUpperCase(),
-            checkAccount: true,
-          }
-        );
-        this.$alert.info(data.body.message, 5000);
+        this.pageTitle = 'signUp.addYourInfo';
+        this.isBackBtn = true;
+        this.isCloseBtn = true;
+        this.signUpWithEmail = true;
+        this.isLoginForm = false;
+        this.email = loginData.email;
       }
+      this.$alert.info(data.body.message);
 
       this.isSubmitting = false;
     }, err => {
@@ -174,54 +201,27 @@ export class LoginComponent implements OnInit, OnDestroy, AfterViewInit {
   }
 
 
-
-  private login(loginData: any): void {
-    let lData;
-    if (loginData.country_code) {
-      lData = {
-        country_code: loginData.country_code,
-        phone_number: loginData.phone_number,
-        // login_type: loginData.login_type,
-      };
-    }
-
-    if (loginData.email) {
-      lData = {
-        email: loginData.email,
-        password: loginData.password,
-        // login_type: loginData.login_type,
-      };
-    }
-    this.$loginService.login(lData).subscribe(data => {
-      const token = data.data.accessToken.token;
-      localStorage.setItem('accessToken', token);
-      const user = {
-        name: `${data.data.user.first_name} ${data.data.user.last_name}`,
-        profile: data.data.user.avatar
-      };
-      localStorage.setItem('currentUser', JSON.stringify(user));
-      this.$alert.success(data.message);
-      this.$loginService.isLoggedIn.next(true);
-      this.isSubmitting = false;
-      this.closeDialog();
-    }, err => {
-      this.isSubmitting = false;
-      this.$alert.danger(err.message);
-    });
-  }
-
-
-  onSignUp(): void {
-
-  }
 
 
   backFromOtp(): void {
     this.isCloseBtn = true;
     this.isEnterOtp = false;
+    this.pageTitleShow = true;
     this.isLoginForm = true;
     this.loginForm.reset();
     this.loginForm.controls.countryCode.setValue(this.countryCode);
+  }
+
+  backFromWelcomeBack(event): void {
+    if (event) {
+      this.isCloseBtn = true;
+      this.isEnterOtp = false;
+      this.pageTitleShow = true;
+      this.isLoginForm = true;
+      this.welcomeBack = false;
+      this.pageTitle = 'login.pageTitleLoginOrSignUp';
+      this.loginForm.reset();
+    }
   }
 
 
@@ -235,6 +235,8 @@ export class LoginComponent implements OnInit, OnDestroy, AfterViewInit {
     this.loginWith = 'email';
     this.afterOtpVerified = { createAccount: false, isVerified: false };
     this.pageTitle = 'login.pageTitleLoginOrSignUp';
+    this.pageTitleShow = true;
+    this.welcomeBack = false;
   }
 
 

@@ -7,6 +7,7 @@ import { ValidateErrorModule } from 'src/app/modules/validate-error/validate-err
 import { SignUpModule } from '../sign-up/sign-up.module';
 import { NgOtpInputModule } from 'ng-otp-input';
 import { OtpComponent } from './components/otp/otp.component';
+import { WelcomeBackComponent } from './components/welcome-back/welcome-back.component';
 
 const routes: Routes = [
   {
@@ -17,7 +18,8 @@ const routes: Routes = [
 @NgModule({
   declarations: [
     LoginComponent,
-    OtpComponent
+    OtpComponent,
+    WelcomeBackComponent,
   ],
   imports: [
     CommonModule,

@@ -1,5 +1,5 @@
 <!-- <section class="d-flex align-items-center justify-content-center"> -->
-<div class="page-title" *ngIf="!isEnterOtp">
+<div class="page-title" *ngIf="pageTitleShow">
   <div class="d-flex align-items-center justify-content-between">
     <h3 class="fz24 mb-0 semi_font">{{pageTitle|langTranslate}}</h3>
     <span *ngIf="isCloseBtn" class="medium_font" style="cursor: pointer;" (click)="closeDialog()">&#10005;</span>
@@ -130,5 +130,42 @@
 
 <!-- sign up after verified phone  -->
 <div *ngIf="afterOtpVerified?.createAccount">
-  <app-sign-up [phoneNumber]="phoneNumber" [countryCode]="countryCode"></app-sign-up>
+  <app-sign-up [phoneNumber]="phoneNumber" [countryCode]="countryCode"  [dialogRef]="$dialogRef"></app-sign-up>
 </div>
+
+<!-- sign up with email  -->
+
+<div *ngIf="signUpWithEmail">
+  <app-sign-up [email]="email" [dialogRef]="$dialogRef"></app-sign-up>
+</div>
+
+<!-- log in with email welcome back  -->
+<div *ngIf="welcomeBack" style="min-width: 451px; width: auto;">
+  <app-welcome-back [checkEmailResponse]="checkEmailResponse" (backToLogin)="backFromWelcomeBack($event)"></app-welcome-back>
+</div>
+
+<!-- add a profile photo -->
+<!-- <div class="modal-body p-0" *ngIf="createAccountAddPhoto">
+  <section class="p-3">
+    <div class="">
+      <div class="text-center">
+        <h3 class="fz24 mb-0 semi_font">Add a profile photo</h3>
+      </div>
+      <hr />
+      <div class="">
+        <div class="mb-5 mt-4">
+          <p class="mb_20 text-center">
+            Pick an image that shows your face. Hosts won't be able to see your profile photo until your reservation is confirmed.
+          </p>
+          <div class="mb-5 pb-5 mt-5 text-center">
+            <img src="assets/images/profile2121.png" class="img-fluid" alt="" />
+          </div>
+        </div>
+        <button class="btn login_btn mb-3">CONTINUE</button>
+        <button class="btn login_btn mb_20 border bg-transparent text-secondary">
+          Skip for this
+        </button>
+      </div>
+    </div>
+  </section>
+</div> -->
