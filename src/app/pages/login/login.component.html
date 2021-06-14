@@ -61,8 +61,17 @@
       <a href="javascript:void(0);" class="base_blue"><u>{{'login.form.forgotPasswordBtn'|langTranslate}}</u></a>
     </div>
     <div class="text-center mb_20 position-relative">
-      <hr class="or_hr" />
-      <p class="bg-white d-inline-block"> {{'login.orContinueWith.text'|langTranslate}} </p>
+      <div class="d-flex justify-content-center">
+        <div class="or_continue_with_hr">
+          <hr>
+        </div>
+        <div class="or_continue_with_text">
+          <p class="bg-white d-inline-block"> {{'login.orContinueWith.text'|langTranslate}} </p>
+        </div>
+        <div class="or_continue_with_hr">
+          <hr>
+        </div>
+      </div>
     </div>
     <div class="row social_login">
 
@@ -130,7 +139,7 @@
 
 <!-- sign up after verified phone  -->
 <div *ngIf="afterOtpVerified?.createAccount">
-  <app-sign-up [phoneNumber]="phoneNumber" [countryCode]="countryCode"  [dialogRef]="$dialogRef"></app-sign-up>
+  <app-sign-up [phoneNumber]="phoneNumber" [countryCode]="countryCode" [dialogRef]="$dialogRef"></app-sign-up>
 </div>
 
 <!-- sign up with email  -->
@@ -141,7 +150,8 @@
 
 <!-- log in with email welcome back  -->
 <div *ngIf="welcomeBack" style="min-width: 451px; width: auto;">
-  <app-welcome-back [checkEmailResponse]="checkEmailResponse" (backToLogin)="backFromWelcomeBack($event)"></app-welcome-back>
+  <app-welcome-back [checkEmailResponse]="checkEmailResponse" (backToLogin)="backFromWelcomeBack($event)">
+  </app-welcome-back>
 </div>
 
 <!-- add a profile photo -->

@@ -20,6 +20,6 @@ export class WelcomeComponent implements OnInit {
   }
 
   onContinue(): void {
-    this.$dialogRef.close(true)
+    this.$dialogRef.close(true);
   }
 }
