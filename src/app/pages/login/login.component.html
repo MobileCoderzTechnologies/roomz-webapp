@@ -32,6 +32,9 @@
       <small class="text-danger" *ngIf="loginForm.controls.email.touched">
         {{loginForm.controls.email.errors|validateError: ('login.form.email'|langTranslate)}}
       </small>
+      <small class="text-danger" *ngIf="loginForm.controls.email.touched && loginForm.controls.email.errors?.pattern">
+        {{'login.form.emailPatternError'|langTranslate}}
+      </small>
     </div>
     <!-- <div class="mb-3" *ngIf="loginWith==='email'">
         <label class="fz15">{{'login.form.password'|langTranslate}} </label>
@@ -149,7 +152,7 @@
 </div>
 
 <!-- log in with email welcome back  -->
-<div *ngIf="welcomeBack" style="min-width: 451px; width: auto;">
+<div *ngIf="welcomeBack" style="width: 451px;">
   <app-welcome-back [checkEmailResponse]="checkEmailResponse" (backToLogin)="backFromWelcomeBack($event)">
   </app-welcome-back>
 </div>

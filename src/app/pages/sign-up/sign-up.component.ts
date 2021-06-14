@@ -20,6 +20,7 @@ export class SignUpComponent implements OnInit, AfterViewInit, OnChanges {
   maxDate: Date;
 
   passwordVisible = false;
+  confirmPasswordVisible = false;
   passwordError: string = null;
 
   addProfilePhoto = false;
@@ -55,6 +56,13 @@ export class SignUpComponent implements OnInit, AfterViewInit, OnChanges {
     if (this.email) {
       this.signUpForm.controls.email.setValue(this.email);
       this.readonlyEmail = true;
+    }
+  }
+
+  spaceRequiredError(fieldName: string, value: string): void {
+    value = value.trim();
+    if (!value) {
+      this.signUpForm.controls[fieldName].setErrors({ required: true });
     }
   }
 

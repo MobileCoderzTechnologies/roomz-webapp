@@ -3,3 +3,18 @@
 .top-bar{
     padding: 15px 30px;
 }
+
+.ng-otp-input{
+    height: auto;
+    width: auto;
+    position: relative;
+}
+
+.loader{
+    height: 100%;
+    width: 100%;
+    display: grid;
+    place-items: center;
+    position: absolute;
+    top: 0%;
+}

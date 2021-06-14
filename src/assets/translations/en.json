@@ -17,6 +17,15 @@
       "searchBtn": "Search"
     }
   },
+  "welcome": {
+    "welcomeToRoomz": "Welcome to Roomz",
+    "discoverThePlaces": "Discover the places to stay!",
+    "clickTo": "Click to",
+    "continue": "Continue",
+    "line1": "button for create your",
+    "completeProfileText": "Complete profile",
+    "continueBtnText": "CONTINUE"
+  },
   "otpInput": {
     "confirmYourNumber": "Confirm your Number",
     "hintLint1": "Enter the code we sent over SMS to",
@@ -27,16 +36,13 @@
   "login": {
     "pageTitleLoginOrSignUp": "Login or Sign up",
     "confirmYourNumber": "Confirm your Number",
-    "welcomeBack": "",
     "form": {
       "countryCode": "Country Code",
       "phoneNumber": " Phone Number",
       "phoneNumberPlaceholder": " Enter Phone Number",
       "email": "Email",
+      "emailPatternError":"Email is not valid",
       "emailPlaceholder": " Enter Email",
-      "password": "Password",
-      "passwordPlaceholder": "Enter Password",
-      "passwordPatternErrorMessage": "Password Should be contain at least one UpperCase one LowerCase one SpecialCharacter and OneNumber",
       "loginBtn": "LOG IN",
       "forgotPasswordBtn": "Forgot Password?"
     },
@@ -48,13 +54,22 @@
       "apple": "Apple",
       "phone": "Phone"
     },
+    "welcomeBack": {
+      "password": "Password",
+      "passwordPlaceholder": "Enter Password",
+      "passwordPatternErrorMessage": "Password Should be contain at least one UpperCase one LowerCase one SpecialCharacter and OneNumber",
+      "loginBtnText": "LOGIN",
+      "forgotPassword": "Forgot Password?",
+      "notYetText": "Not Yet?",
+      "loginWithAnother": "Login with Another"
+    },
     "noAccount": "Don't have an account?",
     "signUpText": "Sign Up"
   },
   "validateErrorMessages": {
     "charactersText": "characters.",
     "fieldRequired": "is required",
-    "minLength": "should be grater then",
+    "minLength": "should be greater then",
     "maxLength": "should be less then",
     "notValid": "is not valid",
     "min": "should be greater then",
@@ -74,6 +89,7 @@
       "lastNameError": "Lastname",
       "email": "Email",
       "emailPlaceholder": " Enter Email",
+      "emailPatternError": "Email is not valid",
       "emailHintMessage": "We'll email you a reservation confirmation.",
       "birthday": "Birthday",
       "birthdayPlaceholder": "dd/mm/yy",
@@ -88,9 +104,21 @@
       "tosLineText3": "Terms of Services ",
       "tosLineText4": " And",
       "tosLineText5": "Payments",
-      "btnText": "Agree and Submit"
+      "btnText": "AGREE AND SUBMIT"
     },
     "haveAnAccount": "Already have an account",
-    "loginText": "Log In"
+    "loginText": "Log In",
+    "congratulation": {
+      "congratulationText": "Congratulation",
+      "youAreAllSet": "You are all Set!",
+      "line1": "You can travel now the world and host your own home on Roomz",
+      "startExploringBtn": "START EXPLORING"
+    },
+    "addPhoto": {
+      "addAProfilePhoto": "Add a profile photo",
+      "line1": "Pick an image that shows your face. Hosts won't be able to see our profile photo until your reservation is confirmed.",
+      "continueBtnText": "CONTINUE",
+      "skipForNowBtnText": "Skip for now"
+    }
   }
 }

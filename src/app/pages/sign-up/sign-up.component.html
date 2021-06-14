@@ -9,6 +9,7 @@
       <div class="mb_20">
         <label class="form-label">{{'signUp.form.firstName'|langTranslate}} </label>
         <input type="text" class="form-control custom_form_control" formControlName="first_name"
+          (input)="spaceRequiredError('first_name', $event.target.value)"
           placeholder="{{'signUp.form.firstNamePlaceholder'|langTranslate}}" />
         <small class="text-danger" *ngIf="signUpForm.controls.first_name.touched">
           {{signUpForm.controls.first_name.errors|validateError: ('signUp.form.firstNameError'|langTranslate)}}
@@ -23,6 +24,7 @@
       <div class="mb_20">
         <label class="form-label"> {{'signUp.form.lastName'|langTranslate}} </label>
         <input type="text" class="form-control custom_form_control" formControlName="last_name"
+          (input)="spaceRequiredError('last_name', $event.target.value)"
           placeholder="{{'signUp.form.lastNamePlaceholder'|langTranslate}}" />
         <small class="text-danger" *ngIf="signUpForm.controls.last_name.touched">
           {{signUpForm.controls.last_name.errors|validateError: ('signUp.form.lastNameError'|langTranslate)}}
@@ -37,6 +39,10 @@
           placeholder="{{'signUp.form.emailPlaceholder'|langTranslate}}" />
         <small class="text-danger" *ngIf="signUpForm.controls.email.touched">
           {{signUpForm.controls.email.errors|validateError: ('signUp.form.email'|langTranslate)}}
+        </small>
+        <small class="text-danger"
+          *ngIf="signUpForm.controls.email.touched && signUpForm.controls.email.errors?.pattern">
+          {{'signUp.form.emailPatternError'|langTranslate}}
         </small>
         <!-- <div id="emailHelp" class="form-text">
           {{'signUp.form.emailHintMessage'|langTranslate}}
@@ -88,8 +94,15 @@
     <div class="col-md-6">
       <div class="mb_20">
         <label class="form-label">{{'signUp.form.confirmPassword'|langTranslate}}</label>
-        <input type="password" class="form-control custom_form_control" formControlName="confirm_password"
-          placeholder="{{'signUp.form.passwordPlaceholder'|langTranslate}}" />
+        <div class="password-box">
+          <input [type]="confirmPasswordVisible?'text':'password'" class="form-control custom_form_control" formControlName="confirm_password"
+            placeholder="{{'signUp.form.passwordPlaceholder'|langTranslate}}" />
+          <button type="button" mat-icon-button (click)="confirmPasswordVisible =! confirmPasswordVisible">
+            <mat-icon>
+              {{confirmPasswordVisible?'visibility_off':'visibility'}}
+            </mat-icon>
+          </button>
+        </div>
         <small class="text-danger" *ngIf="signUpForm.controls.confirm_password.touched">
           {{signUpForm.controls.confirm_password.errors|validateError:
           ('signUp.form.confirmPasswordError'|langTranslate)}}
@@ -132,6 +145,6 @@
   </form>
 </div>
 
-<div *ngIf="addProfilePhoto">
+<div *ngIf="addProfilePhoto" style="max-width: 451px;">
   <app-add-photo [dialogRef]="dialogRef"></app-add-photo>
 </div>

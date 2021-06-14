@@ -7,9 +7,12 @@
     <span *ngIf="displayPhoneNumber"> {{displayPhoneNumber}}</span>
   </p>
   <br>
-  <div class="mx-auto">
-    <ng-otp-input #ngOtpInput [config]="config" (onInputChange)="onOtpEnter($event)"></ng-otp-input>
+  <div class="mx-auto ng-otp-input">
     <br>
+    <ng-otp-input #ngOtpInput [config]="config" (onInputChange)="onOtpEnter($event)"></ng-otp-input>
+    <div *ngIf="isLoading" class="loader">  
+      <div class="spinner-border text-info spinner-border"></div>
+    </div>
     <br>
   </div>
   <br>

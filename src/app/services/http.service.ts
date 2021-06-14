@@ -18,7 +18,7 @@ export class HttpService {
   constructor(
     private $http: HttpClient,
     private $router: Router,
-    private $translate: LangTranslateService
+    private $translate: LangTranslateService,
   ) {
     this.headers = this.headers.set('Accept-Language', this.selectedLanguage);
   }
@@ -84,9 +84,15 @@ export class HttpService {
 
 
   private errorHandler(response: any): Observable<{ error: string, message: string }> {
+
+    console.log(response);
     const error = response.error;
+    let message;
     const status = response.status;
-    const message = error.message;
+    message = error.message;
+    if (error.isTrusted) {
+      message = 'No Internet Connection';
+    }
     if (status === 401) {
       sessionStorage.clear();
       localStorage.clear();

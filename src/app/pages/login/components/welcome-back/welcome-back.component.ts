@@ -17,6 +17,7 @@ export class WelcomeBackComponent implements OnInit, OnChanges {
   @Output() backToLogin = new EventEmitter();
 
   isSubmitting = false;
+  passwordVisible = false;
 
   passwordForm = new FormGroup({
     password: new FormControl(null,

@@ -5,7 +5,7 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { pipe, Subscription } from 'rxjs';
 import { delay } from 'rxjs/operators';
-import { PASSWORD } from 'src/app/constants/regex.constant';
+import { EMAIL_REGEX, PASSWORD } from 'src/app/constants/regex.constant';
 import { AlertService } from 'src/app/modules/alert/alert.service';
 import { SignUpService } from '../sign-up/services/sign-up.service';
 import { LoginService } from './services/login.service';
@@ -26,7 +26,7 @@ export class LoginComponent implements OnInit, OnDestroy, AfterViewInit {
 
   phoneNumber: string;
   countryCode: string;
-  loginWith = 'email';
+  loginWith = 'phone';
 
   createAccountAddPhoto = false;
   photoSubs: Subscription;
@@ -40,9 +40,9 @@ export class LoginComponent implements OnInit, OnDestroy, AfterViewInit {
   afterOtpVerified = { createAccount: false, isVerified: false };
   otpSubs: Subscription;
   loginForm: FormGroup = new FormGroup({
-    phoneNumber: new FormControl(null, [Validators.maxLength(8), Validators.minLength(15)]),
-    countryCode: new FormControl(null),
-    email: new FormControl(null, [Validators.required, Validators.email]),
+    phoneNumber: new FormControl(null, [Validators.required, Validators.minLength(9), Validators.maxLength(14)]),
+    countryCode: new FormControl('+91', Validators.required),
+    email: new FormControl(null),
   });
   isSubmitting = false;
 
@@ -112,7 +112,7 @@ export class LoginComponent implements OnInit, OnDestroy, AfterViewInit {
     this.loginWith = loginType;
     this.loginForm.reset();
     if (loginType === 'email') {
-      this.loginForm.controls.email.setValidators([Validators.required, Validators.email]);
+      this.loginForm.controls.email.setValidators([Validators.required, Validators.pattern(EMAIL_REGEX)]);
       this.loginForm.controls.phoneNumber.clearValidators();
       this.loginForm.controls.phoneNumber.setValidators(null);
       this.loginForm.controls.phoneNumber.setErrors(null);
@@ -196,6 +196,7 @@ export class LoginComponent implements OnInit, OnDestroy, AfterViewInit {
       this.isSubmitting = false;
     }, err => {
       this.isSubmitting = false;
+      console.log(err);
       this.$alert.danger(err.message);
     });
   }

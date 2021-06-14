@@ -3,8 +3,8 @@
         <div class="">
             <div class="text-center">
                 <!-- <span class="bold_font" style="cursor: pointer; float: left"
-            >&#10005;</span
-          > -->
+>&#10005;</span
+> -->
                 <img src="assets/images/chevron-left.svg" alt="" style="cursor: pointer; float: left" class="mt-1"
                     (click)="onBack()" />
                 <h3 class="fz24 mb-0 semi_font"> {{checkEmailResponse?.message}} </h3>
@@ -23,36 +23,54 @@
                         </p>
                         <form [formGroup]="passwordForm">
                             <div class="mb-4">
-                                <label>Password</label>
-                                <input type="password" formControlName="password" class="form-control custom_form_control"
-                                    placeholder="Enter Password" id="" />
+                                <label>
+                                    {{'login.welcomeBack.password'|langTranslate}}
+                                </label>
+                                <div class="password-box">
+                                    <input [type]="passwordVisible?'text':'password'" formControlName="password"
+                                        class="form-control custom_form_control"
+                                        placeholder="{{'login.welcomeBack.passwordPlaceholder'|langTranslate}}" id="" />
+                                    <button type="button" mat-icon-button (click)="passwordVisible =! passwordVisible">
+                                        <mat-icon>
+                                            {{passwordVisible?'visibility_off':'visibility'}}
+                                        </mat-icon>
+                                    </button>
+                                </div>
                                 <small class="text-danger" *ngIf="passwordForm.controls.password.touched">
                                     {{passwordForm.controls.password.errors|validateError:
-                                    ('login.form.password'|langTranslate)}}
+                                    ('login.welcomeBack.password'|langTranslate)}}
                                 </small>
                                 <small class="text-danger" *ngIf="passwordForm.controls.password.touched
-                         && passwordForm.controls.password?.errors?.pattern
-                          && !passwordForm.controls.password?.errors?.minlength
-                          && !passwordForm.controls.password?.errors?.maxlength">
-                                    {{'signUp.form.passwordPatternErrorMessage'|langTranslate}}
+&& passwordForm.controls.password?.errors?.pattern
+&& !passwordForm.controls.password?.errors?.minlength
+&& !passwordForm.controls.password?.errors?.maxlength">
+                                    {{'login.welcomeBack.passwordPatternErrorMessage'|langTranslate}}
                                 </small>
                             </div>
                             <div>
                                 <button type="submit" *ngIf="!isSubmitting" class="btn login_btn mb_20"
-                                    (click)="onSubmit()" [disabled]="passwordForm.invalid">LOGIN</button>
+                                    (click)="onSubmit()" [disabled]="passwordForm.invalid">
+                                    {{'login.welcomeBack.loginBtnText'|langTranslate}}
+                                </button>
 
                                 <button *ngIf="isSubmitting" class="btn login_btn">
-                                    LOGIN
+                                    {{'login.welcomeBack.loginBtnText'|langTranslate}}
                                     <div class="spinner-border text-info spinner-border-sm"></div>
                                 </button>
                             </div>
                         </form>
                         <p class="text-center mt-4">
-                            <a href="javascript:void(0);" class="text-primary mb_20"><u>Forgot Password?</u></a>
+                            <a href="javascript:void(0);" class="text-primary mb_20"><u>
+                                    {{'login.welcomeBack.forgotPassword'|langTranslate}}
+                                </u></a>
                         </p>
                         <p class="text-center mt-4">
-                            Not yet?
-                            <a href="javascript:void(0);" class="text-primary mb_20"><u>Login with Another</u></a>
+                            {{'login.welcomeBack.notYet'|langTranslate}}
+                            <a href="javascript:void(0);" class="text-primary mb_20" (click)="onBack()">
+                                <u>
+                                    {{'login.welcomeBack.loginWithAnother'|langTranslate}}
+                                </u>
+                            </a>
                         </p>
                     </div>
                 </div>

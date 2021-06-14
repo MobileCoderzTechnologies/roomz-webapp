@@ -10,17 +10,22 @@
           <img src="assets/images/tick3.png" class="img-fluid" alt="" />
         </div>
         <h3 class="mb_20 bold_font text-center fz24">
-          Welcome to Roomz
+          {{'welcome.welcomeToRoomz'|langTranslate}}
         </h3>
         <p class="mb_20 text-center fz20">
-          Discover the places to stay!
+          {{'welcome.discoverThePlaces'|langTranslate}}
         </p>
         <p class="mb_20 text-center">
-          Click to "Continue" butoon for create your <br />
-          complete profile.
+         {{'welcome.clickTo'|langTranslate}}
+         &#8220; {{'welcome.continue'|langTranslate}} &#8221;
+         {{'welcome.line1'|langTranslate}}
+          <br />
+         {{'welcome.completeProfileText'|langTranslate}}
         </p>
       </div>
-      <button class="btn login_btn mb-3" (click)="onContinue()">CONTINUE</button>
+      <button class="btn login_btn mb-3" (click)="onContinue()">
+        {{'welcome.continueBtnText'|langTranslate}}
+      </button>
     </div>
   </div>
 </section>

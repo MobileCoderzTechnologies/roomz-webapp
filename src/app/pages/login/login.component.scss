@@ -1,6 +1,11 @@
 .country-code {
   &:focus {
     box-shadow: none !important;
+  };
+  &::after{
+    padding: 5px;
+    display: block;
+    line-height: 16px;
   }
 }
 
@@ -34,3 +39,4 @@
 .or_continue_with_text{
   margin-top: 8px;
 }
+

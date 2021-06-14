@@ -6,6 +6,7 @@ import { LoginComponent } from 'src/app/pages/login/login.component';
 import { LoginService } from 'src/app/pages/login/services/login.service';
 import { LangTranslateService } from 'src/app/services/lang-translate.service';
 import { WelcomeComponent } from '../welcome/welcome.component';
+import Swal from 'sweetalert2'
 
 @Component({
   selector: 'app-banner',
@@ -103,7 +104,17 @@ export class BannerComponent implements OnInit, AfterViewInit {
 
 
   onLogout(): void {
-    this.$loginService.logout();
+    Swal.fire({
+      title: 'Are you sure?',
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonText: 'Confirm',
+      cancelButtonText: 'Cancel'
+    }).then((result) => {
+      if (result.isConfirmed) {
+        this.$loginService.logout();
+      }
+    })
   }
 
 }
