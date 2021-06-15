@@ -8,6 +8,7 @@ import { SignUpModule } from '../sign-up/sign-up.module';
 import { NgOtpInputModule } from 'ng-otp-input';
 import { OtpComponent } from './components/otp/otp.component';
 import { WelcomeBackComponent } from './components/welcome-back/welcome-back.component';
+import { OtpTimerPipe } from './pipes/otp-timer.pipe';
 
 const routes: Routes = [
   {
@@ -20,6 +21,7 @@ const routes: Routes = [
     LoginComponent,
     OtpComponent,
     WelcomeBackComponent,
+    OtpTimerPipe,
   ],
   imports: [
     CommonModule,

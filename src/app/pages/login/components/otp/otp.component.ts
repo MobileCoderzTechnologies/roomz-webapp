@@ -1,5 +1,7 @@
-import { Component, Inject, Input, OnChanges, OnInit, Output, ViewChild } from '@angular/core';
+import { AfterViewInit, Component, Inject, Input, OnChanges, OnInit, Output, ViewChild } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { interval, Subscription } from 'rxjs';
+import { delay } from 'rxjs/operators';
 import { AlertService } from 'src/app/modules/alert/alert.service';
 import { LoginService } from 'src/app/pages/login/services/login.service';
 import { LoginComponent } from '../../login.component';
@@ -9,13 +11,16 @@ import { LoginComponent } from '../../login.component';
   templateUrl: './otp.component.html',
   styleUrls: ['./otp.component.scss']
 })
-export class OtpComponent implements OnInit, OnChanges {
+export class OtpComponent implements OnInit, OnChanges, AfterViewInit {
 
   isLoading = false;
   isOtpResending = false;
   otp: number;
   enableOtpBtn = false;
   displayPhoneNumber: string;
+  timerTime = 30;
+  isTimerShow = true;
+  timerSubs: Subscription;
 
   @Input() countryCode: string;
   @Input() phoneNumber: string;
@@ -39,9 +44,31 @@ export class OtpComponent implements OnInit, OnChanges {
   ngOnInit(): void {
   }
 
+  ngAfterViewInit(): void {
+    this.timerStart();
+  }
+
   ngOnChanges(): void {
     const lastTwo = this.phoneNumber.slice(-2);
     this.displayPhoneNumber = `${''.padStart(this.phoneNumber.length - 2, 'x')}${lastTwo}`;
+  }
+
+  private timerStart(): void {
+    this.isTimerShow = true;
+    this.timerTime = 30;
+    this.ngOtpInput.otpForm.enable();
+    this.timerSubs = interval(1000)
+      .pipe(
+        delay(0)
+      )
+      .subscribe(() => {
+        this.timerTime--;
+        if (this.timerTime < 1) {
+          this.timerSubs.unsubscribe();
+          this.isTimerShow = false;
+          this.ngOtpInput.otpForm.disable();
+        }
+      });
   }
 
 
@@ -105,6 +132,7 @@ export class OtpComponent implements OnInit, OnChanges {
       country_code: this.countryCode
     }).subscribe(data => {
       this.$alert.success(data.message);
+      this.timerStart();
       this.isOtpResending = false;
     }, err => {
       this.isOtpResending = false;

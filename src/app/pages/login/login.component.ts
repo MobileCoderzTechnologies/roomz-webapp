@@ -5,6 +5,7 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { pipe, Subscription } from 'rxjs';
 import { delay } from 'rxjs/operators';
+import { COUNTRIES_CODES } from 'src/app/constants/country-code.constant';
 import { EMAIL_REGEX, PASSWORD } from 'src/app/constants/regex.constant';
 import { AlertService } from 'src/app/modules/alert/alert.service';
 import { SignUpService } from '../sign-up/services/sign-up.service';
@@ -46,16 +47,7 @@ export class LoginComponent implements OnInit, OnDestroy, AfterViewInit {
   });
   isSubmitting = false;
 
-  countryCodes = [
-    {
-      name: 'India',
-      code: '+91'
-    },
-    {
-      name: 'Saudi Arabia',
-      code: '+966'
-    }
-  ];
+  countryCodes = COUNTRIES_CODES;
   constructor(
     private $loginService: LoginService,
     private $signUpService: SignUpService,
@@ -127,7 +119,7 @@ export class LoginComponent implements OnInit, OnDestroy, AfterViewInit {
       this.loginForm.controls.email.setErrors(null);
       this.loginForm.controls.phoneNumber.setValidators([Validators.required, Validators.minLength(9), Validators.maxLength(14)]);
       this.loginForm.controls.countryCode.setValidators(Validators.required);
-      this.loginForm.controls.countryCode.setValue('+966');
+      this.loginForm.controls.countryCode.setValue('+91');
     }
   }
 
@@ -138,6 +130,7 @@ export class LoginComponent implements OnInit, OnDestroy, AfterViewInit {
       loginData.country_code = loginData.countryCode;
       delete loginData.phoneNumber;
       delete loginData.email;
+      delete loginData.countryCode;
     }
     this.checkAccount(loginData);
   }

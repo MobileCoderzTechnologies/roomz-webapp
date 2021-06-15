@@ -10,14 +10,14 @@
   <div class="mx-auto ng-otp-input">
     <br>
     <ng-otp-input #ngOtpInput [config]="config" (onInputChange)="onOtpEnter($event)"></ng-otp-input>
-    <div *ngIf="isLoading" class="loader">  
+    <div *ngIf="isLoading" class="loader">
       <div class="spinner-border text-info spinner-border"></div>
     </div>
     <br>
   </div>
   <br>
   <div class="d-flex align-items-center justify-content-center">
-    <p>
+    <p *ngIf="!isTimerShow">
       {{'otpInput.didNotGetCode'|langTranslate}}
       <a *ngIf="!isOtpResending" href="javascript:void(0);" class="base_blue" (click)="resendOtp()">
         {{'otpInput.resendText'|langTranslate}}
@@ -25,6 +25,9 @@
       <a *ngIf="isOtpResending" href="javascript:void(0);" class="base_blue">
         {{'otpInput.resendText'|langTranslate}}
       </a>
+    </p>
+    <p *ngIf="isTimerShow">
+     Expires In : {{timerTime|otpTimer}}s
     </p>
   </div>
 </div>
