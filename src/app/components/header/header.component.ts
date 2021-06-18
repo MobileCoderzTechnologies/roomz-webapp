@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Inject, OnInit, PLATFORM_ID } from '@angular/core';
+import { inject } from '@angular/core/testing';
 import { Router } from '@angular/router';
 import { LangTranslateService } from 'src/app/services/lang-translate.service';
 
@@ -18,7 +19,7 @@ export class HeaderComponent implements OnInit {
   }
 
   setLang(lang: string): void {
-    localStorage.setItem('selectedLanguage', lang);
+    // localStorage.setItem('selectedLanguage', lang);
     this.$translate.setLanguage(lang);
     const path = window.location.pathname;
     console.log(path.split('/'));

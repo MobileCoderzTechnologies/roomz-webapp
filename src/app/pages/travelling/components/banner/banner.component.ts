@@ -1,4 +1,4 @@
-import { AfterViewInit, Component, OnInit } from '@angular/core';
+import { AfterViewInit, Component, Inject, OnInit, PLATFORM_ID } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { delay } from 'rxjs/operators';
 import { AlertService } from 'src/app/modules/alert/alert.service';
@@ -7,6 +7,7 @@ import { LoginService } from 'src/app/pages/login/services/login.service';
 import { LangTranslateService } from 'src/app/services/lang-translate.service';
 import { WelcomeComponent } from '../welcome/welcome.component';
 import Swal from 'sweetalert2'
+import { isPlatformBrowser } from '@angular/common';
 
 @Component({
   selector: 'app-banner',
@@ -22,13 +23,16 @@ export class BannerComponent implements OnInit, AfterViewInit {
     private $translate: LangTranslateService,
     private $dialog: MatDialog,
     private $alert: AlertService,
-    private $loginService: LoginService
+    private $loginService: LoginService,
+    @Inject(PLATFORM_ID) private platformId: any
   ) { }
 
   ngOnInit(): void {
-    if (!localStorage.getItem('isWelcome')) {
-      localStorage.setItem('isWelcome', '1');
-      this.onWelcome();
+    if (isPlatformBrowser(this.platformId)) {
+      if (!localStorage.getItem('isWelcome')) {
+        localStorage.setItem('isWelcome', '1');
+        this.onWelcome();
+      }
     }
     if (this.$translate.selectedLanguage === 'en') {
       this.selectedLanguage = 'ENGLISH';
@@ -44,7 +48,9 @@ export class BannerComponent implements OnInit, AfterViewInit {
     ).subscribe(loginStatus => {
       if (loginStatus) {
         this.isLoggedIn = true;
-        this.currentUser = JSON.parse(localStorage.getItem('currentUser'));
+        if (isPlatformBrowser(this.platformId)) {
+          this.currentUser = JSON.parse(localStorage.getItem('currentUser'));
+        }
       } else {
         this.isLoggedIn = false;
       }

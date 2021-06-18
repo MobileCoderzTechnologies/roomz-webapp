@@ -1,4 +1,5 @@
-import { Component, Input, OnChanges, OnInit, Output, EventEmitter } from '@angular/core';
+import { isPlatformBrowser } from '@angular/common';
+import { Component, Input, OnChanges, OnInit, Output, EventEmitter, Inject, PLATFORM_ID } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatDialogRef } from '@angular/material/dialog';
 import { PASSWORD } from 'src/app/constants/regex.constant';
@@ -32,7 +33,8 @@ export class WelcomeBackComponent implements OnInit, OnChanges {
   constructor(
     private $loginService: LoginService,
     private $alert: AlertService,
-    private $dialogRef: MatDialogRef<LoginComponent>
+    private $dialogRef: MatDialogRef<LoginComponent>,
+    @Inject(PLATFORM_ID) private platformId: any
   ) { }
 
   ngOnInit(): void {
@@ -56,12 +58,14 @@ export class WelcomeBackComponent implements OnInit, OnChanges {
     this.isSubmitting = true;
     this.$loginService.login(loginData).subscribe(data => {
       const token = data.data.accessToken.token;
-      localStorage.setItem('accessToken', token);
       const user = {
         name: `${data.data.user.first_name} ${data.data.user.last_name}`,
         profile: data.data.user.avatar
       };
-      localStorage.setItem('currentUser', JSON.stringify(user));
+      if (isPlatformBrowser(this.platformId)) {
+        localStorage.setItem('accessToken', token);
+        localStorage.setItem('currentUser', JSON.stringify(user));
+      }
       this.$alert.success(data.message);
       this.$loginService.isLoggedIn.next(true);
       this.isSubmitting = false;
@@ -73,3 +77,5 @@ export class WelcomeBackComponent implements OnInit, OnChanges {
   }
 
 }
+
+

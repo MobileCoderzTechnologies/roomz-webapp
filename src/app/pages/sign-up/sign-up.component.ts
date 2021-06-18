@@ -1,4 +1,5 @@
-import { AfterViewInit, Component, EventEmitter, Input, OnChanges, OnDestroy, OnInit, Output } from '@angular/core';
+import { isPlatformBrowser } from '@angular/common';
+import { AfterViewInit, Component, EventEmitter, Inject, Input, OnChanges, OnDestroy, OnInit, Output, PLATFORM_ID } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import { User } from 'src/app/modals/user.modal';
 import { AlertService } from 'src/app/modules/alert/alert.service';
@@ -38,6 +39,7 @@ export class SignUpComponent implements OnInit, AfterViewInit, OnChanges {
     private $signUpService: SignUpService,
     private $loginService: LoginService,
     private $alert: AlertService,
+    @Inject(PLATFORM_ID) private platformId: any
   ) {
     const date = new Date();
     const currentYear = date.getTime();
@@ -104,12 +106,14 @@ export class SignUpComponent implements OnInit, AfterViewInit, OnChanges {
     console.log(userData);
     this.$signUpService.register(userData).subscribe(data => {
       const token = data.data.accessToken.token;
-      localStorage.setItem('accessToken', token);
       const user = {
         name: `${data.data.user.first_name} ${data.data.user.last_name}`,
         profile: data.data.user.avatar
       };
-      localStorage.setItem('currentUser', JSON.stringify(user));
+      if (isPlatformBrowser(this.platformId)) {
+        localStorage.setItem('accessToken', token);
+        localStorage.setItem('currentUser', JSON.stringify(user));
+      }
       this.$loginService.isLoggedIn.next(true);
       this.isSubmitting = false;
       this.$alert.success(data.message);

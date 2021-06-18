@@ -1,5 +1,6 @@
+import { isPlatformBrowser } from '@angular/common';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Injectable } from '@angular/core';
+import { Inject, Injectable, PLATFORM_ID } from '@angular/core';
 import { Router } from '@angular/router';
 import { Observable, throwError } from 'rxjs';
 import { catchError } from 'rxjs/operators';
@@ -19,6 +20,7 @@ export class HttpService {
     private $http: HttpClient,
     private $router: Router,
     private $translate: LangTranslateService,
+    @Inject(PLATFORM_ID) private platformId: any
   ) {
     this.headers = this.headers.set('Accept-Language', this.selectedLanguage);
   }
@@ -94,8 +96,10 @@ export class HttpService {
       message = 'No Internet Connection';
     }
     if (status === 401) {
-      sessionStorage.clear();
-      localStorage.clear();
+      if (isPlatformBrowser(this.platformId)) {
+        sessionStorage.clear();
+        localStorage.clear();
+      }
       this.$router.navigate(['/login']);
     }
     const err = { error, message };

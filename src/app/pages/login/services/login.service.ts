@@ -1,5 +1,6 @@
+import { isPlatformBrowser } from '@angular/common';
 import { HttpResponse } from '@angular/common/http';
-import { Injectable } from '@angular/core';
+import { Inject, Injectable, PLATFORM_ID } from '@angular/core';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { AccessToken } from 'src/app/modals/accces-token.modal';
 import { User } from 'src/app/modals/user.modal';
@@ -10,14 +11,17 @@ import { HttpService } from 'src/app/services/http.service';
 })
 export class LoginService {
 
-  public afterOtpVerified = new BehaviorSubject<{createAccount: boolean, isVerified: boolean}>(null);
+  public afterOtpVerified = new BehaviorSubject<{ createAccount: boolean, isVerified: boolean }>(null);
 
   public isLoggedIn = new BehaviorSubject<boolean>(false);
   constructor(
     private $http: HttpService,
+    @Inject(PLATFORM_ID) private platformId: any
   ) {
-    if (localStorage.getItem('accessToken')) {
-      this.isLoggedIn.next(true);
+    if (isPlatformBrowser(platformId)) {
+      if (localStorage.getItem('accessToken')) {
+        this.isLoggedIn.next(true);
+      }
     }
   }
 
@@ -46,9 +50,11 @@ export class LoginService {
   }
 
   logout(): void {
-    localStorage.removeItem('currentUser');
-    localStorage.removeItem('accessToken');
-    this.isLoggedIn.next(false);
+    if (isPlatformBrowser(this.platformId)) {
+      localStorage.removeItem('currentUser');
+      localStorage.removeItem('accessToken');
+      this.isLoggedIn.next(false);
+    }
   }
 }
 

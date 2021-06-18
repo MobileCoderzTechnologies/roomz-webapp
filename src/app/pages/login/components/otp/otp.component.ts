@@ -1,4 +1,5 @@
-import { AfterViewInit, Component, Inject, Input, OnChanges, OnInit, Output, ViewChild } from '@angular/core';
+import { isPlatformBrowser } from '@angular/common';
+import { AfterViewInit, Component, Inject, Input, OnChanges, OnInit, Output, PLATFORM_ID, ViewChild } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { interval, Subscription } from 'rxjs';
 import { delay } from 'rxjs/operators';
@@ -38,7 +39,8 @@ export class OtpComponent implements OnInit, OnChanges, AfterViewInit {
   constructor(
     private $loginService: LoginService,
     private $alert: AlertService,
-    private $dialogRef: MatDialogRef<LoginComponent>
+    private $dialogRef: MatDialogRef<LoginComponent>,
+    @Inject(PLATFORM_ID) private platformId: any
   ) { }
 
   ngOnInit(): void {
@@ -90,13 +92,15 @@ export class OtpComponent implements OnInit, OnChanges, AfterViewInit {
       this.$alert.success(data.body.message);
       if (data.status === 200) {
         const token = data.body.data.accessToken.token;
-        localStorage.setItem('accessToken', token);
         const user = {
           name: `${data.body.data.user.first_name} ${data.body.data.user.last_name}`,
           profile: data.body.data.user.avatar
         };
+        if (isPlatformBrowser(this.platformId)) {
+          localStorage.setItem('accessToken', token);
+          localStorage.setItem('currentUser', JSON.stringify(user));
+        }
         this.$loginService.isLoggedIn.next(true);
-        localStorage.setItem('currentUser', JSON.stringify(user));
 
         this.$loginService.afterOtpVerified.next(
           {

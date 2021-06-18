@@ -1,5 +1,6 @@
+import { isPlatformBrowser } from '@angular/common';
 import { HttpClient } from '@angular/common/http';
-import { Injectable } from '@angular/core';
+import { Inject, Injectable, PLATFORM_ID } from '@angular/core';
 import { Router } from '@angular/router';
 import { BehaviorSubject, Observable } from 'rxjs';
 
@@ -18,9 +19,13 @@ export class LangTranslateService {
 
   constructor(
     private $http: HttpClient,
+    @Inject(PLATFORM_ID) private platformId: any
   ) {
-    let currentLanguage = window.location.pathname.split('/')[1];
-    currentLanguage = currentLanguage.match(/en|ar/) ? currentLanguage : null;
+    let currentLanguage = null;
+    if (isPlatformBrowser(this.platformId)) {
+      currentLanguage = window.location.pathname.split('/')[1];
+      currentLanguage = currentLanguage.match(/en|ar/) ? currentLanguage : null;
+    }
     if (!currentLanguage) {
       this.getTranslate('en');
     } else {

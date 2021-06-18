@@ -1,38 +1,124 @@
 {
-
-  "login": {
-    "loginWithPhone": " Log In with Phone Number. A",
-    "loginWithEmail": "Log In With Email.",
+  "header": {
+    "home": "HOME",
+    "destinations": "DESTINATIONS",
+    "login": "LOG IN",
+    "signUp": "SIGN UP",
+    "btnListARoom": "LIST A ROOM",
+    "profile": "PROFILE",
+    "logout": "LOG OUT"
+  },
+  "bannerSlider": {
     "form": {
-      "phoneNumber": " Phone Number A",
-      "phoneNumberPlaceholder": " Enter Phone Number A",
+      "lineOnTop": "Book a room in a home",
+      "locationPlaceholder": "Where do you want to go?",
+      "checkIn": "Check In",
+      "checkOut": "Check Out",
+      "searchBtn": "Search"
+    }
+  },
+  "welcome": {
+    "welcomeToRoomz": "Welcome to Roomz",
+    "discoverThePlaces": "Discover the places to stay!",
+    "clickTo": "Click to",
+    "continue": "Continue",
+    "line1": "button for create your",
+    "completeProfileText": "Complete profile",
+    "continueBtnText": "CONTINUE"
+  },
+  "otpInput": {
+    "confirmYourNumber": "Confirm your Number",
+    "hintLint1": "Enter the code we sent over SMS to",
+    "btnText": "SUBMIT",
+    "didNotGetCode": "Didn't get a code?",
+    "resendText": "Resend"
+  },
+  "login": {
+    "pageTitleLoginOrSignUp": "Login or Sign up",
+    "confirmYourNumber": "Confirm your Number",
+    "form": {
+      "countryCode": "Country Code",
+      "phoneNumber": " Phone Number",
+      "phoneNumberPlaceholder": " Enter Phone Number",
       "email": "Email",
+      "emailPatternError":"Email is not valid",
       "emailPlaceholder": " Enter Email",
-      "password": "Password A",
-      "passwordPlaceholder": "Enter Password A",
-      "loginBtn": "LOG IN A",
-      "forgotPasswordBtn": "Forgot Password? A"
+      "loginBtn": "LOG IN",
+      "forgotPasswordBtn": "Forgot Password?"
     },
     "orContinueWith": {
-      "text": "or continue with A",
-      "email": "Email A",
-      "facebook": "Facebook A",
-      "google": "Google A",
-      "apple": "Apple A",
-      "phone": "Phone A"
+      "text": "or continue with",
+      "email": "Email",
+      "facebook": "Facebook",
+      "google": "Google",
+      "apple": "Apple",
+      "phone": "Phone"
     },
-    "noAccount": "Don't have an account? A",
-    "signUpText": "Sign Up A"
+    "welcomeBack": {
+      "password": "Password",
+      "passwordPlaceholder": "Enter Password",
+      "passwordPatternErrorMessage": "Password Should be contain at least one UpperCase one LowerCase one SpecialCharacter and OneNumber",
+      "loginBtnText": "LOGIN",
+      "forgotPassword": "Forgot Password?",
+      "notYetText": "Not Yet?",
+      "loginWithAnother": "Login with Another"
+    },
+    "noAccount": "Don't have an account?",
+    "signUpText": "Sign Up"
   },
-
   "validateErrorMessages": {
-    "charactersText": "characters. A",
-    "fieldRequired": "is Required A",
-    "minLength": "should be grater then equal to A",
-    "maxLength": "should be less then equal to A",
-    "notValid": "is not Valid A",
-    "min": "should be greater then A",
-    "max": "should be less then A"
+    "charactersText": "characters.",
+    "fieldRequired": "is required",
+    "minLength": "should be greater then",
+    "maxLength": "should be less then",
+    "notValid": "is not valid",
+    "min": "should be greater then",
+    "max": "should be less then",
+    "fieldMismatch": " not matched",
+    "dob": "should be less then"
+  },
+  "signUp": {
+    "addYourInfo": "Add Your Info",
+    "form": {
+      "firstName": "First Name",
+      "firstNamePlaceholder": "Enter First Name",
+      "firstNameHintMessage": "Make sure it matches the name on your government ID.",
+      "firstNameError": "Firstname",
+      "lastName": "Last Name",
+      "lastNamePlaceholder": "Enter Last Name",
+      "lastNameError": "Lastname",
+      "email": "Email",
+      "emailPlaceholder": " Enter Email",
+      "emailPatternError": "Email is not valid",
+      "emailHintMessage": "We'll email you a reservation confirmation.",
+      "birthday": "Birthday",
+      "birthdayPlaceholder": "dd/mm/yy",
+      "birthdayHintMessage": "To sign up, you need to at least 13. It won't be shown to others.",
+      "password": "Password",
+      "passwordPlaceholder": "Enter Password",
+      "passwordPatternErrorMessage": "Password should be contain at least one uppercase one lowercase one specialcharacter and one number",
+      "confirmPassword": "Confirm Password",
+      "confirmPasswordError": "Confirm password",
+      "tosLineText1": "By Clicking",
+      "tosLineText2": "below, I agree to app's",
+      "tosLineText3": "Terms of Services ",
+      "tosLineText4": " And",
+      "tosLineText5": "Payments",
+      "btnText": "AGREE AND SUBMIT"
+    },
+    "haveAnAccount": "Already have an account",
+    "loginText": "Log In",
+    "congratulation": {
+      "congratulationText": "Congratulation",
+      "youAreAllSet": "You are all Set!",
+      "line1": "You can travel now the world and host your own home on Roomz",
+      "startExploringBtn": "START EXPLORING"
+    },
+    "addPhoto": {
+      "addAProfilePhoto": "Add a profile photo",
+      "line1": "Pick an image that shows your face. Hosts won't be able to see our profile photo until your reservation is confirmed.",
+      "continueBtnText": "CONTINUE",
+      "skipForNowBtnText": "Skip for now"
+    }
   }
-
 }
