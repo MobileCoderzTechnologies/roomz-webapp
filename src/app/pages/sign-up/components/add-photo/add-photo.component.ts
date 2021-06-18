@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnDestroy, OnInit } from '@angular/core';
 import { MatDialogRef } from '@angular/material/dialog';
 import { SignUpService } from '../../services/sign-up.service';
 
@@ -22,5 +22,6 @@ export class AddPhotoComponent implements OnInit {
   goCongratulations(): void {
     this.isCongrats = true;
   }
+
 
 }

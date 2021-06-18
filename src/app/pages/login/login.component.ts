@@ -227,10 +227,15 @@ export class LoginComponent implements OnInit, OnDestroy, AfterViewInit {
     this.phoneNumber = null;
     this.countryCode = null;
     this.loginWith = 'email';
-    this.afterOtpVerified = { createAccount: false, isVerified: false };
+    this.afterOtpVerified = null;
     this.pageTitle = 'login.pageTitleLoginOrSignUp';
     this.pageTitleShow = true;
     this.welcomeBack = false;
+    this.loginForm.reset();
+    this.otpSubs.unsubscribe();
+    this.photoSubs.unsubscribe();
+    this.$loginService.afterOtpVerified.next(null);
+    this.$signUpService.isAddProfilePhoto.next(false);
   }
 
 

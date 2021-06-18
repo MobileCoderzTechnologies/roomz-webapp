@@ -1,4 +1,4 @@
-import { AfterViewInit, Component, EventEmitter, Input, OnChanges, OnInit, Output } from '@angular/core';
+import { AfterViewInit, Component, EventEmitter, Input, OnChanges, OnDestroy, OnInit, Output } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import { User } from 'src/app/modals/user.modal';
 import { AlertService } from 'src/app/modules/alert/alert.service';
@@ -126,5 +126,6 @@ export class SignUpComponent implements OnInit, AfterViewInit, OnChanges {
     console.log('onClickLogin');
     this.onLogin.emit(true);
   }
+
 
 }
