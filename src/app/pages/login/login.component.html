@@ -142,13 +142,14 @@
 
 <!-- sign up after verified phone  -->
 <div *ngIf="afterOtpVerified?.createAccount">
-  <app-sign-up [phoneNumber]="phoneNumber" [countryCode]="countryCode" [dialogRef]="$dialogRef"></app-sign-up>
+  <app-sign-up [phoneNumber]="phoneNumber" [countryCode]="countryCode" [dialogRef]="$dialogRef" (backToLogin)="backFromSignUp($event)">
+  </app-sign-up>
 </div>
 
 <!-- sign up with email  -->
 
 <div *ngIf="signUpWithEmail">
-  <app-sign-up [email]="email" [dialogRef]="$dialogRef"></app-sign-up>
+  <app-sign-up [email]="email" [dialogRef]="$dialogRef" (backToLogin)="backFromSignUp($event)"></app-sign-up>
 </div>
 
 <!-- log in with email welcome back  -->

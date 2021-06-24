@@ -185,7 +185,6 @@ export class LoginComponent implements OnInit, OnDestroy, AfterViewInit {
         this.email = loginData.email;
       }
       this.$alert.info(data.body.message);
-
       this.isSubmitting = false;
     }, err => {
       this.isSubmitting = false;
@@ -195,7 +194,28 @@ export class LoginComponent implements OnInit, OnDestroy, AfterViewInit {
   }
 
 
+  backFromSignUp(data: { email: string, phoneNumber: string, countryCode: string }): void {
+    this.pageTitle = 'login.pageTitleLoginOrSignUp';
+    this.pageTitleShow = true;
+    this.isBackBtn = false;
+    this.isCloseBtn = true;
+    this.isLoginForm = true;
+    if (data.email) {
+      this.signUpWithEmail = false;
+      this.onClickLoginWith('email');
+      this.loginForm.controls.email.setValue(data.email);
+    }
 
+    if (data.phoneNumber) {
+      this.onClickLoginWith('phone');
+      this.isEnterOtp = false;
+      this.$loginService.afterOtpVerified.next(null);
+      this.loginForm.controls.phoneNumber.setValue(data.phoneNumber);
+      this.loginForm.controls.countryCode.setValue(data.countryCode);
+    }
+
+    this.isLoginForm = true;
+  }
 
   backFromOtp(): void {
     this.isCloseBtn = true;

@@ -1,5 +1,5 @@
 import { isPlatformBrowser } from '@angular/common';
-import { AfterViewInit, Component, EventEmitter, Inject, Input, OnChanges, OnDestroy, OnInit, Output, PLATFORM_ID } from '@angular/core';
+import { AfterViewInit, Component, EventEmitter, Inject, Input, OnChanges, OnInit, Output, PLATFORM_ID } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import { User } from 'src/app/modals/user.modal';
 import { AlertService } from 'src/app/modules/alert/alert.service';
@@ -32,9 +32,8 @@ export class SignUpComponent implements OnInit, AfterViewInit, OnChanges {
   readonlyEmail = false;
 
   @Input() dialogRef: any;
-  // tslint:disable-next-line: no-output-on-prefix
-  @Output() onLogin = new EventEmitter<boolean>();
 
+  @Output() backToLogin = new EventEmitter();
   constructor(
     private $signUpService: SignUpService,
     private $loginService: LoginService,
@@ -127,8 +126,11 @@ export class SignUpComponent implements OnInit, AfterViewInit, OnChanges {
 
 
   onClickLogin(): void {
-    console.log('onClickLogin');
-    this.onLogin.emit(true);
+    this.backToLogin.emit({
+      email: this.email,
+      phoneNumber: this.phoneNumber,
+      countryCode: this.countryCode
+    });
   }
 
 
