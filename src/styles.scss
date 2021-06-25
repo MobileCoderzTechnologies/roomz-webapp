@@ -47,6 +47,10 @@ input.ng-touched.ng-invalid {
   background-color: $info-color;
 }
 
+.base_color {
+  color: #f9537b;
+}
+
 .confirm-dialog mat-dialog-container {
   border-radius: 1rem !important;
   padding: 2rem !important;
@@ -302,7 +306,7 @@ header {
   padding-bottom: 54px;
 }
 
-.most_popular .carousel-indicators>button {
+.most_popular .carousel-indicators > button {
   width: 8px;
   height: 8px;
   border-radius: 50%;
@@ -365,6 +369,24 @@ header {
 
 .img_part {
   margin-right: 50px;
+}
+
+.custom_btn {
+  background-color: #f9537b;
+  color: #fff;
+  padding: 19px 50px;
+}
+
+.setp_one_section {
+  margin-top: 80px;
+  position: relative;
+}
+
+.setp_one_section .step_1_img {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  top: -30px;
 }
 
 footer {
