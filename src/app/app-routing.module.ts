@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { NotFoundComponent } from './components/not-found/not-found.component';
-import { TRAVELLING_ROUTE } from './constants/route.constants';
+import { HOSTING_ROUTE, TRAVELLING_ROUTE } from './constants/route.constants';
 
 const routes: Routes = [
   {
@@ -10,11 +10,16 @@ const routes: Routes = [
     pathMatch: 'full',
   },
   {
-    path: 'travelling',
+    path: TRAVELLING_ROUTE.path,
     loadChildren: () =>
       import('./pages/travelling/travelling.module').then(
         (m) => m.TravellingModule
       ),
+  },
+  {
+    path: HOSTING_ROUTE.path,
+    loadChildren: () =>
+      import('./pages/hosting/hosting.module').then(m => m.HostingModule)
   },
   {
     path: 'ar',
@@ -25,7 +30,7 @@ const routes: Routes = [
         pathMatch: 'full',
       },
       {
-        path: 'travelling',
+        path: TRAVELLING_ROUTE.path,
         loadChildren: () =>
           import('./pages/travelling/travelling.module').then(
             (m) => m.TravellingModule
@@ -47,4 +52,4 @@ const routes: Routes = [
   ],
   exports: [RouterModule],
 })
-export class AppRoutingModule {}
+export class AppRoutingModule { }
