@@ -423,3 +423,18 @@ footer h3 {
   color: #3ec4de;
   border-radius: 30px;
 }
+
+.upload_btn {
+  padding: 11px 24px;
+  background-color: #fff;
+  border: 1px solid #f9537b;
+  color: #f9537b;
+  border-radius: 5px;
+}
+
+.upload_delete_icon {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  cursor: pointer;
+}
