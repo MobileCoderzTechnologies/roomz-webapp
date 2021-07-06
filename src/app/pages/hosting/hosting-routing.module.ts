@@ -13,6 +13,9 @@ import { PropertyGuests8Component } from './components/property-guests8/property
 import { PropertyGuests9Component } from './components/property-guests9/property-guests9.component';
 import { PropertyGuests10Component } from './components/property-guests10/property-guests10.component';
 import { PropertyGuests11Component } from './components/property-guests11/property-guests11.component';
+import { PropertyGuests12Component } from './components/property-guests12/property-guests12.component';
+import { PropertyGuests13Component } from './components/property-guests13/property-guests13.component';
+import { PropertyGuests14Component } from './components/property-guests14/property-guests14.component';
 
 const routes: Routes = [
   {
@@ -62,6 +65,18 @@ const routes: Routes = [
   {
     path: 'property-guests11',
     component: PropertyGuests11Component,
+  },
+  {
+    path: 'property-guests12',
+    component: PropertyGuests12Component,
+  },
+  {
+    path: 'property-guests13',
+    component: PropertyGuests13Component,
+  },
+  {
+    path: 'property-guests14',
+    component: PropertyGuests14Component,
   },
 ];
 
