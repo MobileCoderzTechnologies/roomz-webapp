@@ -20,6 +20,7 @@ import { PropertyGuests14Component } from './components/property-guests14/proper
 import { PropertyGuests15Component } from './components/property-guests15/property-guests15.component';
 import { PropertyGuests16Component } from './components/property-guests16/property-guests16.component';
 import { PropertyGuests17Component } from './components/property-guests17/property-guests17.component';
+import { PropertyGuests18Component } from './components/property-guests18/property-guests18.component';
 
 
 
@@ -43,7 +44,8 @@ import { PropertyGuests17Component } from './components/property-guests17/proper
     PropertyGuests14Component,
     PropertyGuests15Component,
     PropertyGuests16Component,
-    PropertyGuests17Component
+    PropertyGuests17Component,
+    PropertyGuests18Component
   ],
   imports: [
     CommonModule,
