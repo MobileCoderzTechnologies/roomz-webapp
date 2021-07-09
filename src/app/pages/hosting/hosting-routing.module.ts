@@ -20,6 +20,9 @@ import { PropertyGuests15Component } from './components/property-guests15/proper
 import { PropertyGuests16Component } from './components/property-guests16/property-guests16.component';
 import { PropertyGuests17Component } from './components/property-guests17/property-guests17.component';
 import { PropertyGuests18Component } from './components/property-guests18/property-guests18.component';
+import { PropertyGuests19Component } from './components/property-guests19/property-guests19.component';
+import { PropertyGuests20Component } from './components/property-guests20/property-guests20.component';
+import { PropertyGuests21Component } from './components/property-guests21/property-guests21.component';
 
 const routes: Routes = [
   {
@@ -97,6 +100,18 @@ const routes: Routes = [
   {
     path: 'property-guests18',
     component: PropertyGuests18Component,
+  },
+  {
+    path: 'property-guests19',
+    component: PropertyGuests19Component,
+  },
+  {
+    path: 'property-guests20',
+    component: PropertyGuests20Component,
+  },
+  {
+    path: 'property-guests21',
+    component: PropertyGuests21Component,
   },
 ];
 
