@@ -453,5 +453,17 @@ footer h3 {
   width: 80%;
 }
 hr {
-  border-color: #babdbe;
+  background-color: #babdbe;
+}
+
+.right_side_content {
+  margin-top: 186px !important;
+}
+.min_height88 {
+  min-height: calc(100vh - 73px);
+}
+
+.back_next_part {
+  margin-top: 250px;
+  border-top: 1px solid #babdbe38;
 }

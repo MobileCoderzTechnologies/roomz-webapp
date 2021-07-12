@@ -24,9 +24,6 @@
               How much notice do you need before a guest arrives?
             </h3>
             <div class="mb-5">
-              <h5 class="fz18 mb_20 semi_font">
-                Have you rented out your place before?
-              </h5>
               <div class="form-check mb_20">
                 <input
                   class="form-check-input"
@@ -35,7 +32,7 @@
                   id="flexCheckDefault"
                 />
                 <label class="form-check-label" for="flexCheckDefault">
-                  I’m new to this
+                  Same day
                 </label>
               </div>
               <div class="form-check mb_20">
@@ -47,23 +44,19 @@
                   checked
                 />
                 <label class="form-check-label" for="flexCheckChecked">
-                  I have
+                  1 day
                 </label>
               </div>
-            </div>
-            <div class="mb-5">
-              <h5 class="fz18 mb_20 semi_font">
-                How often do you want to have guests?
-              </h5>
               <div class="form-check mb_20">
                 <input
                   class="form-check-input"
                   type="checkbox"
                   value=""
-                  id="flexCheckDefault2"
+                  id="flexCheckChecked2"
+                  checked
                 />
-                <label class="form-check-label" for="flexCheckDefault2">
-                  How often do you want to have guests?
+                <label class="form-check-label" for="flexCheckChecked2">
+                  2 day
                 </label>
               </div>
               <div class="form-check mb_20">
@@ -75,7 +68,7 @@
                   checked
                 />
                 <label class="form-check-label" for="flexCheckChecked3">
-                  Part-time
+                  3 day
                 </label>
               </div>
               <div class="form-check mb_20">
@@ -87,8 +80,42 @@
                   checked
                 />
                 <label class="form-check-label" for="flexCheckChecked4">
-                  As often as possible
+                  7 day
                 </label>
+              </div>
+            </div>
+            <hr />
+            <div class="mb-5">
+              <h5 class="fz18 mb_20 semi_font">When can guests check in?</h5>
+              <div class="row">
+                <div class="col-6">
+                  <div class="col_selector">
+                    <label for="">From:</label>
+                    <select
+                      class="form-select custom_form_control"
+                      aria-label="Default select example"
+                    >
+                      <option selected>Select a Time</option>
+                      <option value="1">One</option>
+                      <option value="2">Two</option>
+                      <option value="3">Three</option>
+                    </select>
+                  </div>
+                </div>
+                <div class="col-6">
+                  <div class="col_selector">
+                    <label for="">To:</label>
+                    <select
+                      class="form-select custom_form_control"
+                      aria-label="Default select example"
+                    >
+                      <option selected>Select a Time</option>
+                      <option value="1">One</option>
+                      <option value="2">Two</option>
+                      <option value="3">Three</option>
+                    </select>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
@@ -96,7 +123,16 @@
           <div
             class="d-flex justify-content-between align-items-center mb-5 mt-4 p-4"
           >
-            <a href="javascript:void(0);" class="blue_color">Back</a>
+            <a
+              href="javascript:void(0);"
+              class="blue_color d-flex align-items-center"
+              ><img
+                src="assets/images/blue-left-arrow.png"
+                class="me-2"
+                alt=""
+              />
+              Back</a
+            >
             <button class="btn custom_btn">Next</button>
           </div>
         </div>
