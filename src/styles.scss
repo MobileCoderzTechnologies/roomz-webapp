@@ -467,3 +467,59 @@ hr {
   margin-top: 250px;
   border-top: 1px solid #babdbe38;
 }
+
+.custom_check .form-group input {
+  padding: 0;
+  height: initial;
+  width: initial;
+  margin-bottom: 0;
+  display: none;
+  cursor: pointer;
+}
+
+.custom_check .form-group label {
+  position: relative;
+  cursor: pointer;
+  font-family: "montserratmedium" !important;
+  color: #5e676a;
+}
+
+.custom_check .form-group label > p {
+  color: #a8a8a8;
+  font-family: "montserratregular" !important;
+  margin-bottom: 0px;
+  margin-left: 47px;
+}
+
+.custom_check .form-group label:before {
+  content: "";
+  -webkit-appearance: none;
+  // background-color: #3ec4de;
+  border: 1px solid #3ec4de;
+  padding: 10px;
+  display: inline-block;
+  position: relative;
+  vertical-align: middle;
+  cursor: pointer;
+  margin-right: 15px;
+  width: 28px;
+  height: 28px;
+  border-radius: 5px;
+}
+
+.circle_check .form-group label:before {
+  border-radius: 50%;
+}
+
+.custom_check .form-group input:checked + label:after {
+  content: "";
+  display: block;
+  position: absolute;
+  top: 6px;
+  left: 12px;
+  width: 6px;
+  height: 14px;
+  border: solid #3ec4de;
+  border-width: 0 2px 2px 0;
+  transform: rotate(45deg);
+}

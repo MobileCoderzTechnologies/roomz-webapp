@@ -26,7 +26,7 @@ import { PropertyGuests21Component } from './components/property-guests21/proper
 
 const routes: Routes = [
   {
-    path: '',
+    path: 'home',
     component: HomeComponent,
   },
   {

@@ -139,6 +139,8 @@
                   <button
                     class="btn w-25 btn-secondary border-0 text-dark semi_font rounded-0"
                     style="background-color: #babdbe; height: 60px"
+                    data-bs-toggle="modal"
+                    data-bs-target="#staticBackdrop"
                   >
                     Add
                   </button>
@@ -173,17 +175,13 @@
             <h4 class="fz25 semi_font text-secondary mb-3">
               Details guests must know about your home
             </h4>
-            <div class="form-check mb-4">
-              <input
-                class="form-check-input"
-                type="checkbox"
-                value=""
-                id="flexCheckChecked"
-                checked
-              />
-              <label class="form-check-label fz15" for="flexCheckChecked">
-                Must climb stairs
-              </label>
+            <div class="custom_check mb-4">
+              <div class="form-group">
+                <input type="checkbox" id="html" />
+                <label class="form-check-label fz15" for="html">
+                  Must climb stairs
+                </label>
+              </div>
             </div>
             <div class="mb-4">
               <p class="fz15 regular_font">
@@ -197,93 +195,69 @@
                 placeholder="Add your description"
               />
             </div>
-            <div class="form-check mb-4">
-              <input
-                class="form-check-input"
-                type="checkbox"
-                value=""
-                id="flexCheckChecked2"
-              />
-              <label class="form-check-label fz15" for="flexCheckChecked2">
-                Potential for noise
-              </label>
+            <div class="custom_check mb-4">
+              <div class="form-group">
+                <input type="checkbox" id="html2" checked />
+                <label class="form-check-label fz15" for="html2">
+                  Potential for noise
+                </label>
+              </div>
             </div>
-            <div class="form-check mb-4">
-              <input
-                class="form-check-input"
-                type="checkbox"
-                value=""
-                id="flexCheckChecked3"
-              />
-              <label class="form-check-label fz15" for="flexCheckChecked3">
-                Pet(s) live on property
-              </label>
+            <div class="custom_check mb-4">
+              <div class="form-group">
+                <input type="checkbox" id="html3" checked />
+                <label class="form-check-label fz15" for="html3">
+                  Pet(s) live on property
+                </label>
+              </div>
             </div>
-            <div class="form-check mb-4">
-              <input
-                class="form-check-input"
-                type="checkbox"
-                value=""
-                id="flexCheckChecked4"
-              />
-              <label class="form-check-label fz15" for="flexCheckChecked4">
-                No parking on property
-              </label>
+            <div class="custom_check mb-4">
+              <div class="form-group">
+                <input type="checkbox" id="html4" />
+                <label class="form-check-label fz15" for="html4">
+                  No parking on property
+                </label>
+              </div>
             </div>
-            <div class="form-check mb-4">
-              <input
-                class="form-check-input"
-                type="checkbox"
-                value=""
-                id="flexCheckChecked5"
-              />
-              <label class="form-check-label fz15" for="flexCheckChecked5">
-                Some spaces are shared
-              </label>
+            <div class="custom_check mb-4">
+              <div class="form-group">
+                <input type="checkbox" id="html5" checked />
+                <label class="form-check-label fz15" for="html5">
+                  Some spaces are shared
+                </label>
+              </div>
             </div>
-            <div class="form-check mb-4">
-              <input
-                class="form-check-input"
-                type="checkbox"
-                value=""
-                id="flexCheckChecked6"
-              />
-              <label class="form-check-label fz15" for="flexCheckChecked6">
-                Amenity limitations
-              </label>
+            <div class="custom_check mb-4">
+              <div class="form-group">
+                <input type="checkbox" id="html6" />
+                <label class="form-check-label fz15" for="html6">
+                  Amenity limitations
+                </label>
+              </div>
             </div>
-            <div class="form-check mb-4">
-              <input
-                class="form-check-input"
-                type="checkbox"
-                value=""
-                id="flexCheckChecked7"
-              />
-              <label class="form-check-label fz15" for="flexCheckChecked7">
-                Surveillance or recording devices on property
-              </label>
+            <div class="custom_check mb-4">
+              <div class="form-group">
+                <input type="checkbox" id="html7" checked />
+                <label class="form-check-label fz15" for="html7">
+                  Surveillance or recording devices on property
+                </label>
+              </div>
             </div>
-            <div class="form-check mb-4">
-              <input
-                class="form-check-input"
-                type="checkbox"
-                value=""
-                id="flexCheckChecked8"
-              />
-              <label class="form-check-label fz15" for="flexCheckChecked8">
-                Weapons on property
-              </label>
+            <div class="custom_check mb-4">
+              <div class="form-group">
+                <input type="checkbox" id="html8" checked />
+                <label class="form-check-label fz15" for="html8">
+                  Weapons on property
+                </label>
+              </div>
             </div>
-            <div class="form-check mb-4">
-              <input
-                class="form-check-input"
-                type="checkbox"
-                value=""
-                id="flexCheckChecked9"
-              />
-              <label class="form-check-label fz15" for="flexCheckChecked9">
-                Dangerous animals on property
-              </label>
+            <div class="custom_check mb-4">
+              <div class="form-group">
+                <input type="checkbox" id="html9" checked />
+                <label class="form-check-label fz15" for="html9">
+                  Dangerous animals on property
+                </label>
+              </div>
             </div>
           </div>
           <hr />
@@ -321,3 +295,32 @@
     </div>
   </div>
 </section>
+
+<div
+  class="modal fade"
+  id="exampleModal"
+  tabindex="-1"
+  aria-labelledby="exampleModalLabel"
+  aria-hidden="true"
+>
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+        <button
+          type="button"
+          class="btn-close"
+          data-bs-dismiss="modal"
+          aria-label="Close"
+        ></button>
+      </div>
+      <div class="modal-body">...</div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+          Close
+        </button>
+        <button type="button" class="btn btn-primary">Save changes</button>
+      </div>
+    </div>
+  </div>
+</div>
