@@ -1,59 +1,60 @@
 @import "ng.theme";
 @import "core";
+
 /* You can add global styles to this file, and also import other style files */
 
 html,
 body {
-  height: 100%;
+    height: 100%;
 }
 
 // html {
 //   font-size: 62.5%;
 // }
 body {
-  margin: 0;
-  font-family: Roboto, "Helvetica Neue", sans-serif;
+    margin: 0;
+    font-family: Roboto, "Helvetica Neue", sans-serif;
 }
 
 input.ng-touched.ng-invalid {
-  border-color: $danger-color;
+    border-color: $danger-color;
 }
 
 .txt-info {
-  color: $info-color;
+    color: $info-color;
 }
 
 .txt-danger {
-  color: $danger-color;
+    color: $danger-color;
 }
 
 .txt-success {
-  color: $success-color;
+    color: $success-color;
 }
 
 .alert {
-  color: $alert-txt;
+    color: $alert-txt;
 }
 
 .alert-success {
-  background-color: $success-color;
+    background-color: $success-color;
 }
 
 .alert-danger {
-  background-color: $danger-color;
+    background-color: $danger-color;
 }
 
 .alert-info {
-  background-color: $info-color;
+    background-color: $info-color;
 }
 
 .base_color {
-  color: #f9537b;
+    color: #f9537b;
 }
 
 .confirm-dialog mat-dialog-container {
-  border-radius: 1rem !important;
-  padding: 2rem !important;
+    border-radius: 1rem !important;
+    padding: 2rem !important;
 }
 
 a,
@@ -62,464 +63,471 @@ a:focus,
 .btn,
 .btn:hover,
 .btn:focus {
-  text-decoration: none;
-
-  outline: 0;
+    text-decoration: none;
+    outline: 0;
 }
 
 a,
 a:hover {
-  color: inherit;
-
-  text-decoration: none;
+    color: inherit;
+    text-decoration: none;
 }
 
 .fz3 {
-  font-size: 3px !important;
+    font-size: 3px !important;
 }
 
 .fz6 {
-  font-size: 6px !important;
+    font-size: 6px !important;
 }
 
 .fz10 {
-  font-size: 10px !important;
+    font-size: 10px !important;
 }
 
 .fz11 {
-  font-size: 11px !important;
+    font-size: 11px !important;
 }
 
 .fz12 {
-  font-size: 12px !important;
+    font-size: 12px !important;
 }
 
 .fz13 {
-  font-size: 13px !important;
+    font-size: 13px !important;
 }
 
 .fz14 {
-  font-size: 14px !important;
+    font-size: 14px !important;
 }
 
 .fz15 {
-  font-size: 15px !important;
+    font-size: 15px !important;
 }
 
 .fz16 {
-  font-size: 16px !important;
+    font-size: 16px !important;
 }
 
 .fz17 {
-  font-size: 17px !important;
+    font-size: 17px !important;
 }
 
 .fz18 {
-  font-size: 18px !important;
+    font-size: 18px !important;
 }
 
 .fz19 {
-  font-size: 19px !important;
+    font-size: 19px !important;
 }
 
 .fz20 {
-  font-size: 20px !important;
+    font-size: 20px !important;
 }
 
 .fz22 {
-  font-size: 22px !important;
+    font-size: 22px !important;
 }
 
 .fz24 {
-  font-size: 24px !important;
+    font-size: 24px !important;
 }
 
 .fz26 {
-  font-size: 26px !important;
+    font-size: 26px !important;
 }
 
 .fz27 {
-  font-size: 27px !important;
+    font-size: 27px !important;
 }
 
 .fz28 {
-  font-size: 28px !important;
+    font-size: 28px !important;
 }
 
 .fz30 {
-  font-size: 30px !important;
+    font-size: 30px !important;
 }
 
 .fz32 {
-  font-size: 32px !important;
+    font-size: 32px !important;
 }
 
 .fz34 {
-  font-size: 34px !important;
+    font-size: 34px !important;
 }
 
 .fz36 {
-  font-size: 36px !important;
+    font-size: 36px !important;
 }
 
 .fz38 {
-  font-size: 38px !important;
+    font-size: 38px !important;
 }
 
 .fz40 {
-  font-size: 40px !important;
+    font-size: 40px !important;
 }
 
 .fz45 {
-  font-size: 45px !important;
+    font-size: 45px !important;
 }
 
 .fz50 {
-  font-size: 50px !important;
+    font-size: 50px !important;
 }
 
 .fz60 {
-  font-size: 60px !important;
+    font-size: 60px !important;
 }
 
 .fz70 {
-  font-size: 70px !important;
+    font-size: 70px !important;
 }
 
 .form-control:focus {
-  box-shadow: none;
+    box-shadow: none;
 }
 
 .regular_font {
-  font-family: "montserratregular" !important;
+    font-family: "montserratregular" !important;
 }
 
 .semi_font {
-  font-family: "montserratsemibold" !important;
+    font-family: "montserratsemibold" !important;
 }
 
 .bold_font {
-  font-family: "montserratbold" !important;
+    font-family: "montserratbold" !important;
 }
 
 .medium_font {
-  font-family: "montserratmedium" !important;
+    font-family: "montserratmedium" !important;
 }
 
 body {
-  font-family: "montserratregular" !important;
+    font-family: "montserratregular" !important;
 }
 
 .mb_20 {
-  margin-bottom: 20px;
+    margin-bottom: 20px;
 }
 
 .base_blue {
-  color: #3ec4de;
+    color: #3ec4de;
 }
 
 .login_section {
-  width: 500px;
-  padding: 15px 30px;
-  // border: 1px solid #cccccc;
-  background-color: #fff;
-  border-radius: 7px;
+    width: 500px;
+    padding: 15px 30px;
+    // border: 1px solid #cccccc;
+    background-color: #fff;
+    border-radius: 7px;
 }
 
 .custom_form_control {
-  height: 60px;
-  padding: 21px 18px;
-  font-size: 15px;
+    height: 60px;
+    padding: 21px 18px;
+    font-size: 15px;
 }
 
 .or_hr {
-  position: absolute;
-  width: 100%;
-  top: -6px;
+    position: absolute;
+    width: 100%;
+    top: -6px;
 }
 
 .login_btn {
-  width: 100%;
-  background-color: #f9537b;
-  color: #fff;
-  border-radius: 7px;
-  padding: 17px;
+    width: 100%;
+    background-color: #f9537b;
+    color: #fff;
+    border-radius: 7px;
+    padding: 17px;
 }
 
 .login_section .social_login .btn {
-  height: 48px;
-  border: 1px solid #111719;
-  width: 100%;
-  margin-bottom: 12px;
-  position: relative;
+    height: 48px;
+    border: 1px solid #111719;
+    width: 100%;
+    margin-bottom: 12px;
+    position: relative;
 }
 
 .login_section .icon {
-  position: absolute;
-  top: 13px;
-  left: 33px;
+    position: absolute;
+    top: 13px;
+    left: 33px;
 }
 
 .signup_section {
-  width: 880px;
-  padding: 15px 30px;
-  // border: 1px solid #cccccc;
-  background-color: #fff;
-  border-radius: 7px;
+    width: 880px;
+    padding: 15px 30px;
+    // border: 1px solid #cccccc;
+    background-color: #fff;
+    border-radius: 7px;
 }
 
 .img_columb {
-  position: absolute;
-  top: 0;
-  right: 0;
+    position: absolute;
+    top: 0;
+    right: 0;
 }
 
 .explore_destination {
-  background-color: #f1efef;
-  padding-top: 30px;
-  padding-bottom: 54px;
+    background-color: #f1efef;
+    padding-top: 30px;
+    padding-bottom: 54px;
 }
 
 header {
-  position: absolute;
-  width: 100%;
-  top: 0;
-  left: 0;
-  right: 0;
-  z-index: 99;
+    position: absolute;
+    width: 100%;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 99;
 }
 
 .location_low {
-  position: absolute;
-  top: 8px;
-  left: 15px;
+    position: absolute;
+    top: 8px;
+    left: 15px;
 }
 
 .heading_text {
-  font-size: 30px !important;
-  text-align: center;
-  margin-bottom: 30px;
+    font-size: 30px !important;
+    text-align: center;
+    margin-bottom: 30px;
 }
 
 .most_popular {
-  padding-top: 30px;
-  padding-bottom: 54px;
+    padding-top: 30px;
+    padding-bottom: 54px;
 }
 
-.most_popular .carousel-indicators > button {
-  width: 8px;
-  height: 8px;
-  border-radius: 50%;
+.most_popular .carousel-indicators>button {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
 }
 
 .most_popular .carousel-control-prev-icon {
-  background-color: #babdbe;
-  width: 28px;
-  height: 28px;
-  border-radius: 50%;
+    background-color: #babdbe;
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
 }
 
 .most_popular .carousel-control-next-icon {
-  background-color: #babdbe;
-  width: 28px;
-  height: 28px;
-  border-radius: 50%;
+    background-color: #babdbe;
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
 }
 
 .custom_body {
-  background-color: #f1efef;
+    background-color: #f1efef;
 }
 
 .rentout_section {
-  padding-top: 60px;
-  padding-bottom: 60px;
-  background-color: #f1efef;
+    padding-top: 60px;
+    padding-bottom: 60px;
+    background-color: #f1efef;
 }
 
 .rent_out_part {
-  padding: 28px 35px 25px 20px;
+    padding: 28px 35px 25px 20px;
 }
 
 .rent_out_part .btn {
-  background-color: #3ec4de;
-  color: #fff;
-  padding: 13px;
-  border-radius: 7px;
-  font-size: 20px;
-  margin-top: 30px;
+    background-color: #3ec4de;
+    color: #fff;
+    padding: 13px;
+    border-radius: 7px;
+    font-size: 20px;
+    margin-top: 30px;
 }
 
 .student_section {
-  background-image: url(assets/images/student_section.png);
-  background-repeat: no-repeat;
-  padding-top: 223px;
-  padding-bottom: 30px;
-  color: #fff;
-  background-size: cover;
+    background-image: url(assets/images/student_section.png);
+    background-repeat: no-repeat;
+    padding-top: 223px;
+    padding-bottom: 30px;
+    color: #fff;
+    background-size: cover;
 }
 
 .student_section .btn {
-  background-color: #00000054;
-  padding: 14px 23px;
+    background-color: #00000054;
+    padding: 14px 23px;
 }
 
 .partner_section {
-  padding: 81px 0;
+    padding: 81px 0;
 }
 
 .img_part {
-  margin-right: 50px;
+    margin-right: 50px;
 }
 
 .custom_btn {
-  background-color: #f9537b;
-  color: #fff;
-  padding: 19px 50px;
+    background-color: #f9537b;
+    color: #fff;
+    padding: 19px 50px;
 }
 
 .setp_one_section {
-  margin-top: 80px;
-  position: relative;
+    margin-top: 80px;
+    position: relative;
 }
 
 .setp_one_section .step_1_img {
-  position: absolute;
-  right: 0;
-  bottom: 0;
-  top: -30px;
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    top: -30px;
 }
 
 .heading_progress {
-  padding: 21px 47px;
+    padding: 21px 47px;
 }
 
 .blue_color {
-  color: #3ec4de;
+    color: #3ec4de;
 }
 
 .custom_progress {
-  height: 7px;
-  border-radius: 0;
+    height: 7px;
+    border-radius: 0;
 }
 
 .kind_of_place {
-  background-color: #f8f8f8;
+    background-color: #f8f8f8;
 }
 
 footer {
-  background-color: #6d635f;
-  padding-top: 50px;
-  padding-bottom: 54px;
+    background-color: #6d635f;
+    padding-top: 50px;
+    padding-bottom: 54px;
 }
 
 footer h3 {
-  color: #b7b1ae;
-  margin-bottom: 20px;
+    color: #b7b1ae;
+    margin-bottom: 20px;
 }
+
 .add_btn {
-  padding: 11px 24px;
-  background-color: #fff;
-  border: 1px solid #3ec4de;
-  color: #3ec4de;
-  border-radius: 30px;
+    padding: 11px 24px;
+    background-color: #fff;
+    border: 1px solid #3ec4de;
+    color: #3ec4de;
+    border-radius: 30px;
 }
 
 .upload_btn {
-  padding: 11px 24px;
-  background-color: #fff;
-  border: 1px solid #f9537b;
-  color: #f9537b;
-  border-radius: 5px;
+    padding: 11px 24px;
+    background-color: #fff;
+    border: 1px solid #f9537b;
+    color: #f9537b;
+    border-radius: 5px;
 }
 
 .upload_delete_icon {
-  position: absolute;
-  top: 10px;
-  right: 10px;
-  cursor: pointer;
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    cursor: pointer;
 }
 
 .b_radius_15 {
-  border-radius: 15px;
+    border-radius: 15px;
 }
 
 .security_input:focus {
-  border-color: #3ec4de !important;
+    border-color: #3ec4de !important;
 }
+
 .w-10 {
-  width: 10%;
+    width: 10%;
 }
+
 .w-80 {
-  width: 80%;
+    width: 80%;
 }
+
 hr {
-  background-color: #babdbe;
+    background-color: #babdbe;
 }
 
 .right_side_content {
-  margin-top: 186px !important;
+    margin-top: 186px !important;
 }
+
 .min_height88 {
-  min-height: calc(100vh - 73px);
+    min-height: calc(100vh - 73px);
 }
 
 .back_next_part {
-  margin-top: 250px;
-  border-top: 1px solid #babdbe38;
+    margin-top: 250px;
+    border-top: 1px solid #babdbe38;
 }
 
 .custom_check .form-group input {
-  padding: 0;
-  height: initial;
-  width: initial;
-  margin-bottom: 0;
-  display: none;
-  cursor: pointer;
+    padding: 0;
+    height: initial;
+    width: initial;
+    margin-bottom: 0;
+    display: none;
+    cursor: pointer;
 }
 
 .custom_check .form-group label {
-  position: relative;
-  cursor: pointer;
-  font-family: "montserratmedium" !important;
-  color: #5e676a;
+    position: relative;
+    cursor: pointer;
+    font-family: "montserratmedium" !important;
+    color: #5e676a;
 }
 
-.custom_check .form-group label > p {
-  color: #a8a8a8;
-  font-family: "montserratregular" !important;
-  margin-bottom: 0px;
-  margin-left: 47px;
+.custom_check .form-group label>p {
+    color: #a8a8a8;
+    font-family: "montserratregular" !important;
+    margin-bottom: 0px;
+    margin-left: 47px;
 }
 
 .custom_check .form-group label:before {
-  content: "";
-  -webkit-appearance: none;
-  // background-color: #3ec4de;
-  border: 1px solid #3ec4de;
-  padding: 10px;
-  display: inline-block;
-  position: relative;
-  vertical-align: middle;
-  cursor: pointer;
-  margin-right: 15px;
-  width: 28px;
-  height: 28px;
-  border-radius: 5px;
+    content: "";
+    -webkit-appearance: none;
+    // background-color: #3ec4de;
+    border: 1px solid #3ec4de;
+    padding: 10px;
+    display: inline-block;
+    position: relative;
+    vertical-align: middle;
+    cursor: pointer;
+    margin-right: 15px;
+    width: 28px;
+    height: 28px;
+    border-radius: 5px;
 }
 
 .circle_check .form-group label:before {
-  border-radius: 50%;
+    border-radius: 50%;
 }
 
-.custom_check .form-group input:checked + label:after {
-  content: "";
-  display: block;
-  position: absolute;
-  top: 6px;
-  left: 12px;
-  width: 6px;
-  height: 14px;
-  border: solid #3ec4de;
-  border-width: 0 2px 2px 0;
-  transform: rotate(45deg);
+.custom_check .form-group input:checked+label:after {
+    content: "";
+    display: block;
+    position: absolute;
+    top: 6px;
+    left: 12px;
+    width: 6px;
+    height: 14px;
+    border: solid #3ec4de;
+    border-width: 0 2px 2px 0;
+    transform: rotate(45deg);
+}
+
+.progress-bar {
+    background-color: #3EC4DE !important;
 }
