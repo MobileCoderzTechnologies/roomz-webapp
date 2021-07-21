@@ -1,0 +1,19 @@
+#details-popup .close {
+    background-color: transparent !important;
+    border: 0;
+    width: 30px;
+    font-size: 30px;
+    position: absolute;
+    top: 2px;
+    right: 10px;
+}
+
+#details-popup .modal-content {
+    padding: 35px;
+    position: relative;
+}
+
+#details-popup #myModalLabel {
+    font-size: 30px;
+    font-weight: 700;
+}

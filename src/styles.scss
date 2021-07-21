@@ -229,6 +229,7 @@ body {
     height: 60px;
     padding: 21px 18px;
     font-size: 15px;
+    line-height: 1;
 }
 
 .or_hr {
@@ -530,4 +531,26 @@ hr {
 
 .progress-bar {
     background-color: #3EC4DE !important;
+}
+
+.color-blue {
+    color: #3EC4DE;
+    font-weight: 700;
+}
+
+.bottom-wrap button {
+    margin-right: 15px;
+}
+
+.bottom-wrap button:last-child {
+    background-color: transparent;
+    color: #F9537B;
+    border: 1px solid #F9537B;
+}
+
+@media (min-width: 576px) {
+    .modal-dialog {
+        max-width: 700px;
+        margin: 1.75rem auto;
+    }
 }
