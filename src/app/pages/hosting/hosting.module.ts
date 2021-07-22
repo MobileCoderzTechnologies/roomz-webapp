@@ -27,6 +27,14 @@ import { PropertyGuests21Component } from './components/property-guests21/proper
 import { AvaliablityComponent } from './components/avaliablity/avaliablity.component';
 import { ProgressBarComponent } from './components/progress-bar/progress-bar.component';
 import { StartComponent } from './components/start/start.component';
+import { PropertyGuests22Component } from './components/property-guests22/property-guests22.component';
+import { PropertyGuests23Component } from './components/property-guests23/property-guests23.component';
+import { PropertyGuests24Component } from './components/property-guests24/property-guests24.component';
+import { PropertyGuests25Component } from './components/property-guests25/property-guests25.component';
+import { PropertyGuests26Component } from './components/property-guests26/property-guests26.component';
+import { PropertyGuests27Component } from './components/property-guests27/property-guests27.component';
+import { PropertyGuests28Component } from './components/property-guests28/property-guests28.component';
+
 
 
 
@@ -57,7 +65,14 @@ import { StartComponent } from './components/start/start.component';
     PropertyGuests21Component,
     AvaliablityComponent,
     ProgressBarComponent,
-    StartComponent
+    StartComponent,
+    PropertyGuests22Component,
+    PropertyGuests23Component,
+    PropertyGuests24Component,
+    PropertyGuests25Component,
+    PropertyGuests26Component,
+    PropertyGuests27Component,
+    PropertyGuests28Component
   ],
   imports: [
     CommonModule,
