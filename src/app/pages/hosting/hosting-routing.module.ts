@@ -28,6 +28,8 @@ import { PropertyGuests23Component } from './components/property-guests23/proper
 import { PropertyGuests24Component } from './components/property-guests24/property-guests24.component';
 import { PropertyGuests25Component } from './components/property-guests25/property-guests25.component';
 import { PropertyGuests26Component } from './components/property-guests26/property-guests26.component';
+import { PropertyGuests27Component } from './components/property-guests27/property-guests27.component';
+import { PropertyGuests28Component } from './components/property-guests28/property-guests28.component';
 
 
 const routes: Routes = [
@@ -138,6 +140,14 @@ const routes: Routes = [
   {
     path: 'property-guests26',
     component: PropertyGuests26Component, 
+  },
+  {
+    path: 'property-guests27',
+    component: PropertyGuests27Component, 
+  },
+  {
+    path: 'property-guests28',
+    component: PropertyGuests28Component, 
   }
 
 ];

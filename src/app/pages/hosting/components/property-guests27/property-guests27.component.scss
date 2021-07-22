@@ -1,0 +1,19 @@
+#discount-popup .close {
+    background-color: transparent !important;
+    border: 0;
+    width: 30px;
+    font-size: 30px;
+    position: absolute;
+    top: 2px;
+    right: 10px;
+}
+
+#discount-popup .modal-content {
+    padding: 35px;
+    position: relative;
+}
+
+#discount-popup #myModalLabel {
+    font-size: 30px;
+    font-weight: 700;
+}
