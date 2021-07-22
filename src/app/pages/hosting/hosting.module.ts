@@ -25,6 +25,8 @@ import { PropertyGuests19Component } from './components/property-guests19/proper
 import { PropertyGuests20Component } from './components/property-guests20/property-guests20.component';
 import { PropertyGuests21Component } from './components/property-guests21/property-guests21.component';
 import { AvaliablityComponent } from './components/avaliablity/avaliablity.component';
+import { ProgressBarComponent } from './components/progress-bar/progress-bar.component';
+import { StartComponent } from './components/start/start.component';
 
 
 
@@ -53,7 +55,9 @@ import { AvaliablityComponent } from './components/avaliablity/avaliablity.compo
     PropertyGuests19Component,
     PropertyGuests20Component,
     PropertyGuests21Component,
-    AvaliablityComponent
+    AvaliablityComponent,
+    ProgressBarComponent,
+    StartComponent
   ],
   imports: [
     CommonModule,

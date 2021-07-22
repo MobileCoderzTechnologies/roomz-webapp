@@ -120,5 +120,13 @@
       "continueBtnText": "CONTINUE",
       "skipForNowBtnText": "Skip for now"
     }
+  },
+
+  "hosting": {
+    "home": {
+      
+    }
   }
+
+
 }

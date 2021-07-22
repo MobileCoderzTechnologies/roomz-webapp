@@ -23,16 +23,38 @@ import { PropertyGuests18Component } from './components/property-guests18/proper
 import { PropertyGuests19Component } from './components/property-guests19/property-guests19.component';
 import { PropertyGuests20Component } from './components/property-guests20/property-guests20.component';
 import { PropertyGuests21Component } from './components/property-guests21/property-guests21.component';
+import { LISTING_HOME_ROUTE, START_ROUTE, STEP_1_ROUTE } from './constansts/route.constant';
+import { StartComponent } from './components/start/start.component';
 
 const routes: Routes = [
   {
     path: '',
-    component: HomeComponent,
+    redirectTo: LISTING_HOME_ROUTE.path,
+    pathMatch: 'full'
   },
   {
-    path: 'property-guests',
-    component: PropertyGuestsComponent,
+    path: LISTING_HOME_ROUTE.path,
+    component: HomeComponent,
+    children: [
+      {
+        path: '',
+        redirectTo: START_ROUTE.path,
+        pathMatch: 'full'
+      },
+      {
+        path: START_ROUTE.path,
+        component: StartComponent
+      },
+      {
+        path: STEP_1_ROUTE.path,
+        component: PropertyGuestsComponent
+      }
+    ]
   },
+  // {
+  //   path: 'property-guests',
+  //   component: PropertyGuestsComponent,
+  // },
   {
     path: 'property-guests2',
     component: PropertyGuests2Component,

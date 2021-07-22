@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { START_ROUTE } from '../../constansts/route.constant';
+import { ProgressService } from '../../services/progress.service';
 
 @Component({
   selector: 'app-property-guests',
@@ -7,9 +9,13 @@ import { Component, OnInit } from '@angular/core';
 })
 export class PropertyGuestsComponent implements OnInit {
 
-  constructor() { }
+  startRoute = START_ROUTE;
+  constructor(
+    private $ps: ProgressService
+  ) { }
 
   ngOnInit(): void {
+    this.$ps.progress.next(10);
   }
 
 }

@@ -1,0 +1,97 @@
+.step-first-wrap h3 {
+  margin-bottom: 30px;
+}
+
+.project-step-listing {
+  margin: 0;
+  padding: 0;
+}
+
+ul.project-step-listing {
+  list-style-type: none;
+}
+
+ul.project-step-listing li {
+  font-size: 14px;
+  padding: 15px 0;
+  display: flex;
+  border-top: 1px solid #BABDBE;
+}
+
+ul.project-step-listing li label {
+  display: flex;
+  width: 100%;
+  position: relative;
+  cursor: pointer;
+}
+
+ul.project-step-listing li label span {
+  flex: 1;
+  transition: all 300ms ease-out;
+}
+
+ul.project-step-listing li label input[type="checkbox"] {
+  position: absolute;
+  display: inline-block;
+  left: 0;
+  top: 0;
+  background: red;
+  height: 100%;
+  width: 100%;
+  visibility: hidden;
+}
+
+ul.project-step-listing li label input[type="checkbox"]:checked~span {
+  color: #F9537B;
+}
+
+ul.project-step-listing li label input[type="checkbox"]:checked~svg {
+  animation: chkAnim 300ms ease-out;
+}
+
+ul.project-step-listing li label input[type="checkbox"]:checked~svg path {
+  stroke: #F9537B;
+  stroke-dasharray: 166 191;
+  stroke-dashoffset: -195;
+}
+
+ul.project-step-listing li label svg {
+  position: absolute;
+  right: 0px;
+  height: 16px;
+  width: 16px;
+  stroke-width: 5px;
+  fill: none;
+}
+
+ul.project-step-listing li label svg path {
+  transition: all 300ms ease-out;
+  stroke: #000;
+  stroke-dasharray: 196 133;
+}
+
+@keyframes chkAnim {
+  0% {
+      transform: scale(0);
+  }
+  50% {
+      transform: scale(0.6);
+  }
+  90% {
+      transform: scale(1.2);
+  }
+}
+
+.button-wrap {
+  text-align: right;
+  padding-top: 15px;
+  border-top: 1px solid #BABDBE;
+}
+
+.button-wrap .submit-btn {
+  background-color: #F9537B;
+  color: #fff;
+  font-size: 18px;
+  text-transform: uppercase;
+  padding: 15px 20px;
+}
