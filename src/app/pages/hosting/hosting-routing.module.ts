@@ -23,6 +23,14 @@ import { PropertyGuests18Component } from './components/property-guests18/proper
 import { PropertyGuests19Component } from './components/property-guests19/property-guests19.component';
 import { PropertyGuests20Component } from './components/property-guests20/property-guests20.component';
 import { PropertyGuests21Component } from './components/property-guests21/property-guests21.component';
+import { PropertyGuests22Component } from './components/property-guests22/property-guests22.component';
+import { PropertyGuests23Component } from './components/property-guests23/property-guests23.component';
+import { PropertyGuests24Component } from './components/property-guests24/property-guests24.component';
+import { PropertyGuests25Component } from './components/property-guests25/property-guests25.component';
+import { PropertyGuests26Component } from './components/property-guests26/property-guests26.component';
+import { PropertyGuests27Component } from './components/property-guests27/property-guests27.component';
+import { PropertyGuests28Component } from './components/property-guests28/property-guests28.component';
+
 
 const routes: Routes = [
   {
@@ -113,6 +121,35 @@ const routes: Routes = [
     path: 'property-guests21',
     component: PropertyGuests21Component,
   },
+  {
+    path: 'property-guests22',
+    component: PropertyGuests22Component,
+  },
+  {
+    path: 'property-guests23',
+    component: PropertyGuests23Component, 
+  },
+  {
+    path: 'property-guests24',
+    component: PropertyGuests24Component, 
+  },
+  {
+    path: 'property-guests25',
+    component: PropertyGuests25Component, 
+  },
+  {
+    path: 'property-guests26',
+    component: PropertyGuests26Component, 
+  },
+  {
+    path: 'property-guests27',
+    component: PropertyGuests27Component, 
+  },
+  {
+    path: 'property-guests28',
+    component: PropertyGuests28Component, 
+  }
+
 ];
 
 @NgModule({
