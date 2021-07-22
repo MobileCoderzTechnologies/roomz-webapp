@@ -9,6 +9,12 @@ import { NgOtpInputModule } from 'ng-otp-input';
 import { OtpComponent } from './components/otp/otp.component';
 import { WelcomeBackComponent } from './components/welcome-back/welcome-back.component';
 import { OtpTimerPipe } from './pipes/otp-timer.pipe';
+import {
+  SocialLoginModule,
+  SocialAuthServiceConfig
+} from 'angularx-social-login';
+import { GoogleLoginProvider } from 'angularx-social-login';
+import { GOOGLE_KEY } from 'src/app/constants/social-keys.constant';
 
 const routes: Routes = [
   {
@@ -29,14 +35,30 @@ const routes: Routes = [
     SharedModule,
     ValidateErrorModule,
     SignUpModule,
-    NgOtpInputModule
+    NgOtpInputModule,
+    SocialLoginModule,
   ],
   exports: [
     RouterModule,
     SharedModule,
     LoginComponent,
     ValidateErrorModule,
-    SignUpModule
+    SignUpModule,
+    SocialLoginModule
+  ],
+  providers: [
+    {
+      provide: 'SocialAuthServiceConfig',
+      useValue: {
+        autoLogin: false,
+        providers: [
+          {
+            id: GoogleLoginProvider.PROVIDER_ID,
+            provider: new GoogleLoginProvider(GOOGLE_KEY.googleWebClientId)
+          }
+        ],
+      } as SocialAuthServiceConfig
+    }
   ]
 })
 export class LoginModule { }

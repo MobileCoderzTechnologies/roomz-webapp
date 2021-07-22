@@ -3,10 +3,12 @@ import { AfterViewInit, Component, Inject, OnDestroy, OnInit } from '@angular/co
 import { inject } from '@angular/core/testing';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { SocialAuthService } from 'angularx-social-login';
 import { pipe, Subscription } from 'rxjs';
 import { delay } from 'rxjs/operators';
 import { COUNTRIES_CODES } from 'src/app/constants/country-code.constant';
 import { EMAIL_REGEX, PASSWORD } from 'src/app/constants/regex.constant';
+import { GOOGLE_KEY } from 'src/app/constants/social-keys.constant';
 import { AlertService } from 'src/app/modules/alert/alert.service';
 import { SignUpService } from '../sign-up/services/sign-up.service';
 import { LoginService } from './services/login.service';
@@ -53,6 +55,7 @@ export class LoginComponent implements OnInit, OnDestroy, AfterViewInit {
     private $signUpService: SignUpService,
     public $dialogRef: MatDialogRef<LoginComponent>,
     private $alert: AlertService,
+    private $socialAuthService: SocialAuthService
   ) {
 
   }
@@ -258,5 +261,10 @@ export class LoginComponent implements OnInit, OnDestroy, AfterViewInit {
   //     this.phoneNumber = null;
   //   }
   // }
+
+
+  logInWithGoogle(): void {
+    this.$socialAuthService.signIn(GOOGLE_KEY.googleWebClientId);
+  }
 
 }

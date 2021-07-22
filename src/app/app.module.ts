@@ -23,7 +23,7 @@ import { LangTranslateService } from './services/lang-translate.service';
     AppRoutingModule,
     BrowserAnimationsModule,
     HttpClientModule,
-    SharedModule
+    SharedModule,
   ],
   providers: [
     HttpService,
@@ -32,7 +32,7 @@ import { LangTranslateService } from './services/lang-translate.service';
       useClass: AuthInterceptorService,
       multi: true
     },
-    LangTranslateService
+    LangTranslateService,
   ],
   bootstrap: [AppComponent]
 })
