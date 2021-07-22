@@ -10,18 +10,17 @@
   <div class="container">
     <div class="row">
       <div class="col-md-7">
-        <div class="col_selector bg-white mt-5 p-4">
-          <h3 class="fz30 mb-4">What kind of place are you listing?</h3>
+        <div class="col_selector bg-white p-4">
+          <h3 class="fz30 mb-4">Which of these sounds most like your place?</h3>
           <div class="form-group w-75">
             <label for="" class="fz18 medium_font mb-3">Choose a property type</label>
             <select class="form-select custom_form_control" aria-label="Default select example">
-              <option selected>Flat</option>
-              <option value="1">One</option>
-              <option value="2">Two</option>
-              <option value="3">Three</option>
+              <option *ngFor="let type of propertyTypes" [value]="type.id">
+                {{type.property_type |titlecase}}
+              </option>
             </select>
             <p class="fz14 regular_font mb-5">
-              Flat: Typically located in multi-unit residential buildings or
+              Typically located in multi-unit residential buildings or
               complexes where other people live
             </p>
           </div>
@@ -81,12 +80,12 @@
               </div>
             </div>
           </div>
-        </div>
-        <div class="mb-5">
-          <p class="fz14 regular_font text-secondary">
-            This information helps you get the right features for how you host
-            and helps Airbnb comply with consumer protection laws.
-            <a href="javascript:void(0);" class="blue_color"><u>Learn more</u></a>
+          <div class="mb-5">
+            <p class="fz14 regular_font text-secondary">
+              This information helps you get the right features for how you host
+              and helps Airbnb comply with consumer protection laws.
+              <a href="javascript:void(0);" class="blue_color"><u>Learn more</u></a>
+          </div>
         </div>
         <div class="d-flex justify-content-between align-items-center mb-5 p-4 mt-0 back_next_part bg-white">
           <a href="javascript:void(0);" class="blue_color d-flex align-items-center" routerLink="{{startRoute.url}}">

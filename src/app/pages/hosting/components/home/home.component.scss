@@ -1,3 +1,16 @@
+.host-header {
+    position: fixed;
+    top: 0px;
+    width: 100%;
+    background: #fff;
+    z-index: 101;
+}
+
+.host-content{
+    position: relative;
+    top: 74px;
+}
+
 .step-first-wrap h3 {
     margin-bottom: 30px;
 }
@@ -74,9 +87,11 @@ ul.project-step-listing li label svg path {
     0% {
         transform: scale(0);
     }
+
     50% {
         transform: scale(0.6);
     }
+
     90% {
         transform: scale(1.2);
     }
