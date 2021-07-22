@@ -15,7 +15,10 @@ export class StartComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this.$ps.progress.next(2);
+    this.$ps.header.next({
+      progress: 2,
+      heading: 'Property and guests'
+    });
   }
 
 }

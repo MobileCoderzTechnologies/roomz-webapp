@@ -6,6 +6,9 @@ import { BehaviorSubject } from 'rxjs';
 })
 export class ProgressService {
 
-  public progress = new BehaviorSubject(1);
+  public header = new BehaviorSubject({
+    progress: 1,
+    heading: 'Property and guests'
+  });
   constructor() { }
 }

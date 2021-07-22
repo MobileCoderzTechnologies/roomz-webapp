@@ -1,10 +1,11 @@
-<section class="heading_progress d-flex align-items-center justify-content-between">
+<!-- <section class="heading_progress d-flex align-items-center justify-content-between">
     <h4 class="fz16 medium_font mb-0">Property and guests</h4>
     <p class="fz16 medium_font blue_color mb-0"><a href="">Save</a> and <a href="">Exit</a></p>
 </section>
 <div class="progress custom_progress">
-    <div class="progress-bar" role="progressbar" style="width: 10%" aria-valuenow="10" aria-valuemin="0" aria-valuemax="100"></div>
-</div>
+    <div class="progress-bar" role="progressbar" style="width: 10%" aria-valuenow="10" aria-valuemin="0"
+        aria-valuemax="100"></div>
+</div> -->
 <section class="kind_of_place">
     <div class="container">
         <div class="row">
@@ -15,17 +16,17 @@
                         Guests will only get your exact address once they’ve booked a reservation.
                     </p>
                     <button class="btn add_btn my-4 d-flex align-items-center">
-            <img src="assets/images/pin.png" class="me-2" alt="" /> Use current
-            location
-          </button>
+                        <img src="assets/images/pin.png" class="me-2" alt="" /> Use current
+                        location
+                    </button>
                     <div class="my-4">
                         <label for="">Country / Region</label>
                         <select class="form-select custom_form_control" aria-label="Default select example">
-              <option selected>India</option>
-              <option value="1">One</option>
-              <option value="2">Two</option>
-              <option value="3">Three</option>
-            </select>
+                            <option selected>India</option>
+                            <option value="1">One</option>
+                            <option value="2">Two</option>
+                            <option value="3">Three</option>
+                        </select>
                     </div>
                     <div class="my-4">
                         <label for="">Street</label>
@@ -51,7 +52,7 @@
                         <label for="">Postcode</label>
                         <input type="text" name="" class="form-control custom_form_control" />
                     </div>
-                    <div>
+                    <!-- <div>
                         <div class="d-flex align-items-center justify-content-between w-50 mb-3">
                             <h5 class="fz16 semi_font">Bathrooms</h5>
                             <div class="">
@@ -60,12 +61,14 @@
                                 <img src="assets/images/plus_blue.png" class="img-fluid ms-4" alt="" />
                             </div>
                         </div>
-                    </div>
+                    </div> -->
                 </div>
                 <div class="d-flex justify-content-between align-items-center mb-5 p-4 mt-0 back_next_part">
-                    <a href="javascript:void(0);" class="blue_color d-flex align-items-center"><img src="assets/images/blue-left-arrow.png" class="me-2" alt="" /> Back
+                    <a href="javascript:void(0);" class="blue_color d-flex align-items-center"
+                        routerLink="{{step2Route.url}}">
+                        <img src="assets/images/blue-left-arrow.png" class="me-2" alt="" /> Back
                     </a>
-                    <button class="btn custom_btn">Next</button>
+                    <button class="btn custom_btn" routerLink="{{step4Route.url}}">Next</button>
                 </div>
             </div>
         </div>

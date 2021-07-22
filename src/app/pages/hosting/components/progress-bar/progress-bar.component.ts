@@ -10,12 +10,16 @@ export class ProgressBarComponent implements OnInit {
 
   // @Input() progress: string;
   progress: string;
+  heading: string;
   constructor(
-    private $progressService: ProgressService
+    private $ps: ProgressService
   ) { }
 
   ngOnInit(): void {
-    this.$progressService.progress.subscribe(progress => this.progress = `${progress}%`);
+    this.$ps.header.subscribe(data => {
+      this.progress = `${data.progress}%`;
+      this.heading = data.heading;
+    });
   }
 
 }
