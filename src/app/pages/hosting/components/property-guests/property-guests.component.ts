@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { PropertyType } from 'src/app/modals/property-type.modal';
-import { START_ROUTE, STEP_2_ROUTE } from '../../constansts/route.constant';
+import { START_ROUTE, STEP_2_ROUTE } from '../../constants/route.constant';
 import { ProgressService } from '../../services/progress.service';
 import { PropertyListingService } from '../../services/property-listing.service';
 
@@ -15,6 +15,9 @@ export class PropertyGuestsComponent implements OnInit {
   step2Route = STEP_2_ROUTE;
 
   propertyTypes: PropertyType[];
+
+  isDedicatedGuestsSpace = true;
+  isHostPrivate = false;
   constructor(
     private $ps: ProgressService,
     private $propertyListingService: PropertyListingService
@@ -28,11 +31,14 @@ export class PropertyGuestsComponent implements OnInit {
     this.getPropertyTypes();
   }
 
-  private getPropertyTypes(): void{
+  private getPropertyTypes(): void {
     this.$propertyListingService.getPropertyTypes().subscribe(data => {
       this.propertyTypes = data.data;
-      console.log(this.propertyTypes);
     });
+  }
+
+  onDedicatedGuestSpace(value: boolean): void {
+    this.isDedicatedGuestsSpace = value;
   }
 
 }

@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { STEP_3_ROUTE, STEP_5_ROUTE } from '../../constansts/route.constant';
+import { STEP_3_ROUTE, STEP_5_ROUTE } from '../../constants/route.constant';
 import { ProgressService } from '../../services/progress.service';
 
 @Component({

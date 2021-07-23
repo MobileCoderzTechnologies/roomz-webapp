@@ -39,7 +39,7 @@ import {
   STEP_3_ROUTE,
   STEP_4_ROUTE,
   STEP_5_ROUTE
-} from './constansts/route.constant';
+} from './constants/route.constant';
 
 
 const routes: Routes = [
