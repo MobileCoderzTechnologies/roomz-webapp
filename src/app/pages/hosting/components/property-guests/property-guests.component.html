@@ -6,7 +6,8 @@
           <h3 class="fz30 mb-4">Which of these sounds most like your place?</h3>
           <div class="form-group w-75">
             <label for="" class="fz18 medium_font mb-3">Choose a property type</label>
-            <select class="form-select custom_form_control" aria-label="Default select example">
+            <select class="form-select custom_form_control" aria-label="Default select example"
+              (change)="onSelectPropertyType($event.target.value)">
               <option *ngFor="let type of propertyTypes" [value]="type.id">
                 {{type.property_type |titlecase}}
               </option>
@@ -16,6 +17,17 @@
               complexes where other people live
             </p>
           </div>
+
+          <div class="custom_check circle_check mb-4" *ngIf="isBeachHouseShow">
+            <div class="form-group">
+              <input type="checkbox" id="beachHouse" name="beachHouse" (change)="isBeachHouse=!isBeachHouse"
+                [checked]="isBeachHouse">
+              <label class="form-check-label fz15" for="beachHouse">
+                is this a beach house
+              </label>
+            </div>
+          </div>
+
           <div class="mb-5">
             <p class="fz18 medium_font">
               Is this set up as a dedicated guest space?

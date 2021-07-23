@@ -18,6 +18,11 @@ export class PropertyGuestsComponent implements OnInit {
 
   isDedicatedGuestsSpace = true;
   isHostPrivate = false;
+  selectedPropertyType: number;
+  isBeachHouse = null;
+
+  isBeachHouseShow = true;
+
   constructor(
     private $ps: ProgressService,
     private $propertyListingService: PropertyListingService
@@ -34,11 +39,22 @@ export class PropertyGuestsComponent implements OnInit {
   private getPropertyTypes(): void {
     this.$propertyListingService.getPropertyTypes().subscribe(data => {
       this.propertyTypes = data.data;
+      this.selectedPropertyType = this.propertyTypes[0].id;
     });
   }
 
   onDedicatedGuestSpace(value: boolean): void {
     this.isDedicatedGuestsSpace = value;
+  }
+  onSelectPropertyType(propertyTypeId: number): void {
+    this.selectedPropertyType = propertyTypeId * 1;
+    if (this.selectedPropertyType === 1 || this.selectedPropertyType === 2) {
+      this.isBeachHouseShow = true;
+    }
+    else {
+      this.isBeachHouseShow = false;
+      this.isBeachHouse = null;
+    }
   }
 
 }
