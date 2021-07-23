@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { EncryptionService } from 'src/app/services/encryption.service';
 import { STEP_4_ROUTE, STEP_6_ROUTE } from '../../constansts/route.constant';
 import { ProgressService } from '../../services/progress.service';
 
@@ -13,7 +14,8 @@ export class PropertyGuests6Component implements OnInit {
   step4Route = STEP_4_ROUTE;
 
   constructor(
-    private $ps: ProgressService
+    private $ps: ProgressService,
+    private $es: EncryptionService
   ) { }
 
   ngOnInit(): void {
