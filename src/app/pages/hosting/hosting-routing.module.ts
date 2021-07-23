@@ -37,7 +37,8 @@ import {
   STEP_1_ROUTE,
   STEP_2_ROUTE,
   STEP_3_ROUTE,
-  STEP_4_ROUTE
+  STEP_4_ROUTE,
+  STEP_5_ROUTE
 } from './constansts/route.constant';
 
 
@@ -75,6 +76,10 @@ const routes: Routes = [
       {
         path: STEP_4_ROUTE.path,
         component: PropertyGuests5Component
+      },
+      {
+        path: STEP_5_ROUTE.path,
+        component: PropertyGuests6Component
       }
     ]
   },
