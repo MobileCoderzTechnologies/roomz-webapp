@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { PropertyType } from 'src/app/modals/property-type.modal';
+import { AlertService } from 'src/app/modules/alert/alert.service';
 import { START_ROUTE, STEP_2_ROUTE } from '../../constants/route.constant';
 import { ProgressService } from '../../services/progress.service';
 import { PropertyListingService } from '../../services/property-listing.service';
@@ -25,7 +26,8 @@ export class PropertyGuestsComponent implements OnInit {
 
   constructor(
     private $ps: ProgressService,
-    private $propertyListingService: PropertyListingService
+    private $propertyListingService: PropertyListingService,
+    private $alert: AlertService
   ) { }
 
   ngOnInit(): void {
@@ -40,6 +42,8 @@ export class PropertyGuestsComponent implements OnInit {
     this.$propertyListingService.getPropertyTypes().subscribe(data => {
       this.propertyTypes = data.data;
       this.selectedPropertyType = this.propertyTypes[0].id;
+    }, err => {
+      this.$alert.danger(err.message, 2000);
     });
   }
 

@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { NotFoundComponent } from './components/not-found/not-found.component';
 import { HOSTING_ROUTE, TRAVELLING_ROUTE } from './constants/route.constants';
+import { AuthGuard } from './guards/auth.guard';
 
 const routes: Routes = [
   {
@@ -19,7 +20,7 @@ const routes: Routes = [
   {
     path: HOSTING_ROUTE.path,
     loadChildren: () =>
-      import('./pages/hosting/hosting.module').then(m => m.HostingModule)
+      import('./pages/hosting/hosting.module').then(m => m.HostingModule),
   },
   {
     path: 'ar',

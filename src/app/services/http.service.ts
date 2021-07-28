@@ -98,9 +98,11 @@ export class HttpService {
     if (status === 401) {
       if (isPlatformBrowser(this.platformId)) {
         sessionStorage.clear();
-        localStorage.clear();
+        localStorage.removeItem('accessToken');
+        localStorage.removeItem('currentUser');
       }
-      this.$router.navigate(['/login']);
+      this.$router.navigate(['/']);
+      message = 'Please login again';
     }
     const err = { error, message };
     return throwError(err);
