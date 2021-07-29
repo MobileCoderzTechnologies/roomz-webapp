@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { PropertyType } from 'src/app/modals/property-type.modal';
 import { AlertService } from 'src/app/modules/alert/alert.service';
+import { EncryptionService } from 'src/app/services/encryption.service';
 import { START_ROUTE, STEP_2_ROUTE } from '../../constants/route.constant';
 import { ProgressService } from '../../services/progress.service';
 import { PropertyListingService } from '../../services/property-listing.service';
@@ -24,10 +26,14 @@ export class PropertyGuestsComponent implements OnInit {
 
   isBeachHouseShow = true;
 
+  isNextLoading = false;
+
   constructor(
     private $ps: ProgressService,
     private $propertyListingService: PropertyListingService,
-    private $alert: AlertService
+    private $alert: AlertService,
+    private $router: Router,
+    private $encryptionService: EncryptionService
   ) { }
 
   ngOnInit(): void {
@@ -59,6 +65,28 @@ export class PropertyGuestsComponent implements OnInit {
       this.isBeachHouseShow = false;
       this.isBeachHouse = null;
     }
+  }
+
+  addPropertyTypes(): void {
+    this.isNextLoading = true;
+    const dataObj = {
+      property_type: this.selectedPropertyType,
+      is_beach_house: this.isBeachHouse,
+      is_dedicated_guest_space: this.isDedicatedGuestsSpace,
+      is_business_hosting: this.isHostPrivate
+    };
+    this.$propertyListingService.addPropertyType(dataObj)
+      .subscribe(data => {
+        console.log(data);
+        const id = data.data.id;
+        const encryptedId = this.$encryptionService.encrypt(id);
+        console.log(encryptedId);
+        this.isNextLoading = false;
+        this.$router.navigate([this.step2Route.url, encryptedId]);
+      }, err => {
+        this.isNextLoading = false;
+        this.$alert.danger(err.message);
+      });
   }
 
 }

@@ -66,11 +66,11 @@ const routes: Routes = [
         component: PropertyGuestsComponent
       },
       {
-        path: STEP_2_ROUTE.path,
+        path: `${STEP_2_ROUTE.path}/:id`,
         component: PropertyGuests2Component
       },
       {
-        path: STEP_3_ROUTE.path,
+        path: `${STEP_3_ROUTE.path}/:id`,
         component: PropertyGuests4Component
       },
       {
