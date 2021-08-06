@@ -14,18 +14,20 @@
                         How many guests can stay?
                     </h3>
                     <p class="fz15 regular_font">
-                        Make sure the beds in your place can comfortably accommodate the number of guests you choose to host.
+                        Make sure the beds in your place can comfortably accommodate the number of guests you choose to
+                        host.
                     </p>
                     <div>
                         <div class="d-flex align-items-center justify-content-between w-75 my-4">
                             <h5 class="fz16 semi_font">Number of Guests</h5>
                             <div class="">
-                                <button (click)="numberOfGuests = numberOfGuests -1">
-                                <img src="assets/images/minus_blue.png" class="img-fluid" alt="" >
+                                <button class="icon" (click)="numberOfGuests = numberOfGuests -1"
+                                    [disabled]="numberOfGuests === 1">
+                                    <img src="assets/images/minus_blue.png" class="img-fluid" alt="">
                                 </button>
                                 <span class="counter-text"> {{numberOfGuests}} </span>
-                                <button (click)="numberOfGuests = numberOfGuests +1">
-                                <img src="assets/images/plus_blue.png" class="img-fluid" alt="" >
+                                <button class="icon" (click)="numberOfGuests = numberOfGuests +1">
+                                    <img src="assets/images/plus_blue.png" class="img-fluid" alt="">
                                 </button>
                             </div>
                         </div>
@@ -33,143 +35,103 @@
                         <div class="d-flex align-items-center justify-content-between w-75 my-4">
                             <h5 class="fz16 semi_font">Number of Bedrooms</h5>
                             <div class="">
-                                <button>
-                                    <img src="assets/images/minus_blue.png" class="img-fluid mr-3" alt="" >
-                                    </button>
-                                <span class="counter-text"> 4 </span>
-                                <button>
-                                    <img src="assets/images/plus_blue.png" class="img-fluid ml-3" alt="" >
-                                    </button>
+                                <button class="icon" (click)="numberOfBedroomsIncDec('dec')"
+                                    [disabled]="numberOfBedrooms === 1">
+                                    <img src="assets/images/minus_blue.png" class="img-fluid mr-3" alt="">
+                                </button>
+                                <span class="counter-text"> {{numberOfBedrooms}} </span>
+                                <button class="icon" (click)="numberOfBedroomsIncDec('inc')">
+                                    <img src="assets/images/plus_blue.png" class="img-fluid ml-3" alt="">
+                                </button>
                             </div>
                         </div>
 
                         <div class="d-flex align-items-center justify-content-between w-75 my-4">
-                            <h5 class="fz16 semi_font">Beds of Bathrooms</h5>
+                            <h5 class="fz16 semi_font">Number of Bathrooms</h5>
                             <div class="">
-                                <button>
-                                    <img src="assets/images/minus_blue.png" class="img-fluid" alt="" >
-                                    </button>
-                                <span class="counter-text"> 2 </span>
-                                <button>
-                                    <img src="assets/images/plus_blue.png" class="img-fluid" alt="" >
-                                    </button>
+                                <button class="icon" (click)="numberOfBathrooms = numberOfBathrooms - 0.5"
+                                    [disabled]="numberOfBathrooms === 1">
+                                    <img src="assets/images/minus_blue.png" class="img-fluid" alt="">
+                                </button>
+                                <span class="counter-text"> {{numberOfBathrooms}} </span>
+                                <button class="icon" (click)="numberOfBathrooms = numberOfBathrooms + 0.5">
+                                    <img src="assets/images/plus_blue.png" class="img-fluid" alt="">
+                                </button>
                             </div>
                         </div>
                     </div>
                     <div class="mt-4 mb-5">
                         <h4 class="fz25 semi_font">What kind of beds are there?</h4>
-
-                    </div>
-                    <div class="mb-5 d-flex align-items-center justify-content-between">
-                        <div>
-                            <h5 class="fz20 medium_font mb-0">Common space</h5>
-                            <p class="fz14 regular_font mb-0">Sofa bed: 3</p>
-                            <p class="fz14 regular_font mb-0">Couch: 2</p>
-                            <p class="fz14 regular_font mb-0">Floor mattress: 1</p>
-                        </div>
-                        <button class="btn add_btn medium_font">Add Beds</button>
-                    </div>
-                    <div class="mb-5 d-flex align-items-center justify-content-between">
-                        <div>
-                            <h5 class="fz20 medium_font mb-0">Bedroom 2</h5>
-                            <span class="fz14 regular_font"> 2 beds</span>
-                        </div>
-                        <button class="btn add_btn medium_font">Done</button>
-                    </div>
-                    <div>
-                        <div class="d-flex align-items-center justify-content-between w-50 mb-3">
-                            <h5 class="fz16 semi_font">Double</h5>
-                            <div class="">
-                                <div class="">
-                                    <button>
-                                        <img src="assets/images/minus_blue.png" class="img-fluid" alt="" >
-                                        </button>
-                                    <span class="counter-text"> 1 </span>
-                                    <button>
-                                        <img src="assets/images/plus_blue.png" class="img-fluid" alt="" >
-                                        </button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div>
-                        <div class="d-flex align-items-center justify-content-between w-50 mb-3">
-                            <h5 class="fz16 semi_font">Queen</h5>
-                            <div class="">
-                                <div class="">
-                                    <button>
-                                        <img src="assets/images/minus_blue.png" class="img-fluid" alt="" >
-                                        </button>
-                                    <span class="counter-text"> 1 </span>
-                                    <button>
-                                        <img src="assets/images/plus_blue.png" class="img-fluid" alt="" >
-                                        </button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div>
-                        <div class="d-flex align-items-center justify-content-between w-50 mb-3">
-                            <h5 class="fz16 semi_font">Single </h5>
-                            <div class="">
-                                <div class="">
-                                    <button>
-                                        <img src="assets/images/minus_blue.png" class="img-fluid" alt="" >
-                                        </button>
-                                    <span class="counter-text"> 2 </span>
-                                    <button>
-                                        <img src="assets/images/plus_blue.png" class="img-fluid" alt="" >
-                                        </button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div>
-                        <div class="d-flex align-items-center justify-content-between w-50 mb-3">
-                            <h5 class="fz16 semi_font">Sofa bed</h5>
-                            <div class="">
-                                <div class="">
-                                    <button>
-                                        <img src="assets/images/minus_blue.png" class="img-fluid" alt="" >
-                                        </button>
-                                    <span class="counter-text"> 2 </span>
-                                    <button>
-                                        <img src="assets/images/plus_blue.png" class="img-fluid" alt="" >
-                                        </button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="my-4 mb-4">
-                        <select class="form-select custom_form_control w-75" aria-label="Default select example">
-                            <option selected>Add another bed</option>
-                            <option *ngFor="let bed of bedTypes" [value]="bed.id">
-                                {{bed?.bed_type}}
-                            </option>
-                        </select>
                     </div>
 
-                    <!-- <div class="mt-4 mb-5">
-                        <h4 class="fz25 semi_font mb-4">How many bathrooms are there?</h4>
-                        <p>Count bathrooms that don't have a shower or bathtub as a half bathroom.
-                        </p>
-                    </div>
-                    <div class="my-4 mb-0">
-                        <p class="bold_font">Bathrooms for guests</p>
-                        <select class="form-select custom_form_control w-75" aria-label="Default select example">
-                            <option selected>Add another bed</option>
-                            <option value="1">One</option>
-                            <option value="2">Two</option>
-                            <option value="3">Three</option>
-                        </select>
-                    </div> -->
+                    <!-- other beds  -->
+                    <ng-container *ngFor="let count of bedRoomCountArr">
+                        <div class="mb-5 d-flex align-items-center justify-content-between">
+                            <div>
+                                <h5 class="fz20 medium_font mb-0"> {{count===0?'Common Space': 'Bedroom'}}
+                                    {{count?count: ''}}</h5>
+                                <ng-container *ngFor="let bed of bedGroup[count]?.beds">
+                                    <p class="fz14 regular_font mb-0">
+                                        {{bedTypeObj[bed.bed_id] | titlecase}} : {{bed?.count}}
+                                    </p>
+                                </ng-container>
+                            </div>
+                            <button class="btn add_btn medium_font" *ngIf="bedGroup[count]?.isEdit"
+                                (click)="editRoom(count)">
+                                Edit
+                            </button>
+                            <button class="btn add_btn medium_font" *ngIf="!bedGroup[count]?.isEdit"
+                                (click)="doneRoom(count)">
+                                Done
+                            </button>
+                        </div>
+
+                        <ng-container *ngIf="!bedGroup[count]?.isEdit">
+                            <div *ngFor="let bed of bedGroup[count]?.beds">
+                                <div class="d-flex align-items-center justify-content-between w-50 mb-3">
+                                    <h5 class="fz16 semi_font">
+                                        {{bedTypeObj[bed?.bed_id] | titlecase}}
+                                    </h5>
+                                    <div class="">
+                                        <div class="">
+                                            <button class="icon">
+                                                <img src="assets/images/minus_blue.png" class="img-fluid"
+                                                    (click)="countBedsInRoom(bed?.bed_id, count, 'dec')">
+                                            </button>
+                                            <span class="counter-text"> {{bed?.count}} </span>
+                                            <button class="icon">
+                                                <img src="assets/images/plus_blue.png" class="img-fluid"
+                                                    (click)="countBedsInRoom(bed?.bed_id, count, 'inc')">
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="my-4 mb-4">
+                                <select class="form-select custom_form_control w-75" aria-label="Default select example"
+                                    (change)="addAnotherBed($event.target.value, count)">
+                                    <option selected>Add another bed</option>
+                                    <option *ngFor="let bed of bedTypes" [value]="bed.id">
+                                        {{bed?.bed_type |titlecase}}
+                                    </option>
+                                </select>
+                            </div>
+                        </ng-container>
+
+                    </ng-container>
+
                 </div>
 
-                <div class="d-flex justify-content-between bg-white align-items-center mb-5 pt-5 mt-0 px-4 back_next_part">
-                    <a href="javascript:void(0);" class="blue_color d-flex align-items-center" routerLink="{{step1Route.url}}">
-                        <img src="assets/images/blue-left-arrow.png" class="me-2" alt="" /> Back
-                    </a>
-                    <button class="btn custom_btn">Next</button>
+                <div class="d-flex justify-content-between align-items-center mb-5 p-4 mt-0 back_next_part bg-white">
+                    <a href="javascript:void(0);" class="blue_color d-flex align-items-center"
+                        [routerLink]="[step1Route.url, encryptedPropertyId]">
+                        <img src="assets/images/blue-left-arrow.png" class="me-2" alt="" />
+                        Back</a>
+                    <button class="btn custom_btn" *ngIf="!isNextLoading" (click)="addPropertyBeds()">Next</button>
+                    <button class="btn custom_btn" *ngIf="isNextLoading">
+                        Next
+                        <div class="spinner-border text-info spinner-border-sm"></div>
+                    </button>
                 </div>
             </div>
         </div>

@@ -8,7 +8,7 @@
             <label for="" class="fz18 medium_font mb-3">Choose a property type</label>
             <select class="form-select custom_form_control" aria-label="Default select example"
               (change)="onSelectPropertyType($event.target.value)">
-              <option *ngFor="let type of propertyTypes" [value]="type.id">
+              <option *ngFor="let type of propertyTypes" [value]="type.id" [selected]="type.id == selectedPropertyType">
                 {{type.property_type |titlecase}}
               </option>
             </select>

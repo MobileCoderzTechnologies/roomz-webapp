@@ -4,7 +4,6 @@ import { RouterModule, Routes } from '@angular/router';
 import { HomeComponent } from '../hosting/components/home/home.component';
 import { PropertyGuestsComponent } from '../hosting/components/property-guests/property-guests.component';
 import { PropertyGuests2Component } from '../hosting/components/property-guests2/property-guests2.component';
-import { PropertyGuests3Component } from '../hosting/components/property-guests3/property-guests3.component';
 import { PropertyGuests4Component } from './components/property-guests4/property-guests4.component';
 import { PropertyGuests5Component } from './components/property-guests5/property-guests5.component';
 import { PropertyGuests6Component } from './components/property-guests6/property-guests6.component';
@@ -62,7 +61,11 @@ const routes: Routes = [
         component: StartComponent
       },
       {
-        path: STEP_1_ROUTE.path,
+        path: `${STEP_1_ROUTE.path}`,
+        component: PropertyGuestsComponent
+      },
+      {
+        path: `${STEP_1_ROUTE.path}/:id`,
         component: PropertyGuestsComponent
       },
       {
@@ -90,10 +93,6 @@ const routes: Routes = [
   {
     path: 'property-guests2',
     component: PropertyGuests2Component,
-  },
-  {
-    path: 'property-guests3',
-    component: PropertyGuests3Component,
   },
   {
     path: 'property-guests4',
