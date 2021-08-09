@@ -33,6 +33,8 @@ import { PropertyGuests25Component } from './components/property-guests25/proper
 import { PropertyGuests26Component } from './components/property-guests26/property-guests26.component';
 import { PropertyGuests27Component } from './components/property-guests27/property-guests27.component';
 import { PropertyGuests28Component } from './components/property-guests28/property-guests28.component';
+import { SharedModule } from 'src/app/modules/shared/shared.module';
+import { ValidateErrorModule } from 'src/app/modules/validate-error/validate-error.module';
 
 
 
@@ -74,10 +76,14 @@ import { PropertyGuests28Component } from './components/property-guests28/proper
   ],
   imports: [
     CommonModule,
-    HostingRoutingModule
+    HostingRoutingModule,
+    SharedModule,
+    ValidateErrorModule
   ],
   exports: [
-    HostingRoutingModule
+    HostingRoutingModule,
+    SharedModule,
+    ValidateErrorModule
   ]
 })
 export class HostingModule { }

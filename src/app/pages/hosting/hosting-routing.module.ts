@@ -77,11 +77,11 @@ const routes: Routes = [
         component: PropertyGuests4Component
       },
       {
-        path: STEP_4_ROUTE.path,
+        path: `${STEP_4_ROUTE.path}/:id`,
         component: PropertyGuests5Component
       },
       {
-        path: STEP_5_ROUTE.path,
+        path: `${STEP_5_ROUTE.path}/:id`,
         component: PropertyGuests6Component
       }
     ]

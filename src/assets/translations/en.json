@@ -41,7 +41,7 @@
       "phoneNumber": " Phone Number",
       "phoneNumberPlaceholder": " Enter Phone Number",
       "email": "Email",
-      "emailPatternError":"Email is not valid",
+      "emailPatternError": "Email is not valid",
       "emailPlaceholder": " Enter Email",
       "loginBtn": "LOG IN",
       "forgotPasswordBtn": "Forgot Password?"
@@ -121,12 +121,21 @@
       "skipForNowBtnText": "Skip for now"
     }
   },
-
-  "hosting": {
-    "home": {
-      
+  "listProperty": {
+    "backBtn": "Back",
+    "nextBtn": "Next",
+    "address": {
+      "headline": "Where’s your place located?",
+      "subHeadline": "Guests will only get your exact address once they’ve booked a reservation.",
+      "useCurrentLocation": "Use current location",
+      "country": "Country/Region",
+      "street": "Street",
+      "streetHint": "House name/number + street/road",
+      "optional": "Apt, suite, etc.(optional)",
+      "optionalHint": "Flat, suite, building access code",
+      "city": "city",
+      "state": "State",
+      "zipCode": "Zip/Postal Code"
     }
   }
-
-
 }
