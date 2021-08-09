@@ -7,7 +7,6 @@ import { PropertyGuests2Component } from '../hosting/components/property-guests2
 import { PropertyGuests4Component } from './components/property-guests4/property-guests4.component';
 import { PropertyGuests5Component } from './components/property-guests5/property-guests5.component';
 import { PropertyGuests6Component } from './components/property-guests6/property-guests6.component';
-import { PropertyGuests7Component } from './components/property-guests7/property-guests7.component';
 import { PropertyGuests8Component } from './components/property-guests8/property-guests8.component';
 import { PropertyGuests9Component } from './components/property-guests9/property-guests9.component';
 import { PropertyGuests10Component } from './components/property-guests10/property-guests10.component';
@@ -33,14 +32,31 @@ import { PropertyGuests28Component } from './components/property-guests28/proper
 import {
   LISTING_HOME_ROUTE,
   START_ROUTE,
+  STEP_11_ROUTE,
+  STEP_12_ROUTE,
+  STEP_13_ROUTE,
+  STEP_14_ROUTE,
+  STEP_15_ROUTE,
+  STEP_17_ROUTE,
+  STEP_18_ROUTE,
+  STEP_19_ROUTE,
   STEP_1_ROUTE,
+  STEP_20_ROUTE,
+  STEP_21_ROUTE,
+  STEP_22_ROUTE,
+  STEP_23_ROUTE,
   STEP_2_ROUTE,
   STEP_3_ROUTE,
   STEP_4_ROUTE,
-  STEP_5_ROUTE
+  STEP_5_ROUTE,
+  STEP_6_ROUTE,
+  STEP_7_ROUTE,
+  STEP_8_ROUTE,
+  STEP_9_ROUTE
 } from './constants/route.constant';
 import { PropertyViewComponent } from './components/property-view/property-view.component';
 import { PropertyListComponent } from './components/property-list/property-list.component';
+import { PropertyDetailsComponent } from './components/property-details/property-details.component';
 
 
 const routes: Routes = [
@@ -85,6 +101,66 @@ const routes: Routes = [
       {
         path: `${STEP_5_ROUTE.path}/:id`,
         component: PropertyGuests6Component
+      },
+      {
+        path: `${STEP_6_ROUTE.path}/:id`,
+        component: PropertyGuests22Component
+      },
+      {
+        path: `${STEP_7_ROUTE.path}/:id`,
+        component: PropertyGuests17Component
+      },
+      {
+        path: `${STEP_8_ROUTE}/:id`,
+        component: PropertyDetailsComponent
+      },
+      {
+        path: `${STEP_9_ROUTE.path}/:id`,
+        component: PropertyGuests8Component
+      },
+      {
+        path: `${STEP_11_ROUTE.path}/:id`,
+        component: PropertyGuests10Component
+      },
+      {
+        path: `${STEP_12_ROUTE.path}/:id`,
+        component: PropertyGuests12Component
+      },
+      {
+        path: `${STEP_13_ROUTE.path}/:id`,
+        component: PropertyGuests13Component
+      },
+      {
+        path: `${STEP_14_ROUTE.path}/:id`,
+        component: PropertyGuests14Component
+      },
+      {
+        path: `${STEP_15_ROUTE.path}/:id`,
+        component: PropertyGuests23Component
+      },
+      {
+        path: `${STEP_17_ROUTE.path}/:id`,
+        component: PropertyGuests25Component
+      },
+      {
+        path: `${STEP_18_ROUTE}/:id`,
+        component: PropertyGuests26Component
+      },
+      {
+        path: `${STEP_19_ROUTE.path}/:id`,
+        component: PropertyGuests19Component
+      },
+      {
+        path: `${STEP_20_ROUTE.path}/:id`,
+        component: PropertyGuests20Component
+      },
+      {
+        path: `${STEP_22_ROUTE.path}/:id`,
+        component: PropertyGuests27Component
+      },
+      {
+        path: `${STEP_23_ROUTE.path}/:id`,
+        component: PropertyGuests28Component
       }
     ]
   },
@@ -107,10 +183,6 @@ const routes: Routes = [
   {
     path: 'property-guests6',
     component: PropertyGuests6Component,
-  },
-  {
-    path: 'property-guests7',
-    component: PropertyGuests7Component,
   },
   {
     path: 'property-guests8',

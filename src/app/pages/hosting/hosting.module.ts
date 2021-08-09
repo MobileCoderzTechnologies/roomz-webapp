@@ -8,7 +8,6 @@ import { PropertyGuests2Component } from './components/property-guests2/property
 import { PropertyGuests4Component } from './components/property-guests4/property-guests4.component';
 import { PropertyGuests5Component } from './components/property-guests5/property-guests5.component';
 import { PropertyGuests6Component } from './components/property-guests6/property-guests6.component';
-import { PropertyGuests7Component } from './components/property-guests7/property-guests7.component';
 import { PropertyGuests8Component } from './components/property-guests8/property-guests8.component';
 import { PropertyGuests9Component } from './components/property-guests9/property-guests9.component';
 import { PropertyGuests10Component } from './components/property-guests10/property-guests10.component';
@@ -37,6 +36,9 @@ import { SharedModule } from 'src/app/modules/shared/shared.module';
 import { ValidateErrorModule } from 'src/app/modules/validate-error/validate-error.module';
 import { PropertyListComponent } from './components/property-list/property-list.component';
 import { PropertyViewComponent } from './components/property-view/property-view.component';
+import { PropertyDetailsComponent } from './components/property-details/property-details.component';
+import { PropertyPreviewComponent } from './components/property-preview/property-preview.component';
+import { PropertyCheckInsComponent } from './components/property-check-ins/property-check-ins.component';
 
 
 
@@ -50,7 +52,6 @@ import { PropertyViewComponent } from './components/property-view/property-view.
     PropertyGuests4Component,
     PropertyGuests5Component,
     PropertyGuests6Component,
-    PropertyGuests7Component,
     PropertyGuests8Component,
     PropertyGuests9Component,
     PropertyGuests10Component,
@@ -76,7 +77,10 @@ import { PropertyViewComponent } from './components/property-view/property-view.
     PropertyGuests27Component,
     PropertyGuests28Component,
     PropertyListComponent,
-    PropertyViewComponent
+    PropertyViewComponent,
+    PropertyDetailsComponent,
+    PropertyPreviewComponent,
+    PropertyCheckInsComponent
   ],
   imports: [
     CommonModule,

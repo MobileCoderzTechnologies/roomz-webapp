@@ -48,53 +48,126 @@ export const STEP_5_ROUTE = {
   }
 };
 export const STEP_6_ROUTE = {
-  path: '',
+  path: 'guest-requirements',
   get url(): string {
     return `${LISTING_HOME_ROUTE}/${this.path}`;
   }
 };
 export const STEP_7_ROUTE = {
-  path: '',
+  path: 'house-rules',
   get url(): string {
     return `${LISTING_HOME_ROUTE}/${this.path}`;
   }
 };
 export const STEP_8_ROUTE = {
-  path: '',
+  path: 'home-details',
   get url(): string {
     return `${LISTING_HOME_ROUTE}/${this.path}`;
   }
 };
 export const STEP_9_ROUTE = {
-  path: '',
+  path: 'photos',
   get url(): string {
     return `${LISTING_HOME_ROUTE}/${this.path}`;
   }
 };
 export const STEP_10_ROUTE = {
-  path: '',
+  path: 'preview',
   get url(): string {
     return `${LISTING_HOME_ROUTE}/${this.path}`;
   }
 };
 export const STEP_11_ROUTE = {
-  path: '',
+  path: 'description',
   get url(): string {
     return `${LISTING_HOME_ROUTE}/${this.path}`;
   }
 };
 
 export const STEP_12_ROUTE = {
-  path: '',
+  path: 'name-of-listing',
   get url(): string {
     return `${LISTING_HOME_ROUTE}/${this.path}`;
   }
 };
 
 export const STEP_13_ROUTE = {
-  path: '',
+  path: 'user-photo',
   get url(): string {
     return `${LISTING_HOME_ROUTE}/${this.path}`;
   }
 };
+
+export const STEP_14_ROUTE = {
+  path: 'contacts',
+  get url(): string {
+    return `${LISTING_HOME_ROUTE}/${this.path}`;
+  }
+};
+
+export const STEP_15_ROUTE = {
+  path: 'availability',
+  get url(): string {
+    return `${LISTING_HOME_ROUTE}/${this.path}`;
+  }
+};
+
+export const STEP_16_ROUTE = {
+  path: 'calender',
+  get url(): string {
+    return `${LISTING_HOME_ROUTE}/${this.path}`;
+  }
+};
+
+export const STEP_17_ROUTE = {
+  path: 'pricing',
+  get url(): string {
+    return `${LISTING_HOME_ROUTE}/${this.path}`;
+  }
+};
+
+export const STEP_18_ROUTE = {
+  path: 'local-laws',
+  get url(): string {
+    return `${LISTING_HOME_ROUTE}/${this.path}`;
+  }
+};
+
+
+export const STEP_19_ROUTE = {
+  path: 'updated-calender',
+  get url(): string {
+    return `${LISTING_HOME_ROUTE}/${this.path}`;
+  }
+};
+
+export const STEP_20_ROUTE = {
+  path: 'questions',
+  get url(): string {
+    return `${LISTING_HOME_ROUTE}/${this.path}`;
+  }
+};
+
+export const STEP_21_ROUTE = {
+  path: 'check-ins',
+  get url(): string {
+    return `${LISTING_HOME_ROUTE}/${this.path}`;
+  }
+};
+
+export const STEP_22_ROUTE = {
+  path: 'review-settings',
+  get url(): string {
+    return `${LISTING_HOME_ROUTE}/${this.path}`;
+  }
+};
+
+
+export const STEP_23_ROUTE = {
+  path: 'publish',
+  get url(): string {
+    return `${LISTING_HOME_ROUTE}/${this.path}`;
+  }
+};
+
 

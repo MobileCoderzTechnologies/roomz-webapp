@@ -124,6 +124,10 @@ export class PropertyGuests2Component implements OnInit, AfterViewInit, OnDestro
           this.numberOfGuests = this.propertyData.property.no_of_guests || 1;
           if (this.propertyData.beds) {
             this.propertyBeds = this.propertyData.beds;
+            this.bedRoomCountArr = [];
+            for (let i = 0; i <= this.numberOfBedrooms; i++) {
+              this.bedRoomCountArr.push(i);
+            }
           }
           this.groupBeds(this.propertyBeds);
         }
@@ -177,7 +181,6 @@ export class PropertyGuests2Component implements OnInit, AfterViewInit, OnDestro
         this.propertyBeds.push({ ...item });
       });
 
-      console.log(this.propertyBeds);
       this.groupBeds(this.propertyBeds);
     }
 

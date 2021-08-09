@@ -3,6 +3,7 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { delay } from 'rxjs/operators';
+import { AlertService } from 'src/app/modules/alert/alert.service';
 import { EncryptionService } from 'src/app/services/encryption.service';
 import { STEP_2_ROUTE, STEP_4_ROUTE } from '../../constants/route.constant';
 import { ProgressService } from '../../services/progress.service';
@@ -39,7 +40,8 @@ export class PropertyGuests4Component implements OnInit, AfterViewInit, OnDestro
     private $encryptionService: EncryptionService,
     private $router: Router,
     private $activatedRoute: ActivatedRoute,
-    private $propertyListingService: PropertyListingService
+    private $propertyListingService: PropertyListingService,
+    private $alert: AlertService
   ) { }
 
   ngOnInit(): void {
@@ -108,6 +110,9 @@ export class PropertyGuests4Component implements OnInit, AfterViewInit, OnDestro
       this.$ps.setPropertyData(this.propertyData);
 
       this.$router.navigate([this.step4Route.url, this.encryptedPropertyId]);
+    }, err => {
+      this.isNextLoading = false;
+      this.$alert.danger(err.message);
     });
   }
 

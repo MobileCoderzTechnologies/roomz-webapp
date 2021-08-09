@@ -60,11 +60,11 @@ export class PropertyListingService {
     return this.$http.put(`${PROPERTY_ADDRESS}/${id}`, data);
   }
 
-  addPropertyLocation(id: number, data: { [key: string]: string }): Observable<any> {
+  addPropertyLocation(id: number, data: { [key: string]: string | number }): Observable<any> {
     return this.$http.put(`${PROPERTY_LOCATION}/${id}`, data);
   }
 
-  addPropertyAmenities(id: number, data: any): Observable<any> {
+  addPropertyAmenities(id: number, data: {amenities: number[]}): Observable<any> {
     return this.$http.put(`${PROPERTY_AMENITIES}/${id}`, data);
   }
 

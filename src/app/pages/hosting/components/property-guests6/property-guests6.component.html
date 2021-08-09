@@ -13,7 +13,8 @@
                         <div class="custom_check mb-4">
                             <div class="form-group">
                                 <input type="checkbox" id="{{amenity?.id}}" [value]="amenity.id"
-                                    (change)="onCheckAmenity(amenity?.id, $event.target.checked)" />
+                                    (change)="onCheckAmenity(amenity?.id, $event.target.checked)"
+                                    [checked]="showCheckedAmenity(amenity?.id)">
                                 <label class="form-check-label fz15" for="{{amenity?.id}}">
                                     {{amenity?.name}}
                                     <p *ngIf="amenity?.description" class="ms-5 fz-12">
@@ -31,7 +32,8 @@
                             <div class="custom_check mb-4">
                                 <div class="form-group">
                                     <input type="checkbox" id="{{amenity?.id}}" [value]="amenity.id"
-                                        (change)="onCheckAmenity(amenity?.id, $event.target.checked)">
+                                        (change)="onCheckAmenity(amenity?.id, $event.target.checked)"
+                                        [checked]="showCheckedAmenity(amenity?.id)">
                                     <label class="form-check-label fz15" for="{{amenity?.id}}">
                                         {{amenity?.name}}
                                         <p *ngIf="amenity?.description" class="ms-5 fz-12">
@@ -50,7 +52,8 @@
                             <div class="custom_check mb-4">
                                 <div class="form-group">
                                     <input type="checkbox" id="{{amenity?.id}}" [value]="amenity.id"
-                                        (change)="onCheckAmenity(amenity?.id, $event.target.checked)" />
+                                        (change)="onCheckAmenity(amenity?.id, $event.target.checked)"
+                                        [checked]="showCheckedAmenity(amenity?.id)">
                                     <label class="form-check-label fz15" for="{{amenity?.id}}">
                                         {{amenity?.name}}
                                         <p *ngIf="amenity?.description" class="ms-5 fz-12">
@@ -61,13 +64,31 @@
                             </div>
                         </ng-container>
                     </div>
+                    <div class="d-flex justify-content-between align-items-center mb-5 p-4 mt-0 back_next_part">
+                        <a href="javascript:void(0);" class="blue_color d-flex align-items-center"
+                            [routerLink]="[step4Route.url, encryptedPropertyId]">
+                            <img src="assets/images/blue-left-arrow.png" class="me-2" alt="" /> Back
+                        </a>
+                        <button class="btn custom_btn" *ngIf="!isNextLoading" (click)="addAmenities()">
+                            Next
+                        </button>
+                        <button class="btn custom_btn" *ngIf="isNextLoading">
+                            Next
+                            <div class="spinner-border text-info spinner-border-sm"></div>
+                        </button>
+                    </div>
                 </div>
-                <div class="d-flex justify-content-between align-items-center mb-5 mt-0 bg-white back_next_part p-4">
+                <!-- <div class="d-flex justify-content-between align-items-center mb-5 mt-0 bg-white back_next_part p-4">
                     <a href="javascript:void(0);" class="blue_color d-flex align-items-center" [routerLink]="[step4Route.url]">
                         <img src="assets/images/blue-left-arrow.png" class="me-2" alt="" /> Back
                     </a>
                     <button class="btn custom_btn" [routerLink]="[step6Route.url]">Next</button>
-                </div>
+                </div> -->
+
+
+
+
+
             </div>
             <div class="col-md-5">
                 <div class="col_selector m-5 p-4 bg-white right_side_content">
