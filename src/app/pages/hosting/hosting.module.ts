@@ -35,6 +35,8 @@ import { PropertyGuests27Component } from './components/property-guests27/proper
 import { PropertyGuests28Component } from './components/property-guests28/property-guests28.component';
 import { SharedModule } from 'src/app/modules/shared/shared.module';
 import { ValidateErrorModule } from 'src/app/modules/validate-error/validate-error.module';
+import { PropertyListComponent } from './components/property-list/property-list.component';
+import { PropertyViewComponent } from './components/property-view/property-view.component';
 
 
 
@@ -72,7 +74,9 @@ import { ValidateErrorModule } from 'src/app/modules/validate-error/validate-err
     PropertyGuests25Component,
     PropertyGuests26Component,
     PropertyGuests27Component,
-    PropertyGuests28Component
+    PropertyGuests28Component,
+    PropertyListComponent,
+    PropertyViewComponent
   ],
   imports: [
     CommonModule,

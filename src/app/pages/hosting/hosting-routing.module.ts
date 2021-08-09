@@ -39,6 +39,8 @@ import {
   STEP_4_ROUTE,
   STEP_5_ROUTE
 } from './constants/route.constant';
+import { PropertyViewComponent } from './components/property-view/property-view.component';
+import { PropertyListComponent } from './components/property-list/property-list.component';
 
 
 const routes: Routes = [
@@ -193,6 +195,14 @@ const routes: Routes = [
   {
     path: 'property-guests28',
     component: PropertyGuests28Component,
+  },
+  {
+    path: 'property-view',
+    component: PropertyViewComponent
+  },
+  {
+    path: 'property-list',
+    component: PropertyListComponent
   }
 
 ];
