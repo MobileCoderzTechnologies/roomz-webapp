@@ -68,7 +68,7 @@ export class PropertyListingService {
     return this.$http.put(`${PROPERTY_AMENITIES}/${id}`, data);
   }
 
-  addGuestRequirements(id: number, data: { [key: string]: string }): Observable<any> {
+  addGuestRequirements(id: number, data: { [key: string]: boolean }): Observable<any> {
     return this.$http.put(`${PROPERTY_GUEST_REQUIREMENTS}/${id}`, data);
   }
 

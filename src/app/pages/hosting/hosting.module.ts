@@ -39,6 +39,7 @@ import { PropertyViewComponent } from './components/property-view/property-view.
 import { PropertyDetailsComponent } from './components/property-details/property-details.component';
 import { PropertyPreviewComponent } from './components/property-preview/property-preview.component';
 import { PropertyCheckInsComponent } from './components/property-check-ins/property-check-ins.component';
+import { GuestRequirementModelComponent } from './components/guest-requirement-model/guest-requirement-model.component';
 
 
 
@@ -80,7 +81,8 @@ import { PropertyCheckInsComponent } from './components/property-check-ins/prope
     PropertyViewComponent,
     PropertyDetailsComponent,
     PropertyPreviewComponent,
-    PropertyCheckInsComponent
+    PropertyCheckInsComponent,
+    GuestRequirementModelComponent
   ],
   imports: [
     CommonModule,

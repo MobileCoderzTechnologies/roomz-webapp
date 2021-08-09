@@ -1,0 +1,71 @@
+<div id="edit-popup">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <!-- <span></span>
+      <button type="button" >
+        <span aria-hidden="true">&times;</span>
+      </button> -->
+      <div class="">
+        <h4 class="modal-title" id="myModalLabel">Add more guest requirements</h4>
+        <p>Only guests who meet your requirements can book instantly- everyone else must send a request.</p>
+        <div class="d-flex justify-content-between toggle-wrap" style=" border-bottom: 1px solid #f2f2f2;" *ngIf="!showRequirement.isEmailConfirmed">
+          <p>Confirmed email address</p>
+          <label class="switch">
+            <input type="checkbox" [checked]="guestRequirement.isEmailConfirmed" (change)="guestRequirement.isEmailConfirmed = !guestRequirement.isEmailConfirmed">
+            <span class="slider round"></span>
+          </label>
+        </div>
+
+        <div class="d-flex justify-content-between toggle-wrap" style=" border-bottom: 1px solid #f2f2f2;" *ngIf="!showRequirement.isPhoneConfirmed">
+          <p>Confirmed phone number</p>
+          <label class="switch">
+            <input type="checkbox" [checked]="guestRequirement.isPhoneConfirmed" (change)="guestRequirement.isPhoneConfirmed = !guestRequirement.isPhoneConfirmed">
+            <span class="slider round"></span>
+          </label>
+        </div>
+        
+
+        <div class="d-flex justify-content-between toggle-wrap" style=" border-bottom: 1px solid #f2f2f2;" *ngIf="!showRequirement.isPaymentInformation">
+          <p>Payment information</p>
+          <label class="switch">
+            <input type="checkbox" [checked]="guestRequirement.isPaymentInformation" (change)="guestRequirement.isPaymentInformation = !guestRequirement.isPaymentInformation">
+            <span class="slider round"></span>
+          </label>
+        </div>
+
+        <div class="d-flex justify-content-between toggle-wrap" style=" border-bottom: 1px solid #f2f2f2;" *ngIf="!showRequirement.isAgreeHR">
+          <p>Agree to your House rules</p>
+          <label class="switch">
+            <input type="checkbox" [checked]="guestRequirement.isAgreeHR" (change)="guestRequirement.isAgreeHR = !guestRequirement.isAgreeHR">
+            <span class="slider round"></span>
+          </label>
+        </div>
+
+        <div class="d-flex justify-content-between toggle-wrap" style=" border-bottom: 1px solid #f2f2f2;" *ngIf="!showRequirement.isTripPurpose">
+          <p>Tell you their trip purpose</p>
+          <label class="switch">
+            <input type="checkbox" [checked]="guestRequirement.isTripPurpose" (change)="guestRequirement.isTripPurpose= !guestRequirement.isTripPurpose">
+            <span class="slider round"></span>
+          </label>
+        </div>
+
+        <div class="d-flex justify-content-between toggle-wrap" style=" border-bottom: 1px solid #f2f2f2;"  *ngIf="!showRequirement.isIdSubmitted">
+          <p>Government-issued ID</p>
+          <label class="switch">
+            <input type="checkbox" [checked]="guestRequirement.isIdSubmitted" (change)="guestRequirement.isIdSubmitted = !guestRequirement.isIdSubmitted">
+            <span class="slider round"></span>
+          </label>
+        </div>
+
+        <div class="d-flex justify-content-between toggle-wrap"  *ngIf="!showRequirement.isRecommendedFromOH">
+          <p>Recommendation from other host</p>
+          <label class="switch">
+            <input type="checkbox" [checked]="guestRequirement.isRecommendedFromOH" (change)="guestRequirement.isRecommendedFromOH = !guestRequirement.isRecommendedFromOH">
+            <span class="slider round"></span>
+          </label>
+        </div>
+        <button class="btn custom_btn mt-5" (click)="onSave()">Save</button>
+      </div>
+    </div>
+  </div>
+</div>

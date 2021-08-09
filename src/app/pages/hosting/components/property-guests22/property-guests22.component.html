@@ -1,10 +1,3 @@
-<section class="heading_progress d-flex align-items-center justify-content-between">
-    <h4 class="fz16 medium_font mb-0">Calendar and availability</h4>
-    <p class="fz16 medium_font blue_color mb-0"><a href="">Save</a> and <a href="">Exit</a></p>
-</section>
-<div class="progress custom_progress">
-    <div class="progress-bar" role="progressbar" style="width: 40%" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100"></div>
-</div>
 <section class="kind_of_place">
     <div class="container">
         <div class="row">
@@ -18,20 +11,30 @@
                         <div class="mb-2">
 
                             <ul class="list-unstyled">
-                                <li class="mb-3">
+
+                                <li class="mb-3" *ngIf="isEmailConfirmed">
                                     <img src="assets/images/tick.png" class="me-2" alt="" /> Confirmed email address
                                 </li>
-                                <li class="mb-3">
+
+                                <li class="mb-3" *ngIf="isPhoneConfirmed">
                                     <img src="assets/images/tick.png" class="me-2" alt="" /> Confirmed phone number
                                 </li>
-                                <li class="mb-3">
+                                <li class="mb-3" *ngIf="isPaymentInformation">
                                     <img src="assets/images/tick.png" class="me-2" alt="" /> Payment information
                                 </li>
-                                <li class="mb-3">
+                                <li class="mb-3" *ngIf="isAgreeHR">
                                     <img src="assets/images/tick.png" class="me-2" alt="" /> Agree to your House rules
                                 </li>
-                                <li class="mb-3">
+                                <li class="mb-3" *ngIf="isTripPurpose">
                                     <img src="assets/images/tick.png" class="me-2" alt="" /> Tell you their trip purpose
+                                </li>
+                                <li class="mb-3" *ngIf="isIdSubmitted">
+                                    <img src="assets/images/tick.png" class="me-2" alt="" /> Government-issued ID
+                                    submitted to Roomz
+                                </li>
+                                <li class="mb-3" *ngIf="isRecommendedFromOH">
+                                    <img src="assets/images/tick.png" class="me-2" alt="" /> Recommended by other hosts
+                                    and have no negative reviews
                                 </li>
                             </ul>
                         </div>
@@ -40,26 +43,67 @@
                     <div class="mb-4 p-4">
                         <div class="d-flex justify-content-between">
                             <h4 class="fz18 medium_font mb-3">Additional requirements</h4>
-                            <a href="" class="edit-text color-blue" data-toggle="modal" data-target="#edit-popup">Edit </a>
+                            <a class="edit-text color-blue" style="cursor: pointer;" (click)="editRequirements()">
+                                Edit
+                            </a>
                         </div>
 
-                        <div class="custom_check mb-2">
+
+                        <div class="custom_check mb-2" *ngIf="!isEmailConfirmed">
+                            <div class="form-group">
+                                Confirmed email address
+                            </div>
+                        </div>
+
+                        <div class="custom_check mb-2" *ngIf="!isPhoneConfirmed">
+                            <div class="form-group">
+                                Confirmed phone number
+                            </div>
+                        </div>
+
+                        <div class="custom_check mb-2" *ngIf="!isPaymentInformation">
+                            <div class="form-group">
+                                Payment information
+                            </div>
+                        </div>
+
+                        <div class="custom_check mb-2" *ngIf="!isAgreeHR">
+                            <div class="form-group">
+                                Agree to your House rules
+                            </div>
+                        </div>
+
+
+                        <div class="custom_check mb-2" *ngIf="!isTripPurpose">
+                            <div class="form-group">
+                                Tell you their trip purpose
+                            </div>
+                        </div>
+                        <div class="custom_check mb-2" *ngIf="!isIdSubmitted">
                             <div class="form-group">
                                 Government-issued ID submitted to Roomz
                             </div>
                         </div>
-                        <div class="custom_check mb-4">
+                        <div class="custom_check mb-4" *ngIf="!isRecommendedFromOH">
                             <div class="form-group">
                                 Recommended by other hosts and have no negative reviews
                             </div>
                         </div>
 
                     </div>
-                    <hr />
-                    <div class="d-flex justify-content-between align-items-center mb-5 mt-4 p-4">
-                        <a href="javascript:void(0);" class="blue_color d-flex align-items-center"><img src="assets/images/blue-left-arrow.png" class="me-2" alt="" /> Back
+
+                    <div class="d-flex justify-content-between align-items-center mb-5 p-4 mt-0 back_next_part">
+                        <a href="javascript:void(0);" class="blue_color d-flex align-items-center"
+                            [routerLink]="[step5Route.url, encryptedPropertyId]">
+                            <img src="assets/images/blue-left-arrow.png" class="me-2" alt="" /> Back
                         </a>
-                        <button class="btn custom_btn">Next</button>
+                        <button class="btn custom_btn" *ngIf="!isNextLoading" (click)="addGuestRequirements()">
+                            Next
+                        </button>
+                        <button class="btn custom_btn" *ngIf="isNextLoading">
+                            Next
+                            <div class="spinner-border text-info spinner-border-sm"></div>
+                        </button>
                     </div>
                 </div>
             </div>
@@ -69,12 +113,12 @@
 
 
 <!-- popup  -->
-<div class="modal fade" id="edit-popup" tabindex="-1" role="dialog" aria-labelledby="basicModal" aria-hidden="true">
+<!-- <div class="modal fade" id="edit-popup" tabindex="-1" role="dialog" aria-labelledby="basicModal" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                 <span aria-hidden="true">&times;</span>
-              </button>
+            </button>
             <div class="">
                 <h4 class="modal-title" id="myModalLabel">Add more guest requirements</h4>
                 <p>Only guests who meet your requirements can book instantly- everyone else must send a request.</p>
@@ -83,17 +127,17 @@
                     <label class="switch">
                         <input type="checkbox">
                         <span class="slider round"></span>
-                      </label>
+                    </label>
                 </div>
                 <div class="d-flex justify-content-between toggle-wrap">
                     <p>Recommendation from other host</p>
                     <label class="switch">
                         <input type="checkbox">
                         <span class="slider round"></span>
-                      </label>
+                    </label>
                 </div>
                 <button class="btn custom_btn mt-5">Next</button>
             </div>
         </div>
     </div>
-</div>
+</div> -->
