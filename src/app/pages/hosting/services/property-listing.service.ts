@@ -7,6 +7,7 @@ import { HouseRule } from 'src/app/modals/house-rule.modal';
 import { PropertyType } from 'src/app/modals/property-type.modal';
 import { HttpService } from 'src/app/services/http.service';
 import {
+  DELETE_IMAGE,
   GET_AMENITIES,
   GET_BED_TYPES,
   GET_HOME_DETAILS,
@@ -19,7 +20,9 @@ import {
   PROPERTY_GUEST_REQUIREMENTS,
   PROPERTY_HOUSE_RULES,
   PROPERTY_LOCATION,
-  PROPERTY_TYPE
+  PROPERTY_PHOTOS,
+  PROPERTY_TYPE,
+  UPLOAD_IMAGE
 } from '../constants/api.constant';
 
 @Injectable({
@@ -83,8 +86,20 @@ export class PropertyListingService {
     return this.$http.put(`${PROPERTY_HOUSE_RULES}/${id}`, data);
   }
 
-  addPropertyDetails(id: number, data: any): Observable<any>{
+  addPropertyDetails(id: number, data: any): Observable<any> {
     return this.$http.put(`${PROPERTY_DETAILS}/${id}`, data);
+  }
+
+  uploadPhotos(data: FormData): Observable<{ data: { image_url: string }[] }> {
+    return this.$http.post(UPLOAD_IMAGE, data);
+  }
+
+  removePhotos(data: any): Observable<any> {
+    return this.$http.post(DELETE_IMAGE, data);
+  }
+
+  addPropertyPhotos(id: number, data: any): Observable<any> {
+    return this.$http.put(`${PROPERTY_PHOTOS}/${id}`, data);
   }
 }
 
