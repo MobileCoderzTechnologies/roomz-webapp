@@ -4,4 +4,5 @@ export interface PropertyHouseRule {
   cancel_reason?: string | null;
   is_additional?: boolean | null;
   description?: string | null;
+  property_id?: number| null;
 }
