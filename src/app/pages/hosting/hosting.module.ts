@@ -18,7 +18,6 @@ import { PropertyGuests14Component } from './components/property-guests14/proper
 import { PropertyGuests15Component } from './components/property-guests15/property-guests15.component';
 import { PropertyGuests16Component } from './components/property-guests16/property-guests16.component';
 import { PropertyGuests17Component } from './components/property-guests17/property-guests17.component';
-import { PropertyGuests18Component } from './components/property-guests18/property-guests18.component';
 import { PropertyGuests19Component } from './components/property-guests19/property-guests19.component';
 import { PropertyGuests20Component } from './components/property-guests20/property-guests20.component';
 import { PropertyGuests21Component } from './components/property-guests21/property-guests21.component';
@@ -36,10 +35,10 @@ import { SharedModule } from 'src/app/modules/shared/shared.module';
 import { ValidateErrorModule } from 'src/app/modules/validate-error/validate-error.module';
 import { PropertyListComponent } from './components/property-list/property-list.component';
 import { PropertyViewComponent } from './components/property-view/property-view.component';
-import { PropertyDetailsComponent } from './components/property-details/property-details.component';
 import { PropertyPreviewComponent } from './components/property-preview/property-preview.component';
 import { PropertyCheckInsComponent } from './components/property-check-ins/property-check-ins.component';
 import { GuestRequirementModelComponent } from './components/guest-requirement-model/guest-requirement-model.component';
+import { RuleReasonModelComponent } from './components/rule-reason-model/rule-reason-model.component';
 
 
 
@@ -63,7 +62,6 @@ import { GuestRequirementModelComponent } from './components/guest-requirement-m
     PropertyGuests15Component,
     PropertyGuests16Component,
     PropertyGuests17Component,
-    PropertyGuests18Component,
     PropertyGuests19Component,
     PropertyGuests20Component,
     PropertyGuests21Component,
@@ -79,10 +77,10 @@ import { GuestRequirementModelComponent } from './components/guest-requirement-m
     PropertyGuests28Component,
     PropertyListComponent,
     PropertyViewComponent,
-    PropertyDetailsComponent,
     PropertyPreviewComponent,
     PropertyCheckInsComponent,
-    GuestRequirementModelComponent
+    GuestRequirementModelComponent,
+    RuleReasonModelComponent
   ],
   imports: [
     CommonModule,

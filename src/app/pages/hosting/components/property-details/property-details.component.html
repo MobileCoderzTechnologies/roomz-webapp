@@ -1,1 +1,119 @@
-<p>property-details works!</p>
+<div class="kind_of_place">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-7">
+        <div class="bg-white">
+          <div class="mb-4 p-4">
+            <h4 class="fz25 semi_font text-secondary mb-3">
+              Details guests must know about your home
+            </h4>
+            <div class="custom_check mb-4">
+              <div class="form-group">
+                <input type="checkbox" id="html" />
+                <label class="form-check-label fz15" for="html">
+                  Must climb stairs
+                </label>
+              </div>
+            </div>
+            <div class="mb-4">
+              <p class="fz15 regular_font">
+                Describe the stairs (for example, how many flights)
+              </p>
+              <input type="text" name="" id="" class="form-control w-75" placeholder="Add your description" />
+            </div>
+            <div class="custom_check mb-4">
+              <div class="form-group">
+                <input type="checkbox" id="html2" checked />
+                <label class="form-check-label fz15" for="html2">
+                  Potential for noise
+                </label>
+              </div>
+            </div>
+            <div class="custom_check mb-4">
+              <div class="form-group">
+                <input type="checkbox" id="html3" checked />
+                <label class="form-check-label fz15" for="html3">
+                  Pet(s) live on property
+                </label>
+              </div>
+            </div>
+            <div class="custom_check mb-4">
+              <div class="form-group">
+                <input type="checkbox" id="html4" />
+                <label class="form-check-label fz15" for="html4">
+                  No parking on property
+                </label>
+              </div>
+            </div>
+            <div class="custom_check mb-4">
+              <div class="form-group">
+                <input type="checkbox" id="html5" checked />
+                <label class="form-check-label fz15" for="html5">
+                  Some spaces are shared
+                </label>
+              </div>
+            </div>
+            <div class="custom_check mb-4">
+              <div class="form-group">
+                <input type="checkbox" id="html6" />
+                <label class="form-check-label fz15" for="html6">
+                  Amenity limitations
+                </label>
+              </div>
+            </div>
+            <div class="custom_check mb-4">
+              <div class="form-group">
+                <input type="checkbox" id="html7" checked />
+                <label class="form-check-label fz15" for="html7">
+                  Surveillance or recording devices on property
+                </label>
+              </div>
+            </div>
+            <div class="custom_check mb-4">
+              <div class="form-group">
+                <input type="checkbox" id="html8" checked />
+                <label class="form-check-label fz15" for="html8">
+                  Weapons on property
+                </label>
+              </div>
+            </div>
+            <div class="custom_check mb-4">
+              <div class="form-group">
+                <input type="checkbox" id="html9" checked />
+                <label class="form-check-label fz15" for="html9">
+                  Dangerous animals on property
+                </label>
+              </div>
+            </div>
+          </div>
+          <div class="d-flex justify-content-between align-items-center mb-5 p-4 mt-0 back_next_part">
+            <a href="javascript:void(0);" class="blue_color d-flex align-items-center"
+                [routerLink]="[step7Route.url, encryptedPropertyId]">
+                <img src="assets/images/blue-left-arrow.png" class="me-2" alt="" /> Back
+            </a>
+            <button class="btn custom_btn" *ngIf="!isNextLoading" (click)="AddPropertyDetails()">
+                Next
+            </button>
+            <button class="btn custom_btn" *ngIf="isNextLoading">
+                Next
+                <div class="spinner-border text-info spinner-border-sm"></div>
+            </button>
+        </div>
+        </div>
+      </div>
+      <div class="col-md-5">
+        <div class="col_selector m-5 p-4 bg-white right_side_content">
+          <div class="mb_20">
+            <img src="assets/images/idea.png" alt="" />
+          </div>
+          <h5 class="fz18 mb-4">Welcome children and pets</h5>
+          <p class="fz14 regular_font mb_20">
+            175% more travellers are looking for places that allow children, infants, and pets. If it's
+            right for you, mark your place as suitable for these guests to help you get booked. <br />
+            <i>Based on recent booking trends in your area</i>
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

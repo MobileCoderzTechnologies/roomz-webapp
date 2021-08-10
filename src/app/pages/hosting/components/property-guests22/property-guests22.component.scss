@@ -90,3 +90,15 @@
         margin: 1.75rem auto;
     }
 }
+
+
+::ng-deep .mat-dialog-container {
+    padding: 0% !important;
+    border-radius: 7px !important;
+    &::-webkit-scrollbar{
+      width: 2px !important;
+    }
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+    overflow: -moz-scrollbars-none;
+  }

@@ -3,4 +3,5 @@ export interface HomeDetail {
   uid: string;
   name: string;
   description: string | null;
+  isChecked: boolean | null;
 }

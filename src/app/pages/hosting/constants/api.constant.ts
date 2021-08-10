@@ -4,6 +4,8 @@ export const GET_PROPERTY_TYPES = `${API_GROUP}/property-types`;
 export const GET_AMENITIES = `${API_GROUP}/amenities`;
 export const GET_BED_TYPES = `${API_GROUP}/bed-types`;
 export const GET_HOME_DETAILS = `${API_GROUP}/home-details`;
+export const GET_HOME_RULES = `${API_GROUP}/home-rules`;
+
 
 
 export const PROPERTY_TYPE = `${API_GROUP}/${API_SUBGROUP}/type`;
