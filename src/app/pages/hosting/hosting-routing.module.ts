@@ -54,13 +54,13 @@ import {
 } from './constants/route.constant';
 import { PropertyViewComponent } from './components/property-view/property-view.component';
 import { PropertyListComponent } from './components/property-list/property-list.component';
-
+import { PropertyPreviewComponent } from './components/property-preview/property-preview.component';
 
 const routes: Routes = [
   {
     path: '',
     redirectTo: LISTING_HOME_ROUTE.path,
-    pathMatch: 'full'
+    pathMatch: 'full',
   },
   {
     path: LISTING_HOME_ROUTE.path,
@@ -69,43 +69,43 @@ const routes: Routes = [
       {
         path: '',
         redirectTo: START_ROUTE.path,
-        pathMatch: 'full'
+        pathMatch: 'full',
       },
       {
         path: START_ROUTE.path,
-        component: StartComponent
+        component: StartComponent,
       },
       {
         path: `${STEP_1_ROUTE.path}`,
-        component: PropertyGuestsComponent
+        component: PropertyGuestsComponent,
       },
       {
         path: `${STEP_1_ROUTE.path}/:id`,
-        component: PropertyGuestsComponent
+        component: PropertyGuestsComponent,
       },
       {
         path: `${STEP_2_ROUTE.path}/:id`,
-        component: PropertyGuests2Component
+        component: PropertyGuests2Component,
       },
       {
         path: `${STEP_3_ROUTE.path}/:id`,
-        component: PropertyGuests4Component
+        component: PropertyGuests4Component,
       },
       {
         path: `${STEP_4_ROUTE.path}/:id`,
-        component: PropertyGuests5Component
+        component: PropertyGuests5Component,
       },
       {
         path: `${STEP_5_ROUTE.path}/:id`,
-        component: PropertyGuests6Component
+        component: PropertyGuests6Component,
       },
       {
         path: `${STEP_6_ROUTE.path}/:id`,
-        component: PropertyGuests22Component
+        component: PropertyGuests22Component,
       },
       {
         path: `${STEP_7_ROUTE.path}/:id`,
-        component: PropertyGuests17Component
+        component: PropertyGuests17Component,
       },
       // {
       //   path: `${STEP_8_ROUTE.path}/:id`,
@@ -113,57 +113,57 @@ const routes: Routes = [
       // },
       {
         path: `${STEP_8_ROUTE.path}/:id`,
-        component: PropertyGuests8Component
+        component: PropertyGuests8Component,
       },
       {
         path: `${STEP_10_ROUTE.path}/:id`,
-        component: PropertyGuests10Component
+        component: PropertyGuests10Component,
       },
       {
         path: `${STEP_11_ROUTE.path}/:id`,
-        component: PropertyGuests12Component
+        component: PropertyGuests12Component,
       },
       {
         path: `${STEP_12_ROUTE.path}/:id`,
-        component: PropertyGuests13Component
+        component: PropertyGuests13Component,
       },
       {
         path: `${STEP_13_ROUTE.path}/:id`,
-        component: PropertyGuests14Component
+        component: PropertyGuests14Component,
       },
       {
         path: `${STEP_14_ROUTE.path}/:id`,
-        component: PropertyGuests23Component
+        component: PropertyGuests23Component,
       },
       {
         path: `${STEP_16_ROUTE.path}/:id`,
-        component: PropertyGuests25Component
+        component: PropertyGuests25Component,
       },
       {
         path: `${STEP_17_ROUTE}/:id`,
-        component: PropertyGuests26Component
+        component: PropertyGuests26Component,
       },
       {
         path: `${STEP_18_ROUTE.path}/:id`,
-        component: PropertyGuests19Component
+        component: PropertyGuests19Component,
       },
       {
         path: `${STEP_19_ROUTE.path}/:id`,
-        component: PropertyGuests20Component
+        component: PropertyGuests20Component,
       },
       {
         path: `${STEP_20_ROUTE.path}/:id`,
-        component: PropertyGuests17Component
+        component: PropertyGuests17Component,
       },
       {
         path: `${STEP_21_ROUTE.path}/:id`,
-        component: PropertyGuests27Component
+        component: PropertyGuests27Component,
       },
       {
         path: `${STEP_22_ROUTE.path}/:id`,
-        component: PropertyGuests28Component
-      }
-    ]
+        component: PropertyGuests28Component,
+      },
+    ],
   },
   // {
   //   path: 'property-guests',
@@ -267,17 +267,20 @@ const routes: Routes = [
   },
   {
     path: 'property-view',
-    component: PropertyViewComponent
+    component: PropertyViewComponent,
   },
   {
     path: 'property-list',
-    component: PropertyListComponent
-  }
-
+    component: PropertyListComponent,
+  },
+  {
+    path: 'property-preview',
+    component: PropertyPreviewComponent,
+  },
 ];
 
 @NgModule({
   imports: [CommonModule, RouterModule.forChild(routes)],
   exports: [RouterModule],
 })
-export class HostingRoutingModule { }
+export class HostingRoutingModule {}
