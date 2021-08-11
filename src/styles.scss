@@ -562,3 +562,21 @@ hr {
 .fz-12 {
   font-size: 12px;
 }
+
+.preview_back {
+  position: absolute;
+  top: 40px;
+  left: 60px;
+  z-index: 999;
+}
+
+.btn_carousal {
+  background: #000 !important;
+  width: 43px !important;
+  color: #fff !important;
+  text-indent: initial !important;
+  opacity: 1 !important;
+  height: 22px !important;
+  border: 0 !important;
+  border-radius: 5px !important;
+}
