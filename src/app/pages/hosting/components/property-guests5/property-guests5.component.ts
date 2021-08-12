@@ -1,10 +1,11 @@
-import { AfterViewInit, Component, OnDestroy, OnInit } from '@angular/core';
+import { MapsAPILoader } from '@agm/core';
+import { AfterViewInit, Component, NgZone, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { delay } from 'rxjs/operators';
 import { AlertService } from 'src/app/modules/alert/alert.service';
 import { EncryptionService } from 'src/app/services/encryption.service';
-import { STEP_3_ROUTE, STEP_5_ROUTE } from '../../constants/route.constant';
+import { MY_LISTING_ROUTE, STEP_3_ROUTE, STEP_5_ROUTE } from '../../constants/route.constant';
 import { ProgressService } from '../../services/progress.service';
 import { PropertyListingService } from '../../services/property-listing.service';
 
@@ -25,11 +26,18 @@ export class PropertyGuests5Component implements OnInit, AfterViewInit, OnDestro
   longitude: number;
   location: string;
 
+  zoom = 10;
+
   propertyData: any;
   propertyDataSubs: Subscription;
 
   isNextLoading = false;
 
+  private geoCoder: any;
+
+  isSavingExit = false;
+
+  saveExitSubs: Subscription;
 
   constructor(
     private $ps: ProgressService,
@@ -37,10 +45,13 @@ export class PropertyGuests5Component implements OnInit, AfterViewInit, OnDestro
     private $router: Router,
     private $activatedRoute: ActivatedRoute,
     private $propertyListingService: PropertyListingService,
-    private $alert: AlertService
+    private $alert: AlertService,
+    private $mapsApiLoader: MapsAPILoader,
+    private $ngZone: NgZone
   ) { }
 
   ngOnInit(): void {
+    this.mapApiLoader();
     this.$ps.header.next({
       progress: 25,
       heading: 'Property and guests'
@@ -50,6 +61,13 @@ export class PropertyGuests5Component implements OnInit, AfterViewInit, OnDestro
       const { id } = params;
       this.encryptedPropertyId = id;
       this.propertyId = Number(this.$encryptionService.decrypt(id));
+    });
+
+    this.saveExitSubs = this.$ps.saveExit.subscribe(data => {
+      if (data === 'done') {
+        this.isSavingExit = true;
+        this.addPropertyLocation();
+      }
     });
   }
 
@@ -78,24 +96,62 @@ export class PropertyGuests5Component implements OnInit, AfterViewInit, OnDestro
       });
   }
 
+  markerDragEnd(event): void {
+    console.log(event);
+    this.latitude = event.coords.lat;
+    this.longitude = event.coords.lng;
+    console.log(this.latitude, this.longitude);
+    this.getAddress(this.latitude, this.longitude);
+  }
+
+
+  private mapApiLoader(): void {
+    this.$mapsApiLoader.load().then(() => {
+      // this.setCurrentLocation();
+      this.geoCoder = new google.maps.Geocoder;
+    });
+
+  }
+
+
+  private getAddress(latitude, longitude): void {
+    this.geoCoder.geocode({ location: { lat: latitude, lng: longitude } }, (results, status) => {
+      if (status === 'OK') {
+        if (results[0]) {
+          this.location = results[0].formatted_address;
+        } else {
+          this.$alert.danger('No results found');
+        }
+      } else {
+        this.$alert.danger(`Geocoder failed due to:  ${status}`);
+      }
+
+    });
+  }
+
+
 
   addPropertyLocation(): void {
     this.isNextLoading = true;
     const locationData = {
-      location: this.location || 'Noida UP',
-      latitude: this.latitude || 10.2,
-      longitude: this.longitude || 10.6,
+      location: this.location,
+      latitude: this.latitude,
+      longitude: this.longitude,
     };
     this.$propertyListingService.addPropertyLocation(this.propertyId, locationData).subscribe(data => {
       this.isNextLoading = false;
       const respData = data.data[0];
       this.propertyData.property.location = respData.location;
-      this.propertyData.property.latitude = respData.latitude; 
+      this.propertyData.property.latitude = respData.latitude;
       this.propertyData.property.longitude = respData.longitude;
 
       this.$ps.clearPropertyData();
       this.$ps.setPropertyData(this.propertyData);
 
+      if (this.isSavingExit) {
+        this.$router.navigateByUrl(MY_LISTING_ROUTE.url);
+        return;
+      }
       this.$router.navigate([this.step5Route.url, this.encryptedPropertyId]);
     }, err => {
       this.isNextLoading = false;
@@ -105,6 +161,7 @@ export class PropertyGuests5Component implements OnInit, AfterViewInit, OnDestro
 
   ngOnDestroy(): void {
     this.propertyDataSubs.unsubscribe();
+    this.saveExitSubs.unsubscribe();
   }
 
 }

@@ -27,8 +27,9 @@ export class ProgressBarComponent implements OnInit, AfterViewInit, OnDestroy {
 
 
   onSaveExit(): void {
-    this.$ps.saveExit.next('done');
     this.isSaving = true;
+    console.log(this.isSaving);
+    this.$ps.saveExit.next('done');
   }
 
   ngAfterViewInit(): void {
