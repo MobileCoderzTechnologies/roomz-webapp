@@ -30,7 +30,7 @@ export const STEP_1_ROUTE = {
 };
 
 export const STEP_2_ROUTE = {
-  path: 'spaces',
+  path: 'beds-rooms',
   get url(): string {
     return `${LISTING_HOME_ROUTE.url}/${this.path}`;
   }

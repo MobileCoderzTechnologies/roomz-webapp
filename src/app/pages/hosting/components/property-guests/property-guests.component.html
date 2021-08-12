@@ -99,10 +99,10 @@
           <a href="javascript:void(0);" class="blue_color d-flex align-items-center" routerLink="{{startRoute.url}}">
             <img src="assets/images/blue-left-arrow.png" class="me-2" alt="" />
             Back</a>
-          <button class="btn custom_btn" *ngIf="!isNextLoading" (click)="addPropertyTypes()">Next</button>
+          <button class="btn custom_btn" *ngIf="!isNextLoading" (click)="addPropertyTypes()" >Next</button>
           <button class="btn custom_btn" *ngIf="isNextLoading">
             Next
-            <div class="spinner-border text-info spinner-border-sm"></div>
+            <div *ngIf="!isSavingExit" class="spinner-border text-info spinner-border-sm"></div>
           </button>
         </div>
       </div>

@@ -9,7 +9,7 @@
                     <p class="fz15 regular_font">
                         {{'listProperty.address.subHeadline'|langTranslate}}
                     </p>
-                    <button class="btn add_btn my-4 d-flex align-items-center">
+                    <button class="btn add_btn my-4 d-flex align-items-center" (click)="getCurrentLocation()">
                         <img src="assets/images/pin.png" class="me-2" alt="" />
                         {{'listProperty.address.useCurrentLocation'|langTranslate}}
                     </button>

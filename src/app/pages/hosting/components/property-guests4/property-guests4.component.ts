@@ -5,7 +5,7 @@ import { Subscription } from 'rxjs';
 import { delay } from 'rxjs/operators';
 import { AlertService } from 'src/app/modules/alert/alert.service';
 import { EncryptionService } from 'src/app/services/encryption.service';
-import { STEP_2_ROUTE, STEP_4_ROUTE } from '../../constants/route.constant';
+import { MY_LISTING_ROUTE, STEP_2_ROUTE, STEP_4_ROUTE } from '../../constants/route.constant';
 import { ProgressService } from '../../services/progress.service';
 import { PropertyListingService } from '../../services/property-listing.service';
 
@@ -35,6 +35,9 @@ export class PropertyGuests4Component implements OnInit, AfterViewInit, OnDestro
     zip_code: new FormControl('', [Validators.required, Validators.minLength(6), Validators.maxLength(6)])
   });
 
+  isSavingExit = false;
+
+  saveExitSubs: Subscription;
   constructor(
     private $ps: ProgressService,
     private $encryptionService: EncryptionService,
@@ -54,6 +57,13 @@ export class PropertyGuests4Component implements OnInit, AfterViewInit, OnDestro
       const { id } = params;
       this.encryptedPropertyId = id;
       this.propertyId = Number(this.$encryptionService.decrypt(id));
+    });
+
+    this.saveExitSubs = this.$ps.saveExit.subscribe(data => {
+      if (data === 'done') {
+        this.isSavingExit = true;
+        this.addAddress();
+      }
     });
   }
 
@@ -92,6 +102,13 @@ export class PropertyGuests4Component implements OnInit, AfterViewInit, OnDestro
   }
 
 
+  getCurrentLocation(): void {
+    navigator.geolocation.watchPosition(res => {
+      console.log(res);
+    });
+  }
+
+
   addAddress(): void {
     this.isNextLoading = true;
     const addressData = this.addressForm.value;
@@ -105,10 +122,16 @@ export class PropertyGuests4Component implements OnInit, AfterViewInit, OnDestro
       this.propertyData.property.street = respData.street;
       this.propertyData.property.zip_code = respData.zip_code;
       this.propertyData.property.address_optional = respData.address_optional;
+      this.propertyData.property.address_optional = respData.longitude;
+      this.propertyData.property.address_optional = respData.latitude;
+      this.propertyData.property.address_optional = respData.location;
 
       this.$ps.clearPropertyData();
       this.$ps.setPropertyData(this.propertyData);
 
+      if (this.isSavingExit) {
+        this.$router.navigateByUrl(MY_LISTING_ROUTE.url);
+      }
       this.$router.navigate([this.step4Route.url, this.encryptedPropertyId]);
     }, err => {
       this.isNextLoading = false;
@@ -119,6 +142,7 @@ export class PropertyGuests4Component implements OnInit, AfterViewInit, OnDestro
 
   ngOnDestroy(): void {
     this.propertyDataSubs.unsubscribe();
+    this.saveExitSubs.unsubscribe();
   }
 
 }

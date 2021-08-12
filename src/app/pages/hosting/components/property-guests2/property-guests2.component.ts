@@ -6,7 +6,7 @@ import { BedType } from 'src/app/modals/bed-type.modal';
 import { PropertyBed } from 'src/app/modals/property-bed.modal';
 import { AlertService } from 'src/app/modules/alert/alert.service';
 import { EncryptionService } from 'src/app/services/encryption.service';
-import { STEP_1_ROUTE, STEP_3_ROUTE } from '../../constants/route.constant';
+import { MY_LISTING_ROUTE, STEP_1_ROUTE, STEP_3_ROUTE } from '../../constants/route.constant';
 import { ProgressService } from '../../services/progress.service';
 import { PropertyListingService } from '../../services/property-listing.service';
 
@@ -83,6 +83,11 @@ export class PropertyGuests2Component implements OnInit, AfterViewInit, OnDestro
   } = {};
 
   isNextLoading = false;
+
+  saveExitSubs: Subscription;
+
+  isSavingExit = false;
+
   constructor(
     private $ps: ProgressService,
     private $encryptionService: EncryptionService,
@@ -102,6 +107,13 @@ export class PropertyGuests2Component implements OnInit, AfterViewInit, OnDestro
       const { id } = params;
       this.encryptedPropertyId = id;
       this.propertyId = Number(this.$encryptionService.decrypt(id));
+    });
+
+    this.saveExitSubs = this.$ps.saveExit.subscribe(data => {
+      if (data === 'done') {
+        this.isSavingExit = true;
+        this.addPropertyBeds();
+      }
     });
   }
 
@@ -260,6 +272,10 @@ export class PropertyGuests2Component implements OnInit, AfterViewInit, OnDestro
       console.log(this.propertyData);
       this.$ps.clearPropertyData();
       this.$ps.setPropertyData(this.propertyData);
+      if (this.isSavingExit) {
+        this.$router.navigateByUrl(MY_LISTING_ROUTE.path);
+        return;
+      }
       this.$router.navigate([this.step3Route.url, this.encryptedPropertyId]);
     }, err => {
       this.isNextLoading = false;
@@ -270,6 +286,7 @@ export class PropertyGuests2Component implements OnInit, AfterViewInit, OnDestro
 
   ngOnDestroy(): void {
     this.propertyDataSubs.unsubscribe();
+    this.saveExitSubs.unsubscribe();
   }
 
 }
