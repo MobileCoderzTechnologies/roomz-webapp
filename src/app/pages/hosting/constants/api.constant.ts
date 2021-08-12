@@ -22,8 +22,12 @@ export const PROPERTY_PHOTOS = `${API_GROUP}/${API_SUBGROUP}/photos`;
 export const PROPERTY_DESCRIPTION = `${API_GROUP}/${API_SUBGROUP}/description`;
 export const PROPERTY_NAME = `${API_GROUP}/${API_SUBGROUP}/name`;
 export const PROPERTY_AVAILABILITY = `${API_GROUP}/${API_SUBGROUP}/availability`;
+
 export const USER_PHONE_NUMBER = `user/phone-number`;
 export const RESEND_OTP = `auth/resend-otp`;
+export const MY_PROFILE = `user/my-profile`;
+export const UPDATE_PROFILE_PHOTO = 'user/profile-photo';
+
 export const PROPERTY_PHONE_NUMBER = `${API_GROUP}/${API_SUBGROUP}/phone-number`;
 export const PROPERTY_PRICING = `${API_GROUP}/${API_SUBGROUP}/pricing`;
 export const PROPERTY_LAWS_AND_CALENDER = `${API_GROUP}/${API_SUBGROUP}/laws-and-calender`;

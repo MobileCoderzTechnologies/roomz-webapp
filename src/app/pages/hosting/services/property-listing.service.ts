@@ -13,16 +13,30 @@ import {
   GET_HOME_DETAILS,
   GET_HOME_RULES,
   GET_PROPERTY_TYPES,
+  MY_PROFILE,
   PROPERTY_ADDRESS,
   PROPERTY_AMENITIES,
   PROPERTY_BEDS,
+  PROPERTY_DESCRIPTION,
   PROPERTY_DETAILS,
   PROPERTY_GUEST_REQUIREMENTS,
   PROPERTY_HOUSE_RULES,
   PROPERTY_LOCATION,
+  PROPERTY_NAME,
+  PROPERTY_PHONE_NUMBER,
   PROPERTY_PHOTOS,
   PROPERTY_TYPE,
-  UPLOAD_IMAGE
+  RESEND_OTP,
+  UPLOAD_IMAGE,
+  USER_PHONE_NUMBER,
+  UPDATE_PROFILE_PHOTO,
+  PROPERTY_AVAILABILITY,
+  PROPERTY_PRICING,
+  PROPERTY_LAWS_AND_CALENDER,
+  PROPERTY_QUESTIONS,
+  PROPERTY_PREVIEW,
+  PROPERTY_PUBLISH,
+  PROPERTY_DISCOUNTS
 } from '../constants/api.constant';
 
 @Injectable({
@@ -101,5 +115,67 @@ export class PropertyListingService {
   addPropertyPhotos(id: number, data: any): Observable<any> {
     return this.$http.put(`${PROPERTY_PHOTOS}/${id}`, data);
   }
+
+  addPropertyDescription(id: number, data: any): Observable<any> {
+    return this.$http.put(`${PROPERTY_DESCRIPTION}/${id}`, data);
+  }
+
+  addPropertyName(id: number, data: any): Observable<any> {
+    return this.$http.put(`${PROPERTY_NAME}/${id}`, data);
+  }
+
+
+  getUser(): Observable<any> {
+    return this.$http.get(MY_PROFILE);
+  }
+
+  resendOtp(data: any): Observable<any> {
+    return this.$http.post(RESEND_OTP, data);
+  }
+
+  userPhoneNumber(data: any): Observable<any> {
+    return this.$http.put(USER_PHONE_NUMBER, data);
+  }
+
+  userProfilePhoto(data: FormData): Observable<any> {
+    return this.$http.post(UPDATE_PROFILE_PHOTO, data);
+  }
+
+  addSecPhoneNumber(id: number, data: any): Observable<any> {
+    return this.$http.put(`${PROPERTY_PHONE_NUMBER}/${id}`, data);
+  }
+  addSecPropertyAvailability(id: number, data: any): Observable<any> {
+    return this.$http.put(`${PROPERTY_AVAILABILITY}/${id}`, data);
+  }
+
+  addSecPropertyPrice(id: number, data: any): Observable<any> {
+    return this.$http.put(`${PROPERTY_PRICING}/${id}`, data);
+  }
+
+  lawsAndCalenderMark(id: number, data: any): Observable<any> {
+    return this.$http.put(`${PROPERTY_LAWS_AND_CALENDER}/${id}`, data);
+  }
+  setPropertyQuestions(id: number, data: any): Observable<any> {
+    return this.$http.put(`${PROPERTY_QUESTIONS}/${id}`, data);
+  }
+  setLongTermDiscounts(id: number, data: any): Observable<any> {
+    return this.$http.put(`${PROPERTY_DISCOUNTS}/${id}`, data);
+  }
+
+
+  getPropertyPreview(id: number): Observable<any>{
+    return this.$http.get(`${PROPERTY_PREVIEW}/${id}`);
+  }
+  publishProperty(id: number): Observable<any>{
+    return this.$http.get(`${PROPERTY_PUBLISH}/${id}`);
+  }
+
+
+
+
+
+
 }
+
+
 

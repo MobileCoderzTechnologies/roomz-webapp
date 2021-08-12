@@ -51,6 +51,7 @@ import {
   STEP_6_ROUTE,
   STEP_7_ROUTE,
   STEP_8_ROUTE,
+  STEP_9_ROUTE,
 } from './constants/route.constant';
 import { PropertyViewComponent } from './components/property-view/property-view.component';
 import { PropertyListComponent } from './components/property-list/property-list.component';
@@ -116,6 +117,10 @@ const routes: Routes = [
         component: PropertyGuests8Component,
       },
       {
+        path: `${STEP_9_ROUTE.path}/:id`,
+        component: PropertyPreviewComponent
+      },
+      {
         path: `${STEP_10_ROUTE.path}/:id`,
         component: PropertyGuests10Component,
       },
@@ -129,7 +134,7 @@ const routes: Routes = [
       },
       {
         path: `${STEP_13_ROUTE.path}/:id`,
-        component: PropertyGuests14Component,
+        component: PropertyGuests15Component,
       },
       {
         path: `${STEP_14_ROUTE.path}/:id`,
@@ -140,7 +145,7 @@ const routes: Routes = [
         component: PropertyGuests25Component,
       },
       {
-        path: `${STEP_17_ROUTE}/:id`,
+        path: `${STEP_17_ROUTE.path}/:id`,
         component: PropertyGuests26Component,
       },
       {
@@ -153,7 +158,7 @@ const routes: Routes = [
       },
       {
         path: `${STEP_20_ROUTE.path}/:id`,
-        component: PropertyGuests17Component,
+        component: PropertyGuests21Component,
       },
       {
         path: `${STEP_21_ROUTE.path}/:id`,

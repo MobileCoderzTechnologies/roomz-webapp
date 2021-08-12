@@ -20,6 +20,10 @@ input.ng-touched.ng-invalid {
   border-color: $danger-color;
 }
 
+textarea.ng-touched.ng-invalid {
+  border-color: $danger-color;
+}
+
 .txt-info {
   color: $info-color;
 }
