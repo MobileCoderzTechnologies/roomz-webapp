@@ -13,6 +13,8 @@ import { PartnersComponent } from './components/partners/partners.component';
 import { FooterComponent } from './components/footer/footer.component';
 import { LoginModule } from '../login/login.module';
 import { WelcomeComponent } from './components/welcome/welcome.component';
+import { SearchPageComponent } from './components/search-page/search-page.component';
+import { PropertyDetailComponent } from './components/property-detail/property-detail.component';
 
 
 
@@ -28,6 +30,8 @@ import { WelcomeComponent } from './components/welcome/welcome.component';
     PartnersComponent,
     FooterComponent,
     WelcomeComponent,
+    SearchPageComponent,
+    PropertyDetailComponent,
   ],
   imports: [
     CommonModule,
