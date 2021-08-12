@@ -4,7 +4,7 @@ import { Subscription } from 'rxjs';
 import { delay } from 'rxjs/operators';
 import { AlertService } from 'src/app/modules/alert/alert.service';
 import { EncryptionService } from 'src/app/services/encryption.service';
-import { STEP_8_ROUTE, STEP_9_ROUTE } from '../../constants/route.constant';
+import { STEP_7_ROUTE, STEP_8_ROUTE, STEP_9_ROUTE } from '../../constants/route.constant';
 import { ProgressService } from '../../services/progress.service';
 import { PropertyListingService } from '../../services/property-listing.service';
 
@@ -15,7 +15,7 @@ import { PropertyListingService } from '../../services/property-listing.service'
 })
 export class PropertyGuests8Component implements OnInit, AfterViewInit, OnDestroy {
   step9Route = STEP_9_ROUTE;
-  step7Route = STEP_8_ROUTE;
+  step7Route = STEP_7_ROUTE;
 
   propertyId: number;
   encryptedPropertyId: string;

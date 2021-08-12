@@ -12,7 +12,7 @@ import { PropertyHomeDetail } from 'src/app/modals/property-home-detail.modal';
 import { PropertyHouseRule } from 'src/app/modals/property-house-rule.modal';
 import { AlertService } from 'src/app/modules/alert/alert.service';
 import { EncryptionService } from 'src/app/services/encryption.service';
-import { STEP_6_ROUTE, STEP_8_ROUTE } from '../../constants/route.constant';
+import { STEP_21_ROUTE, STEP_6_ROUTE, STEP_8_ROUTE } from '../../constants/route.constant';
 import { ProgressService } from '../../services/progress.service';
 import { PropertyListingService } from '../../services/property-listing.service';
 import { RuleReasonModelComponent } from '../rule-reason-model/rule-reason-model.component';
@@ -26,6 +26,8 @@ export class PropertyGuests17Component implements OnInit, AfterViewInit, OnDestr
 
   step8Route = STEP_8_ROUTE;
   step6Route = STEP_6_ROUTE;
+
+  step21Route = STEP_21_ROUTE;
 
   propertyId: number;
   encryptedPropertyId: string;
@@ -43,6 +45,8 @@ export class PropertyGuests17Component implements OnInit, AfterViewInit, OnDestr
   selectedPropertyDetails: PropertyHomeDetail[] = [];
 
   additionalRuleInput = new FormControl(null, [Validators.minLength(5)]);
+
+  isBack21 = false;
   constructor(
     private $ps: ProgressService,
     private $encryptionService: EncryptionService,
@@ -63,6 +67,14 @@ export class PropertyGuests17Component implements OnInit, AfterViewInit, OnDestr
       const { id } = params;
       this.encryptedPropertyId = id;
       this.propertyId = Number(this.$encryptionService.decrypt(id));
+    });
+
+    this.$activatedRoute.queryParams.subscribe(data => {
+      const back = data.back;
+
+      if (Number(back) === 21) {
+        this.isBack21 = true;
+      }
     });
 
     this.getHouseRule();
@@ -234,6 +246,7 @@ export class PropertyGuests17Component implements OnInit, AfterViewInit, OnDestr
 
   ngOnDestroy(): void {
     this.propertyDataSubs.unsubscribe();
+    this.isBack21 = false;
   }
 
 }

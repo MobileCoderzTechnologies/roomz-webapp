@@ -5,7 +5,7 @@ import { Subscription } from 'rxjs';
 import { delay } from 'rxjs/operators';
 import { AlertService } from 'src/app/modules/alert/alert.service';
 import { EncryptionService } from 'src/app/services/encryption.service';
-import { STEP_14_ROUTE, STEP_17_ROUTE } from '../../constants/route.constant';
+import { STEP_14_ROUTE, STEP_17_ROUTE, STEP_21_ROUTE } from '../../constants/route.constant';
 import { ProgressService } from '../../services/progress.service';
 import { PropertyListingService } from '../../services/property-listing.service';
 
@@ -18,6 +18,8 @@ export class PropertyGuests25Component implements OnInit, AfterViewInit, OnDestr
   step17Route = STEP_17_ROUTE;
   step14Route = STEP_14_ROUTE;
 
+  step21Route = STEP_21_ROUTE;
+
   propertyId: number;
   encryptedPropertyId: string;
 
@@ -29,6 +31,7 @@ export class PropertyGuests25Component implements OnInit, AfterViewInit, OnDestr
   basePrice = new FormControl(1, [Validators.required, Validators.min(1)]);
   isDiscount20 = true;
 
+  isBack21 = false;
   constructor(
     private $ps: ProgressService,
     private $encryptionService: EncryptionService,
@@ -48,6 +51,13 @@ export class PropertyGuests25Component implements OnInit, AfterViewInit, OnDestr
       const { id } = params;
       this.encryptedPropertyId = id;
       this.propertyId = Number(this.$encryptionService.decrypt(id));
+    });
+
+    this.$activatedRoute.queryParams.subscribe(data => {
+      const back = data?.back;
+      if (Number(back) === 21) {
+        this.isBack21 = true;
+      }
     });
 
   }
@@ -108,6 +118,7 @@ export class PropertyGuests25Component implements OnInit, AfterViewInit, OnDestr
 
   ngOnDestroy(): void {
     this.propertyDataSubs.unsubscribe();
+    this.isBack21 = false;
   }
 
 }

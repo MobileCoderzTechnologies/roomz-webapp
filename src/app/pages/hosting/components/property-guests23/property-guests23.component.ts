@@ -6,7 +6,7 @@ import { delay } from 'rxjs/operators';
 import { ADVANCE_NOTICE, AVAILABILITY_WINDOW, CHECK_IN_TIMES, SAME_DAY_CUT_OFF_TIME } from 'src/app/constants/availability.constant';
 import { AlertService } from 'src/app/modules/alert/alert.service';
 import { EncryptionService } from 'src/app/services/encryption.service';
-import { STEP_15_ROUTE, STEP_13_ROUTE, STEP_16_ROUTE } from '../../constants/route.constant';
+import { STEP_15_ROUTE, STEP_13_ROUTE, STEP_16_ROUTE, STEP_21_ROUTE } from '../../constants/route.constant';
 import { ProgressService } from '../../services/progress.service';
 import { PropertyListingService } from '../../services/property-listing.service';
 
@@ -19,6 +19,8 @@ export class PropertyGuests23Component implements OnInit, AfterViewInit, OnDestr
 
   step16Route = STEP_16_ROUTE;
   step13Route = STEP_13_ROUTE;
+
+  step21Route = STEP_21_ROUTE;
 
   propertyId: number;
   encryptedPropertyId: string;
@@ -58,6 +60,8 @@ export class PropertyGuests23Component implements OnInit, AfterViewInit, OnDestr
     ci_leave_before: new FormControl(this.selectedCiLeaveBefore),
   });
 
+  isBack21 = false;
+
   constructor(
     private $ps: ProgressService,
     private $encryptionService: EncryptionService,
@@ -82,6 +86,13 @@ export class PropertyGuests23Component implements OnInit, AfterViewInit, OnDestr
       const { id } = params;
       this.encryptedPropertyId = id;
       this.propertyId = Number(this.$encryptionService.decrypt(id));
+    });
+
+    this.$activatedRoute.queryParams.subscribe(data => {
+      const back = data?.back;
+      if (Number(back) === 21) {
+        this.isBack21 = true;
+      }
     });
 
   }
@@ -184,6 +195,7 @@ export class PropertyGuests23Component implements OnInit, AfterViewInit, OnDestr
 
   ngOnDestroy(): void {
     this.propertyDataSubs.unsubscribe();
+    this.isBack21 = false;
   }
 
 

@@ -7,6 +7,14 @@ export const LISTING_HOME_ROUTE = {
   }
 };
 
+
+export const MY_LISTING_ROUTE = {
+  path: 'my-properties',
+  get url(): string{
+    return `${HOSTING_ROUTE.url}/${this.path}`;
+  }
+};
+
 export const START_ROUTE = {
   path: 'start',
   get url(): string {

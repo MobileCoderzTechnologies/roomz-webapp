@@ -30,6 +30,7 @@ import { PropertyGuests27Component } from './components/property-guests27/proper
 import { PropertyGuests28Component } from './components/property-guests28/property-guests28.component';
 import {
   LISTING_HOME_ROUTE,
+  MY_LISTING_ROUTE,
   START_ROUTE,
   STEP_10_ROUTE,
   STEP_11_ROUTE,
@@ -60,8 +61,12 @@ import { PropertyPreviewComponent } from './components/property-preview/property
 const routes: Routes = [
   {
     path: '',
-    redirectTo: LISTING_HOME_ROUTE.path,
+    redirectTo: MY_LISTING_ROUTE.path,
     pathMatch: 'full',
+  },
+  {
+    path: MY_LISTING_ROUTE.path,
+    component: PropertyListComponent
   },
   {
     path: LISTING_HOME_ROUTE.path,
