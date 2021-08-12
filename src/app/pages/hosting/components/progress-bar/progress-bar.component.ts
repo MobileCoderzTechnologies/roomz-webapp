@@ -1,4 +1,5 @@
 import { AfterViewInit, Component, Input, OnDestroy, OnInit } from '@angular/core';
+import { Subscription } from 'rxjs';
 import { delay } from 'rxjs/operators';
 import { ProgressService } from '../../services/progress.service';
 
@@ -14,12 +15,14 @@ export class ProgressBarComponent implements OnInit, AfterViewInit, OnDestroy {
   heading: string;
 
   isSaving = false;
+
+  isSaveExitSubs: Subscription;
   constructor(
     private $ps: ProgressService
   ) { }
 
   ngOnInit(): void {
-    this.$ps.header.subscribe(data => {
+  this.isSaveExitSubs =   this.$ps.header.subscribe(data => {
       this.progress = `${data.progress}%`;
       this.heading = data.heading;
     });
@@ -28,24 +31,26 @@ export class ProgressBarComponent implements OnInit, AfterViewInit, OnDestroy {
 
   onSaveExit(): void {
     this.isSaving = true;
-    console.log(this.isSaving);
     this.$ps.saveExit.next('done');
+    this.$ps.isSaveExit.next(true);
   }
 
   ngAfterViewInit(): void {
-    // this.$ps.isSaveExit
-    //   .pipe(
-    //     delay(0)
-    //   )
-    //   .subscribe(isSaving => {
-    //     this.isSaving = isSaving;
-    //   });
+    this.$ps.isSaveExit
+      .pipe(
+        delay(0)
+      )
+      .subscribe(isSaving => {
+        this.isSaving = isSaving;
+      });
   }
 
   ngOnDestroy(): void {
     // this.$ps.isSaveExit.next(false);
     this.$ps.saveExit.next(null);
     this.isSaving = false;
+    this.$ps.isSaveExit.next(false);
+    this.isSaveExitSubs.unsubscribe();
   }
 
 }

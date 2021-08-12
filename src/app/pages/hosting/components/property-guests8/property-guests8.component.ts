@@ -4,7 +4,7 @@ import { Subscription } from 'rxjs';
 import { delay } from 'rxjs/operators';
 import { AlertService } from 'src/app/modules/alert/alert.service';
 import { EncryptionService } from 'src/app/services/encryption.service';
-import { STEP_7_ROUTE, STEP_8_ROUTE, STEP_9_ROUTE } from '../../constants/route.constant';
+import { MY_LISTING_ROUTE, STEP_7_ROUTE, STEP_8_ROUTE, STEP_9_ROUTE } from '../../constants/route.constant';
 import { ProgressService } from '../../services/progress.service';
 import { PropertyListingService } from '../../services/property-listing.service';
 
@@ -30,6 +30,9 @@ export class PropertyGuests8Component implements OnInit, AfterViewInit, OnDestro
   isCoverPhotoUploading = false;
   isPhotosUploading = false;
   isRemovingCoverPhoto = false;
+
+  isSavingExit = false;
+  saveExitSubs: Subscription;
   constructor(
     private $ps: ProgressService,
     private $encryptionService: EncryptionService,
@@ -49,6 +52,13 @@ export class PropertyGuests8Component implements OnInit, AfterViewInit, OnDestro
       const { id } = params;
       this.encryptedPropertyId = id;
       this.propertyId = Number(this.$encryptionService.decrypt(id));
+    });
+
+    this.saveExitSubs = this.$ps.saveExit.subscribe(data => {
+      if (data === 'done') {
+        this.isSavingExit = true;
+        this.addPropertyPhotos();
+      }
     });
   }
 
@@ -112,19 +122,29 @@ export class PropertyGuests8Component implements OnInit, AfterViewInit, OnDestro
     const photos = event.target.files;
     if (photos?.length) {
       this.isPhotosUploading = true;
-      const formData = new FormData();
-      for (const photo of photos) {
-        formData.append('images', photo);
-      }
-      this.$propertyListingService.uploadPhotos(formData).subscribe(data => {
-        this.isPhotosUploading = false;
-        const pPhotos = data.data;
-        this.propertyPhotos.push(...pPhotos);
-      }, err => {
-        this.isPhotosUploading = false;
-        this.$alert.danger(err.message);
-      });
+      this.uploadPhotos(photos);
     }
+  }
+
+  filesDropped(photos): void {
+    console.log(photos);
+    this.uploadPhotos(photos);
+  }
+
+  uploadPhotos(photos): void {
+    this.isPhotosUploading = true;
+    const formData = new FormData();
+    for (const photo of photos) {
+      formData.append('images', photo);
+    }
+    this.$propertyListingService.uploadPhotos(formData).subscribe(data => {
+      this.isPhotosUploading = false;
+      const pPhotos = data.data;
+      this.propertyPhotos.push(...pPhotos);
+    }, err => {
+      this.isPhotosUploading = false;
+      this.$alert.danger(err.message);
+    });
   }
 
 
@@ -161,11 +181,17 @@ export class PropertyGuests8Component implements OnInit, AfterViewInit, OnDestro
       this.$ps.clearPropertyData();
       this.$ps.setPropertyData(this.propertyData);
       this.isNextLoading = false;
-
+      if (this.isSavingExit) {
+        this.$router.navigateByUrl(MY_LISTING_ROUTE.url);
+        return;
+      }
       this.$router.navigate([this.step9Route.url, this.encryptedPropertyId]);
     }, err => {
       this.isNextLoading = false;
       this.$alert.danger(err.message);
+      if (this.isSavingExit) {
+        this.$ps.isSaveExit.next(false);
+      }
     });
 
   }
@@ -173,5 +199,6 @@ export class PropertyGuests8Component implements OnInit, AfterViewInit, OnDestro
 
   ngOnDestroy(): void {
     this.propertyDataSubs.unsubscribe();
+    this.saveExitSubs.unsubscribe();
   }
 }
