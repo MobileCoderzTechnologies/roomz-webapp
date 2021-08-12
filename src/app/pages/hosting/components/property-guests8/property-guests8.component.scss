@@ -1,0 +1,24 @@
+.cover-photo {
+  height: 230px;
+  width: 589px;
+}
+
+.cover-photo-change {
+  position: absolute;
+  background: #fff;
+  border: 1px solid blue;
+  left: 12px;
+  padding: 5px;
+  top: 10px;
+  border-radius: 5px;
+}
+
+.cover-photo-remove-btn {
+  position: absolute;
+  background: #fff;
+  border: 1px solid blue;
+  right: 10px;
+  padding: 5px;
+  top: 10px;
+  border-radius: 5px;
+}

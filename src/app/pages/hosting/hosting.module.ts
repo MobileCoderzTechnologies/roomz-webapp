@@ -39,6 +39,8 @@ import { PropertyPreviewComponent } from './components/property-preview/property
 import { PropertyCheckInsComponent } from './components/property-check-ins/property-check-ins.component';
 import { GuestRequirementModelComponent } from './components/guest-requirement-model/guest-requirement-model.component';
 import { RuleReasonModelComponent } from './components/rule-reason-model/rule-reason-model.component';
+import { NgOtpInputModule } from 'ng-otp-input';
+import { FormatTimePipe } from './pipes/format-time.pipe';
 
 
 
@@ -80,18 +82,21 @@ import { RuleReasonModelComponent } from './components/rule-reason-model/rule-re
     PropertyPreviewComponent,
     PropertyCheckInsComponent,
     GuestRequirementModelComponent,
-    RuleReasonModelComponent
+    RuleReasonModelComponent,
+    FormatTimePipe
   ],
   imports: [
     CommonModule,
     HostingRoutingModule,
     SharedModule,
-    ValidateErrorModule
+    ValidateErrorModule,
+    NgOtpInputModule
   ],
   exports: [
     HostingRoutingModule,
     SharedModule,
-    ValidateErrorModule
+    ValidateErrorModule,
+    NgOtpInputModule
   ]
 })
 export class HostingModule { }

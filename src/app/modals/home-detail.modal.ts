@@ -4,4 +4,5 @@ export interface HomeDetail {
   name: string;
   description: string | null;
   isChecked: boolean | null;
+  explanation?: string | null;
 }

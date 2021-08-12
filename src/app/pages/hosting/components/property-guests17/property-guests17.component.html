@@ -9,9 +9,9 @@
                             Guest must agree to your house rules before they book.
                         </p>
                         <div>
-
-                            <ng-container *ngFor="let rule of propertyHouseRules">
-                                <div class="d-flex align-items-center justify-content-between mb-4">
+                            <ng-container *ngFor="let rule of propertyHouseRules; let i=index">
+                                <div class="d-flex align-items-center justify-content-between mb-4"
+                                    *ngIf="!rule?.is_additional">
                                     <h5 class="fz16 regular_font text-secondary mb-0">
                                         {{houseRuleObj[rule.rule_id]}}
 
@@ -32,56 +32,38 @@
                                     </div>
                                 </div>
                             </ng-container>
+                            <ng-container *ngFor="let rule of propertyHouseRules; let i=index">
+                                <div class="d-flex align-items-center justify-content-between mb-4"
+                                    *ngIf="rule.is_additional">
+                                    <h5 class="fz16 regular_font text-secondary mb-0">
+                                        <br /><span class="blue_color">
+                                            {{rule?.description}}
+                                        </span>
+                                    </h5>
+                                    <div class="image-btns">
+                                        <!-- <img *ngIf="rule?.is_cancelled" src="assets/images/active-cross.png"
+                                            class="img-fluid me-4" alt="" /> -->
+                                        <img src="assets/images/unactive-cross.png" class="img-fluid me-4" alt=""
+                                            (click)="removeAdditionalRule(i)">
 
-                            <!-- <div class="d-flex align-items-center justify-content-between mb-4">
-                                <h5 class="fz16 regular_font text-secondary mb-0">
-                                    Suitable for infants (under 2)
-
-                                </h5>
-                                <div class="">
-                                    <img src="assets/images/unactive-cross.png" class="img-fluid me-4" alt="" />
-                                    <img src="assets/images/active-tick.png" class="img-fluid" alt="" />
+                                        <!-- <img src="assets/images/unactive-tick.png"
+                                            class="img-fluid" alt=""> -->
+                                        <img src="assets/images/active-tick.png" class="img-fluid" alt="" />
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="d-flex align-items-center justify-content-between mb-4">
-                                <h5 class="fz16 regular_font text-secondary mb-0">
-                                    Suitable for pets
-
-                                </h5>
-                                <div class="">
-                                    <img src="assets/images/unactive-cross.png" class="img-fluid me-4" alt="" />
-                                    <img src="assets/images/unactive-tick.png" class="img-fluid" alt="" />
-                                </div>
-                            </div>
-                            <div class="d-flex align-items-center justify-content-between mb-4">
-                                <h5 class="fz16 regular_font text-secondary mb-0">
-                                    Smoking allowed
-
-                                </h5>
-                                <div class="">
-                                    <img src="assets/images/unactive-cross.png" class="img-fluid me-4" alt="" />
-                                    <img src="assets/images/unactive-tick.png" class="img-fluid" alt="" />
-                                </div>
-                            </div>
-                            <div class="d-flex align-items-center justify-content-between mb-4">
-                                <h5 class="fz16 regular_font text-secondary mb-0">
-                                    Events allowed
-                                    <img src="assets/images/question.png" alt="" />
-                                </h5>
-                                <div class="">
-                                    <img src="assets/images/unactive-cross.png" class="img-fluid me-4" alt="" />
-                                    <img src="assets/images/unactive-tick.png" class="img-fluid" alt="" />
-                                </div>
-                            </div> -->
+                            </ng-container>
                             <div class="form-group">
                                 <div class="mb-3 d-flex justify-content-between">
                                     <label for="" class="fz18 semi_font">Additional rules</label>
-                                    <a href="javascipt:void()" class="color-blue" (click)="saveAdditionalRule(ruleData.value)">Save</a>
+                                    <a *ngIf="!additionalRuleInput.value" class="color-blue">Save</a>
+                                    <a *ngIf="additionalRuleInput.value" class="color-blue"
+                                        (click)="saveAdditionalRule()">Save</a>
                                 </div>
 
                                 <div class="d-flex align-items-center">
-                                    <textarea #ruleData name="" id="" style="height:175px;width:100%"
-                                        class="form-control custom_form_control w-100 rounded-0" placeholder="Quiet hours? No shoes in the house?  ">  
+                                    <textarea [formControl]="additionalRuleInput" style="height:175px;width:100%"
+                                        class="form-control custom_form_control w-100 rounded-0"
+                                        placeholder="Quiet hours? No shoes in the house?  ">
                                     </textarea>
 
                                 </div>
@@ -121,19 +103,21 @@
                                 <ng-container *ngFor="let detail of homeDetails">
                                     <div class="custom_check mb-4">
                                         <div class="form-group">
-                                            <input type="checkbox" [id]="detail.id" (change)="selectDetail(detail)">
+                                            <input type="checkbox" [id]="detail.id"
+                                                (change)="selectDetail($event,detail)" [checked]="detail?.isChecked">
                                             <label class="form-check-label fz15" for="{{detail.id}}">
                                                 {{detail.name}}
                                             </label>
                                         </div>
                                     </div>
-                                    <!-- <div class="mb-4" *ngIf="detail.isChecked">
+                                    <div class="mb-4" *ngIf="detail.isChecked">
                                         <p class="fz15 regular_font">
                                             {{detail.description}}
                                         </p>
-                                        <input type="text" name="" id="" class="form-control w-75"
-                                            placeholder="Add your description" />
-                                    </div> -->
+                                        <input #desc type="text" (blur)="addDetailDesc(detail, desc.value)"
+                                            class="form-control w-75" placeholder="Add your description"
+                                            [value]="detail?.explanation" />
+                                    </div>
                                 </ng-container>
 
                                 <!-- <div class="custom_check mb-4">

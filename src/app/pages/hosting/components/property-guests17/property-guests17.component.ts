@@ -1,4 +1,5 @@
 import { AfterViewInit, Component, OnDestroy, OnInit } from '@angular/core';
+import { FormControl, Validators } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
 import { ActivatedRoute, Router } from '@angular/router';
 import * as e from 'express';
@@ -41,6 +42,7 @@ export class PropertyGuests17Component implements OnInit, AfterViewInit, OnDestr
   propertyHouseRules: PropertyHouseRule[] = [];
   selectedPropertyDetails: PropertyHomeDetail[] = [];
 
+  additionalRuleInput = new FormControl(null, [Validators.minLength(5)]);
   constructor(
     private $ps: ProgressService,
     private $encryptionService: EncryptionService,
@@ -82,7 +84,7 @@ export class PropertyGuests17Component implements OnInit, AfterViewInit, OnDestr
         this.propertyData = data;
         console.log(this.propertyData);
         if (this.propertyData) {
-          this.selectedPropertyDetails = this.propertyData.homeDetails || [];
+          this.selectedPropertyDetails = this.propertyData.details || [];
           if (this.propertyData?.houseRules) {
             this.propertyHouseRules = this.propertyData.houseRules;
           }
@@ -94,18 +96,21 @@ export class PropertyGuests17Component implements OnInit, AfterViewInit, OnDestr
     this.$propertyListingService.getHomeRules().subscribe(data => {
       this.houseRules = data.data;
 
-      this.houseRules.forEach(element => {
-        this.houseRuleObj[element.id] = element.rule;
-        if (this.propertyHouseRules.length === 0) {
+      if (this.propertyHouseRules.length === 0) {
+        this.houseRules.forEach(element => {
+          this.houseRuleObj[element.id] = element.rule;
           this.propertyHouseRules.push({
             rule_id: element.id,
             is_cancelled: false,
-            is_additional: false,
             cancel_reason: null,
-            description: null
           });
-        }
-      });
+        });
+      }
+      else {
+        this.houseRules.forEach(element => {
+          this.houseRuleObj[element.id] = element.rule;
+        });
+      }
     }, err => {
       this.$alert.danger(err.message);
     });
@@ -116,8 +121,13 @@ export class PropertyGuests17Component implements OnInit, AfterViewInit, OnDestr
       this.homeDetails = data.data;
 
       this.homeDetails = this.homeDetails.map(item => {
-        if (this.selectedPropertyDetails.some(element => element.detail_id === item.id)) {
+        const isExist = this.selectedPropertyDetails.find(element => element.detail_id === item.id);
+        if (isExist) {
           item.isChecked = true;
+          item.explanation = isExist.explanation;
+        } else {
+          item.isChecked = false;
+          item.explanation = '';
         }
         return item;
       });
@@ -154,22 +164,45 @@ export class PropertyGuests17Component implements OnInit, AfterViewInit, OnDestr
     rule.is_cancelled = false;
   }
 
-  selectDetail(detail: HomeDetail): void {
-    detail.isChecked = true;
-    const selectedDetail: PropertyHomeDetail = {
-      detail_id: detail.id,
-    };
-
-    this.selectedPropertyDetails.push(selectedDetail);
+  selectDetail(event: any, detail: HomeDetail): void {
+    const isChecked = event.target.checked;
+    if (isChecked) {
+      detail.isChecked = true;
+      const selectedDetail: PropertyHomeDetail = {
+        detail_id: detail.id,
+      };
+      this.selectedPropertyDetails.push(selectedDetail);
+    } else {
+      detail.isChecked = false;
+      this.selectedPropertyDetails = this.selectedPropertyDetails.filter(e => e.detail_id !== detail.id);
+    }
   }
 
-  saveAdditionalRule(ruleDesc: string): void {
+  addDetailDesc(detail: HomeDetail, description: string): void {
+    this.selectedPropertyDetails = this.selectedPropertyDetails.map(item => {
+      if (item.detail_id === detail.id) {
+        item.explanation = description;
+      }
+      return item;
+    });
+
+    console.log(detail, description);
+  }
+
+  saveAdditionalRule(): void {
+    const ruleDesc = this.additionalRuleInput.value;
     const ruleData = {
       is_additional: true,
       description: ruleDesc
     };
-
+    this.additionalRuleInput.reset();
     this.propertyHouseRules.push(ruleData);
+  }
+
+
+  removeAdditionalRule(index: number): void {
+    console.log(index);
+    this.propertyHouseRules.splice(index, 1);
   }
 
 
@@ -178,33 +211,25 @@ export class PropertyGuests17Component implements OnInit, AfterViewInit, OnDestr
 
   addHouseRule(): void {
     this.isNextLoading = true;
-    const reqDetailData = {
-      property_details: this.selectedPropertyDetails
+    const requestData = {
+      property_details: this.selectedPropertyDetails,
+      property_rules: this.propertyHouseRules
     };
-    this.$propertyListingService.addPropertyDetails(this.propertyId, reqDetailData).subscribe(data => {
-      const details = data.data;
-      const selectedRuleData = {
-        property_rules: this.propertyHouseRules
-      };
-      this.$propertyListingService.addHouseRules(this.propertyId, selectedRuleData).subscribe(res => {
-        const houseRules = res.data;
+    this.$propertyListingService.addHouseRules(this.propertyId, requestData).subscribe(res => {
+      const respData = res.data;
+      this.propertyData.houseRules = respData.rules;
+      this.propertyData.details = respData.details;
 
-        this.propertyData.houseRules = houseRules;
-        this.propertyData.details = details;
+      this.$ps.clearPropertyData();
+      this.$ps.setPropertyData(this.propertyData);
+      this.isNextLoading = false;
 
-        this.$ps.clearPropertyData();
-        this.$ps.setPropertyData(this.propertyData);
-        this.isNextLoading = false;
-
-        this.$router.navigate([this.step8Route.url, this.encryptedPropertyId]);
-      }, err => {
-        this.isNextLoading = false;
-        this.$alert.danger(err.message);
-      });
+      this.$router.navigate([this.step8Route.url, this.encryptedPropertyId]);
     }, err => {
       this.isNextLoading = false;
       this.$alert.danger(err.message);
     });
+
   }
 
   ngOnDestroy(): void {
