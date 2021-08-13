@@ -74,11 +74,10 @@
                             <div class="drag" appImageDrag (files)="filesDropped($event)">
                                 <div class="border text-center p-3 pt-4 rounded">
                                     <div class="row mb-4">
-                                        <ng-container *ngFor="let photo of propertyPhotos">
+                                        <ng-container *ngFor="let photo of showingPropertyPhotos">
                                             <div class="col-md-6">
                                                 <div class="col_selector position-relative">
-                                                    <img [src]="photo.image_url" class="img-fluid w-100" height="175"
-                                                        width="267" />
+                                                    <img [src]="photo.image_url" class="img-fluid w-100 property-photo">
                                                     <img src="assets/images/delete-icon.png" class="upload_delete_icon"
                                                         (click)="removePhoto(photo)" *ngIf="!image?.isDeleting">
                                                     <div class="upload_delete_icon" *ngIf="image?.isDeleting">

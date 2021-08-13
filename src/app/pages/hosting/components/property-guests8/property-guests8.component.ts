@@ -25,6 +25,7 @@ export class PropertyGuests8Component implements OnInit, AfterViewInit, OnDestro
 
   coverPhotoUrl = '';
   propertyPhotos: { image_url: string }[] = [];
+  showingPropertyPhotos: { image_url: string }[] = [];
 
   isNextLoading = false;
   isCoverPhotoUploading = false;
@@ -79,6 +80,8 @@ export class PropertyGuests8Component implements OnInit, AfterViewInit, OnDestro
         if (this.propertyData) {
           this.coverPhotoUrl = this.propertyData.property.cover_photo || '';
           this.propertyPhotos = this.propertyData.images || [];
+
+          this.setShowingPhotos(this.propertyPhotos);
         }
       });
   }
@@ -140,10 +143,22 @@ export class PropertyGuests8Component implements OnInit, AfterViewInit, OnDestro
     this.$propertyListingService.uploadPhotos(formData).subscribe(data => {
       this.isPhotosUploading = false;
       const pPhotos = data.data;
+      this.setShowingPhotos(pPhotos);
       this.propertyPhotos.push(...pPhotos);
     }, err => {
       this.isPhotosUploading = false;
       this.$alert.danger(err.message);
+    });
+  }
+
+  private setShowingPhotos(photos: { image_url: string }[]): void {
+    photos.forEach(item => {
+      const imageUrl = item.image_url;
+      const imageUrlArr = imageUrl.split('/');
+      imageUrlArr.pop();
+      const imgUrl = `${imageUrlArr.join('/')}/235x158.jpeg`;
+      item.image_url = imgUrl;
+      this.showingPropertyPhotos.push({ ...item });
     });
   }
 
