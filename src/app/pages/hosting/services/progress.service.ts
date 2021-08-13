@@ -13,6 +13,9 @@ export class ProgressService {
   });
 
   public propertyData = new BehaviorSubject<any>(null);
+
+  public saveExit = new BehaviorSubject(null);
+  public isSaveExit = new BehaviorSubject(false);
   constructor(
     @Inject(PLATFORM_ID) private platformId: any
   ) {

@@ -16,9 +16,12 @@
                         will see this so that they know how to get to your place.
                     </p>
                     <div class="mb-5">
-                        <img src="assets/images/map-img.png" class="img-fluid" alt="" />
+                        <!-- <img src="assets/images/map-img.png" class="img-fluid" alt="" /> -->
+                        <agm-map [latitude]="latitude" [longitude]="longitude" [zoom]="zoom">
+                            <agm-marker [latitude]="latitude" [longitude]="longitude"  (dragEnd)="markerDragEnd($event)" [markerDraggable]="true"></agm-marker>
+                        </agm-map>
                         <p class="medium_font mt-2">
-                            A-121, Sec-63 Noida, Utter Pradesh 201301
+                            {{location}}
                         </p>
                     </div>
                 </div>
@@ -33,7 +36,7 @@
                     </button>
                     <button class="btn custom_btn" *ngIf="isNextLoading">
                         Yes that's Right
-                        <div class="spinner-border text-info spinner-border-sm"></div>
+                        <div *ngIf="!isSavingExit" class="spinner-border text-info spinner-border-sm"></div>
                     </button>
                 </div>
                 <!-- <div class="d-flex justify-content-between bg-white align-items-center mb-5 mt-0 p-4 back_next_part">

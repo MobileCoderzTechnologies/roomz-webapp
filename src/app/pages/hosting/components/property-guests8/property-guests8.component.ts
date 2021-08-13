@@ -4,7 +4,7 @@ import { Subscription } from 'rxjs';
 import { delay } from 'rxjs/operators';
 import { AlertService } from 'src/app/modules/alert/alert.service';
 import { EncryptionService } from 'src/app/services/encryption.service';
-import { STEP_8_ROUTE, STEP_9_ROUTE } from '../../constants/route.constant';
+import { MY_LISTING_ROUTE, STEP_7_ROUTE, STEP_8_ROUTE, STEP_9_ROUTE } from '../../constants/route.constant';
 import { ProgressService } from '../../services/progress.service';
 import { PropertyListingService } from '../../services/property-listing.service';
 
@@ -15,7 +15,7 @@ import { PropertyListingService } from '../../services/property-listing.service'
 })
 export class PropertyGuests8Component implements OnInit, AfterViewInit, OnDestroy {
   step9Route = STEP_9_ROUTE;
-  step7Route = STEP_8_ROUTE;
+  step7Route = STEP_7_ROUTE;
 
   propertyId: number;
   encryptedPropertyId: string;
@@ -25,11 +25,15 @@ export class PropertyGuests8Component implements OnInit, AfterViewInit, OnDestro
 
   coverPhotoUrl = '';
   propertyPhotos: { image_url: string }[] = [];
+  showingPropertyPhotos: { image_url: string }[] = [];
 
   isNextLoading = false;
   isCoverPhotoUploading = false;
   isPhotosUploading = false;
   isRemovingCoverPhoto = false;
+
+  isSavingExit = false;
+  saveExitSubs: Subscription;
   constructor(
     private $ps: ProgressService,
     private $encryptionService: EncryptionService,
@@ -50,6 +54,13 @@ export class PropertyGuests8Component implements OnInit, AfterViewInit, OnDestro
       this.encryptedPropertyId = id;
       this.propertyId = Number(this.$encryptionService.decrypt(id));
     });
+
+    this.saveExitSubs = this.$ps.saveExit.subscribe(data => {
+      if (data === 'done') {
+        this.isSavingExit = true;
+        this.addPropertyPhotos();
+      }
+    });
   }
 
   ngAfterViewInit(): void {
@@ -69,6 +80,8 @@ export class PropertyGuests8Component implements OnInit, AfterViewInit, OnDestro
         if (this.propertyData) {
           this.coverPhotoUrl = this.propertyData.property.cover_photo || '';
           this.propertyPhotos = this.propertyData.images || [];
+
+          this.setShowingPhotos(this.propertyPhotos);
         }
       });
   }
@@ -112,19 +125,41 @@ export class PropertyGuests8Component implements OnInit, AfterViewInit, OnDestro
     const photos = event.target.files;
     if (photos?.length) {
       this.isPhotosUploading = true;
-      const formData = new FormData();
-      for (const photo of photos) {
-        formData.append('images', photo);
-      }
-      this.$propertyListingService.uploadPhotos(formData).subscribe(data => {
-        this.isPhotosUploading = false;
-        const pPhotos = data.data;
-        this.propertyPhotos.push(...pPhotos);
-      }, err => {
-        this.isPhotosUploading = false;
-        this.$alert.danger(err.message);
-      });
+      this.uploadPhotos(photos);
     }
+  }
+
+  filesDropped(photos): void {
+    console.log(photos);
+    this.uploadPhotos(photos);
+  }
+
+  uploadPhotos(photos): void {
+    this.isPhotosUploading = true;
+    const formData = new FormData();
+    for (const photo of photos) {
+      formData.append('images', photo);
+    }
+    this.$propertyListingService.uploadPhotos(formData).subscribe(data => {
+      this.isPhotosUploading = false;
+      const pPhotos = data.data;
+      this.setShowingPhotos(pPhotos);
+      this.propertyPhotos.push(...pPhotos);
+    }, err => {
+      this.isPhotosUploading = false;
+      this.$alert.danger(err.message);
+    });
+  }
+
+  private setShowingPhotos(photos: { image_url: string }[]): void {
+    photos.forEach(item => {
+      const imageUrl = item.image_url;
+      const imageUrlArr = imageUrl.split('/');
+      imageUrlArr.pop();
+      const imgUrl = `${imageUrlArr.join('/')}/235x158.jpeg`;
+      item.image_url = imgUrl;
+      this.showingPropertyPhotos.push({ ...item });
+    });
   }
 
 
@@ -161,11 +196,17 @@ export class PropertyGuests8Component implements OnInit, AfterViewInit, OnDestro
       this.$ps.clearPropertyData();
       this.$ps.setPropertyData(this.propertyData);
       this.isNextLoading = false;
-
+      if (this.isSavingExit) {
+        this.$router.navigateByUrl(MY_LISTING_ROUTE.url);
+        return;
+      }
       this.$router.navigate([this.step9Route.url, this.encryptedPropertyId]);
     }, err => {
       this.isNextLoading = false;
       this.$alert.danger(err.message);
+      if (this.isSavingExit) {
+        this.$ps.isSaveExit.next(false);
+      }
     });
 
   }
@@ -173,5 +214,6 @@ export class PropertyGuests8Component implements OnInit, AfterViewInit, OnDestro
 
   ngOnDestroy(): void {
     this.propertyDataSubs.unsubscribe();
+    this.saveExitSubs.unsubscribe();
   }
 }

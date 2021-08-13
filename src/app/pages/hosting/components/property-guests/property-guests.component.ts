@@ -1,11 +1,12 @@
 import { AfterViewInit, Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+import { $ } from 'protractor';
 import { Subscription } from 'rxjs';
 import { delay } from 'rxjs/operators';
 import { PropertyType } from 'src/app/modals/property-type.modal';
 import { AlertService } from 'src/app/modules/alert/alert.service';
 import { EncryptionService } from 'src/app/services/encryption.service';
-import { START_ROUTE, STEP_2_ROUTE } from '../../constants/route.constant';
+import { MY_LISTING_ROUTE, START_ROUTE, STEP_2_ROUTE } from '../../constants/route.constant';
 import { ProgressService } from '../../services/progress.service';
 import { PropertyListingService } from '../../services/property-listing.service';
 
@@ -18,6 +19,8 @@ export class PropertyGuestsComponent implements OnInit, AfterViewInit, OnDestroy
 
   startRoute = START_ROUTE;
   step2Route = STEP_2_ROUTE;
+
+  myListingRoute = MY_LISTING_ROUTE;
 
   propertyTypes: PropertyType[];
 
@@ -33,6 +36,10 @@ export class PropertyGuestsComponent implements OnInit, AfterViewInit, OnDestroy
   propertyId: number;
   propertyData: any;
   propertyDataSubs: Subscription;
+
+  saveExitSubs: Subscription;
+
+  isSavingExit = false;
   constructor(
     private $ps: ProgressService,
     private $propertyListingService: PropertyListingService,
@@ -59,11 +66,21 @@ export class PropertyGuestsComponent implements OnInit, AfterViewInit, OnDestroy
       }
     });
     this.getPropertyTypes();
+
+
+    this.saveExitSubs = this.$ps.saveExit.subscribe(data => {
+      if (data === 'done') {
+        this.isSavingExit = true;
+        this.addPropertyTypes();
+      }
+    });
   }
 
 
   ngAfterViewInit(): void {
-    this.setDataForUpdate();
+    if (this.propertyId) {
+      this.setDataForUpdate();
+    }
   }
 
 
@@ -81,7 +98,9 @@ export class PropertyGuestsComponent implements OnInit, AfterViewInit, OnDestroy
           console.log(this.selectedPropertyType);
           this.isHostPrivate = this.propertyData.property.is_business_hosting ? false : true;
           this.isBeachHouse = this.propertyData.property.is_beach_house ? true : null;
-          if (!this.isBeachHouse) {
+
+          const ar = [1, 2];
+          if (!ar.includes(this.selectedPropertyType)) {
             this.isBeachHouseShow = false;
           }
         }
@@ -122,12 +141,31 @@ export class PropertyGuestsComponent implements OnInit, AfterViewInit, OnDestroy
     this.$propertyListingService.addPropertyType(dataObj, this.propertyId)
       .subscribe(data => {
         console.log(data);
+        const respData = data.data;
         const id = data.data.id;
         const encryptedId = this.$encryptionService.encrypt(id);
         console.log(encryptedId);
         this.isNextLoading = false;
-        this.$ps.setPropertyData({ property: data.data });
+        if (this.propertyData) {
+          this.propertyData.property.property_type = respData.property_type;
+          this.propertyData.property.is_beach_house = respData.is_beach_house;
+          this.propertyData.property.is_dedicated_guest_space = respData.is_dedicated_guest_space;
+          this.propertyData.property.is_business_hosting = respData.is_business_hosting;
+
+          this.$ps.clearPropertyData();
+          this.$ps.setPropertyData(this.propertyData);
+        }
+        else {
+          this.$ps.setPropertyData({ property: data.data });
+        }
+
+        if (this.isSavingExit) {
+          this.$router.navigateByUrl(this.myListingRoute.url);
+          return;
+        }
+
         this.$router.navigate([this.step2Route.url, encryptedId]);
+
       }, err => {
         this.isNextLoading = false;
         this.$alert.danger(err.message);
@@ -136,7 +174,13 @@ export class PropertyGuestsComponent implements OnInit, AfterViewInit, OnDestroy
 
 
   ngOnDestroy(): void {
-    this.propertyDataSubs.unsubscribe();
+    if (this.propertyDataSubs) {
+      this.propertyDataSubs.unsubscribe();
+    }
+
+    if (this.saveExitSubs) {
+      this.saveExitSubs.unsubscribe();
+    }
   }
 
 }

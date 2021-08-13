@@ -5,7 +5,7 @@ import { Subscription } from 'rxjs';
 import { delay } from 'rxjs/operators';
 import { AlertService } from 'src/app/modules/alert/alert.service';
 import { EncryptionService } from 'src/app/services/encryption.service';
-import { STEP_5_ROUTE, STEP_7_ROUTE } from '../../constants/route.constant';
+import { MY_LISTING_ROUTE, STEP_21_ROUTE, STEP_5_ROUTE, STEP_7_ROUTE } from '../../constants/route.constant';
 import { ProgressService } from '../../services/progress.service';
 import { PropertyListingService } from '../../services/property-listing.service';
 import { GuestRequirementModelComponent } from '../guest-requirement-model/guest-requirement-model.component';
@@ -19,6 +19,8 @@ export class PropertyGuests22Component implements OnInit, AfterViewInit, OnDestr
 
   step7Route = STEP_7_ROUTE;
   step5Route = STEP_5_ROUTE;
+
+  step21Route = STEP_21_ROUTE;
 
   propertyId: number;
   encryptedPropertyId: string;
@@ -36,6 +38,9 @@ export class PropertyGuests22Component implements OnInit, AfterViewInit, OnDestr
   isAgreeHR = false;
   isRecommendedFromOH = false;
 
+  isBack21 = false;
+  isSavingExit = false;
+  saveExitSubs: Subscription;
 
   constructor(
     private $ps: ProgressService,
@@ -57,6 +62,20 @@ export class PropertyGuests22Component implements OnInit, AfterViewInit, OnDestr
       const { id } = params;
       this.encryptedPropertyId = id;
       this.propertyId = Number(this.$encryptionService.decrypt(id));
+    });
+
+    this.$activatedRoute.queryParams.subscribe(data => {
+      const back = data.back;
+      if (Number(back) === 21) {
+        this.isBack21 = true;
+      }
+    });
+
+    this.saveExitSubs = this.$ps.saveExit.subscribe(data => {
+      if (data === 'done') {
+        this.isSavingExit = true;
+        this.addGuestRequirements();
+      }
     });
   }
 
@@ -142,7 +161,10 @@ export class PropertyGuests22Component implements OnInit, AfterViewInit, OnDestr
 
       this.$ps.clearPropertyData();
       this.$ps.setPropertyData(this.propertyData);
-
+      if (this.isSavingExit) {
+        this.$router.navigateByUrl(MY_LISTING_ROUTE.url);
+        return;
+      }
       this.$router.navigate([this.step7Route.url, this.encryptedPropertyId]);
     }, err => {
       this.isNextLoading = false;
@@ -152,5 +174,7 @@ export class PropertyGuests22Component implements OnInit, AfterViewInit, OnDestr
 
   ngOnDestroy(): void {
     this.propertyDataSubs.unsubscribe();
+    this.isBack21 = false;
+    this.saveExitSubs.unsubscribe();
   }
 }

@@ -41,6 +41,8 @@ import { GuestRequirementModelComponent } from './components/guest-requirement-m
 import { RuleReasonModelComponent } from './components/rule-reason-model/rule-reason-model.component';
 import { NgOtpInputModule } from 'ng-otp-input';
 import { FormatTimePipe } from './pipes/format-time.pipe';
+import { GoogleMapModule } from 'src/app/modules/google-map/google-map.module';
+import { DragDropModule } from 'src/app/modules/drag-drop/drag-drop.module';
 
 
 
@@ -90,13 +92,17 @@ import { FormatTimePipe } from './pipes/format-time.pipe';
     HostingRoutingModule,
     SharedModule,
     ValidateErrorModule,
-    NgOtpInputModule
+    NgOtpInputModule,
+    GoogleMapModule,
+    DragDropModule
   ],
   exports: [
     HostingRoutingModule,
     SharedModule,
     ValidateErrorModule,
-    NgOtpInputModule
+    NgOtpInputModule,
+    GoogleMapModule,
+    DragDropModule
   ]
 })
 export class HostingModule { }

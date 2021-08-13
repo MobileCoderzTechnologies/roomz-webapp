@@ -43,7 +43,10 @@
                 </div>
               </li>
               <li class="nav-item">
-                <a class="nav-link border" href="#">{{'header.btnListARoom'|langTranslate}} </a>
+                <a *ngIf="!ListingStatus" class="nav-link border" style="cursor: pointer;" (click)="onSwitching()">{{'header.btnListARoom'|langTranslate}} </a>
+
+                <a *ngIf="ListingStatus" class="nav-link border" style="cursor: pointer;"
+                (click)="onSwitching()">{{'header.btnSwitchingToHosting'|langTranslate}} </a>
               </li>
 
               <li class="nav-item dropdown" *ngIf="!isLoggedIn">
