@@ -584,3 +584,11 @@ hr {
   border: 0 !important;
   border-radius: 5px !important;
 }
+.hosting_header .navbar-nav li > a {
+  font-family: "montserratsemibold" !important;
+  color: #000 !important;
+}
+
+.hosting_header .navbar-nav li > a.active {
+  color: #f9537b !important;
+}
