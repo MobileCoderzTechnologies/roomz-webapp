@@ -592,3 +592,20 @@ hr {
 .hosting_header .navbar-nav li > a.active {
   color: #f9537b !important;
 }
+.hosting_dropdown {
+  position: absolute;
+  top: 48px;
+  left: 0;
+  box-shadow: 1px 1px 5px 3px #eae7e7;
+  width: 250px;
+  z-index: 999;
+}
+
+.Amenities_part {
+  width: 450px;
+}
+.search_icon {
+  position: absolute;
+  top: 14px;
+  left: 18px;
+}
