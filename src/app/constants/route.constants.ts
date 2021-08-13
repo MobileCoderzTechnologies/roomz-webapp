@@ -12,6 +12,13 @@ export const HOSTING_ROUTE = {
   }
 };
 
+// export const LISTING_ROUTE = {
+//   path: 'list-property',
+//   get url(): string {
+//     return `${HOSTING_ROUTE.url}/${this.path}`;
+//   }
+// };
+
 
 export const FORGOT_PASSWORD_ROUTE = {
   path: 'forgot-password',

@@ -8,6 +8,10 @@ import { LangTranslateService } from 'src/app/services/lang-translate.service';
 import { WelcomeComponent } from '../welcome/welcome.component';
 import Swal from 'sweetalert2'
 import { isPlatformBrowser } from '@angular/common';
+import { ListingStatusService } from '../../services/listing-status.service';
+import { Router } from '@angular/router';
+import { HOSTING_ROUTE } from 'src/app/constants/route.constants';
+import { LISTING_HOME_ROUTE } from 'src/app/pages/hosting/constants/route.constant';
 
 @Component({
   selector: 'app-banner',
@@ -19,11 +23,16 @@ export class BannerComponent implements OnInit, AfterViewInit {
   selectedLanguage: string;
   isLoggedIn = false;
   currentUser: { name: string, profile: string };
+
+  ListingStatus = true;
+
   constructor(
     private $translate: LangTranslateService,
     private $dialog: MatDialog,
     private $alert: AlertService,
     private $loginService: LoginService,
+    private $listingStatus: ListingStatusService,
+    private $router: Router,
     @Inject(PLATFORM_ID) private platformId: any
   ) { }
 
@@ -48,6 +57,7 @@ export class BannerComponent implements OnInit, AfterViewInit {
     ).subscribe(loginStatus => {
       if (loginStatus) {
         this.isLoggedIn = true;
+        this.userListingStatus();
         if (isPlatformBrowser(this.platformId)) {
           this.currentUser = JSON.parse(localStorage.getItem('currentUser'));
         }
@@ -57,6 +67,20 @@ export class BannerComponent implements OnInit, AfterViewInit {
     });
   }
 
+  private userListingStatus(): void {
+    this.$listingStatus.getListingStatus().subscribe(data => {
+      this.ListingStatus = data?.data?.listing_status;
+    });
+  }
+
+  onSwitching(): void {
+    if (this.ListingStatus) {
+      this.$router.navigateByUrl(HOSTING_ROUTE.url);
+    }
+    else {
+      this.$router.navigateByUrl(LISTING_HOME_ROUTE.url);
+    }
+  }
 
 
   onLogin(data: any = null): void {
@@ -120,7 +144,8 @@ export class BannerComponent implements OnInit, AfterViewInit {
       if (result.isConfirmed) {
         this.$loginService.logout();
       }
-    })
+    });
   }
+
 
 }

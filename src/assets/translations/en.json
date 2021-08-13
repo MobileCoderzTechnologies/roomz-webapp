@@ -5,6 +5,7 @@
     "login": "LOG IN",
     "signUp": "SIGN UP",
     "btnListARoom": "LIST A ROOM",
+    "btnSwitchingToHosting": "SWITCH TO HOSTING",
     "profile": "PROFILE",
     "logout": "LOG OUT"
   },
