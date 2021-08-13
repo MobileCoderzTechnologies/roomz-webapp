@@ -52,7 +52,7 @@
             <span class="fz14 medium_font text-secondary">Hosted by</span>
             <div class="d-flex align-items-center">
               <div class="me-3 mt-2 mb-2">
-                <img [src]="property?.user?.avatar" class="img-fluid" width="60" alt="" />
+                <img [src]="property?.user?.avatar" class="img-fluid avatar">
               </div>
               <p class="mb-0 fz18 bold_font">
                 {{property?.user?.first_name}} {{property?.user?.last_name}}
@@ -118,24 +118,36 @@
               <div class="row">
                 <div class="col-md-6">
                   <div class="col_selector">
-                    <div class="d-flex align-items-center justify-content-between mb-3">
-                      <p class="mb-0 fz15 semi_font">
-                        {{property?.amenities[0]?.amenity_name.name}}
-                      </p>
-                      <img [src]="property?.amenities[0]?.amenity_name.icon_url" class="me-1" alt="" />
-                    </div>
-                    <div class="d-flex align-items-center justify-content-between mb-3">
-                      <p class="mb-0 fz15 semi_font">
-                        {{property?.amenities[1]?.amenity_name.name}}
-                      </p>
-                      <img [src]="property?.amenities[1]?.amenity_name.icon_url" class="me-1" alt="" />
-                    </div>
-                    <div class="d-flex align-items-center justify-content-between mb-3">
-                      <p class="mb-0 fz15 semi_font">
-                        {{property?.amenities[2]?.amenity_name.name}}
-                      </p>
-                      <img [src]="property?.amenities[2]?.amenity_name.icon_url" class="me-1" alt="" />
-                    </div>
+                    <ng-container *ngIf="!isShowAmenities">
+                      <div class="d-flex align-items-center justify-content-between mb-3">
+                        <p class="mb-0 fz15 semi_font">
+                          {{property?.amenities[0]?.amenity_name.name}}
+                        </p>
+                        <img [src]="property?.amenities[0]?.amenity_name.icon_url" class="me-1" alt="" />
+                      </div>
+                      <div class="d-flex align-items-center justify-content-between mb-3">
+                        <p class="mb-0 fz15 semi_font">
+                          {{property?.amenities[1]?.amenity_name.name}}
+                        </p>
+                        <img [src]="property?.amenities[1]?.amenity_name.icon_url" class="me-1" alt="" />
+                      </div>
+                      <div class="d-flex align-items-center justify-content-between mb-3">
+                        <p class="mb-0 fz15 semi_font">
+                          {{property?.amenities[2]?.amenity_name.name}}
+                        </p>
+                        <img [src]="property?.amenities[2]?.amenity_name.icon_url" class="me-1" alt="" />
+                      </div>
+                    </ng-container>
+
+                    <ng-container *ngIf="isShowAmenities">
+                      <div class="d-flex align-items-center justify-content-between mb-3"
+                        *ngFor="let amenity of property?.amenities">
+                        <p class="mb-0 fz15 semi_font">
+                          {{amenity?.amenity_name.name}}
+                        </p>
+                        <img [src]="amenity.amenity_name.icon_url" class="me-1" alt="" />
+                      </div>
+                    </ng-container>
                     <!-- <div class="d-flex align-items-center justify-content-between mb-3">
                       <p class="mb-0 fz15 semi_font">Kitchen</p>
                       <img src="assets/images/Kitchen.png" class="me-2" alt="" />
@@ -146,7 +158,11 @@
                       </p>
                       <img src="assets/images/parking.png" alt="" />
                     </div> -->
-                    <p>
+                    <p *ngIf="isShowAmenities" (click)="isShowAmenities = false">
+                      <a href="javascript:void(0);" class="blue_color fz16 semi_font"><u>Show all
+                          show less amenities</u></a>
+                    </p>
+                    <p *ngIf="property?.amenities?.length - 3 > 0 && !isShowAmenities" (click)="isShowAmenities = true">
                       <a href="javascript:void(0);" class="blue_color fz16 semi_font"><u>Show all
                           {{property?.amenities?.length}} amenities</u></a>
                     </p>
@@ -181,16 +197,34 @@
                 <u class="blue_color fz14 medium_font">Roomz's Guest refund policy</u>
               </p>
             </div>
-            <hr class="my-4" />
+
+            <div class="d-flex justify-content-between align-items-center mb-5 p-4 mt-0 back_next_part">
+              <a *ngIf="!isBack21" href="javascript:void(0);" class="blue_color d-flex align-items-center"
+                [routerLink]="[step8Route.url, encryptedPropertyId]">
+                <img src="assets/images/blue-left-arrow.png" class="me-2" alt="" /> Back
+              </a>
+              <a *ngIf="isBack21" href="javascript:void(0);" class="blue_color d-flex align-items-center"
+                [routerLink]="[step21Route.url, encryptedPropertyId]">
+                <img src="assets/images/blue-left-arrow.png" class="me-2" alt="" /> Back
+              </a>
+              <button class="btn custom_btn" *ngIf="!isNextLoading" (click)="onNext()">
+                Next
+              </button>
+              <button class="btn custom_btn" *ngIf="isNextLoading">
+                Next
+                <div *ngIf="!isSavingExit" class="spinner-border text-info spinner-border-sm"></div>
+              </button>
+            </div>
+            <!-- <hr class="my-4" />
             <div>
               <h4 class="mb-0 fz20 semi_font">Hosted by</h4>
               <span class="fz14 medium_font text-secondary">joined {{property?.user?.created_at|date:'short'}} </span>
               <div class="d-flex align-items-center">
                 <div class="me-3 mt-2 mb-2">
-                  <img [src]="property?.user?.avatar" class="img-fluid" width="60" alt="" />
+                  <img [src]="property?.user?.avatar" class="img-fluid avatar" />
                 </div>
                 <p class="mb-0 fz18 bold_font">
-                  {{property?.use?.first_name}} {{property?.user?.last_name}}
+                  {{property?.user?.first_name}} {{property?.user?.last_name}}
                 </p>
               </div>
               <p class="fz14 regular_font">
@@ -227,20 +261,20 @@
                 </div>
               </div>
             </div>
-            <hr class="my-4" />
+            <hr class="my-4" /> -->
           </div>
         </div>
       </div>
-      <div class="col-md-3">
+      <!-- <div class="col-md-3">
         <div class="col_selector">
           <div class="text-end">
             <img src="assets/images/edit.png" class="img-fluid me-3" alt="" />
             <img src="assets/images/share.png" class="img-fluid" alt="" />
           </div>
         </div>
-      </div>
+      </div> -->
     </div>
-    <div class="col-12 most_popular">
+    <!-- <div class="col-12 most_popular">
       <h3 class="fz20 mb-4 bold_font">Sleeping arrangements</h3>
       <div class="row">
         <div class="col-md-4">
@@ -481,6 +515,6 @@
           </div>
         </div>
       </div>
-    </div>
+    </div> -->
   </div>
 </section>

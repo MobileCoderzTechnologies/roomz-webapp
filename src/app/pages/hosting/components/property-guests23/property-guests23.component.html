@@ -137,7 +137,7 @@
                         </button>
                         <button class="btn custom_btn" *ngIf="isNextLoading">
                             Next
-                            <div class="spinner-border text-info spinner-border-sm"></div>
+                            <div *ngIf="!isSavingExit" class="spinner-border text-info spinner-border-sm"></div>
                         </button>
                     </div>
                 </div>

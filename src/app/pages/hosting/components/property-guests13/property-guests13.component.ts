@@ -4,7 +4,7 @@ import { Subscription } from 'rxjs';
 import { delay } from 'rxjs/operators';
 import { AlertService } from 'src/app/modules/alert/alert.service';
 import { EncryptionService } from 'src/app/services/encryption.service';
-import { STEP_13_ROUTE, STEP_11_ROUTE } from '../../constants/route.constant';
+import { STEP_13_ROUTE, STEP_11_ROUTE, MY_LISTING_ROUTE } from '../../constants/route.constant';
 import { ProgressService } from '../../services/progress.service';
 import { PropertyListingService } from '../../services/property-listing.service';
 
@@ -32,6 +32,9 @@ export class PropertyGuests13Component implements OnInit, AfterViewInit, OnDestr
   selectedProfilePhoto: any;
   selectedImage: any;
 
+  isSavingExit = false;
+  saveExitSubs: Subscription;
+
 
   constructor(
     private $ps: ProgressService,
@@ -52,6 +55,18 @@ export class PropertyGuests13Component implements OnInit, AfterViewInit, OnDestr
       const { id } = params;
       this.encryptedPropertyId = id;
       this.propertyId = Number(this.$encryptionService.decrypt(id));
+    });
+
+    this.saveExitSubs = this.$ps.saveExit.subscribe(data => {
+      if (data === 'done') {
+        this.isSavingExit = true;
+        if (this.selectedImage) {
+          this.updateProfilePhoto();
+        }
+        else {
+          this.$router.navigateByUrl(MY_LISTING_ROUTE.url);
+        }
+      }
     });
 
     this.getUserProfile();
@@ -108,6 +123,11 @@ export class PropertyGuests13Component implements OnInit, AfterViewInit, OnDestr
       formData.set('photo', this.selectedImage);
       this.$propertyListingService.userProfilePhoto(formData).subscribe(res => {
         this.isNextLoading = false;
+
+        if (this.isSavingExit) {
+          this.$router.navigateByUrl(MY_LISTING_ROUTE.url);
+          return;
+        }
         this.$router.navigate([this.step13Route.url, this.encryptedPropertyId]);
       }, err => {
         this.isNextLoading = false;
@@ -116,12 +136,14 @@ export class PropertyGuests13Component implements OnInit, AfterViewInit, OnDestr
     }
     else {
       this.$router.navigate([this.step13Route.url, this.encryptedPropertyId]);
+      this.$ps.isSaveExit.next(false);
     }
   }
 
 
   ngOnDestroy(): void {
     this.propertyDataSubs.unsubscribe();
+    this.saveExitSubs.unsubscribe();
   }
 
 

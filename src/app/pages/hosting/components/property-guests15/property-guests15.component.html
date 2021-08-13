@@ -28,7 +28,7 @@
                   </select>| -->
                   <input type="text" class="form-control custom_form_control border-0 w-90 pe-0" name="" id="" formControlName="phone_number" (input)="onPhoneNumberChange($event.target.value)"/>
                   <span class="blue_color w-10" (click)="sendOtp()" *ngIf="!isOtpSend && !isOtpVerified">Verify</span>
-                  <span class="blue_color w-10" (click)="sendOtp()" *ngIf="isOtpVerified">Verified</span>
+                  <span class="blue_color" style="width: 13%;" *ngIf="isOtpVerified">Verified</span>
                 </div>
               </div>
             </form>
@@ -78,7 +78,7 @@
             </form>
 
           </div>
-          <hr />
+          <!-- <hr /> -->
           <div class="d-flex justify-content-between align-items-center mb-5 p-4 mt-0 back_next_part">
             <a href="javascript:void(0);" class="blue_color d-flex align-items-center"
               [routerLink]="[step12Route.url, encryptedPropertyId]">
@@ -89,7 +89,7 @@
             </button>
             <button class="btn custom_btn" *ngIf="isNextLoading">
               Next
-              <div class="spinner-border text-info spinner-border-sm"></div>
+              <div *ngIf="!isSavingExit" class="spinner-border text-info spinner-border-sm"></div>
             </button>
           </div>
         </div>

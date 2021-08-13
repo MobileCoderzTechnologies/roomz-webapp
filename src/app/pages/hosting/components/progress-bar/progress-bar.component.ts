@@ -22,7 +22,7 @@ export class ProgressBarComponent implements OnInit, AfterViewInit, OnDestroy {
   ) { }
 
   ngOnInit(): void {
-  this.isSaveExitSubs =   this.$ps.header.subscribe(data => {
+    this.isSaveExitSubs = this.$ps.header.subscribe(data => {
       this.progress = `${data.progress}%`;
       this.heading = data.heading;
     });
@@ -31,8 +31,8 @@ export class ProgressBarComponent implements OnInit, AfterViewInit, OnDestroy {
 
   onSaveExit(): void {
     this.isSaving = true;
-    this.$ps.saveExit.next('done');
     this.$ps.isSaveExit.next(true);
+    this.$ps.saveExit.next('done');
   }
 
   ngAfterViewInit(): void {

@@ -6,7 +6,7 @@ import { Subscription } from 'rxjs';
 import { delay } from 'rxjs/operators';
 import { AlertService } from 'src/app/modules/alert/alert.service';
 import { EncryptionService } from 'src/app/services/encryption.service';
-import { STEP_11_ROUTE, STEP_9_ROUTE } from '../../constants/route.constant';
+import { MY_LISTING_ROUTE, STEP_11_ROUTE, STEP_9_ROUTE } from '../../constants/route.constant';
 import { ProgressService } from '../../services/progress.service';
 import { PropertyListingService } from '../../services/property-listing.service';
 
@@ -28,6 +28,9 @@ export class PropertyGuests10Component implements OnInit, AfterViewInit, OnDestr
 
   isNextLoading = false;
   isOptionalExtended = false;
+
+  isSavingExit = false;
+  saveExitSubs: Subscription;
 
   descForm = new FormGroup({
     description: new FormControl(null, [Validators.required, Validators.minLength(20), Validators.maxLength(500)]),
@@ -59,6 +62,18 @@ export class PropertyGuests10Component implements OnInit, AfterViewInit, OnDestr
       const { id } = params;
       this.encryptedPropertyId = id;
       this.propertyId = Number(this.$encryptionService.decrypt(id));
+    });
+
+    this.saveExitSubs = this.$ps.saveExit.subscribe(data => {
+      if (data === 'done') {
+        this.isSavingExit = true;
+        if (this.descForm.valid) {
+          this.addPropertyDesc();
+        }
+        else {
+          this.$router.navigateByUrl(MY_LISTING_ROUTE.url);
+        }
+      }
     });
   }
 
@@ -101,12 +116,12 @@ export class PropertyGuests10Component implements OnInit, AfterViewInit, OnDestr
   addPropertyDesc(): void {
     this.isNextLoading = true;
     const requestData = this.descForm.value;
-    
+
     requestData.desc_getting_around = this.desc_getting_around.value;
     requestData.desc_your_space = this.desc_your_space.value;
     requestData.desc_interaction_guests = this.desc_interaction_guests.value;
     requestData.desc_neighbourhood = this.desc_neighbourhood.value;
-    
+
     this.$propertyListingService.addPropertyDescription(this.propertyId, requestData).subscribe(res => {
       const respData = res.data[0];
 
@@ -120,15 +135,22 @@ export class PropertyGuests10Component implements OnInit, AfterViewInit, OnDestr
       this.$ps.setPropertyData(this.propertyData);
       this.isNextLoading = false;
 
+      if (this.isSavingExit) {
+        this.$router.navigateByUrl(MY_LISTING_ROUTE.url);
+        return;
+      }
       this.$router.navigate([this.step11Route.url, this.encryptedPropertyId]);
     }, err => {
       this.isNextLoading = false;
       this.$alert.danger(err.message);
+      this.$ps.isSaveExit.next(false);
     });
   }
 
 
   ngOnDestroy(): void {
     this.propertyDataSubs.unsubscribe();
+    this.saveExitSubs.unsubscribe();
+    this.isSavingExit = false;
   }
 }

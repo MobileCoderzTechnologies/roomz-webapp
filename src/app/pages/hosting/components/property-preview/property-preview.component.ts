@@ -3,7 +3,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { AlertService } from 'src/app/modules/alert/alert.service';
 import { EncryptionService } from 'src/app/services/encryption.service';
-import { STEP_10_ROUTE, STEP_20_ROUTE, STEP_8_ROUTE } from '../../constants/route.constant';
+import { MY_LISTING_ROUTE, STEP_10_ROUTE, STEP_20_ROUTE, STEP_8_ROUTE } from '../../constants/route.constant';
 import { ProgressService } from '../../services/progress.service';
 import { PropertyListingService } from '../../services/property-listing.service';
 
@@ -29,6 +29,8 @@ export class PropertyPreviewComponent implements OnInit, OnDestroy {
   propertyImages: { image_url: string }[] = [];
 
   coverPhoto = '';
+
+  isShowAmenities = false;
 
   isNextLoading = false;
   isSavingExit = false;
@@ -67,6 +69,7 @@ export class PropertyPreviewComponent implements OnInit, OnDestroy {
     this.saveExitSubs = this.$ps.saveExit.subscribe(data => {
       if (data === 'done') {
         this.isSavingExit = true;
+        this.onNext();
       }
     });
 
@@ -101,6 +104,15 @@ export class PropertyPreviewComponent implements OnInit, OnDestroy {
       err => {
         this.$alert.danger(err.message);
       });
+  }
+
+  onNext(): void {
+
+    if (this.isSavingExit) {
+      this.$router.navigateByUrl(MY_LISTING_ROUTE.url);
+      return;
+    }
+    this.$router.navigate([this.step10Route.url, this.encryptedPropertyId])
   }
 
   ngOnDestroy(): void {

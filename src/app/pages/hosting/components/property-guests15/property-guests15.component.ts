@@ -9,7 +9,7 @@ import { COUNTRIES_CODES } from 'src/app/constants/country-code.constant';
 import { User } from 'src/app/modals/user.modal';
 import { AlertService } from 'src/app/modules/alert/alert.service';
 import { EncryptionService } from 'src/app/services/encryption.service';
-import { STEP_14_ROUTE, STEP_12_ROUTE } from '../../constants/route.constant';
+import { STEP_14_ROUTE, STEP_12_ROUTE, MY_LISTING_ROUTE } from '../../constants/route.constant';
 import { ProgressService } from '../../services/progress.service';
 import { PropertyListingService } from '../../services/property-listing.service';
 
@@ -58,11 +58,15 @@ export class PropertyGuests15Component implements OnInit, AfterViewInit, OnDestr
       'height': '50px',
       'border': 'none',
       'border-bottom': '1px solid',
-      'border-radius': '0'
+      'border-radius': '0',
+      'outline': 'none'
     }
   };
   @ViewChild('ngOtpInput', { static: false }) ngOtpInput: any;
   otp = '';
+
+  isSavingExit = false;
+  saveExitSubs: Subscription;
 
   constructor(
     private $ps: ProgressService,
@@ -83,6 +87,22 @@ export class PropertyGuests15Component implements OnInit, AfterViewInit, OnDestr
       const { id } = params;
       this.encryptedPropertyId = id;
       this.propertyId = Number(this.$encryptionService.decrypt(id));
+    });
+
+    this.saveExitSubs = this.$ps.saveExit.subscribe(data => {
+      if (data === 'done') {
+        this.isSavingExit = true;
+        if (this.userPhoneNumberForm.valid && !this.isOtpVerified) {
+          this.$ps.isSaveExit.next(false);
+          this.$alert.danger('Please Verify Phone Number');
+        }
+        else if (this.userPhoneNumberForm.valid && this.isOtpVerified) {
+          this.addSecPhoneNumber();
+        }
+        else {
+          this.$router.navigateByUrl(MY_LISTING_ROUTE.url);
+        }
+      }
     });
 
     this.getUserProfile();
@@ -193,16 +213,23 @@ export class PropertyGuests15Component implements OnInit, AfterViewInit, OnDestr
       this.$ps.setPropertyData(this.propertyData);
       this.isNextLoading = false;
 
+      if (this.isSavingExit) {
+        this.$router.navigateByUrl(MY_LISTING_ROUTE.url);
+        return;
+      }
+
       this.$router.navigate([this.step14Route.url, this.encryptedPropertyId]);
     }, err => {
       this.isNextLoading = false;
       this.$alert.danger(err.message);
+      this.$ps.isSaveExit.next(false);
     });
   }
 
 
   ngOnDestroy(): void {
     this.propertyDataSubs.unsubscribe();
+    this.saveExitSubs.unsubscribe();
   }
 
 

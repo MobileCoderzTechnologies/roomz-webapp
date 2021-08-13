@@ -5,7 +5,7 @@ import { Subscription } from 'rxjs';
 import { delay } from 'rxjs/operators';
 import { AlertService } from 'src/app/modules/alert/alert.service';
 import { EncryptionService } from 'src/app/services/encryption.service';
-import { STEP_10_ROUTE, STEP_12_ROUTE } from '../../constants/route.constant';
+import { MY_LISTING_ROUTE, STEP_10_ROUTE, STEP_12_ROUTE } from '../../constants/route.constant';
 import { ProgressService } from '../../services/progress.service';
 import { PropertyListingService } from '../../services/property-listing.service';
 
@@ -33,6 +33,8 @@ export class PropertyGuests12Component implements OnInit, AfterViewInit, OnDestr
 
   nameOfListing = new FormControl(null, [Validators.required]);
 
+  isSavingExit = false;
+  saveExitSubs: Subscription;
 
   constructor(
     private $ps: ProgressService,
@@ -53,6 +55,18 @@ export class PropertyGuests12Component implements OnInit, AfterViewInit, OnDestr
       const { id } = params;
       this.encryptedPropertyId = id;
       this.propertyId = Number(this.$encryptionService.decrypt(id));
+    });
+
+    this.saveExitSubs = this.$ps.saveExit.subscribe(data => {
+      if (data === 'done') {
+        this.isSavingExit = true;
+        if (this.nameOfListing.valid) {
+          this.addPropertyName();
+        }
+        else {
+          this.$router.navigateByUrl(MY_LISTING_ROUTE.url);
+        }
+      }
     });
   }
 
@@ -96,17 +110,23 @@ export class PropertyGuests12Component implements OnInit, AfterViewInit, OnDestr
       this.$ps.clearPropertyData();
       this.$ps.setPropertyData(this.propertyData);
       this.isNextLoading = false;
-
+      if (this.isSavingExit) {
+        this.$router.navigateByUrl(MY_LISTING_ROUTE.url);
+        return;
+      }
       this.$router.navigate([this.step12Route.url, this.encryptedPropertyId]);
     }, err => {
       this.isNextLoading = false;
       this.$alert.danger(err.message);
+      this.$ps.isSaveExit.next(false);
     });
   }
 
 
   ngOnDestroy(): void {
     this.propertyDataSubs.unsubscribe();
+    this.saveExitSubs.unsubscribe();
+    this.isSavingExit = false;
   }
 
 
