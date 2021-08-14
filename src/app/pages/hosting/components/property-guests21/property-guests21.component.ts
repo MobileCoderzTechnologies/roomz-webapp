@@ -6,7 +6,7 @@ import { delay } from 'rxjs/operators';
 import { GUEST_CHECK_INS, NOTICE_GUESTS_BA } from 'src/app/constants/property-ques.constant';
 import { AlertService } from 'src/app/modules/alert/alert.service';
 import { EncryptionService } from 'src/app/services/encryption.service';
-import { STEP_21_ROUTE, STEP_19_ROUTE } from '../../constants/route.constant';
+import { STEP_21_ROUTE, STEP_19_ROUTE, MY_LISTING_ROUTE } from '../../constants/route.constant';
 import { ProgressService } from '../../services/progress.service';
 import { PropertyListingService } from '../../services/property-listing.service';
 
@@ -38,6 +38,9 @@ export class PropertyGuests21Component implements OnInit, AfterViewInit, OnDestr
   noticeGuestBa = NOTICE_GUESTS_BA;
   checkIns = GUEST_CHECK_INS;
 
+  isSavingExit = false;
+  saveExitSubs: Subscription;
+
   constructor(
     private $ps: ProgressService,
     private $encryptionService: EncryptionService,
@@ -59,6 +62,12 @@ export class PropertyGuests21Component implements OnInit, AfterViewInit, OnDestr
       this.propertyId = Number(this.$encryptionService.decrypt(id));
     });
 
+    this.saveExitSubs = this.$ps.saveExit.subscribe(data => {
+      if (data === 'done') {
+        this.isSavingExit = true;
+        this.addPropertyQuestions();
+      }
+    });
   }
 
   ngAfterViewInit(): void {
@@ -109,16 +118,24 @@ export class PropertyGuests21Component implements OnInit, AfterViewInit, OnDestr
       this.$ps.setPropertyData(this.propertyData);
       this.isNextLoading = false;
 
+      if (this.isSavingExit) {
+        this.$router.navigateByUrl(MY_LISTING_ROUTE.url);
+        return;
+      }
+
       this.$router.navigate([this.step21Route.url, this.encryptedPropertyId]);
     }, err => {
       this.isNextLoading = false;
       this.$alert.danger(err.message);
+      this.$ps.isSaveExit.next(true);
     });
   }
 
 
   ngOnDestroy(): void {
     this.propertyDataSubs.unsubscribe();
+    this.saveExitSubs.unsubscribe();
+    this.isSavingExit = false;
   }
 
 

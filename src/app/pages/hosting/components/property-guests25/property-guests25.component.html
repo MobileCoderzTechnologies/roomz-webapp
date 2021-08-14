@@ -12,7 +12,8 @@
 
                         <div class="my-4">
                             <label for="" class="mb-2">Base price</label>
-                            <input type="number" [formControl]="basePrice" class="form-control custom_form_control mb-2" placeholder="$">
+                            <input type="number" [formControl]="basePrice" class="form-control custom_form_control mb-2"
+                                placeholder="$">
 
                             <p class="fz14 regular_font">This will be your default nighty price</p>
                         </div>
@@ -22,7 +23,8 @@
                         <div class="d-flex justify-content-between toggle-wrap">
                             <p>Offer 20% off to your first guests</p>
                             <label class="switch">
-                                <input type="checkbox" (change)="onDiscount20($event.target.checked)" [checked]="isDiscount20">
+                                <input type="checkbox" (change)="onDiscount20($event.target.checked)"
+                                    [checked]="isDiscount20">
                                 <span class="slider round"></span>
                             </label>
                         </div>
@@ -45,12 +47,13 @@
                                 [routerLink]="[step21Route.url, encryptedPropertyId]">
                                 <img src="assets/images/blue-left-arrow.png" class="me-2" alt="" /> Back
                             </a>
-                            <button class="btn custom_btn" *ngIf="!isNextLoading" (click)="setPropertyPrice()">
+                            <button class="btn custom_btn" *ngIf="!isNextLoading" (click)="setPropertyPrice()"
+                                [disabled]="basePrice.invalid">
                                 Next
                             </button>
                             <button class="btn custom_btn" *ngIf="isNextLoading">
                                 Next
-                                <div class="spinner-border text-info spinner-border-sm"></div>
+                                <div *ngIf="isSavingExit" class="spinner-border text-info spinner-border-sm"></div>
                             </button>
                         </div>
                     </div>

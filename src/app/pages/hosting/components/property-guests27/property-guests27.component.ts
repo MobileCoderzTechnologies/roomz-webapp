@@ -6,7 +6,7 @@ import { delay } from 'rxjs/operators';
 import { ADVANCE_NOTICE, AVAILABILITY_WINDOW } from 'src/app/constants/availability.constant';
 import { AlertService } from 'src/app/modules/alert/alert.service';
 import { EncryptionService } from 'src/app/services/encryption.service';
-import { STEP_14_ROUTE, STEP_16_ROUTE, STEP_20_ROUTE, STEP_22_ROUTE, STEP_6_ROUTE, STEP_7_ROUTE, STEP_9_ROUTE } from '../../constants/route.constant';
+import { MY_LISTING_ROUTE, STEP_14_ROUTE, STEP_16_ROUTE, STEP_20_ROUTE, STEP_22_ROUTE, STEP_6_ROUTE, STEP_7_ROUTE, STEP_9_ROUTE } from '../../constants/route.constant';
 import { ProgressService } from '../../services/progress.service';
 import { PropertyListingService } from '../../services/property-listing.service';
 
@@ -52,6 +52,11 @@ export class PropertyGuests27Component implements OnInit, AfterViewInit, OnDestr
 
 
   coverImage = '';
+
+  isSavingExit = false;
+  saveExitSubs: Subscription;
+
+
   constructor(
     private $ps: ProgressService,
     private $encryptionService: EncryptionService,
@@ -71,6 +76,14 @@ export class PropertyGuests27Component implements OnInit, AfterViewInit, OnDestr
       const { id } = params;
       this.encryptedPropertyId = id;
       this.propertyId = Number(this.$encryptionService.decrypt(id));
+    });
+
+
+    this.saveExitSubs = this.$ps.saveExit.subscribe(data => {
+      if (data === 'done') {
+        this.isSavingExit = true;
+        this.$router.navigateByUrl(MY_LISTING_ROUTE.url);
+      }
     });
 
     this.getPropertyDetails();

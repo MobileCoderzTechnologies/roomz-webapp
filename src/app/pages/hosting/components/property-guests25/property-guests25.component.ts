@@ -5,7 +5,7 @@ import { Subscription } from 'rxjs';
 import { delay } from 'rxjs/operators';
 import { AlertService } from 'src/app/modules/alert/alert.service';
 import { EncryptionService } from 'src/app/services/encryption.service';
-import { STEP_14_ROUTE, STEP_17_ROUTE, STEP_21_ROUTE } from '../../constants/route.constant';
+import { MY_LISTING_ROUTE, STEP_14_ROUTE, STEP_17_ROUTE, STEP_21_ROUTE } from '../../constants/route.constant';
 import { ProgressService } from '../../services/progress.service';
 import { PropertyListingService } from '../../services/property-listing.service';
 
@@ -32,6 +32,9 @@ export class PropertyGuests25Component implements OnInit, AfterViewInit, OnDestr
   isDiscount20 = true;
 
   isBack21 = false;
+
+  isSavingExit = false;
+  saveExitSubs: Subscription;
   constructor(
     private $ps: ProgressService,
     private $encryptionService: EncryptionService,
@@ -57,6 +60,18 @@ export class PropertyGuests25Component implements OnInit, AfterViewInit, OnDestr
       const back = data?.back;
       if (Number(back) === 21) {
         this.isBack21 = true;
+      }
+    });
+
+    this.saveExitSubs = this.$ps.saveExit.subscribe(data => {
+      if (data === 'done') {
+        this.isSavingExit = true;
+        if (this.basePrice.valid) {
+          this.setPropertyPrice();
+        }
+        else {
+          this.$router.navigateByUrl(MY_LISTING_ROUTE.url);
+        }
       }
     });
 
@@ -107,11 +122,15 @@ export class PropertyGuests25Component implements OnInit, AfterViewInit, OnDestr
       this.$ps.clearPropertyData();
       this.$ps.setPropertyData(this.propertyData);
       this.isNextLoading = false;
-
+      if (this.isSavingExit) {
+        this.$router.navigateByUrl(MY_LISTING_ROUTE.url);
+        return;
+      }
       this.$router.navigate([this.step17Route.url, this.encryptedPropertyId]);
     }, err => {
       this.isNextLoading = false;
       this.$alert.danger(err.message);
+      this.$ps.isSaveExit.next(false);
     });
   }
 
@@ -119,6 +138,8 @@ export class PropertyGuests25Component implements OnInit, AfterViewInit, OnDestr
   ngOnDestroy(): void {
     this.propertyDataSubs.unsubscribe();
     this.isBack21 = false;
+    this.saveExitSubs.unsubscribe();
+    this.isSavingExit = false;
   }
 
 }

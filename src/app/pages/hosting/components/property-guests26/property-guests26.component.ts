@@ -4,7 +4,7 @@ import { Subscription } from 'rxjs';
 import { delay } from 'rxjs/operators';
 import { AlertService } from 'src/app/modules/alert/alert.service';
 import { EncryptionService } from 'src/app/services/encryption.service';
-import { STEP_16_ROUTE, STEP_18_ROUTE } from '../../constants/route.constant';
+import { MY_LISTING_ROUTE, STEP_16_ROUTE, STEP_18_ROUTE } from '../../constants/route.constant';
 import { ProgressService } from '../../services/progress.service';
 import { PropertyListingService } from '../../services/property-listing.service';
 
@@ -27,6 +27,9 @@ export class PropertyGuests26Component implements OnInit, AfterViewInit, OnDestr
   isNextLoading = false;
 
   isLocalLaws = true;
+
+  isSavingExit = false;
+  saveExitSubs: Subscription;
   constructor(
     private $ps: ProgressService,
     private $encryptionService: EncryptionService,
@@ -46,6 +49,13 @@ export class PropertyGuests26Component implements OnInit, AfterViewInit, OnDestr
       const { id } = params;
       this.encryptedPropertyId = id;
       this.propertyId = Number(this.$encryptionService.decrypt(id));
+    });
+
+    this.saveExitSubs = this.$ps.saveExit.subscribe(data => {
+      if (data === 'done') {
+        this.isSavingExit = true;
+        this.propertyLocalLaws();
+      }
     });
 
   }
@@ -89,16 +99,23 @@ export class PropertyGuests26Component implements OnInit, AfterViewInit, OnDestr
       this.$ps.setPropertyData(this.propertyData);
       this.isNextLoading = false;
 
+      if (this.isSavingExit) {
+        this.$router.navigateByUrl(MY_LISTING_ROUTE.url);
+        return;
+      }
+
       this.$router.navigate([this.step18Route.url, this.encryptedPropertyId]);
     }, err => {
       this.isNextLoading = false;
       this.$alert.danger(err.message);
+      this.$ps.isSaveExit.next(false);
     });
   }
 
 
   ngOnDestroy(): void {
     this.propertyDataSubs.unsubscribe();
+    this.saveExitSubs.unsubscribe();
   }
 
 }

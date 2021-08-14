@@ -5,7 +5,7 @@ import { delay } from 'rxjs/operators';
 import { HAVE_GUESTS, RENTED_BEFORE } from 'src/app/constants/property-ques.constant';
 import { AlertService } from 'src/app/modules/alert/alert.service';
 import { EncryptionService } from 'src/app/services/encryption.service';
-import { STEP_20_ROUTE, STEP_18_ROUTE } from '../../constants/route.constant';
+import { STEP_20_ROUTE, STEP_18_ROUTE, MY_LISTING_ROUTE } from '../../constants/route.constant';
 import { ProgressService } from '../../services/progress.service';
 import { PropertyListingService } from '../../services/property-listing.service';
 
@@ -32,6 +32,11 @@ export class PropertyGuests20Component implements OnInit, AfterViewInit, OnDestr
 
   haveGuests = HAVE_GUESTS;
   selectedHaveGuests = 2;
+
+  isSavingExit = false;
+  saveExitSubs: Subscription;
+
+
   constructor(
     private $ps: ProgressService,
     private $encryptionService: EncryptionService,
@@ -51,6 +56,13 @@ export class PropertyGuests20Component implements OnInit, AfterViewInit, OnDestr
       const { id } = params;
       this.encryptedPropertyId = id;
       this.propertyId = Number(this.$encryptionService.decrypt(id));
+    });
+
+    this.saveExitSubs = this.$ps.saveExit.subscribe(data => {
+      if (data === 'done') {
+        this.isSavingExit = true;
+        this.addPropertyQuestions();
+      }
     });
 
   }
@@ -101,16 +113,24 @@ export class PropertyGuests20Component implements OnInit, AfterViewInit, OnDestr
       this.$ps.setPropertyData(this.propertyData);
       this.isNextLoading = false;
 
+      if (this.isSavingExit) {
+        this.$router.navigateByUrl(MY_LISTING_ROUTE.url);
+        return;
+      }
+
       this.$router.navigate([this.step20Route.url, this.encryptedPropertyId]);
     }, err => {
       this.isNextLoading = false;
       this.$alert.danger(err.message);
+      this.$ps.isSaveExit.next(true);
     });
   }
 
 
   ngOnDestroy(): void {
     this.propertyDataSubs.unsubscribe();
+    this.saveExitSubs.unsubscribe();
+    this.isSavingExit = false;
   }
 
 
