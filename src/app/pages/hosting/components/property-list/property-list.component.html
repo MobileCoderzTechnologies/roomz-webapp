@@ -8,23 +8,15 @@
               <a class="navbar-brand" href="#">
                 <img src="assets/images/logo-new.png" alt="" />
               </a>
-              <button
-                class="navbar-toggler"
-                type="button"
-                data-bs-toggle="collapse"
-                data-bs-target="#navbarSupportedContent"
-                aria-controls="navbarSupportedContent"
-                aria-expanded="false"
-                aria-label="Toggle navigation"
-              >
+              <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+                aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
               </button>
               <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav mx-auto mb-2 mb-lg-0">
                   <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" href="#"
-                      >BOOKING</a
-                    >
+                    <a class="nav-link active" aria-current="page" href="#">BOOKING</a>
                   </li>
                   <li class="nav-item">
                     <a class="nav-link" href="#">INBOX</a>
@@ -38,11 +30,7 @@
                 </ul>
                 <div class="d-flex align-items-center justify-content-end">
                   <div class="me-2">
-                    <img
-                      src="assets/images/profile2121.png"
-                      alt=""
-                      width="42"
-                    />
+                    <img src="assets/images/profile2121.png" alt="" width="42" />
                   </div>
                   <div>
                     <img src="assets/images/menu.png" alt="" />
@@ -63,235 +51,131 @@
         <div class="col_selector">
           <div class="d-flex align-items-center justify-content-between py-4">
             <h2 class="fz34 mb-0 bold_font">Listings</h2>
-            <button
-              class="btn border border rounded-pill py-2 px-5 h-auto d-flex align-items-center"
-            >
+            <button (click)="onCreateListing()"
+              class="btn border border rounded-pill py-2 px-5 h-auto d-flex align-items-center">
               <img src="assets/images/plus.png" class="me-3" alt="" />
               Create Listing
             </button>
           </div>
           <div class="d-flex align-items-center mb-4">
             <div class="me-3 position-relative">
-              <input
-                type="text"
-                class="form-control rounded-pill ps-5"
-                placeholder="Rooms and Beds"
-              />
+              <input type="text" class="form-control rounded-pill ps-5" placeholder="name, city" #search>
               <img src="assets/images/search.png" class="search_icon" alt="" />
             </div>
             <!-- Rooms and Beds start here -->
             <div class="position-relative me-4">
-              <button
-                class="btn border rounded-pill fz13 form-select px-5 py-2"
-              >
+              <button class="btn border rounded-pill fz13 form-select px-5 py-2"
+                (click)="filter===1?filter=0: filter = 1">
                 Rooms and Beds
               </button>
-              <div class="hosting_dropdown">
-                <div class="bg-white px-3 pt-3">
-                  <div
-                    class="d-flex align-items-center justify-content-between mb-4"
-                  >
-                    <p class="fz14 mb-0">Bedroom</p>
-                    <div class="d-flex align-items-center">
-                      <button class="btn p-0">
-                        <img
-                          src="assets/images/minus-gray.png"
-                          alt=""
-                        /></button
-                      ><span class="mx-3">0</span>
-                      <button class="btn p-0">
-                        <img src="assets/images/gray-plus.png" alt="" />
-                      </button>
+              <ng-container *ngIf="filter===1">
+                <div class="hosting_dropdown">
+                  <div class="bg-white px-3 pt-3">
+                    <div class="d-flex align-items-center justify-content-between mb-4">
+                      <p class="fz14 mb-0">Beds</p>
+                      <div class="d-flex align-items-center">
+                        <button class="btn p-0" [disabled]="beds === 0" (click)="beds = beds - 1">
+                          <img src="assets/images/minus-gray.png" alt="" /></button><span class="mx-3"> {{beds}} </span>
+                        <button class="btn p-0" (click)="beds = beds + 1">
+                          <img src="assets/images/gray-plus.png" alt="" />
+                        </button>
+                      </div>
+                    </div>
+
+                    <div class="d-flex align-items-center justify-content-between mb-4">
+                      <p class="fz14 mb-0">Bedroom</p>
+                      <div class="d-flex align-items-center">
+                        <button class="btn p-0" [disabled]="bedrooms === 0" (click)="bedrooms = bedrooms - 1">
+                          <img src="assets/images/minus-gray.png" alt="" /></button><span class="mx-3"> {{bedrooms}}
+                        </span>
+                        <button class="btn p-0" (click)="bedrooms = bedrooms + 1">
+                          <img src="assets/images/gray-plus.png" alt="" />
+                        </button>
+                      </div>
+                    </div>
+
+                    <div class="d-flex align-items-center justify-content-between mb-4">
+                      <p class="fz14 mb-0">Bathrooms</p>
+                      <div class="d-flex align-items-center">
+                        <button class="btn p-0" [disabled]="bathrooms === 0" (click)="bathrooms = bathrooms - 1">
+                          <img src="assets/images/minus-gray.png" alt="" /></button><span class="mx-3"> {{bathrooms}}
+                        </span>
+                        <button class="btn p-0" (click)="bathrooms = bathrooms + 1">
+                          <img src="assets/images/gray-plus.png" alt="" />
+                        </button>
+                      </div>
                     </div>
                   </div>
-                  <div
-                    class="d-flex align-items-center justify-content-between mb-4"
-                  >
-                    <p class="fz14 mb-0">Bedroom</p>
-                    <div class="d-flex align-items-center">
-                      <button class="btn p-0">
-                        <img
-                          src="assets/images/minus-gray.png"
-                          alt=""
-                        /></button
-                      ><span class="mx-3">0</span>
-                      <button class="btn p-0">
-                        <img src="assets/images/gray-plus.png" alt="" />
-                      </button>
-                    </div>
+                  <hr class="my-0 bg-secondary" />
+                  <div class="bg-white p-2 d-flex align-items-center justify-content-between">
+                    <button class="btn fz14" (click)="clearsBedAndRooms()">Clear</button>
+                    <button class="btn custom_btn px-3 py-1 fz14" (click)="applyBedAndRooms()">Apply</button>
                   </div>
                 </div>
-                <hr class="my-0 bg-secondary" />
-                <div
-                  class="bg-white p-2 d-flex align-items-center justify-content-between"
-                >
-                  <button class="btn fz14">Clear</button>
-                  <button class="btn custom_btn px-3 py-1 fz14">Apply</button>
-                </div>
-              </div>
+              </ng-container>
             </div>
             <!-- Amenities start here -->
             <div class="position-relative me-4">
-              <button
-                class="btn border rounded-pill fz13 form-select px-5 py-2"
-              >
+              <button class="btn border rounded-pill fz13 form-select px-5 py-2"
+                (click)="filter===2?filter=0: filter = 2">
                 Amenities
               </button>
-              <div class="hosting_dropdown Amenities_part">
-                <div class="bg-white px-3 py-3">
-                  <div class="row">
-                    <div class="col-md-6">
-                      <div class="col_selector">
-                        <div class="form-check mb-3">
-                          <input
-                            class="form-check-input"
-                            type="checkbox"
-                            value=""
-                            id="Kitchen"
-                          />
-                          <label class="form-check-label" for="Kitchen">
-                            Kitchen
-                          </label>
+              <ng-container *ngIf="filter===2">
+                <div class="hosting_dropdown Amenities_part">
+                  <div class="bg-white px-3 py-3 filter-2">
+                    <div class="row">
+                      <div class="col-md-6" *ngFor="let amenity of amenities">
+                        <div class="col_selector">
+                          <div class="form-check mb-3">
+                            <input #inputAmenity class="form-check-input" type="checkbox" [value]="aminity?.id" [id]="amenity?.id" [checked]="markCheckOnAmenity(amenity.id)" (change)="onCheckAmenity($event.target.checked, amenity.id)">
+                            <label class="form-check-label" [for]="amenity?.id">
+                              {{amenity?.name}}
+                            </label>
+                          </div>
                         </div>
                       </div>
-                    </div>
-                    <div class="col-md-6">
-                      <div class="col_selector">
-                        <div class="form-check mb-3">
-                          <input
-                            class="form-check-input"
-                            type="checkbox"
-                            value=""
-                            id="pool"
-                          />
-                          <label class="form-check-label" for="pool">
-                            Pool
-                          </label>
-                        </div>
-                      </div>
-                    </div>
-                    <div class="col-md-6">
-                      <div class="col_selector">
-                        <div class="form-check mb-3">
-                          <input
-                            class="form-check-input"
-                            type="checkbox"
-                            value=""
-                            id="Conditioning"
-                          />
-                          <label class="form-check-label" for="Conditioning">
-                            Air Conditioning
-                          </label>
-                        </div>
-                      </div>
-                    </div>
-                    <div class="col-md-6">
-                      <div class="col_selector">
-                        <div class="form-check mb-3">
-                          <input
-                            class="form-check-input"
-                            type="checkbox"
-                            value=""
-                            id="hot_tub"
-                          />
-                          <label class="form-check-label" for="hot_tub">
-                            Hot tub
-                          </label>
-                        </div>
-                      </div>
-                    </div>
-                    <div class="col-md-6">
-                      <div class="col_selector">
-                        <div class="form-check mb-3">
-                          <input
-                            class="form-check-input"
-                            type="checkbox"
-                            value=""
-                            id="Heating"
-                          />
-                          <label class="form-check-label" for="Heating">
-                            Heating
-                          </label>
-                        </div>
-                      </div>
-                    </div>
-                    <div class="col-md-6">
-                      <div class="col_selector">
-                        <div class="form-check mb-3">
-                          <input
-                            class="form-check-input"
-                            type="checkbox"
-                            value=""
-                            id="bbqgrill"
-                          />
-                          <label class="form-check-label" for="bbqgrill">
-                            BBQ Grill
-                          </label>
-                        </div>
-                      </div>
+
                     </div>
                   </div>
+                  <hr class="my-0 bg-secondary" />
+                  <div class="bg-white p-2 d-flex align-items-center justify-content-between">
+                    <button class="btn fz14" (click)="clearAmenityFilter()">Clear</button>
+                    <button class="btn custom_btn px-3 py-1 fz14" (click)="applyAmenitiesFilter()">Apply</button>
+                  </div>
                 </div>
-                <hr class="my-0 bg-secondary" />
-                <div
-                  class="bg-white p-2 d-flex align-items-center justify-content-between"
-                >
-                  <button class="btn fz14">Clear</button>
-                  <button class="btn custom_btn px-3 py-1 fz14">Apply</button>
-                </div>
-              </div>
+              </ng-container>
             </div>
             <!-- Listing status start here -->
             <div class="position-relative me-4">
-              <button
-                class="btn border rounded-pill fz13 form-select px-5 py-2"
-              >
+              <button class="btn border rounded-pill fz13 form-select px-5 py-2"
+                (click)="filter===3?filter=0: filter = 3">
                 Listing Status
               </button>
-              <div class="hosting_dropdown">
+              <div class="hosting_dropdown" *ngIf="filter === 3">
                 <div class="bg-white px-3 pt-3">
                   <div class="form-check mb-3">
-                    <input
-                      class="form-check-input"
-                      type="checkbox"
-                      value=""
-                      id="flexCheckDefault"
-                    />
-                    <label class="form-check-label" for="flexCheckDefault">
+                    <input class="form-check-input" type="checkbox" value="listed" id="listed" [checked]="markCheckOnFilter3('listed')" (click)="markFilter3($event.target.checked, 'listed')"/>
+                    <label class="form-check-label" for="listed">
                       Listed
                     </label>
                   </div>
                   <div class="form-check mb-3">
-                    <input
-                      class="form-check-input"
-                      type="checkbox"
-                      value=""
-                      id="flexCheckChecked"
-                      checked
-                    />
-                    <label class="form-check-label" for="flexCheckChecked">
-                      Unlisted
+                    <input class="form-check-input" type="checkbox" value="inProgress" id="inProgress" [checked]="markCheckOnFilter3('inProgress')"  (click)="markFilter3($event.target.checked, 'inProgress')">
+                    <label class="form-check-label" for="inProgress">
+                      In Progress
                     </label>
                   </div>
                   <div class="form-check mb-3">
-                    <input
-                      class="form-check-input"
-                      type="checkbox"
-                      value=""
-                      id="flexCheckChecked2"
-                      checked
-                    />
-                    <label class="form-check-label" for="flexCheckChecked2">
-                      In Progess
+                    <input class="form-check-input" type="checkbox" value="unlisted" id="unlisted" [checked]="markCheckOnFilter3('unlisted')"  (click)="markFilter3($event.target.checked, 'unlisted')">
+                    <label class="form-check-label" for="unlisted">
+                      Unlisted
                     </label>
                   </div>
                 </div>
                 <hr class="my-0 bg-secondary" />
-                <div
-                  class="bg-white p-2 d-flex align-items-center justify-content-between"
-                >
-                  <button class="btn fz14">Clear</button>
-                  <button class="btn custom_btn px-3 py-1 fz14">Apply</button>
+                <div class="bg-white p-2 d-flex align-items-center justify-content-between">
+                  <button class="btn fz14" (click)="clearFilter3()">Clear</button>
+                  <button class="btn custom_btn px-3 py-1 fz14" (click)="applyFilter3()">Apply</button>
                 </div>
               </div>
             </div>
@@ -302,11 +186,7 @@
                 <tr>
                   <td>
                     <div class="form-check">
-                      <input
-                        class="form-check-input"
-                        type="checkbox"
-                        value=""
-                      />
+                      <input class="form-check-input" type="checkbox" value="" />
                     </div>
                   </td>
                   <td>Listing</td>
@@ -322,32 +202,18 @@
                 <tr class="align-items-center">
                   <td>
                     <div class="form-check">
-                      <input
-                        class="form-check-input"
-                        type="checkbox"
-                        value=""
-                      />
+                      <input class="form-check-input" type="checkbox" value="" />
                     </div>
                   </td>
                   <td>
                     <div class="d-flex align-items-center">
-                      <img
-                        src="assets/images/card-carousal-3.png"
-                        class="img-fluid rounded"
-                        width="60"
-                        alt=""
-                      />
-                      <span class="fz14 ms-3"
-                        >Private room in United state</span
-                      >
+                      <img src="assets/images/card-carousal-3.png" class="img-fluid rounded" width="60" alt="" />
+                      <span class="fz14 ms-3">Private room in United state</span>
                     </div>
                   </td>
                   <td class="text-center">In Progress</td>
                   <td class="text-center">
-                    <button
-                      type="button"
-                      class="btn btn-outline-secondary rounded-pill fz14"
-                    >
+                    <button type="button" class="btn btn-outline-secondary rounded-pill fz14">
                       Publish
                     </button>
                   </td>
