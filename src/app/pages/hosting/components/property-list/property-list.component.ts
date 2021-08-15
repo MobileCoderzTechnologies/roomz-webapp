@@ -18,6 +18,15 @@ export class PropertyListComponent implements OnInit, AfterViewInit {
   encryptedPropertyId: string;
   propertyId: number;
 
+  isLoading = false;
+
+  page = 1;
+  pageSize = 10;
+  totalCount = 0;
+
+  properties: any = [];
+
+
   amenities: Amenity[];
 
   filter: 0 | 1 | 2 | 3 = 0;
@@ -34,6 +43,12 @@ export class PropertyListComponent implements OnInit, AfterViewInit {
     inProgress: 1,
     listed: 2,
     unlisted: 3
+  };
+
+  propertyStatus: {
+    1: 'In Progress',
+    2: 'Listed',
+    3: 'Unlisted'
   };
 
   selectedStatus: number[] = [];
@@ -59,6 +74,7 @@ export class PropertyListComponent implements OnInit, AfterViewInit {
 
   ngOnInit(): void {
     this.getAmenities();
+    this.getMyPropertyList();
   }
 
   ngAfterViewInit(): void {
@@ -84,7 +100,6 @@ export class PropertyListComponent implements OnInit, AfterViewInit {
   private getAmenities(): void {
     this.$propertyListingService.getAmenities().subscribe(data => {
       this.amenities = data.data;
-      console.log(data.data);
     }, err => {
       this.$alert.danger(err.message);
     });
@@ -167,7 +182,28 @@ export class PropertyListComponent implements OnInit, AfterViewInit {
 
 
   private getMyPropertyList(): void {
+    this.isLoading = true;
 
+    this.$propertyListingService.getMyProperties(
+      this.page,
+      this.pageSize,
+      this.applyStatus,
+      this.no_of_beds,
+      this.no_of_bedrooms,
+      this.no_of_bathrooms,
+      this.applyAmenities,
+      this.search
+    )
+      .subscribe(data => {
+        console.log(data);
+        this.isLoading = false;
+        this.properties = data.data.data;
+        this.totalCount = data.data.meta.total;
+      },
+        err => {
+          this.isLoading = false;
+          this.$alert.danger(err.message);
+        });
   }
 
 

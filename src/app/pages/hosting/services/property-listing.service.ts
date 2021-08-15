@@ -1,3 +1,4 @@
+import { HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Amenity } from 'src/app/modals/amenity.modal';
@@ -36,7 +37,8 @@ import {
   PROPERTY_QUESTIONS,
   PROPERTY_PREVIEW,
   PROPERTY_PUBLISH,
-  PROPERTY_DISCOUNTS
+  PROPERTY_DISCOUNTS,
+  MY_PROPERTIES
 } from '../constants/api.constant';
 
 @Injectable({
@@ -163,11 +165,34 @@ export class PropertyListingService {
   }
 
 
-  getPropertyPreview(id: number): Observable<any>{
+  getPropertyPreview(id: number): Observable<any> {
     return this.$http.get(`${PROPERTY_PREVIEW}/${id}`);
   }
-  publishProperty(id: number): Observable<any>{
+  publishProperty(id: number): Observable<any> {
     return this.$http.get(`${PROPERTY_PUBLISH}/${id}`);
+  }
+
+  getMyProperties(
+    page = 1,
+    pageSize = 10,
+    status = '',
+    beds = 0,
+    bedrooms = 0,
+    bathrooms = 0,
+    amenities = '',
+    search = ''
+  ): Observable<any> {
+    let params = new HttpParams();
+    params = params.set('page', page.toString());
+    params = params.set('pageSize', pageSize.toString());
+    params = params.set('beds', beds.toString());
+    params = params.set('bedrooms', bedrooms.toString());
+    params = params.set('bathrooms', bathrooms.toString());
+    params = params.set('status', status);
+    params = params.set('amenities', amenities);
+    params = params.set('search', search);
+
+    return this.$http.get(MY_PROPERTIES, { params });
   }
 
 
