@@ -192,7 +192,7 @@ export class PropertyListingService {
     params = params.set('amenities', amenities);
     params = params.set('search', search);
 
-    return this.$http.get(MY_PROPERTIES, { params });
+    return this.$http.get(MY_PROPERTIES, params);
   }
 
 
