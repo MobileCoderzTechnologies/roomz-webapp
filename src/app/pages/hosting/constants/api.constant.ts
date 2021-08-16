@@ -35,6 +35,7 @@ export const PROPERTY_QUESTIONS = `${LIST_PROPERTY_GROUP}/questions`;
 export const PROPERTY_DISCOUNTS = `${LIST_PROPERTY_GROUP}/discounts`;
 export const PROPERTY_PREVIEW = `${LIST_PROPERTY_GROUP}/preview`;
 export const PROPERTY_PUBLISH = `${LIST_PROPERTY_GROUP}/publish`;
+export const PROPERTY_DATA_UPDATE = `${LIST_PROPERTY_GROUP}/get-property`;
 
 export const MY_PROPERTIES = `${HOSTING_GROUP}/my-properties`;
 

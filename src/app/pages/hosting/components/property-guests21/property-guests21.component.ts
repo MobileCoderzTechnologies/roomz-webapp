@@ -85,12 +85,15 @@ export class PropertyGuests21Component implements OnInit, AfterViewInit, OnDestr
         this.propertyData = data;
         console.log(this.propertyData);
         if (this.propertyData) {
-          const {
-            notice_guest_ba = 0,
+          let {
+            notice_guest_ba = 23,
             guest_ci_from = 10,
             guest_ci_to = 22
           } = this.propertyData.property;
 
+          notice_guest_ba = notice_guest_ba ?? 23;
+          guest_ci_to = guest_ci_to ?? 10;
+          guest_ci_from = guest_ci_from ?? 22;
           this.checkInQuesForm.setValue({
             notice_guest_ba,
             guest_ci_from,
@@ -111,8 +114,8 @@ export class PropertyGuests21Component implements OnInit, AfterViewInit, OnDestr
       const respData = res.data[0];
 
       this.propertyData.property.notice_guest_ba = respData.notice_guest_ba;
-      this.propertyData.property.guests_ci_from = respData.guests_ci_from;
-      this.propertyData.property.guests_ci_to = respData.guests_ci_to;
+      this.propertyData.property.guests_ci_from = respData.guest_ci_from;
+      this.propertyData.property.guests_ci_to = respData.guest_ci_to;
 
       this.$ps.clearPropertyData();
       this.$ps.setPropertyData(this.propertyData);

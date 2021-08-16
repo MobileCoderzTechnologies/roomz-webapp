@@ -87,8 +87,8 @@ export class PropertyGuests20Component implements OnInit, AfterViewInit, OnDestr
             have_guests = 2,
           } = this.propertyData.property;
 
-          this.selectedRentedBefore = rented_before;
-          this.selectedHaveGuests = have_guests;
+          this.selectedRentedBefore = rented_before || 1;
+          this.selectedHaveGuests = have_guests || 2;
         }
 
       });
