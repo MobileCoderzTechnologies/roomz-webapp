@@ -1,1 +1,975 @@
-<p>property-detail works!</p>
+<header class="py-3 position-static">
+  <div class="container">
+    <nav class="navbar navbar-expand-lg navbar-light p-0">
+      <a class="navbar-brand p-0" href="#">
+        <img src="assets/images/logo.png" class="img-fluid" alt="" />
+      </a>
+      <button
+        class="navbar-toggler"
+        type="button"
+        data-toggle="collapse"
+        data-target="#navbarSupportedContent"
+        aria-controls="navbarSupportedContent"
+        aria-expanded="false"
+        aria-label="Toggle navigation"
+      >
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav ms-auto text-uppercase">
+          <li class="nav-item active">
+            <a class="nav-link" href="#">Home</a>
+          </li>
+          <li class="nav-item dropdown">
+            <a
+              class="nav-link dropdown-toggle"
+              href="#"
+              id="navbarDropdown"
+              role="button"
+              data-toggle="dropdown"
+              aria-haspopup="true"
+              aria-expanded="false"
+            >
+              destinations
+            </a>
+            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+              <a class="dropdown-item" href="#">Action</a>
+              <a class="dropdown-item" href="#">Another action</a>
+              <div class="dropdown-divider"></div>
+              <a class="dropdown-item" href="#">Something else here</a>
+            </div>
+          </li>
+          <li class="nav-item dropdown">
+            <a class="nav-link" role="button"> SignUp </a>
+          </li>
+          <li class="nav-item dropdown">
+            <a class="nav-link" role="button"> Login </a>
+          </li>
+          <li class="nav-item dropdown">
+            <a
+              class="nav-link dropdown-toggle"
+              href="#"
+              id="navbarDropdown2"
+              role="button"
+              data-toggle="dropdown"
+              aria-haspopup="true"
+              aria-expanded="false"
+            >
+              destinations
+            </a>
+            <div class="dropdown-menu" aria-labelledby="navbarDropdown2">
+              <a class="dropdown-item" href="#">Action</a>
+              <a class="dropdown-item" href="#">Another action</a>
+              <div class="dropdown-divider"></div>
+              <a class="dropdown-item" href="#">Something else here</a>
+            </div>
+          </li>
+        </ul>
+      </div>
+    </nav>
+  </div>
+</header>
+
+<section class="position-relative">
+  <img src="assets/images/back.png" class="img-fluid preview_back" alt="" />
+  <div
+    id="carouselExampleIndicators"
+    class="carousel slide"
+    data-bs-ride="carousel"
+  >
+    <div class="carousel-indicators">
+      <button
+        type="button"
+        data-bs-target="#carouselExampleIndicators"
+        data-bs-slide-to="0"
+        class="active btn_carousal"
+        aria-current="true"
+        aria-label="Slide 1"
+      >
+        1/20
+      </button>
+    </div>
+    <div class="carousel-inner">
+      <div class="carousel-item active">
+        <img
+          src="assets/images/property_preview-banner.png"
+          class="d-block w-100"
+          alt="..."
+        />
+      </div>
+      <div class="carousel-item">
+        <img
+          src="assets/images/property_preview-banner.png"
+          class="d-block w-100"
+          alt="..."
+        />
+      </div>
+      <div class="carousel-item">
+        <img
+          src="assets/images/property_preview-banner.png"
+          class="d-block w-100"
+          alt="..."
+        />
+      </div>
+    </div>
+
+    <button
+      class="carousel-control-prev"
+      type="button"
+      data-bs-target="#carouselExampleIndicators"
+      data-bs-slide="prev"
+    >
+      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Previous</span>
+    </button>
+    <button
+      class="carousel-control-next"
+      type="button"
+      data-bs-target="#carouselExampleIndicators"
+      data-bs-slide="next"
+    >
+      <span class="carousel-control-next-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Next</span>
+    </button>
+  </div>
+</section>
+<section class="pt-4 pb-5">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-9">
+        <div class="col_selector">
+          <div>
+            <h4 class="fz24 semi_font">
+              Here Lodge 1 - A mountain HomeAway from home!
+            </h4>
+            <p class="mb-0 regular_font d-flex align-items-center mb-3">
+              <img
+                src="assets/images/star.png"
+                class="img-fluid me-2"
+                alt=""
+              />4.9(370 reviews)
+            </p>
+          </div>
+          <div>
+            <p class="fz14 medium_font text-secondary">Volos, Greece</p>
+            <hr class="my-4" />
+            <h4 class="mb-0 fz20 semi_font d-flex align-items-center mb-1">
+              Entire apartment <span class="fz14 ms-2">(2.2K sq ft.)</span>
+            </h4>
+            <p class="fz14 medium_font text-secondary">Hosted by</p>
+            <div class="d-flex align-items-center">
+              <div class="me-3 mt-2 mb-2">
+                <img
+                  src="assets/images/person.png"
+                  width="60"
+                  class="img-fluid avatar"
+                />
+              </div>
+              <p class="mb-0 fz16 bold_font">XYZ</p>
+            </div>
+            <div>
+              <ul class="list-inline">
+                <li class="list-inline-item fz14 medium_font text-secondary">
+                  <img src="assets/images/circle.png" alt="" class="mb-2" />
+                  3 bedrooms
+                </li>
+                <li class="list-inline-item fz14 medium_font text-secondary">
+                  <img
+                    src="assets/images/circle.png"
+                    alt=""
+                    class="mb-2 img-fluid"
+                  />
+                  2 bathroom
+                </li>
+                <li class="list-inline-item fz14 medium_font text-secondary">
+                  <img
+                    src="assets/images/circle.png"
+                    alt=""
+                    class="mb-2 img-fluid"
+                  />
+                  4 guests
+                </li>
+                <li class="list-inline-item fz14 medium_font text-secondary">
+                  <img
+                    src="assets/images/circle.png"
+                    alt=""
+                    class="mb-2 img-fluid"
+                  />
+                  Wifi
+                </li>
+              </ul>
+            </div>
+            <hr class="my-3" />
+          </div>
+          <div class="d-flex mb-4">
+            <div class="me-3">
+              <img
+                src="assets/images/profile2121.png"
+                class="img-fluid"
+                width="40"
+                alt=""
+              />
+            </div>
+            <div>
+              <h4 class="mb-0 fz20 semi_font d-flex align-items-center mb-1">
+                Cancellation policy
+              </h4>
+              <p>
+                Non-refundable: Cancel before check-in and get back only the
+                cleaning fee, if you paid one.
+              </p>
+              <p>
+                <a href="javascript:void(0);" class="blue_color bold_font"
+                  ><u>See more</u></a
+                >
+              </p>
+            </div>
+          </div>
+          <div class="d-flex mb-4">
+            <div class="me-3">
+              <img
+                src="assets/images/profile2121.png"
+                class="img-fluid"
+                width="40"
+                alt=""
+              />
+            </div>
+            <div>
+              <h4 class="mb-0 fz20 semi_font d-flex align-items-center mb-1">
+                House rules
+              </h4>
+              <p>
+                Non-refundable: Cancel before check-in and get back only the
+                cleaning fee, if you paid one.
+              </p>
+              <p>
+                <a href="javascript:void(0);" class="blue_color bold_font"
+                  ><u>See more</u></a
+                >
+              </p>
+            </div>
+          </div>
+          <hr class="my-4" />
+          <div>
+            <p class="mb-0 regular_font text-secondary">
+              Lorem ipsum dolor sit amet consectetur adipisicing elit. Porro quo
+              quod, facilis dolorem nam omnis! Nulla aspernatur ipsa explicabo
+              laborum tempora quasi quibusdam dolore excepturi voluptatem est.
+              Veniam, consequatur sunt!
+            </p>
+            <a href="javascript:void(0);" class="blue_color bold_font"
+              ><u>See more</u></a
+            >
+
+            <hr class="my-4" />
+            <div>
+              <h3 class="fz20 mb-4 bold_font">Sleeping arrangements</h3>
+              <div class="d-flex align-items-center">
+                <div class="text-center me-3">
+                  <img
+                    src="assets/images/bed-img1.png"
+                    class="img-fluid"
+                    width="125"
+                    alt=""
+                  />
+                  <h4 class="fz14 semi_font mb-0 mt-2">Bedroom 1</h4>
+                  <p class="fz13 medium_font text-secondary mb-0">
+                    1 King size bed
+                  </p>
+                </div>
+                <div class="text-center me-3">
+                  <img
+                    src="assets/images/bed-img1.png"
+                    class="img-fluid"
+                    width="125"
+                    alt=""
+                  />
+                  <h4 class="fz14 semi_font mb-0 mt-2">Bedroom 1</h4>
+                  <p class="fz13 medium_font text-secondary mb-0">
+                    1 King size bed
+                  </p>
+                </div>
+                <div class="text-center me-3">
+                  <img
+                    src="assets/images/bed-img1.png"
+                    class="img-fluid"
+                    width="125"
+                    alt=""
+                  />
+                  <h4 class="fz14 semi_font mb-0 mt-2">Bedroom 1</h4>
+                  <p class="fz13 medium_font text-secondary mb-0">
+                    1 King size bed
+                  </p>
+                </div>
+                <div class="text-center me-3">
+                  <img
+                    src="assets/images/bed-img1.png"
+                    class="img-fluid"
+                    width="125"
+                    alt=""
+                  />
+                  <h4 class="fz14 semi_font mb-0 mt-2">Bedroom 1</h4>
+                  <p class="fz13 medium_font text-secondary mb-0">
+                    1 King size bed
+                  </p>
+                </div>
+                <div class="text-center me-3">
+                  <img
+                    src="assets/images/bed-img1.png"
+                    class="img-fluid"
+                    width="125"
+                    alt=""
+                  />
+                  <h4 class="fz14 semi_font mb-0 mt-2">Bedroom 1</h4>
+                  <p class="fz13 medium_font text-secondary mb-0">
+                    1 King size bed
+                  </p>
+                </div>
+                <div class="text-center me-3">
+                  <img
+                    src="assets/images/bed-img1.png"
+                    class="img-fluid"
+                    width="125"
+                    alt=""
+                  />
+                  <h4 class="fz14 semi_font mb-0 mt-2">Bedroom 1</h4>
+                  <p class="fz13 medium_font text-secondary mb-0">
+                    1 King size bed
+                  </p>
+                </div>
+              </div>
+            </div>
+            <hr class="my-4" />
+            <div>
+              <h3 class="fz20 mb-4 bold_font">Amenities</h3>
+              <div class="row">
+                <div class="col-md-6">
+                  <div class="col_selector">
+                    <div
+                      class="d-flex align-items-center justify-content-between mb-3"
+                    >
+                      <p class="mb-0 fz15 semi_font">Kitchen</p>
+                      <img
+                        src="assets/images/Kitchen.png"
+                        class="me-2"
+                        alt=""
+                      />
+                    </div>
+                    <div
+                      class="d-flex align-items-center justify-content-between mb-3"
+                    >
+                      <p class="mb-0 fz15 semi_font">
+                        Free parking on premises
+                      </p>
+                      <img src="assets/images/parking.png" alt="" />
+                    </div>
+                    <div>
+                      <a href="javascript:void(0);" class="blue_color bold_font"
+                        ><u>Show all 27 amenities</u></a
+                      >
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <hr class="my-4" />
+            <div>
+              <h3 class="fz20 mb-4 bold_font">Location</h3>
+              <div class="mb-2">
+                <img src="assets/images/map.png" class="img-fluid" alt="" />
+              </div>
+              <p class="fz16 semi_font mb-2 text-secondary">Location</p>
+              <p class="fz14 regular_font text-secondary">
+                Exact location provided after booking. <br />
+                <a href="javascript:void(0);" class="blue_color bold_font"
+                  ><u>See more</u></a
+                >
+              </p>
+            </div>
+            <hr class="my-4" />
+            <div>
+              <h4 class="mb-0 fz20 semi_font d-flex align-items-center mb-3">
+                <img
+                  src="assets/images/star.png"
+                  class="img-fluid me-2"
+                  alt=""
+                />4.9(370 reviews)
+              </h4>
+              <div class="d-flex align-items-center">
+                <div class="me-3 mt-2 mb-2">
+                  <img
+                    src="assets/images/person.png"
+                    width="60"
+                    class="img-fluid avatar"
+                  />
+                </div>
+                <p class="mb-0 fz16 bold_font">
+                  first Name <br />
+                  <span class="text-secondary fz12">21 Apr, 2021</span>
+                </p>
+                <div class="bold_font ms-5 d-flex align-items-center ps-5">
+                  <img src="assets/images/star.png" alt="" class="me-2" /> 5
+                </div>
+              </div>
+              <p class="fz14 regular_font">
+                Lorem ipsum dolor sit amet consectetur adipisicing elit. Atque
+                neque, repellat omnis repellendus enim dolore reiciendis
+                temporibus, et nesciunt qui consequatur deleniti laboriosam
+                quaerat asperiores, natus reprehenderit. Dolorum, iusto rerum.
+                <br /><a href="javascript:void(0)" class="blue_color bold_font"
+                  ><u>See more</u></a
+                >
+              </p>
+            </div>
+            <div class="row">
+              <div class="col-12">
+                <h4 class="blue_color fz18 bold_font">
+                  <u>Show all 370 reviews</u>
+                </h4>
+                <hr class="my-4" />
+              </div>
+              <div class="col-md-6">
+                <div class="col_selector">
+                  <div
+                    class="d-flex align-items-center justify-content-between mb-4"
+                  >
+                    <div>
+                      <h3 class="fz16 semi_font mb-1">Availability</h3>
+                      <p class="fz14 medium_font mb-0 text-secondary">
+                        Add your travel dates for exact pricing
+                      </p>
+                    </div>
+                    <div>
+                      <img
+                        src="assets/images/angle-left.png"
+                        class="img-fluid"
+                        alt=""
+                      />
+                    </div>
+                  </div>
+                  <div
+                    class="d-flex align-items-center justify-content-between mb-4"
+                  >
+                    <div>
+                      <h3 class="fz16 semi_font mb-1">Availability</h3>
+                      <p class="fz14 medium_font mb-0 text-secondary">
+                        Lorem ipsum dolor sit, amet consectetur adipisicing.
+                      </p>
+                    </div>
+                    <div>
+                      <img
+                        src="assets/images/angle-left.png"
+                        class="img-fluid"
+                        alt=""
+                      />
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <hr class="my-3" />
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-12 most_popular">
+      <h3 class="fz20 mb-4 bold_font">Similar places for stay</h3>
+      <div class="row">
+        <div class="col-md-4">
+          <div class="col_selector">
+            <div class="col">
+              <div class="card h-100 border-0">
+                <div class="card_carousel">
+                  <div
+                    id="carouselExampleIndicators3"
+                    class="carousel slide"
+                    data-bs-ride="carousel"
+                  >
+                    <div class="carousel-indicators">
+                      <button
+                        type="button"
+                        data-bs-target="#carouselExampleIndicators3"
+                        data-bs-slide-to="0"
+                        class="active"
+                        aria-current="true"
+                        aria-label="Slide 1"
+                      ></button>
+                      <button
+                        type="button"
+                        data-bs-target="#carouselExampleIndicators3"
+                        data-bs-slide-to="1"
+                        aria-label="Slide 2"
+                      ></button>
+                      <button
+                        type="button"
+                        data-bs-target="#carouselExampleIndicators3"
+                        data-bs-slide-to="2"
+                        aria-label="Slide 3"
+                      ></button>
+                    </div>
+                    <div class="carousel-inner">
+                      <div class="carousel-item active">
+                        <img
+                          src="assets/images/card-carousal-1.png"
+                          class="d-block w-100"
+                          alt="..."
+                        />
+                      </div>
+                      <div class="carousel-item">
+                        <img
+                          src="assets/images/card-carousal-2.png"
+                          class="d-block w-100"
+                          alt="..."
+                        />
+                      </div>
+                      <div class="carousel-item">
+                        <img
+                          src="assets/images/card-carousal-3.png"
+                          class="d-block w-100"
+                          alt="..."
+                        />
+                      </div>
+                    </div>
+                    <button
+                      class="carousel-control-prev"
+                      type="button"
+                      data-bs-target="#carouselExampleIndicators3"
+                      data-bs-slide="prev"
+                    >
+                      <span
+                        class="carousel-control-prev-icon"
+                        aria-hidden="true"
+                      ></span>
+                      <span class="visually-hidden">Previous</span>
+                    </button>
+                    <button
+                      class="carousel-control-next"
+                      type="button"
+                      data-bs-target="#carouselExampleIndicators3"
+                      data-bs-slide="next"
+                    >
+                      <span
+                        class="carousel-control-next-icon"
+                        aria-hidden="true"
+                      ></span>
+                      <span class="visually-hidden">Next</span>
+                    </button>
+                  </div>
+                </div>
+                <div class="card-body custom_body">
+                  <h5 class="card-title fz18 bold_font mb-0">
+                    3 BHK flat - Mountain view
+                  </h5>
+                  <a
+                    href="javascript:void(0);"
+                    class="fz15 medium_font mt-1 mb-3 d-flex align-items-center"
+                    ><img
+                      src="assets/images/location.png"
+                      alt=""
+                      class="me-2"
+                    />
+                    Noida</a
+                  >
+                  <div>
+                    <ul class="list-inline">
+                      <li
+                        class="list-inline-item fz14 medium_font text-secondary"
+                      >
+                        <img
+                          src="assets/images/circle.png"
+                          alt=""
+                          class="mb-2"
+                        />
+                        3 bedrooms
+                      </li>
+                      <li
+                        class="list-inline-item fz14 medium_font text-secondary"
+                      >
+                        <img
+                          src="assets/images/circle.png"
+                          alt=""
+                          class="mb-2"
+                        />
+                        2 bathroom
+                      </li>
+                      <li
+                        class="list-inline-item fz14 medium_font text-secondary"
+                      >
+                        <img
+                          src="assets/images/circle.png"
+                          alt=""
+                          class="mb-2"
+                        />
+                        3 guests
+                      </li>
+                      <li
+                        class="list-inline-item fz14 medium_font text-secondary"
+                      >
+                        <img
+                          src="assets/images/circle.png"
+                          alt=""
+                          class="mb-2"
+                        />
+                        Wifi
+                      </li>
+                      <li
+                        class="list-inline-item fz14 medium_font text-secondary"
+                      >
+                        <img
+                          src="assets/images/circle.png"
+                          alt=""
+                          class="mb-2"
+                        />
+                        Parking
+                      </li>
+                    </ul>
+                  </div>
+                  <div>
+                    <p class="mb-0 fz15 medium_font d-flex align-items-center">
+                      <img
+                        src="assets/images/star.png"
+                        class="me-2 mb-1"
+                        alt=""
+                      />
+                      4.9(370 reviews)
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="col_selector">
+            <div class="col">
+              <div class="card h-100 border-0">
+                <div class="card_carousel">
+                  <div
+                    id="carouselExampleIndicators2"
+                    class="carousel slide"
+                    data-bs-ride="carousel"
+                  >
+                    <div class="carousel-indicators">
+                      <button
+                        type="button"
+                        data-bs-target="#carouselExampleIndicators2"
+                        data-bs-slide-to="0"
+                        class="active"
+                        aria-current="true"
+                        aria-label="Slide 1"
+                      ></button>
+                      <button
+                        type="button"
+                        data-bs-target="#carouselExampleIndicators2"
+                        data-bs-slide-to="1"
+                        aria-label="Slide 2"
+                      ></button>
+                      <button
+                        type="button"
+                        data-bs-target="#carouselExampleIndicators2"
+                        data-bs-slide-to="2"
+                        aria-label="Slide 3"
+                      ></button>
+                    </div>
+                    <div class="carousel-inner">
+                      <div class="carousel-item active">
+                        <img
+                          src="assets/images/card-carousal-1.png"
+                          class="d-block w-100"
+                          alt="..."
+                        />
+                      </div>
+                      <div class="carousel-item">
+                        <img
+                          src="assets/images/card-carousal-2.png"
+                          class="d-block w-100"
+                          alt="..."
+                        />
+                      </div>
+                      <div class="carousel-item">
+                        <img
+                          src="assets/images/card-carousal-3.png"
+                          class="d-block w-100"
+                          alt="..."
+                        />
+                      </div>
+                    </div>
+                    <button
+                      class="carousel-control-prev"
+                      type="button"
+                      data-bs-target="#carouselExampleIndicators2"
+                      data-bs-slide="prev"
+                    >
+                      <span
+                        class="carousel-control-prev-icon"
+                        aria-hidden="true"
+                      ></span>
+                      <span class="visually-hidden">Previous</span>
+                    </button>
+                    <button
+                      class="carousel-control-next"
+                      type="button"
+                      data-bs-target="#carouselExampleIndicators2"
+                      data-bs-slide="next"
+                    >
+                      <span
+                        class="carousel-control-next-icon"
+                        aria-hidden="true"
+                      ></span>
+                      <span class="visually-hidden">Next</span>
+                    </button>
+                  </div>
+                </div>
+                <div class="card-body custom_body">
+                  <h5 class="card-title fz18 bold_font mb-0">
+                    3 BHK flat - Mountain view
+                  </h5>
+                  <a
+                    href="javascript:void(0);"
+                    class="fz15 medium_font mt-1 mb-3 d-flex align-items-center"
+                    ><img
+                      src="assets/images/location.png"
+                      alt=""
+                      class="me-2"
+                    />
+                    Noida</a
+                  >
+                  <div>
+                    <ul class="list-inline">
+                      <li
+                        class="list-inline-item fz14 medium_font text-secondary"
+                      >
+                        <img
+                          src="assets/images/circle.png"
+                          alt=""
+                          class="mb-2"
+                        />
+                        3 bedrooms
+                      </li>
+                      <li
+                        class="list-inline-item fz14 medium_font text-secondary"
+                      >
+                        <img
+                          src="assets/images/circle.png"
+                          alt=""
+                          class="mb-2 img-fluid"
+                        />
+                        2 bathroom
+                      </li>
+                      <li
+                        class="list-inline-item fz14 medium_font text-secondary"
+                      >
+                        <img
+                          src="assets/images/circle.png"
+                          alt=""
+                          class="mb-2 img-fluid"
+                        />
+                        3 guests
+                      </li>
+                      <li
+                        class="list-inline-item fz14 medium_font text-secondary"
+                      >
+                        <img
+                          src="assets/images/circle.png"
+                          alt=""
+                          class="mb-2 img-fluid"
+                        />
+                        Wifi
+                      </li>
+                      <li
+                        class="list-inline-item fz14 medium_font text-secondary"
+                      >
+                        <img
+                          src="assets/images/circle.png"
+                          alt=""
+                          class="mb-2 img-fluid"
+                        />
+                        Parking
+                      </li>
+                    </ul>
+                  </div>
+                  <div>
+                    <p class="mb-0 fz15 medium_font d-flex align-items-center">
+                      <img
+                        src="assets/images/star.png"
+                        class="me-2 mb-1 img-fluid"
+                        alt=""
+                      />
+                      4.9(370 reviews)
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="col_selector">
+            <div class="col">
+              <div class="card h-100 border-0">
+                <div class="card_carousel">
+                  <div
+                    id="carouselExampleIndicators4"
+                    class="carousel slide"
+                    data-bs-ride="carousel"
+                  >
+                    <div class="carousel-indicators">
+                      <button
+                        type="button"
+                        data-bs-target="#carouselExampleIndicators4"
+                        data-bs-slide-to="0"
+                        class="active"
+                        aria-current="true"
+                        aria-label="Slide 1"
+                      ></button>
+                      <button
+                        type="button"
+                        data-bs-target="#carouselExampleIndicators4"
+                        data-bs-slide-to="1"
+                        aria-label="Slide 2"
+                      ></button>
+                      <button
+                        type="button"
+                        data-bs-target="#carouselExampleIndicators4"
+                        data-bs-slide-to="2"
+                        aria-label="Slide 3"
+                      ></button>
+                    </div>
+                    <div class="carousel-inner">
+                      <div class="carousel-item active">
+                        <img
+                          src="assets/images/card-carousal-1.png"
+                          class="d-block w-100"
+                          alt="..."
+                        />
+                      </div>
+                      <div class="carousel-item">
+                        <img
+                          src="assets/images/card-carousal-2.png"
+                          class="d-block w-100"
+                          alt="..."
+                        />
+                      </div>
+                      <div class="carousel-item">
+                        <img
+                          src="assets/images/card-carousal-3.png"
+                          class="d-block w-100"
+                          alt="..."
+                        />
+                      </div>
+                    </div>
+                    <button
+                      class="carousel-control-prev"
+                      type="button"
+                      data-bs-target="#carouselExampleIndicators4"
+                      data-bs-slide="prev"
+                    >
+                      <span
+                        class="carousel-control-prev-icon"
+                        aria-hidden="true"
+                      ></span>
+                      <span class="visually-hidden">Previous</span>
+                    </button>
+                    <button
+                      class="carousel-control-next"
+                      type="button"
+                      data-bs-target="#carouselExampleIndicators4"
+                      data-bs-slide="next"
+                    >
+                      <span
+                        class="carousel-control-next-icon"
+                        aria-hidden="true"
+                      ></span>
+                      <span class="visually-hidden">Next</span>
+                    </button>
+                  </div>
+                </div>
+                <div class="card-body custom_body">
+                  <h5 class="card-title fz18 bold_font mb-0">
+                    3 BHK flat - Mountain view
+                  </h5>
+                  <a
+                    href="javascript:void(0);"
+                    class="fz15 medium_font mt-1 mb-3 d-flex align-items-center"
+                    ><img
+                      src="assets/images/location.png"
+                      alt=""
+                      class="me-2"
+                    />
+                    Noida</a
+                  >
+                  <div>
+                    <ul class="list-inline">
+                      <li
+                        class="list-inline-item fz14 medium_font text-secondary"
+                      >
+                        <img
+                          src="assets/images/circle.png"
+                          alt=""
+                          class="mb-2"
+                        />
+                        3 bedrooms
+                      </li>
+                      <li
+                        class="list-inline-item fz14 medium_font text-secondary"
+                      >
+                        <img
+                          src="assets/images/circle.png"
+                          alt=""
+                          class="mb-2"
+                        />
+                        2 bathroom
+                      </li>
+                      <li
+                        class="list-inline-item fz14 medium_font text-secondary"
+                      >
+                        <img
+                          src="assets/images/circle.png"
+                          alt=""
+                          class="mb-2"
+                        />
+                        3 guests
+                      </li>
+                      <li
+                        class="list-inline-item fz14 medium_font text-secondary"
+                      >
+                        <img
+                          src="assets/images/circle.png"
+                          alt=""
+                          class="mb-2"
+                        />
+                        Wifi
+                      </li>
+                      <li
+                        class="list-inline-item fz14 medium_font text-secondary"
+                      >
+                        <img
+                          src="assets/images/circle.png"
+                          alt=""
+                          class="mb-2"
+                        />
+                        Parking
+                      </li>
+                    </ul>
+                  </div>
+                  <div>
+                    <p class="mb-0 fz15 medium_font d-flex align-items-center">
+                      <img
+                        src="assets/images/star.png"
+                        class="me-2 mb-1"
+                        alt=""
+                      />
+                      4.9(370 reviews)
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<app-footer></app-footer>
