@@ -134,7 +134,7 @@ export class PropertyGuests2Component implements OnInit, AfterViewInit, OnDestro
           this.numberOfBathrooms = this.propertyData.property.no_of_bathrooms || 1;
           this.numberOfBedrooms = this.propertyData.property.no_of_bedrooms || 1;
           this.numberOfGuests = this.propertyData.property.no_of_guests || 1;
-          if (this.propertyData.beds) {
+          if (this.propertyData.beds.length) {
             this.propertyBeds = this.propertyData.beds;
             this.bedRoomCountArr = [];
             for (let i = 0; i <= this.numberOfBedrooms; i++) {
