@@ -56,6 +56,10 @@ textarea.ng-touched.ng-invalid {
   color: #f9537b;
 }
 
+.border_red {
+  border-color: #f9537b !important;
+}
+
 .confirm-dialog mat-dialog-container {
   border-radius: 1rem !important;
   padding: 2rem !important;
@@ -609,4 +613,9 @@ hr {
   position: absolute;
   top: 14px;
   left: 18px;
+}
+.map_search {
+  position: absolute;
+  right: 0;
+  width: 555px;
 }
