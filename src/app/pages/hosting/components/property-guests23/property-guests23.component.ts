@@ -140,22 +140,22 @@ export class PropertyGuests23Component implements OnInit, AfterViewInit, OnDestr
           } = this.propertyData.property;
 
 
-          this.selectedAdvanceNotice = advance_notice;
-          this.selectedCutOffTime = cut_off_time;
-          this.selectedAvailabilityWindow = guests_book_time;
-          this.selectedCiArriveAfter = ci_arrive_after;
-          this.selectedCiArriveBefore = ci_arrive_before;
-          this.selectedCiLeaveBefore = ci_leave_before;
-          this.selectedTripMin = min_stay;
-          this.selectedTripMax = max_stay;
+          this.selectedAdvanceNotice = advance_notice || 0;
+          this.selectedCutOffTime = cut_off_time || 22;
+          this.selectedAvailabilityWindow = guests_book_time || 1;
+          this.selectedCiArriveAfter = ci_arrive_after || 10;
+          this.selectedCiArriveBefore = ci_arrive_before || 22;
+          this.selectedCiLeaveBefore = ci_leave_before || 12;
+          this.selectedTripMin = min_stay || 1;
+          this.selectedTripMax = max_stay || 1;
 
           this.availabilityForm.setValue({
-            advance_notice,
-            cut_off_time,
-            guests_book_time,
-            ci_arrive_after,
-            ci_arrive_before,
-            ci_leave_before
+            advance_notice:this.selectedAdvanceNotice,
+            cut_off_time: this.selectedCutOffTime,
+            guests_book_time: this.selectedAvailabilityWindow,
+            ci_arrive_after: this.selectedCiArriveAfter,
+            ci_arrive_before: this.selectedCiArriveBefore,
+            ci_leave_before: this.selectedCiLeaveBefore
           });
         }
 

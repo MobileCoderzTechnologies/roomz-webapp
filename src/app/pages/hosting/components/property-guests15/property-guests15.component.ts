@@ -123,11 +123,13 @@ export class PropertyGuests15Component implements OnInit, AfterViewInit, OnDestr
         this.propertyData = data;
         console.log(this.propertyData);
         if (this.propertyData) {
-          const {
+          let {
             country_code = '+91',
             sec_phone_number = ''
           } = this.propertyData.property;
 
+          country_code = country_code || '+91';
+          sec_phone_number = sec_phone_number || '';
           this.secPhoneNumberForm.setValue({
             country_code,
             sec_phone_number
@@ -144,9 +146,11 @@ export class PropertyGuests15Component implements OnInit, AfterViewInit, OnDestr
 
       if (this.user.phone_number) {
         this.isOtpVerified = true;
+        const country_code = this.user.country_code || '+91';
+        const phone_number = this.user.phone_number || '' ;
         this.userPhoneNumberForm.setValue({
-          country_code: this.user.country_code,
-          phone_number: this.user.phone_number
+          country_code,
+          phone_number
         });
       }
     }, err => {

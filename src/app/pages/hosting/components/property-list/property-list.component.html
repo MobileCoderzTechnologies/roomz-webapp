@@ -211,18 +211,26 @@
                       <span class="fz14 ms-3"> {{property.name}} </span>
                     </div>
                   </td>
-                  <td *ngIf="property?.status === listingStatus.inProgress" class="text-center">
-                    In Progress
-                  </td>
-                  <td *ngIf="property?.status === listingStatus.listed" class="text-center">
-                    Listed
-                  </td>
-                  <td *ngIf="property?.status === listingStatus.unlisted" class="text-center">
-                    Unlisted
+                  <td class="text-center">
+                    <span *ngIf="property?.status === listingStatus.inProgress" class="text-center">
+                      In Progress
+                    </span>
+                    <span *ngIf="property?.status === listingStatus.pendingForApproval" class="text-center">
+                      Pending
+                    </span>
+                    <span *ngIf="property?.status === listingStatus.listed" class="text-center">
+                      Listed
+                    </span>
+                    <span *ngIf="property?.status === listingStatus.unlisted" class="text-center">
+                      Unlisted
+                    </span>
                   </td>
                   <td class="text-center">
-                    <button type="button" class="btn btn-outline-secondary rounded-pill fz14">
+                    <button *ngIf="property?.status === listingStatus.unlisted" type="button" class="btn btn-outline-secondary rounded-pill fz14">
                       Publish
+                    </button>
+                    <button *ngIf="property?.status === listingStatus.inProgress|| property?.status === listingStatus.listed" type="button" class="btn btn-outline-secondary rounded-pill fz14" (click)="editProperty(property?.id)">
+                      Edit
                     </button>
                   </td>
                   <td class="text-center">

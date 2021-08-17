@@ -38,7 +38,8 @@ import {
   PROPERTY_PREVIEW,
   PROPERTY_PUBLISH,
   PROPERTY_DISCOUNTS,
-  MY_PROPERTIES
+  MY_PROPERTIES,
+  PROPERTY_DATA_UPDATE
 } from '../constants/api.constant';
 
 @Injectable({
@@ -168,8 +169,8 @@ export class PropertyListingService {
   getPropertyPreview(id: number): Observable<any> {
     return this.$http.get(`${PROPERTY_PREVIEW}/${id}`);
   }
-  publishProperty(id: number): Observable<any> {
-    return this.$http.get(`${PROPERTY_PUBLISH}/${id}`);
+  publishProperty(id: number, data: any): Observable<any> {
+    return this.$http.put(`${PROPERTY_PUBLISH}/${id}`, data);
   }
 
   getMyProperties(
@@ -193,6 +194,11 @@ export class PropertyListingService {
     params = params.set('search', search);
 
     return this.$http.get(MY_PROPERTIES, params);
+  }
+
+
+  getPropertyDataForUpdate(id: number): Observable<any> {
+    return this.$http.get(`${PROPERTY_DATA_UPDATE}/${id}`);
   }
 
 

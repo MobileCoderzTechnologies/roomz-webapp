@@ -74,6 +74,10 @@ export class PropertyGuests4Component implements OnInit, AfterViewInit, OnDestro
     this.saveExitSubs = this.$ps.saveExit.subscribe(data => {
       if (data === 'done') {
         this.isSavingExit = true;
+        if (this.addressForm.invalid) {
+          this.$router.navigateByUrl(MY_LISTING_ROUTE.url);
+          return;
+        }
         this.addAddress();
       }
     });
@@ -195,6 +199,7 @@ export class PropertyGuests4Component implements OnInit, AfterViewInit, OnDestro
 
       if (this.isSavingExit) {
         this.$router.navigateByUrl(MY_LISTING_ROUTE.url);
+        return;
       }
       this.$router.navigate([this.step4Route.url, this.encryptedPropertyId]);
     }, err => {

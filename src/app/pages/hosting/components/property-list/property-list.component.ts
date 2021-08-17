@@ -5,7 +5,7 @@ import { debounceTime } from 'rxjs/operators';
 import { Amenity } from 'src/app/modals/amenity.modal';
 import { AlertService } from 'src/app/modules/alert/alert.service';
 import { EncryptionService } from 'src/app/services/encryption.service';
-import { LISTING_HOME_ROUTE } from '../../constants/route.constant';
+import { LISTING_HOME_ROUTE, STEP_1_ROUTE } from '../../constants/route.constant';
 import { ProgressService } from '../../services/progress.service';
 import { PropertyListingService } from '../../services/property-listing.service';
 
@@ -41,15 +41,12 @@ export class PropertyListComponent implements OnInit, AfterViewInit {
 
   listingStatus = {
     inProgress: 1,
-    listed: 2,
-    unlisted: 3
+    pendingForApproval: 2,
+    listed: 3,
+    unlisted: 4,
+    blocked: 5
   };
 
-  propertyStatus: {
-    1: 'In Progress',
-    2: 'Listed',
-    3: 'Unlisted'
-  };
 
   selectedStatus: number[] = [];
   applyStatus = '';
@@ -204,6 +201,43 @@ export class PropertyListComponent implements OnInit, AfterViewInit {
           this.isLoading = false;
           this.$alert.danger(err.message);
         });
+  }
+
+
+  editProperty(propertyId: number): void {
+    this.$propertyListingService.getPropertyDataForUpdate(propertyId).subscribe(data => {
+      const resData = data.property[0];
+      console.log(resData);
+      const propertyData = {
+        property: resData,
+        amenities: resData.amenities.map(e => e = e.amenity_id),
+        houseRules: resData.rules,
+        beds: resData.beds,
+        details: resData.details.map(e => {
+          return {
+            detail_id: e.detail_id,
+            explanation: e.explanation,
+          };
+        }),
+        images: resData.images,
+      };
+
+      delete propertyData.property.amenities;
+      delete propertyData.property.rules;
+      delete propertyData.property.beds;
+      delete propertyData.property.details;
+      delete propertyData.property.images;
+
+      this.$ps.clearPropertyData();
+      this.$ps.setPropertyData(propertyData);
+
+      const encryptedPropertyId = this.$encryptionService.encrypt(propertyId);
+
+      this.$router.navigate([STEP_1_ROUTE.url, encryptedPropertyId]);
+    },
+      err => {
+        this.$alert.danger(err.message);
+      });
   }
 
 

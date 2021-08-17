@@ -58,6 +58,11 @@ export class PropertyGuests8Component implements OnInit, AfterViewInit, OnDestro
     this.saveExitSubs = this.$ps.saveExit.subscribe(data => {
       if (data === 'done') {
         this.isSavingExit = true;
+
+        if (!this.coverPhotoUrl || !this.propertyPhotos.length) {
+          this.$router.navigateByUrl(MY_LISTING_ROUTE.url);
+          return;
+        }
         this.addPropertyPhotos();
       }
     });
