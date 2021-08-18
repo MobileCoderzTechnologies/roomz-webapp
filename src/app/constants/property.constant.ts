@@ -4,5 +4,4 @@ export const PROPERTY_STATUS = {
   listed: 3,
   unlisted: 4,
   blocked: 5,
-  deleted: 6,
 }

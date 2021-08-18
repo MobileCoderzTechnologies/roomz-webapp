@@ -130,6 +130,7 @@ export class PropertyGuests4Component implements OnInit, AfterViewInit, OnDestro
     navigator.geolocation.getCurrentPosition(res => {
       this.longitude = res.coords.longitude;
       this.latitude = res.coords.latitude;
+      console.log(res);
       this.getAddress(this.latitude, this.longitude);
     });
   }
@@ -176,8 +177,8 @@ export class PropertyGuests4Component implements OnInit, AfterViewInit, OnDestro
   addAddress(): void {
     this.isNextLoading = true;
     const requestData = this.addressForm.value;
-    requestData.latitude = this.latitude;
-    requestData.longitude = this.longitude;
+    requestData.latitude = this.latitude || 23.8859;
+    requestData.longitude = this.longitude || 45.0792;
     requestData.location = this.location;
 
     this.$propertyListingService.addPropertyAddress(this.propertyId, requestData).subscribe(data => {
