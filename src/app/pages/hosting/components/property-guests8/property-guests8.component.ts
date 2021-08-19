@@ -1,5 +1,6 @@
 import { AfterViewInit, Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+import { element } from 'protractor';
 import { Subscription } from 'rxjs';
 import { delay } from 'rxjs/operators';
 import { AlertService } from 'src/app/modules/alert/alert.service';
@@ -157,7 +158,8 @@ export class PropertyGuests8Component implements OnInit, AfterViewInit, OnDestro
   }
 
   private setShowingPhotos(photos: { image_url: string }[]): void {
-    photos.forEach(item => {
+    photos.forEach((element) => {
+      const item = { ...element };
       const imageUrl = item.image_url;
       const imageUrlArr = imageUrl.split('/');
       imageUrlArr.pop();

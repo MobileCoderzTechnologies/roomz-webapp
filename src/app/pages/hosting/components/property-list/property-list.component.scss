@@ -4,3 +4,28 @@
   overflow-y: scroll;
   position: relative;
 }
+
+
+::ng-deep .ngx-pagination {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+
+  li {
+    background-color: #F1F1F1;
+    border-radius: 7px;
+    color: #fff;
+    margin: 0px 2px;
+  }
+
+  li.current {
+    background-color: #f9537b;
+  }
+}
+
+.loader {
+  height: 60vh;
+  width: 100%;
+  display: grid;
+  place-items: center;
+}

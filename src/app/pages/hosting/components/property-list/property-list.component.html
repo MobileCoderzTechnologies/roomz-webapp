@@ -59,7 +59,8 @@
           </div>
           <div class="d-flex align-items-center mb-4">
             <div class="me-3 position-relative">
-              <input type="text" class="form-control rounded-pill ps-5" placeholder="name, city" #search>
+              <input type="text" class="form-control rounded-pill ps-5" placeholder="name, city"
+                (input)="onSearch($event)">
               <img src="assets/images/search.png" class="search_icon" alt="" />
             </div>
             <!-- Rooms and Beds start here -->
@@ -127,7 +128,9 @@
                       <div class="col-md-6" *ngFor="let amenity of amenities">
                         <div class="col_selector">
                           <div class="form-check mb-3">
-                            <input #inputAmenity class="form-check-input" type="checkbox" [value]="aminity?.id" [id]="amenity?.id" [checked]="markCheckOnAmenity(amenity.id)" (change)="onCheckAmenity($event.target.checked, amenity.id)">
+                            <input #inputAmenity class="form-check-input" type="checkbox" [value]="aminity?.id"
+                              [id]="amenity?.id" [checked]="markCheckOnAmenity(amenity.id)"
+                              (change)="onCheckAmenity($event.target.checked, amenity.id)">
                             <label class="form-check-label" [for]="amenity?.id">
                               {{amenity?.name}}
                             </label>
@@ -154,19 +157,24 @@
               <div class="hosting_dropdown" *ngIf="filter === 3">
                 <div class="bg-white px-3 pt-3">
                   <div class="form-check mb-3">
-                    <input class="form-check-input" type="checkbox" value="listed" id="listed" [checked]="markCheckOnFilter3('listed')" (click)="markFilter3($event.target.checked, 'listed')"/>
+                    <input class="form-check-input" type="checkbox" value="listed" id="listed"
+                      [checked]="markCheckOnFilter3('listed')" (click)="markFilter3($event.target.checked, 'listed')" />
                     <label class="form-check-label" for="listed">
                       Listed
                     </label>
                   </div>
                   <div class="form-check mb-3">
-                    <input class="form-check-input" type="checkbox" value="inProgress" id="inProgress" [checked]="markCheckOnFilter3('inProgress')"  (click)="markFilter3($event.target.checked, 'inProgress')">
+                    <input class="form-check-input" type="checkbox" value="inProgress" id="inProgress"
+                      [checked]="markCheckOnFilter3('inProgress')"
+                      (click)="markFilter3($event.target.checked, 'inProgress')">
                     <label class="form-check-label" for="inProgress">
                       In Progress
                     </label>
                   </div>
                   <div class="form-check mb-3">
-                    <input class="form-check-input" type="checkbox" value="unlisted" id="unlisted" [checked]="markCheckOnFilter3('unlisted')"  (click)="markFilter3($event.target.checked, 'unlisted')">
+                    <input class="form-check-input" type="checkbox" value="unlisted" id="unlisted"
+                      [checked]="markCheckOnFilter3('unlisted')"
+                      (click)="markFilter3($event.target.checked, 'unlisted')">
                     <label class="form-check-label" for="unlisted">
                       Unlisted
                     </label>
@@ -199,66 +207,86 @@
                   <td>Location</td>
                   <td>Last Modified</td>
                 </tr>
-                <tr class="align-items-center" *ngFor="let property of properties">
-                  <td>
-                    <div class="form-check">
-                      <input class="form-check-input" type="checkbox" value="" />
-                    </div>
-                  </td>
-                  <td>
-                    <div class="d-flex align-items-center">
-                      <img [src]="property.cover_photo" class="img-fluid rounded" width="60" alt="" />
-                      <span class="fz14 ms-3"> {{property.name}} </span>
-                    </div>
-                  </td>
-                  <td class="text-center">
-                    <span *ngIf="property?.status === listingStatus.inProgress" class="text-center">
-                      In Progress
-                    </span>
-                    <span *ngIf="property?.status === listingStatus.pendingForApproval" class="text-center">
-                      Pending
-                    </span>
-                    <span *ngIf="property?.status === listingStatus.listed" class="text-center">
-                      Listed
-                    </span>
-                    <span *ngIf="property?.status === listingStatus.unlisted" class="text-center">
-                      Unlisted
-                    </span>
-                  </td>
-                  <td class="text-center">
-                    <button *ngIf="property?.status === listingStatus.unlisted" type="button" class="btn btn-outline-secondary rounded-pill fz14">
-                      Publish
-                    </button>
-                    <button *ngIf="property?.status === listingStatus.inProgress|| property?.status === listingStatus.listed" type="button" class="btn btn-outline-secondary rounded-pill fz14" (click)="editProperty(property?.id)">
-                      Edit
-                    </button>
-                  </td>
-                  <td class="text-center">
-                    <div>
-                      <img src="assets/images/green-check.png" alt="" /> on
-                    </div>
-                  </td>
-                  <td class="text-center">
-                    {{property.no_of_bedrooms}}
-                  </td>
-                  <td class="text-center">
-                    {{property.no_of_beds}}
-                  </td>
-                  <td class="text-center">
-                    {{property.no_of_bathrooms}}
-                  </td>
-                  <td class="text-center">
-                    {{property.city}}
-                  </td>
-                  <td class="text-center">
-                    {{property.updated_at|date:'short'}}
-                  </td>
-                </tr>
+                <ng-container *ngIf="!isLoading">
+                  <tr class="align-items-center"
+                    *ngFor="let property of properties|paginate: { itemsPerPage: pageSize, currentPage: page, totalItems: totalCount }">
+                    <td>
+                      <div class="form-check">
+                        <input class="form-check-input" type="checkbox" value="" />
+                      </div>
+                    </td>
+                    <td>
+                      <div class="d-flex align-items-center">
+                        <img [src]="property.cover_photo" class="img-fluid rounded" width="60" alt="" />
+                        <span class="fz14 ms-3"> {{property.name}} </span>
+                      </div>
+                    </td>
+                    <td class="text-center">
+                      <span *ngIf="property?.status === listingStatus.inProgress" class="text-center">
+                        In Progress
+                      </span>
+                      <span *ngIf="property?.status === listingStatus.pendingForApproval" class="text-center">
+                        Pending
+                      </span>
+                      <span *ngIf="property?.status === listingStatus.listed" class="text-center">
+                        Listed
+                      </span>
+                      <span *ngIf="property?.status === listingStatus.unlisted" class="text-center">
+                        Unlisted
+                      </span>
+                    </td>
+                    <td class="text-center">
+                      <button *ngIf="property?.status === listingStatus.unlisted" type="button"
+                        class="btn btn-outline-secondary rounded-pill fz14">
+                        Publish
+                      </button>
+                      <button
+                        *ngIf="property?.status === listingStatus.inProgress|| property?.status === listingStatus.listed"
+                        type="button" class="btn btn-outline-secondary rounded-pill fz14"
+                        (click)="editProperty(property?.id)">
+                        Edit
+                      </button>
+                    </td>
+                    <td class="text-center">
+                      <div>
+                        <img src="assets/images/green-check.png" alt="" /> on
+                      </div>
+                    </td>
+                    <td class="text-center">
+                      {{property.no_of_bedrooms}}
+                    </td>
+                    <td class="text-center">
+                      {{property.no_of_beds}}
+                    </td>
+                    <td class="text-center">
+                      {{property.no_of_bathrooms}}
+                    </td>
+                    <td class="text-center">
+                      {{property.city}}
+                    </td>
+                    <td class="text-center">
+                      {{property.updated_at|date:'short'}}
+                    </td>
+                  </tr>
+                </ng-container>
               </tbody>
             </table>
+            <div class="row" *ngIf="!isLoading">
+              <div class="col-12">
+                <div class=" w-100">
+                  <pagination-controls (pageChange)="onPageChange($event)" previousLabel="" nextLabel="">
+                  </pagination-controls>
+                  <br>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </div>
     </div>
   </div>
 </section>
+
+<div class="loader" *ngIf="isLoading">
+  <mat-spinner [strokeWidth]="5" [diameter]="70"></mat-spinner>
+</div>

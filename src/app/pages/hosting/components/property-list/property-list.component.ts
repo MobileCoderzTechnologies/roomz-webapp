@@ -58,8 +58,7 @@ export class PropertyListComponent implements OnInit, AfterViewInit {
 
   search = '';
 
-  @ViewChild('search') searchElement: any;
-
+  searchElement: any;
   constructor(
     private $ps: ProgressService,
     private $encryptionService: EncryptionService,
@@ -75,22 +74,28 @@ export class PropertyListComponent implements OnInit, AfterViewInit {
   }
 
   ngAfterViewInit(): void {
-    this.onSearch();
+    // this.onSearch();
   }
 
 
-  private onSearch(): void {
-    fromEvent<any>(this.searchElement.nativeElement, 'input').pipe(
-      debounceTime(500)
-    )
-      .subscribe(event => {
-        const searchTxt = event.target.value;
+  onSearch(event): void {
+    // this.searchElement = document.getElementById('search');
+    // fromEvent<any>(this.searchElement, 'input').pipe(
+    //   debounceTime(500)
+    // )
+    //   .subscribe(event => {
+    //   });
+    const searchTxt = event.target.value;
 
-        if (searchTxt.trim()) {
-          this.search = searchTxt;
-          this.getMyPropertyList();
-        }
-      });
+    if (searchTxt.trim()) {
+      this.search = searchTxt;
+      this.getMyPropertyList();
+    }
+
+    if (!searchTxt) {
+      this.search = '';
+      this.getMyPropertyList();
+    }
   }
 
 
@@ -238,6 +243,11 @@ export class PropertyListComponent implements OnInit, AfterViewInit {
       err => {
         this.$alert.danger(err.message);
       });
+  }
+
+  onPageChange(event): void {
+    this.page = event;
+    this.getMyPropertyList();
   }
 
 

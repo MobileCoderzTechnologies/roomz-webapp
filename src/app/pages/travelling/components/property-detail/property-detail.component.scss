@@ -1,0 +1,77 @@
+.slider {
+  width: 100%;
+  height: auto;
+  box-sizing: border-box;
+  height: 460px;
+  position: relative;
+}
+
+.slide {
+  height: fit-content;
+  max-height: 460px;
+  width: 100%;
+
+  img {
+    object-fit: cover;
+  }
+}
+
+owl-carousel-o {
+  // position: absolute;
+}
+
+::ng-deep .owl-nav {
+  position: absolute;
+  top: 50%;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+}
+
+.side-count {
+  position: absolute;
+  width: 100%;
+  display: grid;
+  place-items: center;
+  bottom: 0rem;
+  z-index: 1000;
+  color: #fff;
+  font-size: 2rem;
+}
+
+
+.user-photo{
+  height: 60px;
+  width: 60px;
+  border-radius: 100%;
+}
+
+.amenity-icon{
+  height: 20px;
+  width: 30px;
+}
+
+agm-map{
+  height: 160px;
+  width: auto;
+  max-width: 641px;
+}
+
+.loader{
+  height: 90vh;
+  width: 100%;
+  display: grid;
+  place-items: center;
+}
+
+.bedroom{
+  border: 1px solid #888;
+  padding: 5px;
+  border-radius: 12px;
+  margin: 0% 5px;
+}
+
+.price-box{
+  position: sticky;
+  top: 0%;
+}

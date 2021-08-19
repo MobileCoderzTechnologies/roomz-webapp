@@ -1,0 +1,32 @@
+::ng-deep .mat-dialog-container {
+  padding: 0% !important;
+  border-radius: 7px !important;
+  &::-webkit-scrollbar{
+    width: 2px !important;
+  }
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+  overflow: -moz-scrollbars-none;
+}
+
+.profile-box{
+  display: flex;
+  justify-content: center;
+  img{
+    height: 80px;
+    width: 80px;
+    border-radius: 100%;
+  }
+  &:hover{
+    background-color: inherit !important;
+  }
+}
+
+.user-name{
+  &:hover{
+    background-color: inherit;
+  }
+}
+.logout{
+  cursor: pointer;
+}

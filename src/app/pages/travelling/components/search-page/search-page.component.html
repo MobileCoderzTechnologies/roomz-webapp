@@ -1,4 +1,4 @@
-<header class="py-3 position-static border-bottom">
+<!-- <header class="py-3 position-static border-bottom">
   <div class="container">
     <nav class="navbar navbar-expand-lg navbar-light p-0">
       <a class="navbar-brand p-0" href="#">
@@ -76,35 +76,18 @@
       </div>
     </nav>
   </div>
-</header>
-<section>
+</header> -->
+<app-header></app-header>
+<section *ngIf="!isLoading">
   <div class="container">
     <div class="row">
       <div class="col-md-7">
         <div class="col_selector my-5">
-          <div
-            class="d-flex align-items-center justify-content-between border mb-5 rounded-pill py-2 px-3"
-          >
-            <input
-              type="text"
-              name=""
-              class="form-control text-center border-0 py-3 border-end"
-              id=""
-              placeholder="Rishikesh"
-            />
-            <input
-              type="date"
-              name=""
-              class="form-control text-center border-0 py-3 border-end"
-              id=""
-            />
-            <input
-              type="text"
-              name=""
-              class="form-control text-center border-0 py-3"
-              id=""
-              placeholder="4 guest"
-            />
+          <div class="d-flex align-items-center justify-content-between border mb-5 rounded-pill py-2 px-3">
+            <input type="text" name="" class="form-control text-center border-0 py-3 border-end" id=""
+              placeholder="Rishikesh" />
+            <input type="date" name="" class="form-control text-center border-0 py-3 border-end" id="" />
+            <input type="text" name="" class="form-control text-center border-0 py-3" id="" placeholder="4 guest" />
           </div>
           <div>
             <p class="semi_font text-secondary mb-1">
@@ -113,9 +96,7 @@
             <h3 class="bold_font fz36">Stays in Rishikesh</h3>
           </div>
           <div class="d-flex mb-4">
-            <button
-              class="btn fz14 regular_font border me-2 rounded-pill py-2 base_color border_red"
-            >
+            <button class="btn fz14 regular_font border me-2 rounded-pill py-2 base_color border_red">
               Cancellation Flexibility
             </button>
             <button class="btn fz14 regular_font border me-2 rounded-pill py-2">
@@ -132,252 +113,149 @@
             </button>
           </div>
           <div class="row">
-            <div class="col-12 most_popular py-0">
-              <div class="row">
-                <div class="col-md-5">
-                  <div class="col_selector">
-                    <div class="col">
-                      <div class="card h-100 border-0">
-                        <div class="card_carousel">
-                          <div
-                            id="carouselExampleIndicators3"
-                            class="carousel slide"
-                            data-bs-ride="carousel"
-                          >
-                            <div class="carousel-indicators">
-                              <button
-                                type="button"
-                                data-bs-target="#carouselExampleIndicators3"
-                                data-bs-slide-to="0"
-                                class="active"
-                                aria-current="true"
-                                aria-label="Slide 1"
-                              ></button>
-                              <button
-                                type="button"
-                                data-bs-target="#carouselExampleIndicators3"
-                                data-bs-slide-to="1"
-                                aria-label="Slide 2"
-                              ></button>
-                              <button
-                                type="button"
-                                data-bs-target="#carouselExampleIndicators3"
-                                data-bs-slide-to="2"
-                                aria-label="Slide 3"
-                              ></button>
+            <ng-container
+              *ngFor="let property of properties|paginate: { itemsPerPage: pageSize, currentPage: page, totalItems: totalCount }">
+              <div class="col-12 most_popular py-0">
+                <div class="row">
+                  <div class="col-md-5">
+                    <div class="col_selector">
+                      <app-slider-third [photos]="property.images"></app-slider-third>
+                      <!-- <div class="col">
+                        <div class="card h-100 border-0">
+                          <div class="card_carousel">
+                            <div id="carouselExampleIndicators3" class="carousel slide" data-bs-ride="carousel">
+                              <div class="carousel-indicators">
+                                <button type="button" data-bs-target="#carouselExampleIndicators3" data-bs-slide-to="0"
+                                  class="active" aria-current="true" aria-label="Slide 1"></button>
+                                <button type="button" data-bs-target="#carouselExampleIndicators3" data-bs-slide-to="1"
+                                  aria-label="Slide 2"></button>
+                                <button type="button" data-bs-target="#carouselExampleIndicators3" data-bs-slide-to="2"
+                                  aria-label="Slide 3"></button>
+                              </div>
+                              <div class="carousel-inner">
+                                <div class="carousel-item active">
+                                  <img [src]="property?.images[0]?.image_url" class="d-block w-100 rounded" alt="..." />
+                                 
+                                </div>
+                                <div class="carousel-item">
+                                  <img [src]="property?.images[0]?.image_url" class="d-block w-100 rounded" alt="..." />
+                                 
+                                </div>
+                                <div class="carousel-item">
+                                  <img [src]="property?.images[0]?.image_url" class="d-block w-100 rounded" alt="..." />
+                                  
+                                </div>
+                              </div>
+                              <button class="carousel-control-prev" type="button"
+                                data-bs-target="#carouselExampleIndicators3" data-bs-slide="prev">
+                                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                                <span class="visually-hidden">Previous</span>
+                              </button>
+                              <button class="carousel-control-next" type="button"
+                                data-bs-target="#carouselExampleIndicators3" data-bs-slide="next">
+                                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                                <span class="visually-hidden">Next</span>
+                              </button>
                             </div>
-                            <div class="carousel-inner">
-                              <div class="carousel-item active">
-                                <img
-                                  src="assets/images/card-carousal-1.png"
-                                  class="d-block w-100 rounded"
-                                  alt="..."
-                                />
-                              </div>
-                              <div class="carousel-item">
-                                <img
-                                  src="assets/images/card-carousal-2.png"
-                                  class="d-block w-100 rounded"
-                                  alt="..."
-                                />
-                              </div>
-                              <div class="carousel-item">
-                                <img
-                                  src="assets/images/card-carousal-3.png"
-                                  class="d-block w-100 rounded"
-                                  alt="..."
-                                />
-                              </div>
-                            </div>
-                            <button
-                              class="carousel-control-prev"
-                              type="button"
-                              data-bs-target="#carouselExampleIndicators3"
-                              data-bs-slide="prev"
-                            >
-                              <span
-                                class="carousel-control-prev-icon"
-                                aria-hidden="true"
-                              ></span>
-                              <span class="visually-hidden">Previous</span>
-                            </button>
-                            <button
-                              class="carousel-control-next"
-                              type="button"
-                              data-bs-target="#carouselExampleIndicators3"
-                              data-bs-slide="next"
-                            >
-                              <span
-                                class="carousel-control-next-icon"
-                                aria-hidden="true"
-                              ></span>
-                              <span class="visually-hidden">Next</span>
-                            </button>
+                          </div>
+                        </div>
+                      </div> -->
+                    </div>
+                  </div>
+                  <div class="col-md-7">
+                    <div class="col_selector">
+                      <div class="d-flex justify-content-between">
+                        <div (click)="onPropertyDetail(property?.id)" class="property-name">
+                          <p class="mb-0">Entire {{property?.type?.property_type}} in {{property?.city}} </p>
+                          <h3 class="fz18 semi_font">
+                            {{property?.name}}
+                          </h3>
+                        </div>
+                        <div>
+                          <img src="assets/images/heart-red.png" alt="" />
+                        </div>
+                      </div>
+                      <div>
+                        <ul class="list-inline gray_color">
+                          <li class="list-inline-item fz14 medium_font">
+                            <img src="assets/images/circle.png" alt="" class="mb-2" />
+                            {{property?.no_of_bedrooms}} bedrooms
+                          </li>
+                          <li class="list-inline-item fz14 medium_font">
+                            <img src="assets/images/circle.png" alt="" class="mb-2 img-fluid" />
+                            {{property?.no_of_bathrooms}} bathroom
+                          </li>
+                          <li class="list-inline-item fz14 medium_font">
+                            <img src="assets/images/circle.png" alt="" class="mb-2 img-fluid" />
+                            {{property?.no_of_guests}} guests
+                          </li>
+                          <li class="list-inline-item fz14 medium_font">
+                            <img src="assets/images/circle.png" alt="" class="mb-2 img-fluid" />
+                            {{property?.amenities[0]?.amenity_name.name}}
+                          </li>
+                          <li class="list-inline-item fz14 medium_font">
+                            <img src="assets/images/circle.png" alt="" class="mb-2 img-fluid" />
+                            {{property?.amenities[1]?.amenity_name.name}}
+                          </li>
+                        </ul>
+                      </div>
+                      <div>
+                        <div>
+                          <h4 class="mb-0 fz18 semi_font d-flex align-items-center mb-1">
+                            <span class="blue_color"> ${{property?.base_price}} </span>
+                            <span class="fz16 text-secondary"> / night</span>
+                          </h4>
+                          <div class="d-flex align-items-center justify-content-between">
+                            <p class="fz15 mb-0">{{property?.base_price * 3}} total</p>
+                            <p class="mb-0 fz15 medium_font d-flex align-items-center">
+                              <img src="assets/images/star.png" class="me-2 mb-1" alt="" />
+                              4.9(370 reviews)
+                            </p>
                           </div>
                         </div>
                       </div>
                     </div>
                   </div>
                 </div>
-                <div class="col-md-7">
-                  <div class="col_selector">
-                    <div class="d-flex justify-content-between">
-                      <div>
-                        <p class="mb-0">Entire flat in Rishikesh</p>
-                        <h3 class="fz18 semi_font">
-                          Luxury Aloha 1BR & 1LR apartment
-                        </h3>
-                      </div>
-                      <div>
-                        <img src="assets/images/heart-red.png" alt="" />
-                      </div>
-                    </div>
-                    <div>
-                      <ul class="list-inline gray_color">
-                        <li class="list-inline-item fz14 medium_font">
-                          <img
-                            src="assets/images/circle.png"
-                            alt=""
-                            class="mb-2"
-                          />
-                          3 bedrooms
-                        </li>
-                        <li class="list-inline-item fz14 medium_font">
-                          <img
-                            src="assets/images/circle.png"
-                            alt=""
-                            class="mb-2 img-fluid"
-                          />
-                          2 bathroom
-                        </li>
-                        <li class="list-inline-item fz14 medium_font">
-                          <img
-                            src="assets/images/circle.png"
-                            alt=""
-                            class="mb-2 img-fluid"
-                          />
-                          4 guests
-                        </li>
-                        <li class="list-inline-item fz14 medium_font">
-                          <img
-                            src="assets/images/circle.png"
-                            alt=""
-                            class="mb-2 img-fluid"
-                          />
-                          Wifi
-                        </li>
-                      </ul>
-                    </div>
-                    <div>
-                      <div>
-                        <h4
-                          class="mb-0 fz18 semi_font d-flex align-items-center mb-1"
-                        >
-                          <span class="blue_color">₹1,426 </span>
-                          <span class="fz16 text-secondary"> / night</span>
-                        </h4>
-                        <div
-                          class="d-flex align-items-center justify-content-between"
-                        >
-                          <p class="fz15 mb-0">11,720 total</p>
-                          <p
-                            class="mb-0 fz15 medium_font d-flex align-items-center"
-                          >
-                            <img
-                              src="assets/images/star.png"
-                              class="me-2 mb-1"
-                              alt=""
-                            />
-                            4.9(370 reviews)
-                          </p>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
+                <hr />
               </div>
-              <hr />
-            </div>
+            </ng-container>
 
-            <div class="col-12 most_popular py-0">
+            <!-- <div class="col-12 most_popular py-0">
               <div class="row">
                 <div class="col-md-5">
                   <div class="col_selector">
                     <div class="col">
                       <div class="card h-100 border-0">
                         <div class="card_carousel">
-                          <div
-                            id="carouselExampleIndicators4"
-                            class="carousel slide"
-                            data-bs-ride="carousel"
-                          >
+                          <div id="carouselExampleIndicators4" class="carousel slide" data-bs-ride="carousel">
                             <div class="carousel-indicators">
-                              <button
-                                type="button"
-                                data-bs-target="#carouselExampleIndicators4"
-                                data-bs-slide-to="0"
-                                class="active"
-                                aria-current="true"
-                                aria-label="Slide 1"
-                              ></button>
-                              <button
-                                type="button"
-                                data-bs-target="#carouselExampleIndicators4"
-                                data-bs-slide-to="1"
-                                aria-label="Slide 2"
-                              ></button>
-                              <button
-                                type="button"
-                                data-bs-target="#carouselExampleIndicators4"
-                                data-bs-slide-to="2"
-                                aria-label="Slide 3"
-                              ></button>
+                              <button type="button" data-bs-target="#carouselExampleIndicators4" data-bs-slide-to="0"
+                                class="active" aria-current="true" aria-label="Slide 1"></button>
+                              <button type="button" data-bs-target="#carouselExampleIndicators4" data-bs-slide-to="1"
+                                aria-label="Slide 2"></button>
+                              <button type="button" data-bs-target="#carouselExampleIndicators4" data-bs-slide-to="2"
+                                aria-label="Slide 3"></button>
                             </div>
                             <div class="carousel-inner">
                               <div class="carousel-item active">
-                                <img
-                                  src="assets/images/card-carousal-1.png"
-                                  class="d-block w-100 rounded"
-                                  alt="..."
-                                />
+                                <img src="assets/images/card-carousal-1.png" class="d-block w-100 rounded" alt="..." />
                               </div>
                               <div class="carousel-item">
-                                <img
-                                  src="assets/images/card-carousal-2.png"
-                                  class="d-block w-100 rounded"
-                                  alt="..."
-                                />
+                                <img src="assets/images/card-carousal-2.png" class="d-block w-100 rounded" alt="..." />
                               </div>
                               <div class="carousel-item">
-                                <img
-                                  src="assets/images/card-carousal-3.png"
-                                  class="d-block w-100 rounded"
-                                  alt="..."
-                                />
+                                <img src="assets/images/card-carousal-3.png" class="d-block w-100 rounded" alt="..." />
                               </div>
                             </div>
-                            <button
-                              class="carousel-control-prev"
-                              type="button"
-                              data-bs-target="#carouselExampleIndicators4"
-                              data-bs-slide="prev"
-                            >
-                              <span
-                                class="carousel-control-prev-icon"
-                                aria-hidden="true"
-                              ></span>
+                            <button class="carousel-control-prev" type="button"
+                              data-bs-target="#carouselExampleIndicators4" data-bs-slide="prev">
+                              <span class="carousel-control-prev-icon" aria-hidden="true"></span>
                               <span class="visually-hidden">Previous</span>
                             </button>
-                            <button
-                              class="carousel-control-next"
-                              type="button"
-                              data-bs-target="#carouselExampleIndicators4"
-                              data-bs-slide="next"
-                            >
-                              <span
-                                class="carousel-control-next-icon"
-                                aria-hidden="true"
-                              ></span>
+                            <button class="carousel-control-next" type="button"
+                              data-bs-target="#carouselExampleIndicators4" data-bs-slide="next">
+                              <span class="carousel-control-next-icon" aria-hidden="true"></span>
                               <span class="visually-hidden">Next</span>
                             </button>
                           </div>
@@ -396,68 +274,39 @@
                         </h3>
                       </div>
                       <div>
-                        <img
-                          src="assets/images/heart-red-unactive.png"
-                          alt=""
-                        />
+                        <img src="assets/images/heart-red-unactive.png" alt="" />
                       </div>
                     </div>
                     <div>
                       <ul class="list-inline gray_color">
                         <li class="list-inline-item fz14 medium_font">
-                          <img
-                            src="assets/images/circle.png"
-                            alt=""
-                            class="mb-2"
-                          />
+                          <img src="assets/images/circle.png" alt="" class="mb-2" />
                           3 bedrooms
                         </li>
                         <li class="list-inline-item fz14 medium_font">
-                          <img
-                            src="assets/images/circle.png"
-                            alt=""
-                            class="mb-2 img-fluid"
-                          />
+                          <img src="assets/images/circle.png" alt="" class="mb-2 img-fluid" />
                           2 bathroom
                         </li>
                         <li class="list-inline-item fz14 medium_font">
-                          <img
-                            src="assets/images/circle.png"
-                            alt=""
-                            class="mb-2 img-fluid"
-                          />
+                          <img src="assets/images/circle.png" alt="" class="mb-2 img-fluid" />
                           4 guests
                         </li>
                         <li class="list-inline-item fz14 medium_font">
-                          <img
-                            src="assets/images/circle.png"
-                            alt=""
-                            class="mb-2 img-fluid"
-                          />
+                          <img src="assets/images/circle.png" alt="" class="mb-2 img-fluid" />
                           Wifi
                         </li>
                       </ul>
                     </div>
                     <div>
                       <div>
-                        <h4
-                          class="mb-0 fz18 semi_font d-flex align-items-center mb-1"
-                        >
+                        <h4 class="mb-0 fz18 semi_font d-flex align-items-center mb-1">
                           <span class="blue_color">₹1,426 </span>
                           <span class="fz16 text-secondary"> / night</span>
                         </h4>
-                        <div
-                          class="d-flex align-items-center justify-content-between"
-                        >
+                        <div class="d-flex align-items-center justify-content-between">
                           <p class="fz15 mb-0">11,720 total</p>
-                          <p
-                            class="mb-0 fz15 medium_font d-flex align-items-center"
-                          >
-                            <img
-                              src="assets/images/star.png"
-                              class="me-2 mb-1"
-                              alt=""
-                            />
+                          <p class="mb-0 fz15 medium_font d-flex align-items-center">
+                            <img src="assets/images/star.png" class="me-2 mb-1" alt="" />
                             4.9(370 reviews)
                           </p>
                         </div>
@@ -467,20 +316,42 @@
                 </div>
               </div>
               <hr />
-            </div>
+            </div> -->
           </div>
         </div>
       </div>
       <div class="col-md-5">
         <div class="col_selector">
-          <img
+          <agm-map [zoom]="12" [latitude]="latitude" [longitude]="longitude">
+            <agm-marker *ngFor="let m of markers; let i = index" [latitude]="m.lat" [longitude]="m.lng">
+
+              <!-- <agm-info-window>
+                <strong>InfoWindow content</strong>
+              </agm-info-window> -->
+
+            </agm-marker>
+          </agm-map>
+          <!-- <img
             src="assets/images/map-search.png"
             class="img-fluid map_search"
             alt=""
-          />
+          /> -->
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-12">
+        <div class=" w-100">
+          <pagination-controls (pageChange)="onPageChange($event)" previousLabel="" nextLabel="">
+          </pagination-controls>
+          <br>
         </div>
       </div>
     </div>
   </div>
 </section>
+<div class="loader" *ngIf="isLoading">
+  <mat-spinner [strokeWidth]="5" [diameter]="70"></mat-spinner>
+</div>
 <app-footer></app-footer>

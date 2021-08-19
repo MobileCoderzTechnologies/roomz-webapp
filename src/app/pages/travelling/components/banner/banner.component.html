@@ -108,8 +108,8 @@
                   <div class="book_room">
                     <h4 class="fz20 mb-3 medium_font">{{'bannerSlider.form.lineOnTop'|langTranslate}}</h4>
                     <div class="mb-3 position-relative">
-                      <input type="text" class="form-control ps-5" name="" id=""
-                        placeholder="{{'bannerSlider.form.locationPlaceholder'|langTranslate}}" />
+                      <input type="text" class="form-control ps-5" name="" id="search"
+                        placeholder="{{'bannerSlider.form.locationPlaceholder'|langTranslate}}" [formControl]="search">
                       <img src="assets/images/location-low.png" class="location_low" alt="" />
                     </div>
                     <div class="row">
@@ -139,7 +139,7 @@
                       </div>
                     </div>
                     <div class="mt-4">
-                      <button class="btn w-100">{{'bannerSlider.form.searchBtn'|langTranslate}}</button>
+                      <button class="btn w-100" (click)="onSearch()">{{'bannerSlider.form.searchBtn'|langTranslate}}</button>
                     </div>
                   </div>
                 </div>

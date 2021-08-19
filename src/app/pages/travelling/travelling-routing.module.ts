@@ -4,6 +4,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { HomeComponent } from './components/home/home.component';
 import { SearchPageComponent } from './components/search-page/search-page.component';
 import { PropertyDetailComponent } from './components/property-detail/property-detail.component';
+import { PROPERTY_DETAIL_ROUTE, SEARCH_PAGE_ROUTE } from './constants/route.constant';
 
 const routes: Routes = [
   {
@@ -11,11 +12,11 @@ const routes: Routes = [
     component: HomeComponent
   },
   {
-    path: 'search',
+    path: SEARCH_PAGE_ROUTE.path,
     component: SearchPageComponent
   },
   {
-    path: 'property-detail',
+    path: `${PROPERTY_DETAIL_ROUTE.path}/:id`,
     component: PropertyDetailComponent
   }
 ];

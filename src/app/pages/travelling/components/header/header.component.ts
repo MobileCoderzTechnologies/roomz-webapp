@@ -1,34 +1,29 @@
+import { isPlatformBrowser } from '@angular/common';
 import { AfterViewInit, Component, Inject, OnInit, PLATFORM_ID } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
+import { Router } from '@angular/router';
 import { delay } from 'rxjs/operators';
+import { HOSTING_ROUTE } from 'src/app/constants/route.constants';
 import { AlertService } from 'src/app/modules/alert/alert.service';
+import { LISTING_HOME_ROUTE } from 'src/app/pages/hosting/constants/route.constant';
 import { LoginComponent } from 'src/app/pages/login/login.component';
 import { LoginService } from 'src/app/pages/login/services/login.service';
 import { LangTranslateService } from 'src/app/services/lang-translate.service';
-import { WelcomeComponent } from '../welcome/welcome.component';
-import Swal from 'sweetalert2'
-import { isPlatformBrowser } from '@angular/common';
+import Swal from 'sweetalert2';
 import { ListingStatusService } from '../../services/listing-status.service';
-import { Router } from '@angular/router';
-import { HOSTING_ROUTE } from 'src/app/constants/route.constants';
-import { LISTING_HOME_ROUTE } from 'src/app/pages/hosting/constants/route.constant';
-import { FormControl } from '@angular/forms';
-import { SEARCH_PAGE_ROUTE } from '../../constants/route.constant';
 
 @Component({
-  selector: 'app-banner',
-  templateUrl: './banner.component.html',
-  styleUrls: ['./banner.component.scss']
+  selector: 'app-header',
+  templateUrl: './header.component.html',
+  styleUrls: ['./header.component.scss']
 })
-export class BannerComponent implements OnInit, AfterViewInit {
+export class HeaderComponent implements OnInit, AfterViewInit {
 
-  selectedLanguage: string;
+  selectedLanguage = 'en';
   isLoggedIn = false;
   currentUser: { name: string, profile: string };
 
   ListingStatus = true;
-
-  search = new FormControl('');
 
   constructor(
     private $translate: LangTranslateService,
@@ -41,12 +36,6 @@ export class BannerComponent implements OnInit, AfterViewInit {
   ) { }
 
   ngOnInit(): void {
-    if (isPlatformBrowser(this.platformId)) {
-      if (!localStorage.getItem('isWelcome')) {
-        localStorage.setItem('isWelcome', '1');
-        this.onWelcome();
-      }
-    }
     if (this.$translate.selectedLanguage === 'en') {
       this.selectedLanguage = 'ENGLISH';
     }
@@ -54,6 +43,7 @@ export class BannerComponent implements OnInit, AfterViewInit {
       this.selectedLanguage = 'العربية';
     }
   }
+
 
   ngAfterViewInit(): void {
     this.$loginService.isLoggedIn.pipe(
@@ -70,7 +60,6 @@ export class BannerComponent implements OnInit, AfterViewInit {
       }
     });
   }
-
   private userListingStatus(): void {
     this.$listingStatus.getListingStatus().subscribe(data => {
       this.ListingStatus = data?.data?.listing_status;
@@ -85,7 +74,6 @@ export class BannerComponent implements OnInit, AfterViewInit {
       this.$router.navigateByUrl(LISTING_HOME_ROUTE.url);
     }
   }
-
 
   onLogin(data: any = null): void {
     const dialogRef = this.$dialog.open(LoginComponent, {
@@ -102,40 +90,6 @@ export class BannerComponent implements OnInit, AfterViewInit {
     });
   }
 
-  onWelcome(): void {
-    const dialogRef = this.$dialog.open(WelcomeComponent, {
-      height: 'fit-content',
-      maxHeight: '90vh',
-      width: 'fit-content',
-    });
-    dialogRef.afterClosed().subscribe(success => {
-      if (success) {
-        this.onLogin();
-      }
-    });
-  }
-
-  // private onEnterOtp(data): void {
-  //   const dialogRef = this.$dialog.open(OtpComponent, {
-  //     height: 'fit-content',
-  //     maxHeight: '90vh',
-  //     width: 'fit-content',
-  //     autoFocus: false,
-  //     data
-  //   });
-  //   dialogRef.afterClosed().subscribe(success => {
-  //     if (success) {
-  //       if (success.isVerified) {
-  //         this.onSignUp({
-  //           createAccount: true,
-  //           phone_number: data.phone_number,
-  //           country_code: data.country_code
-  //         });
-  //       }
-  //     }
-  //   });
-  // }
-
 
   onLogout(): void {
     Swal.fire({
@@ -150,14 +104,4 @@ export class BannerComponent implements OnInit, AfterViewInit {
       }
     });
   }
-
-
-
-  onSearch(): void {
-    const search = this.search.value;
-
-    this.$router.navigate([SEARCH_PAGE_ROUTE.url], { queryParams: { s: search } });
-  }
-
-
 }

@@ -11,7 +11,7 @@
   },
   "bannerSlider": {
     "form": {
-      "lineOnTop": "Book a room in a home",
+      "lineOnTop": "Book a Property",
       "locationPlaceholder": "Where do you want to go?",
       "checkIn": "Check In",
       "checkOut": "Check Out",

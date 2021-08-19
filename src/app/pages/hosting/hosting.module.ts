@@ -43,6 +43,7 @@ import { NgOtpInputModule } from 'ng-otp-input';
 import { FormatTimePipe } from './pipes/format-time.pipe';
 import { GoogleMapModule } from 'src/app/modules/google-map/google-map.module';
 import { DragDropModule } from 'src/app/modules/drag-drop/drag-drop.module';
+import { NgxPaginationModule } from 'ngx-pagination';
 
 
 
@@ -94,7 +95,8 @@ import { DragDropModule } from 'src/app/modules/drag-drop/drag-drop.module';
     ValidateErrorModule,
     NgOtpInputModule,
     GoogleMapModule,
-    DragDropModule
+    DragDropModule,
+    NgxPaginationModule
   ],
   exports: [
     HostingRoutingModule,
@@ -102,7 +104,8 @@ import { DragDropModule } from 'src/app/modules/drag-drop/drag-drop.module';
     ValidateErrorModule,
     NgOtpInputModule,
     GoogleMapModule,
-    DragDropModule
+    DragDropModule,
+    NgxPaginationModule
   ]
 })
 export class HostingModule { }

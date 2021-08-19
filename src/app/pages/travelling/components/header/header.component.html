@@ -1,0 +1,86 @@
+<header class="py-3 position-static border-bottom">
+  <div class="container">
+    <nav class="navbar navbar-expand-lg navbar-light p-0">
+      <a class="navbar-brand p-0" href="#">
+        <img src="assets/images/logo.png" class="img-fluid" alt="" />
+      </a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+        aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav ms-auto text-uppercase">
+          <li class="nav-item me-4 semi_font active">
+            <a class="nav-link" href="#">Home</a>
+          </li>
+          <li class="nav-item me-4 semi_font dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
+              aria-haspopup="true" aria-expanded="false">
+              destinations
+            </a>
+            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+              <a class="dropdown-item" href="#">Action</a>
+              <a class="dropdown-item" href="#">Another action</a>
+              <div class="dropdown-divider"></div>
+              <a class="dropdown-item" href="#">Something else here</a>
+            </div>
+          </li>
+
+          <li class="nav-item me-4 semi_font dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown2" role="button" data-toggle="dropdown"
+              aria-haspopup="true" aria-expanded="false">
+              English
+            </a>
+            <div class="dropdown-menu" aria-labelledby="navbarDropdown2">
+              <a class="dropdown-item">العربية</a>
+              <a class="dropdown-item">ENGLISH</a>
+            </div>
+          </li>
+          <li class="nav-item">
+            <button *ngIf="!ListingStatus" class="btn base_color bold_font border rounded-0 border_red" (click)="onSwitching()">
+              LIST A PROPERTY
+            </button>
+            <button *ngIf="ListingStatus" class="btn base_color bold_font border rounded-0 border_red" (click)="onSwitching()">
+              SWITCH TO HOSTING
+            </button>
+          </li>
+
+          <!-- <li class="nav-item me-4 semi_font dropdown">
+            <a class="nav-link" role="button" (click)="onLogin()"> SignUp </a>
+          </li>
+          <li class="nav-item me-4 semi_font dropdown">
+            <a class="nav-link" role="button" (click)="onLogin()"> Login </a>
+          </li> -->
+
+          <li class="av-item me-4 semi_font dropdown" *ngIf="!isLoggedIn">
+            <a class="nav-link" role="button" (click)="onLogin()">
+              {{'header.signUp'|langTranslate}}
+            </a>
+          </li>
+          <li class="av-item me-4 semi_font dropdown" *ngIf="!isLoggedIn">
+            <a class="nav-link" role="button" (click)="onLogin()">
+              {{'header.login'|langTranslate}}
+            </a>
+          </li>
+
+          <li class="av-item me-4 semi_font dropdown" *ngIf="isLoggedIn">
+            <a class="nav-link dropdown-toggle" id="profileDropdown" role="button" data-toggle="dropdown"
+              aria-haspopup="true" aria-expanded="false">
+              {{'header.profile'|langTranslate}}
+            </a>
+            <div class="dropdown-menu" aria-labelledby="profileDropdown">
+              <div class="dropdown-item profile-box">
+                <img *ngIf="!currentUser?.profile" src="assets/images/person.png">
+                <img *ngIf="currentUser?.profile" src="{{currentUser?.profile}}">
+              </div>
+              <a class="dropdown-item user-name"> {{currentUser?.name}} </a>
+              <a class="dropdown-item logout" (click)="onLogout()"> {{'header.logout'|langTranslate}} </a>
+            </div>
+          </li>
+
+        </ul>
+      </div>
+    </nav>
+  </div>
+</header>
