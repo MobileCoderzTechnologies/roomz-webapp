@@ -5,6 +5,7 @@ import { debounceTime } from 'rxjs/operators';
 import { Amenity } from 'src/app/modals/amenity.modal';
 import { AlertService } from 'src/app/modules/alert/alert.service';
 import { EncryptionService } from 'src/app/services/encryption.service';
+import Swal from 'sweetalert2';
 import { LISTING_HOME_ROUTE, STEP_1_ROUTE } from '../../constants/route.constant';
 import { ProgressService } from '../../services/progress.service';
 import { PropertyListingService } from '../../services/property-listing.service';
@@ -59,6 +60,8 @@ export class PropertyListComponent implements OnInit, AfterViewInit {
   search = '';
 
   searchElement: any;
+  deletingProperties: number[] = [];
+
   constructor(
     private $ps: ProgressService,
     private $encryptionService: EncryptionService,
@@ -183,6 +186,7 @@ export class PropertyListComponent implements OnInit, AfterViewInit {
 
 
 
+
   private getMyPropertyList(): void {
     this.isLoading = true;
 
@@ -248,6 +252,35 @@ export class PropertyListComponent implements OnInit, AfterViewInit {
   onPageChange(event): void {
     this.page = event;
     this.getMyPropertyList();
+  }
+
+  onChecked(isChecked: boolean, propertyId): void {
+    if (isChecked) {
+      this.deletingProperties.push(propertyId);
+    }
+    else {
+      this.deletingProperties = this.deletingProperties.filter(e => e !== propertyId);
+    }
+  }
+
+  onDelete(): void {
+    Swal.fire({
+      title: 'Are you sure?',
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonText: 'Confirm',
+      cancelButtonText: 'Cancel'
+    }).then((result) => {
+      if (result.isConfirmed) {
+        this.isLoading = true;
+        const ids = this.deletingProperties.join(',');
+        this.$propertyListingService.deleteProperties(ids).subscribe(data => {
+          this.$alert.success(data.message);
+          this.getMyPropertyList();
+        });
+      }
+    });
+
   }
 
 

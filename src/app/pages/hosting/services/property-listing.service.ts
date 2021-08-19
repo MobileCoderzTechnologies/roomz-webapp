@@ -39,7 +39,8 @@ import {
   PROPERTY_PUBLISH,
   PROPERTY_DISCOUNTS,
   MY_PROPERTIES,
-  PROPERTY_DATA_UPDATE
+  PROPERTY_DATA_UPDATE,
+  DELETE_PROPERTIES
 } from '../constants/api.constant';
 
 @Injectable({
@@ -199,6 +200,13 @@ export class PropertyListingService {
 
   getPropertyDataForUpdate(id: number): Observable<any> {
     return this.$http.get(`${PROPERTY_DATA_UPDATE}/${id}`);
+  }
+
+
+  deleteProperties(ids: string): Observable<any> {
+    let params = new HttpParams();
+    params = params.set('ids', ids);
+    return this.$http.delete(DELETE_PROPERTIES, params);
   }
 
 

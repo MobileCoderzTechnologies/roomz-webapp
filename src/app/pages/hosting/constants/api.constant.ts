@@ -38,4 +38,5 @@ export const PROPERTY_PUBLISH = `${LIST_PROPERTY_GROUP}/publish`;
 export const PROPERTY_DATA_UPDATE = `${LIST_PROPERTY_GROUP}/get-property`;
 
 export const MY_PROPERTIES = `${HOSTING_GROUP}/my-properties`;
+export const DELETE_PROPERTIES = `${HOSTING_GROUP}/delete-properties`;
 
