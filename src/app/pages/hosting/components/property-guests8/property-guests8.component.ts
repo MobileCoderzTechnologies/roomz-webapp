@@ -149,7 +149,7 @@ export class PropertyGuests8Component implements OnInit, AfterViewInit, OnDestro
     this.$propertyListingService.uploadPhotos(formData).subscribe(data => {
       this.isPhotosUploading = false;
       const pPhotos = data.data;
-      this.setShowingPhotos(pPhotos);
+      // this.setShowingPhotos(pPhotos);
       this.propertyPhotos.push(...pPhotos);
     }, err => {
       this.isPhotosUploading = false;

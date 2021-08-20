@@ -26,7 +26,7 @@ export class PropertyGuests5Component implements OnInit, AfterViewInit, OnDestro
   longitude: number;
   location: string;
 
-  zoom = 12;
+  zoom = 17;
 
   propertyData: any;
   propertyDataSubs: Subscription;

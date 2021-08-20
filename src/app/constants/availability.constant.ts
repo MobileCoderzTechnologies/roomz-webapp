@@ -21,7 +21,7 @@ export const ADVANCE_NOTICE = [
   },
 ];
 
-export const SAME_DAY_CUT_OFF_TIME = [8, 9, 10, 19, 20, 21, 22, 23];
+export const SAME_DAY_CUT_OFF_TIME = [31, 9, 10];
 
 export const AVAILABILITY_WINDOW = [
   {
@@ -40,17 +40,17 @@ export const AVAILABILITY_WINDOW = [
     value: 3,
     display: '3 months in advance',
   },
-  {
-    value: 2,
-    display: '2 months in advance',
-  },
-  {
-    value: 1,
-    display: '1 months in advance'
-  }
-
 ];
 
-export const CHECK_IN_TIMES = [8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24];
+export const CHECK_IN_TIMES = [30, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26];
 
 
+export const CI_LEAVE_BEFORE = [24, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23];
+
+
+export const TIMES = {
+  nextDay1AM : 25,
+  nextDay2AM : 26,
+  flexible: 30,
+  beforeCheckIn: 31,
+}

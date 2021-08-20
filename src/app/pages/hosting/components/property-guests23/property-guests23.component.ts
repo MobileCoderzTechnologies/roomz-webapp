@@ -1,9 +1,9 @@
 import { AfterViewInit, Component, OnDestroy, OnInit } from '@angular/core';
-import { FormControl, FormGroup } from '@angular/forms';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { delay } from 'rxjs/operators';
-import { ADVANCE_NOTICE, AVAILABILITY_WINDOW, CHECK_IN_TIMES, SAME_DAY_CUT_OFF_TIME } from 'src/app/constants/availability.constant';
+import { ADVANCE_NOTICE, AVAILABILITY_WINDOW, CHECK_IN_TIMES, CI_LEAVE_BEFORE, SAME_DAY_CUT_OFF_TIME, TIMES } from 'src/app/constants/availability.constant';
 import { AlertService } from 'src/app/modules/alert/alert.service';
 import { EncryptionService } from 'src/app/services/encryption.service';
 import { STEP_15_ROUTE, STEP_13_ROUTE, STEP_16_ROUTE, STEP_21_ROUTE, MY_LISTING_ROUTE } from '../../constants/route.constant';
@@ -36,9 +36,13 @@ export class PropertyGuests23Component implements OnInit, AfterViewInit, OnDestr
   checkInTimes = CHECK_IN_TIMES;
   availabilityWindow = AVAILABILITY_WINDOW;
 
+  ciArriveAfter = [...CHECK_IN_TIMES];
+  ciArriveBefore = [];
+  ciLeaveBefore = CI_LEAVE_BEFORE;
+
   selectedAdvanceNotice = 0;
-  selectedCutOffTime = 22;
-  selectedAvailabilityWindow = 1;
+  selectedCutOffTime = 10;
+  selectedAvailabilityWindow = 3;
 
   selectedCiArriveAfter = 10;
   selectedCiArriveBefore = 22;
@@ -55,9 +59,9 @@ export class PropertyGuests23Component implements OnInit, AfterViewInit, OnDestr
     advance_notice: new FormControl(this.selectedAdvanceNotice),
     cut_off_time: new FormControl(this.selectedCutOffTime),
     guests_book_time: new FormControl(this.selectedAvailabilityWindow),
-    ci_arrive_after: new FormControl(this.selectedCiArriveAfter),
-    ci_arrive_before: new FormControl(this.selectedCiArriveBefore),
-    ci_leave_before: new FormControl(this.selectedCiLeaveBefore),
+    ci_arrive_after: new FormControl(this.selectedCiArriveAfter, Validators.required),
+    ci_arrive_before: new FormControl(this.selectedCiArriveBefore, Validators.required),
+    ci_leave_before: new FormControl(this.selectedCiLeaveBefore, Validators.required),
   });
 
   isBack21 = false;
@@ -77,6 +81,7 @@ export class PropertyGuests23Component implements OnInit, AfterViewInit, OnDestr
       this.tripLengthMin.push(i);
     }
     this.setMaxTrip();
+    this.ciArriveAfter.pop();
   }
 
   ngOnInit(): void {
@@ -150,13 +155,15 @@ export class PropertyGuests23Component implements OnInit, AfterViewInit, OnDestr
           this.selectedTripMax = max_stay || 1;
 
           this.availabilityForm.setValue({
-            advance_notice:this.selectedAdvanceNotice,
+            advance_notice: this.selectedAdvanceNotice,
             cut_off_time: this.selectedCutOffTime,
             guests_book_time: this.selectedAvailabilityWindow,
             ci_arrive_after: this.selectedCiArriveAfter,
             ci_arrive_before: this.selectedCiArriveBefore,
             ci_leave_before: this.selectedCiLeaveBefore
           });
+
+          this.onSelectArriveAfter(this.selectedCiArriveAfter);
         }
 
       });
@@ -172,6 +179,23 @@ export class PropertyGuests23Component implements OnInit, AfterViewInit, OnDestr
     this.selectedTripMax = Number(l);
   }
 
+  onSelectArriveAfter(time: number): void {
+    this.selectedCiArriveAfter = Number(time);
+    this.ciArriveBefore = [];
+
+    this.ciArriveBefore.push(TIMES.flexible);
+    this.checkInTimes.forEach(item => {
+      if (item > this.selectedCiArriveAfter + 2 && item !== TIMES.flexible && item !== TIMES.beforeCheckIn) {
+        this.ciArriveBefore.push(item);
+      }
+    });
+    if (!this.ciArriveBefore.includes(TIMES.nextDay2AM)) {
+      if (this.selectedCiArriveAfter !== TIMES.nextDay1AM) {
+        this.ciArriveBefore.push(TIMES.nextDay1AM);
+      }
+      this.ciArriveBefore.push(TIMES.nextDay2AM);
+    }
+  }
 
   setPropertyAvailability(): void {
     this.isNextLoading = true;

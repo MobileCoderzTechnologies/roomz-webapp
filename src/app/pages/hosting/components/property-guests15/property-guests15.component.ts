@@ -35,12 +35,12 @@ export class PropertyGuests15Component implements OnInit, AfterViewInit, OnDestr
 
   userPhoneNumberForm = new FormGroup({
     country_code: new FormControl('+91'),
-    phone_number: new FormControl(null, [Validators.required])
+    phone_number: new FormControl('', [Validators.required])
   });
 
   secPhoneNumberForm = new FormGroup({
     country_code: new FormControl('+91'),
-    sec_phone_number: new FormControl(null)
+    sec_phone_number: new FormControl('')
   });
 
   isOtpSend = false;
@@ -144,7 +144,7 @@ export class PropertyGuests15Component implements OnInit, AfterViewInit, OnDestr
       const respData = data.data[0];
       this.user = respData;
 
-      if (this.user.phone_number) {
+      if (this.user.phone_number && this.user.phone_number !== 'null') {
         this.isOtpVerified = true;
         const country_code = this.user.country_code || '+91';
         const phone_number = this.user.phone_number || '' ;

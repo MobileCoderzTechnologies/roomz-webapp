@@ -322,14 +322,16 @@
       </div>
       <div class="col-md-5">
         <div class="col_selector">
-          <agm-map [zoom]="12" [latitude]="latitude" [longitude]="longitude">
-            <agm-marker *ngFor="let m of markers; let i = index" [latitude]="m.lat" [longitude]="m.lng">
+          <agm-map [zoom]="17" [latitude]="latitude" [longitude]="longitude">
+            <agm-overlay *ngFor="let m of markers; let i = index" [latitude]="m.lat" [longitude]="m.lng">
 
               <!-- <agm-info-window>
                 <strong>InfoWindow content</strong>
               </agm-info-window> -->
-
-            </agm-marker>
+              <div class="mat-elevation-z1 map-overlay">
+                {{m.mark}}
+              </div>
+            </agm-overlay>
           </agm-map>
           <!-- <img
             src="assets/images/map-search.png"

@@ -14,7 +14,22 @@ export class FormatTimePipe implements PipeTransform {
         timeFormat = `12 PM`;
       }
       if (Math.floor(value) === 24) {
-        timeFormat = `00 AM`;
+        timeFormat = `12 AM`;
+      }
+
+      if (Math.floor(value) === 25) {
+        timeFormat = `1 AM (Next Day)`;
+      }
+
+      if (Math.floor(value) === 26) {
+        timeFormat = `2 AM (Next Day)`;
+      }
+
+      if (Math.floor(value) === 30) {
+        timeFormat = 'Flexible';
+      }
+      if (Math.floor(value) === 31) {
+        timeFormat = 'Before Check in time';
       }
     }
     else {

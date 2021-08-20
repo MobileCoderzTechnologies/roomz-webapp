@@ -23,14 +23,27 @@ agm-map {
     margin: 0px 2px;
   }
 
-  li.current{
+  li.current {
     background-color: #f9537b;
   }
 }
 
-.loader{
+.loader {
   height: 90vh;
   width: 100%;
   display: grid;
   place-items: center;
+}
+
+.map-overlay {
+  display: grid;
+  width: auto;
+  min-width: 80px;
+  height: 30px;
+  padding: 5px;
+  background-color: #fff;
+  border-radius: 14px;
+  font-weight: bold;
+  place-items: center;
+  font-size: 18px;
 }

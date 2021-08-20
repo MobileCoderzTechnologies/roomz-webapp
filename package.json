@@ -28,6 +28,7 @@
     "@angular/platform-server": "~11.2.13",
     "@angular/router": "~11.2.13",
     "@nguniversal/express-engine": "^11.2.1",
+    "agm-overlays": "^2.0.0",
     "angularx-social-login": "^3.5.1",
     "bootstrap": "^5.0.1",
     "crypto-js": "^4.1.1",

@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { BrowserModule } from '@angular/platform-browser';
 import { AgmCoreModule } from '@agm/core';
 import { MAP_KEY } from 'src/app/constants/google-map-key.constant';
+import { AgmOverlays } from 'agm-overlays';
 
 
 
@@ -10,13 +11,15 @@ import { MAP_KEY } from 'src/app/constants/google-map-key.constant';
   declarations: [],
   imports: [
     CommonModule,
+    AgmOverlays,
     AgmCoreModule.forRoot({
       apiKey: MAP_KEY.key,
       libraries: ['places']
     })
   ],
   exports: [
-    AgmCoreModule
+    AgmCoreModule,
+    AgmOverlays
   ]
 })
 export class GoogleMapModule { }
