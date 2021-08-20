@@ -78,11 +78,16 @@ export class BannerComponent implements OnInit, AfterViewInit {
   }
 
   onSwitching(): void {
-    if (this.ListingStatus) {
-      this.$router.navigateByUrl(HOSTING_ROUTE.url);
+    if (this.isLoggedIn) {
+      if (this.ListingStatus) {
+        this.$router.navigateByUrl(HOSTING_ROUTE.url);
+      }
+      else {
+        this.$router.navigateByUrl(LISTING_HOME_ROUTE.url);
+      }
     }
     else {
-      this.$router.navigateByUrl(LISTING_HOME_ROUTE.url);
+      this.onLogin();
     }
   }
 

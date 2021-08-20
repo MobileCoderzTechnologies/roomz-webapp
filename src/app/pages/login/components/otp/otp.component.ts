@@ -88,6 +88,8 @@ export class OtpComponent implements OnInit, OnChanges, AfterViewInit {
       phone_number: this.phoneNumber,
       country_code: this.countryCode,
     };
+    this.ngOtpInput.otpForm.disable();
+    this.config.disableAutoFocus = true;
     this.$loginService.verifyOtp(verifyOtpData).subscribe(data => {
       this.$alert.success(data.body.message);
       if (data.status === 200) {
@@ -125,6 +127,8 @@ export class OtpComponent implements OnInit, OnChanges, AfterViewInit {
       this.isLoading = false;
       this.ngOtpInput.setValue(null);
       this.$alert.danger(err.message);
+      this.ngOtpInput.otpForm.enable();
+      this.config.disableAutoFocus = false;
     });
   }
 

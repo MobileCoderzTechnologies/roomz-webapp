@@ -4,7 +4,7 @@
     "destinations": "DESTINATIONS",
     "login": "LOG IN",
     "signUp": "SIGN UP",
-    "btnListARoom": "LIST A ROOM",
+    "btnListARoom": "LIST A PROPERTY",
     "btnSwitchingToHosting": "SWITCH TO HOSTING",
     "profile": "PROFILE",
     "logout": "LOG OUT"
@@ -97,7 +97,7 @@
       "birthdayHintMessage": "To sign up, you need to at least 13. It won't be shown to others.",
       "password": "Password",
       "passwordPlaceholder": "Enter Password",
-      "passwordPatternErrorMessage": "Password should be contain at least one uppercase one lowercase one specialcharacter and one number",
+      "passwordPatternErrorMessage": "Password should be contain at least one uppercase, one lowercase, one specialcharacter and one number",
       "confirmPassword": "Confirm Password",
       "confirmPasswordError": "Confirm password",
       "tosLineText1": "By Clicking",
