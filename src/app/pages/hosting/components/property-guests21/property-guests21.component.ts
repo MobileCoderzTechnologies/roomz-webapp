@@ -1,5 +1,5 @@
 import { AfterViewInit, Component, OnDestroy, OnInit } from '@angular/core';
-import { FormControl, FormGroup } from '@angular/forms';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { delay } from 'rxjs/operators';
@@ -29,7 +29,7 @@ export class PropertyGuests21Component implements OnInit, AfterViewInit, OnDestr
   isNextLoading = false;
 
   checkInQuesForm = new FormGroup({
-    notice_guest_ba: new FormControl(0),
+    notice_guest_ba: new FormControl(0, Validators.required),
     guest_ci_from: new FormControl(10),
     guest_ci_to: new FormControl(22)
   });
@@ -86,12 +86,12 @@ export class PropertyGuests21Component implements OnInit, AfterViewInit, OnDestr
         console.log(this.propertyData);
         if (this.propertyData) {
           let {
-            notice_guest_ba = 23,
+            notice_guest_ba = 0,
             guest_ci_from = 10,
             guest_ci_to = 22
           } = this.propertyData.property;
 
-          notice_guest_ba = notice_guest_ba ?? 23;
+          notice_guest_ba = notice_guest_ba ?? 0;
           guest_ci_to = guest_ci_to ?? 10;
           guest_ci_from = guest_ci_from ?? 22;
           this.checkInQuesForm.setValue({

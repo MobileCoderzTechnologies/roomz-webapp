@@ -277,6 +277,7 @@ export class PropertyListComponent implements OnInit, AfterViewInit {
         this.$propertyListingService.deleteProperties(ids).subscribe(data => {
           this.$alert.success(data.message);
           this.getMyPropertyList();
+          this.deletingProperties = [];
         });
       }
     });

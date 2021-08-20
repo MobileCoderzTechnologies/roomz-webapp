@@ -1,17 +1,17 @@
 <section class="position-relative">
   <!-- <img src="assets/images/back.png" class="img-fluid preview_back" alt="" /> -->
-  <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel">
+  <!-- <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel">
     <div class="carousel-indicators">
       <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active btn_carousal"
         aria-current="true" aria-label="Slide 1">
         1/20
       </button>
-      <!-- <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1"
+      <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1"
         aria-label="Slide 2">
       </button>
       <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2"
         aria-label="Slide 3">
-      </button> -->
+      </button>
     </div>
     <div class="carousel-inner">
       <div class="carousel-item active">
@@ -32,7 +32,22 @@
       <span class="carousel-control-next-icon" aria-hidden="true"></span>
       <span class="visually-hidden">Next</span>
     </button>
+  </div> -->
+  <div class="slider">
+    <owl-carousel-o [options]="customOptions" (change)="onSlideChange($event)">
+      <ng-container *ngFor="let image of propertyImages">
+        <ng-template carouselSlide>
+          <div class="slide">
+            <img [src]="image.image_url" alt="img 1">
+          </div>
+        </ng-template>
+      </ng-container>
+    </owl-carousel-o>
+    <div class="side-count">
+      {{currentSlide}}/{{propertyImages?.length}}
+    </div>
   </div>
+  <br>
 </section>
 <section class="pt-4 pb-5">
   <div class="container">
@@ -68,48 +83,20 @@
             <div>
               <h3 class="fz20 mb-4 bold_font">Sleeping arrangements</h3>
               <div class="d-flex align-items-center">
-                <div class="text-center me-3">
-                  <img src="assets/images/bed-img1.png" class="img-fluid" width="125" alt="" />
-                  <h4 class="fz14 semi_font mb-0 mt-2">Bedroom 1</h4>
-                  <p class="fz13 medium_font text-secondary mb-0">
-                    1 King size bed
-                  </p>
-                </div>
-                <div class="text-center me-3">
-                  <img src="assets/images/bed-img1.png" class="img-fluid" width="125" alt="" />
-                  <h4 class="fz14 semi_font mb-0 mt-2">Bedroom 1</h4>
-                  <p class="fz13 medium_font text-secondary mb-0">
-                    1 King size bed
-                  </p>
-                </div>
-                <div class="text-center me-3">
-                  <img src="assets/images/bed-img1.png" class="img-fluid" width="125" alt="" />
-                  <h4 class="fz14 semi_font mb-0 mt-2">Bedroom 1</h4>
-                  <p class="fz13 medium_font text-secondary mb-0">
-                    1 King size bed
-                  </p>
-                </div>
-                <div class="text-center me-3">
-                  <img src="assets/images/bed-img1.png" class="img-fluid" width="125" alt="" />
-                  <h4 class="fz14 semi_font mb-0 mt-2">Bedroom 1</h4>
-                  <p class="fz13 medium_font text-secondary mb-0">
-                    1 King size bed
-                  </p>
-                </div>
-                <div class="text-center me-3">
-                  <img src="assets/images/bed-img1.png" class="img-fluid" width="125" alt="" />
-                  <h4 class="fz14 semi_font mb-0 mt-2">Bedroom 1</h4>
-                  <p class="fz13 medium_font text-secondary mb-0">
-                    1 King size bed
-                  </p>
-                </div>
-                <div class="text-center me-3">
-                  <img src="assets/images/bed-img1.png" class="img-fluid" width="125" alt="" />
-                  <h4 class="fz14 semi_font mb-0 mt-2">Bedroom 1</h4>
-                  <p class="fz13 medium_font text-secondary mb-0">
-                    1 King size bed
-                  </p>
-                </div>
+                <ng-container *ngFor="let count of noOfBedsArr">
+                  <div class="bedroom">
+                    <div class="text-center me-3 d-flex align-items-center w-100 justify-content-between p-2">
+                      <img *ngFor="let b of bedGroup[count]" [src]="b?.bed_type?.icon" class="img-fluid" width="50"
+                        alt="" />
+                    </div>
+                    <h4 class="fz14 semi_font mb-0 mt-2">
+                      {{count===0?'Common space': 'Bedroom'}} {{count?count:''}}
+                    </h4>
+                    <span class="fz13 medium_font text-secondary mb-0" *ngFor="let bed of bedGroup[count]">
+                      {{bed?.count}} {{bed?.bed_type?.bed_type}}
+                    </span>
+                  </div>
+                </ng-container>
               </div>
             </div>
             <hr class="my-4" />
@@ -185,8 +172,8 @@
                 Exact location provided after booking.
               </p>
             </div>
-            <hr class="my-4" />
-            <div>
+            <!-- <hr class="my-4" /> -->
+            <!-- <div>
               <h3 class="fz18 mb-4 semi_font d-flex align-items-center">
                 <img src="assets/images/star.png" class="me-2" alt="" /> No
                 reviews (yet)
@@ -196,7 +183,7 @@
                 covered by <br />
                 <u class="blue_color fz14 medium_font">Roomz's Guest refund policy</u>
               </p>
-            </div>
+            </div> -->
 
             <div class="d-flex justify-content-between align-items-center mb-5 p-4 mt-0 back_next_part">
               <a *ngIf="!isBack21" href="javascript:void(0);" class="blue_color d-flex align-items-center"

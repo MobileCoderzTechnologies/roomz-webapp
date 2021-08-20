@@ -139,6 +139,13 @@ export class PropertyGuests27Component implements OnInit, AfterViewInit, OnDestr
   }
 
 
+  onSetDiscounts(controlName: string, value: number): void {
+    if (value && Number(value) < 0) {
+      this.additionalPriceForm.controls[controlName].setValue(0);
+    }
+  }
+
+
   onNext(): void {
     this.isNextLoading = true;
     const requestData = this.additionalPriceData;

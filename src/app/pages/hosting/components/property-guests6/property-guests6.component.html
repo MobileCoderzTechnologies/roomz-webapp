@@ -69,7 +69,7 @@
                             [routerLink]="[step4Route.url, encryptedPropertyId]">
                             <img src="assets/images/blue-left-arrow.png" class="me-2" alt="" /> Back
                         </a>
-                        <button class="btn custom_btn" *ngIf="!isNextLoading" (click)="addAmenities()">
+                        <button class="btn custom_btn" *ngIf="!isNextLoading" (click)="addAmenities()" [disabled]="selectedAmenity.length === 0">
                             Next
                         </button>
                         <button class="btn custom_btn" *ngIf="isNextLoading">

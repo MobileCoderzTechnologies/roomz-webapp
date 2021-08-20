@@ -126,7 +126,7 @@ export class PropertyDetailComponent implements OnInit {
         this.bedGroup[item.serial_number] = [{ ...item }];
         this.noOfBedsArr.push(item.serial_number);
       }
-    })
+    });
   }
 
 

@@ -142,4 +142,11 @@ export class PropertyGuests25Component implements OnInit, AfterViewInit, OnDestr
     this.isSavingExit = false;
   }
 
+
+  onBasePrice(value): void {
+    if (value && Number(value) < 1) {
+      this.basePrice.setValue(1);
+    }
+  }
+
 }

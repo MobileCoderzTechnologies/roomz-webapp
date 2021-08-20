@@ -143,7 +143,7 @@
                     <div class="my-4">
                         <label for="" class="mb-2">Weekly discount (7 days or more)</label>
                         <input type="number" class="form-control custom_form_control mb-2 w-75" placeholder="%"
-                            formControlName="weekly_discount">
+                            formControlName="weekly_discount" (input)="onSetDiscounts('weekly_discount', $event.target.value)">
 
                         <p class="fz14 regular_font mb-0">Your average weekly price will be $350.</p>
                         <p class="blue_color">Use tip: 21%</p>
@@ -151,7 +151,7 @@
                     <div class="my-4">
                         <label for="" class="mb-2">Monthly discount (28 days or more)</label>
                         <input type="number" class="form-control custom_form_control mb-2 w-75" placeholder="%"
-                            formControlName="monthly_discount">
+                            formControlName="monthly_discount"(input)="onSetDiscounts('monthly_discount', $event.target.value)">
 
                         <p class="fz14 regular_font mb-0">Your average monthly price will be $1,520.</p>
                         <p class="blue_color">Use tip: 49%</p>

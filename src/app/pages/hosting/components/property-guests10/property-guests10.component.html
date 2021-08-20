@@ -14,6 +14,15 @@
                             <div class="">
                                 <textarea name="" id="" class="form-control b_radius_15" cols="30" rows="10"
                                     formControlName="description"></textarea>
+                                <small class="text-danger"
+                                    *ngIf="descForm.controls.description.touched && descForm.controls.description.errors?.required">Description
+                                    is Required</small>
+                                <small class="text-danger"
+                                    *ngIf="descForm.controls.description.touched && descForm.controls.description.errors?.minlength">Description
+                                    should be minimum 20 characters</small>
+                                <small class="text-danger"
+                                    *ngIf="descForm.controls.description.touched && descForm.controls.description.errors?.maxlength">Description
+                                    should be maximum 500 characters</small>
                                 <p class="text-end fz15 blue_color">500 words</p>
                                 <p class="blue_color" *ngIf="!isOptionalExtended" (click)="isOptionalExtended = true"
                                     style="cursor: pointer;">
@@ -34,6 +43,12 @@
                                 <textarea name="" id="" class="form-control b_radius_15" cols="30" rows="10"
                                     [formControl]="desc_your_space"></textarea>
                             </div>
+                            <small class="text-danger"
+                                *ngIf="desc_your_space.touched && desc_your_space.errors?.minlength">Description
+                                should be minimum 20 characters</small>
+                            <small class="text-danger"
+                                *ngIf="desc_your_space.touched && desc_your_space.errors?.maxlength">Description
+                                should be maximum 500 characters</small>
                         </div>
 
                         <div class="mb-4">
@@ -48,6 +63,12 @@
                             <div class="">
                                 <textarea name="" id="" class="form-control b_radius_15" cols="30" rows="10"
                                     [formControl]="desc_interaction_guests"></textarea>
+                                <small class="text-danger"
+                                    *ngIf="desc_interaction_guests.touched && desc_interaction_guests.errors?.minlength">Description
+                                    should be minimum 20 characters</small>
+                                <small class="text-danger"
+                                    *ngIf="desc_interaction_guests.touched && desc_interaction_guests.errors?.maxlength">Description
+                                    should be maximum 500 characters</small>
                             </div>
                         </div>
                         <div class="mb-4">
@@ -60,6 +81,12 @@
                             <div class="">
                                 <textarea name="" id="" class="form-control b_radius_15" cols="30" rows="10"
                                     [formControl]="desc_neighbourhood "></textarea>
+                                <small class="text-danger"
+                                    *ngIf="desc_neighbourhood.touched && desc_neighbourhood.errors?.minlength">Description
+                                    should be minimum 20 characters</small>
+                                <small class="text-danger"
+                                    *ngIf="desc_neighbourhood.touched && desc_neighbourhood.errors?.maxlength">Description
+                                    should be maximum 500 characters</small>
                             </div>
                         </div>
                         <div class="mb-4">
@@ -71,6 +98,13 @@
                             <div class="">
                                 <textarea name="" id="" class="form-control b_radius_15" cols="30" rows="10"
                                     [formControl]="desc_getting_around"></textarea>
+
+                                <small class="text-danger"
+                                    *ngIf="desc_getting_around.touched && desc_getting_around.errors?.minlength">Description
+                                    should be minimum 20 characters</small>
+                                <small class="text-danger"
+                                    *ngIf="desc_getting_around.touched && desc_getting_around.errors?.maxlength">Description
+                                    should be maximum 500 characters</small>
                             </div>
                         </div>
                         <a href="javascript:void(0);" class="d-inline-block blue_color" *ngIf="isOptionalExtended"
@@ -83,7 +117,7 @@
                             <img src="assets/images/blue-left-arrow.png" class="me-2" alt="" /> Back
                         </a>
                         <button class="btn custom_btn" *ngIf="!isNextLoading" (click)="addPropertyDesc()"
-                            [disabled]="descForm.invalid">
+                            [disabled]="descForm.invalid || desc_your_space.invalid || desc_neighbourhood.invalid || desc_getting_around.invalid || desc_interaction_guests.invalid">
                             Next
                         </button>
                         <button class="btn custom_btn" *ngIf="isNextLoading">

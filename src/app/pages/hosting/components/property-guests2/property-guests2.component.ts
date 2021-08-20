@@ -229,6 +229,15 @@ export class PropertyGuests2Component implements OnInit, AfterViewInit, OnDestro
   }
 
   countBedsInRoom(bedId: number, roomNo: number, type: 'inc' | 'dec'): void {
+    if (this.bedGroup[roomNo].beds.length === 1 && this.bedGroup[roomNo].beds[0].count === 1) {
+      if(roomNo === 0){
+        this.$alert.info('Should be 1 bed in common space');
+      }
+      else{
+        this.$alert.info('Should be 1 bed in a bedroom');
+      }
+      return;
+    }
     this.bedGroup[roomNo].beds = this.bedGroup[roomNo].beds.map(item => {
       if (item.bed_id === bedId) {
         if (type === 'inc') {
@@ -241,6 +250,8 @@ export class PropertyGuests2Component implements OnInit, AfterViewInit, OnDestro
       return item;
     })
       .filter(e => e.count !== 0);
+
+
   }
 
 

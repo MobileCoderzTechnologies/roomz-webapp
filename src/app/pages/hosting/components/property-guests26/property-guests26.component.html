@@ -32,7 +32,7 @@
                             [routerLink]="[step16Route.url, encryptedPropertyId]">
                             <img src="assets/images/blue-left-arrow.png" class="me-2" alt="" /> Back
                         </a>
-                        <button class="btn custom_btn" *ngIf="!isNextLoading" (click)="propertyLocalLaws()">
+                        <button class="btn custom_btn" *ngIf="!isNextLoading" (click)="propertyLocalLaws()" [disabled]="!isLocalLaws">
                             Next
                         </button>
                         <button class="btn custom_btn" *ngIf="isNextLoading">

@@ -15,7 +15,7 @@
                                 <div class="form-group">
                                     <input type="checkbox" [id]="rentedBefore.iAmNew"
                                         [checked]="selectedRentedBefore === rentedBefore.iAmNew"
-                                        (change)="selectedRentedBefore = rentedBefore.iAmNew">
+                                        (change)="onSelectRentedBefore($event.target.checked, rentedBefore.iAmNew)">
                                     <label class="form-check-label fz15" for="{{rentedBefore.iAmNew}}">
                                         I’m new to this
                                     </label>
@@ -25,7 +25,7 @@
                                 <div class="form-group">
                                     <input type="checkbox" [id]="rentedBefore.iHave"
                                         [checked]="selectedRentedBefore===rentedBefore.iHave"
-                                        (change)="selectedRentedBefore = rentedBefore.iHave">
+                                        (change)="onSelectRentedBefore($event.target.checked, rentedBefore.iHave)">
                                     <label class="form-check-label fz15" for="{{rentedBefore.iHave}}">
                                         I have
                                     </label>
@@ -40,7 +40,7 @@
                                 <div class="form-group">
                                     <input type="checkbox" name="haveGuests" id="hg1"
                                         [checked]="selectedHaveGuests === haveGuests.notSureYet"
-                                        (change)="selectedHaveGuests = haveGuests.notSureYet">
+                                        (change)="onSelectHaveGuests($event.target.checked, haveGuests.notSureYet)">
                                     <label class="form-check-label fz15" for="hg1">
                                         Not sure yet
                                     </label>
@@ -50,7 +50,7 @@
                                 <div class="form-group">
                                     <input type="checkbox" name="haveGuests" id="hg2"
                                         [checked]="selectedHaveGuests === haveGuests.partTime"
-                                        (change)="selectedHaveGuests = haveGuests.partTime">
+                                        (change)="onSelectHaveGuests($event.target.checked, haveGuests.partTime)">
                                     <label class="form-check-label fz15" for="hg2">
                                         Part-time
                                     </label>
@@ -60,7 +60,7 @@
                                 <div class="form-group">
                                     <input type="checkbox" name="haveGuests" id="hg3"
                                         [checked]="selectedHaveGuests === haveGuests.asOftenAsPossible"
-                                        (change)="selectedHaveGuests = haveGuests.asOftenAsPossible">
+                                        (change)="onSelectHaveGuests($event.target.checked, haveGuests.asOftenAsPossible)">
                                     <label class="form-check-label fz15" for="hg3">
                                         As often as possible
                                     </label>
@@ -83,7 +83,7 @@
                             [routerLink]="[step18Route.url, encryptedPropertyId]">
                             <img src="assets/images/blue-left-arrow.png" class="me-2" alt="" /> Back
                         </a>
-                        <button class="btn custom_btn" *ngIf="!isNextLoading" (click)="addPropertyQuestions()">
+                        <button class="btn custom_btn" *ngIf="!isNextLoading" (click)="addPropertyQuestions()" [disabled]="!selectedHaveGuests || !selectedRentedBefore">
                             Next
                         </button>
                         <button class="btn custom_btn" *ngIf="isNextLoading">

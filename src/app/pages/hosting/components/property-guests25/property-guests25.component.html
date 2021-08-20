@@ -13,7 +13,7 @@
                         <div class="my-4">
                             <label for="" class="mb-2">Base price</label>
                             <input type="number" [formControl]="basePrice" class="form-control custom_form_control mb-2"
-                                placeholder="$">
+                                placeholder="$" (input)="onBasePrice($event.target.value)">
 
                             <p class="fz14 regular_font">This will be your default nighty price</p>
                         </div>

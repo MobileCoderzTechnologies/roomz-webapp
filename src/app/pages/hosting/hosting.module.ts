@@ -44,6 +44,7 @@ import { FormatTimePipe } from './pipes/format-time.pipe';
 import { GoogleMapModule } from 'src/app/modules/google-map/google-map.module';
 import { DragDropModule } from 'src/app/modules/drag-drop/drag-drop.module';
 import { NgxPaginationModule } from 'ngx-pagination';
+import { CarouselModule } from 'ngx-owl-carousel-o';
 
 
 
@@ -96,7 +97,8 @@ import { NgxPaginationModule } from 'ngx-pagination';
     NgOtpInputModule,
     GoogleMapModule,
     DragDropModule,
-    NgxPaginationModule
+    NgxPaginationModule,
+    CarouselModule
   ],
   exports: [
     HostingRoutingModule,
@@ -105,7 +107,8 @@ import { NgxPaginationModule } from 'ngx-pagination';
     NgOtpInputModule,
     GoogleMapModule,
     DragDropModule,
-    NgxPaginationModule
+    NgxPaginationModule,
+    CarouselModule
   ]
 })
 export class HostingModule { }

@@ -94,7 +94,7 @@
                             [routerLink]="[step19Route.url, encryptedPropertyId]">
                             <img src="assets/images/blue-left-arrow.png" class="me-2" alt="" /> Back
                         </a>
-                        <button class="btn custom_btn" *ngIf="!isNextLoading" (click)="addPropertyQuestions()">
+                        <button class="btn custom_btn" *ngIf="!isNextLoading" (click)="addPropertyQuestions()" [disabled]="checkInQuesForm.invalid">
                             Next
                         </button>
                         <button class="btn custom_btn" *ngIf="isNextLoading">

@@ -95,6 +95,23 @@ export class PropertyGuests20Component implements OnInit, AfterViewInit, OnDestr
   }
 
 
+  onSelectHaveGuests(isChecked: boolean, value: number): void {
+    if (isChecked) {
+      this.selectedHaveGuests = value;
+    }
+    else{
+      this.selectedHaveGuests = 0;
+    }
+  }
+  onSelectRentedBefore(isChecked: boolean, value: number): void {
+    if (isChecked) {
+      this.selectedRentedBefore = value;
+    }
+    else{
+      this.selectedRentedBefore = 0;
+    }
+  }
+
 
   addPropertyQuestions(): void {
     this.isNextLoading = true;
