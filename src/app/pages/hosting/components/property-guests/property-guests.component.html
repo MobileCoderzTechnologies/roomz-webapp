@@ -21,14 +21,14 @@
                 {{ type.property_type | titlecase }}
               </option>
             </select>
-            <p class="fz14 regular_font mb-5">
+            <p class="fz14 regular_font mb-5 mt-2">
               Typically located in multi-unit residential buildings or complexes
               where other people live
             </p>
           </div>
 
           <div class="custom_check circle_check mb-4" *ngIf="isBeachHouseShow">
-            <div class="form-group">
+            <div class="form-group d-flex align-items-center">
               <input
                 type="checkbox"
                 id="beachHouse"
@@ -36,7 +36,7 @@
                 (change)="isBeachHouse = !isBeachHouse"
                 [checked]="isBeachHouse"
               />
-              <label class="form-check-label fz15" for="beachHouse">
+              <label class="form-check-label fz15 mb-0" for="beachHouse">
                 is this a beach house
               </label>
             </div>

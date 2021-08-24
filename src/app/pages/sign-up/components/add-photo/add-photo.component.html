@@ -2,25 +2,28 @@
   <section class="p-3">
     <div class="">
       <div class="text-center">
-        <h3 class="fz24 mb-0 semi_font">
-          {{'signUp.addPhoto.addAProfilePhoto'|langTranslate}}
+        <h3 class="fz20 mb-0 semi_font">
+          {{ "signUp.addPhoto.addAProfilePhoto" | langTranslate }}
         </h3>
       </div>
       <hr />
       <div class="">
         <div class="mb-5 mt-4">
-          <p class="mb_20 text-center">
-            {{'signUp.addPhoto.line1'|langTranslate}}
+          <p class="mb_20 text-center fz15 medium_font">
+            {{ "signUp.addPhoto.line1" | langTranslate }}
           </p>
           <div class="mb-5 pb-5 mt-5 text-center">
             <img src="assets/images/profile2121.png" class="img-fluid" alt="" />
           </div>
         </div>
-        <button class="btn login_btn mb-3">
-          {{'signUp.addPhoto.continueBtnText'|langTranslate}}
+        <button class="btn login_btn mb-3 semi_font fz16">
+          {{ "signUp.addPhoto.continueBtnText" | langTranslate }}
         </button>
-        <button class="btn login_btn mb_20 border bg-transparent text-secondary" (click)="goCongratulations()">
-          {{'signUp.addPhoto.skipForNowBtnText'|langTranslate}}
+        <button
+          class="btn login_btn mb_20 border bg-transparent text-secondary"
+          (click)="goCongratulations()"
+        >
+          {{ "signUp.addPhoto.skipForNowBtnText" | langTranslate }}
         </button>
       </div>
     </div>

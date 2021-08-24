@@ -1,39 +1,73 @@
 <!-- <section class="d-flex align-items-center justify-content-center"> -->
 <div class="page-title" *ngIf="pageTitleShow">
   <div class="d-flex align-items-center justify-content-between">
-    <h3 class="fz24 mb-0 semi_font">{{pageTitle|langTranslate}}</h3>
-    <span *ngIf="isCloseBtn" class="medium_font" style="cursor: pointer;" (click)="closeDialog()">&#10005;</span>
+    <h3 class="fz24 mb-0 semi_font">{{ pageTitle | langTranslate }}</h3>
+    <span
+      *ngIf="isCloseBtn"
+      class="medium_font"
+      style="cursor: pointer"
+      (click)="closeDialog()"
+      >&#10005;</span
+    >
   </div>
   <hr />
 </div>
 <div class="login_section" *ngIf="isLoginForm">
   <form [formGroup]="loginForm">
-    <div class="mb-3" *ngIf="loginWith==='phone'">
-      <label class="fz15"> {{'login.form.countryCode'|langTranslate}}</label>
-      <select class="form-control custom_form_control fz15 form-select country-code" formControlName="countryCode">
+    <div class="mb-3" *ngIf="loginWith === 'phone'">
+      <label class="fz15 medium_font">
+        {{ "login.form.countryCode" | langTranslate }}</label
+      >
+      <select
+        class="form-control custom_form_control fz15 form-select country-code medium_font"
+        formControlName="countryCode"
+      >
         <option *ngFor="let cc of countryCodes" [value]="cc.code">
-          {{cc.code}} &nbsp; | &nbsp; {{cc.name}} </option>
+          {{ cc.code }} &nbsp; | &nbsp; {{ cc.name }}
+        </option>
       </select>
     </div>
 
-    <div class="mb-3" *ngIf="loginWith==='phone'">
-      <label class="fz15"> {{'login.form.phoneNumber'|langTranslate}}</label>
-      <input type="text" class="form-control custom_form_control fz15" formControlName="phoneNumber"
-        placeholder="{{'login.form.phoneNumberPlaceholder'|langTranslate}}"
-        oninput="this.value=this.value.replace(/\D/g,'')" />
+    <div class="mb-3" *ngIf="loginWith === 'phone'">
+      <label class="fz15 medium_font">
+        {{ "login.form.phoneNumber" | langTranslate }}</label
+      >
+      <input
+        type="text"
+        class="form-control custom_form_control fz15 medium_font"
+        formControlName="phoneNumber"
+        placeholder="{{ 'login.form.phoneNumberPlaceholder' | langTranslate }}"
+        oninput="this.value=this.value.replace(/\D/g,'')"
+      />
       <small class="text-danger" *ngIf="loginForm.controls.phoneNumber.touched">
-        {{loginForm.controls.phoneNumber.errors|validateError: ('login.form.phoneNumber'|langTranslate)}}
+        {{
+          loginForm.controls.phoneNumber.errors
+            | validateError: ("login.form.phoneNumber" | langTranslate)
+        }}
       </small>
     </div>
-    <div class="mb-3" *ngIf="loginWith==='email'">
-      <label class="fz15"> {{'login.form.email'|langTranslate}}</label>
-      <input type="text" class="form-control custom_form_control fz15" formControlName="email"
-        placeholder="{{'login.form.emailPlaceholder'|langTranslate}}" />
+    <div class="mb-3" *ngIf="loginWith === 'email'">
+      <label class="fz15"> {{ "login.form.email" | langTranslate }}</label>
+      <input
+        type="text"
+        class="form-control custom_form_control fz15"
+        formControlName="email"
+        placeholder="{{ 'login.form.emailPlaceholder' | langTranslate }}"
+      />
       <small class="text-danger" *ngIf="loginForm.controls.email.touched">
-        {{loginForm.controls.email.errors|validateError: ('login.form.email'|langTranslate)}}
+        {{
+          loginForm.controls.email.errors
+            | validateError: ("login.form.email" | langTranslate)
+        }}
       </small>
-      <small class="text-danger" *ngIf="loginForm.controls.email.touched && loginForm.controls.email.errors?.pattern">
-        {{'login.form.emailPatternError'|langTranslate}}
+      <small
+        class="text-danger"
+        *ngIf="
+          loginForm.controls.email.touched &&
+          loginForm.controls.email.errors?.pattern
+        "
+      >
+        {{ "login.form.emailPatternError" | langTranslate }}
       </small>
     </div>
     <!-- <div class="mb-3" *ngIf="loginWith==='email'">
@@ -51,47 +85,64 @@
         </small>
       </div> -->
     <div class="mb_20">
-      <button *ngIf="!isSubmitting" type="submit" class="btn login_btn" (click)="onSubmit()"
-        [disabled]="loginForm.invalid">
-        {{'login.form.loginBtn'|langTranslate}}
+      <button
+        *ngIf="!isSubmitting"
+        type="submit"
+        class="btn login_btn semi_font"
+        (click)="onSubmit()"
+        [disabled]="loginForm.invalid"
+      >
+        {{ "login.form.loginBtn" | langTranslate }}
       </button>
-      <button *ngIf="isSubmitting" class="btn login_btn" [disabled]="loginForm.invalid">
-        {{'login.form.loginBtn'|langTranslate}}
+      <button
+        *ngIf="isSubmitting"
+        class="btn login_btn semi_font"
+        [disabled]="loginForm.invalid"
+      >
+        {{ "login.form.loginBtn" | langTranslate }}
         <div class="spinner-border text-info spinner-border-sm"></div>
       </button>
     </div>
     <div class="text-center mb_20">
-      <a href="javascript:void(0);" class="base_blue"><u>{{'login.form.forgotPasswordBtn'|langTranslate}}</u></a>
+      <a href="javascript:void(0);" class="base_blue"
+        ><u>{{ "login.form.forgotPasswordBtn" | langTranslate }}</u></a
+      >
     </div>
     <div class="text-center mb_20 position-relative">
       <div class="d-flex justify-content-center">
         <div class="or_continue_with_hr">
-          <hr>
+          <hr />
         </div>
         <div class="or_continue_with_text">
-          <p class="bg-white d-inline-block"> {{'login.orContinueWith.text'|langTranslate}} </p>
+          <p class="bg-white d-inline-block">
+            {{ "login.orContinueWith.text" | langTranslate }}
+          </p>
         </div>
         <div class="or_continue_with_hr">
-          <hr>
+          <hr />
         </div>
       </div>
     </div>
     <div class="row social_login">
-
-      <div class="col-6" *ngIf="loginWith!=='email'">
+      <div class="col-6" *ngIf="loginWith !== 'email'">
         <div class="col_selector">
           <button class="btn rounded-pill" (click)="onClickLoginWith('email')">
-            <img src="assets/images/email.png" alt="" class="icon" style="top: 17px" />
-            {{'login.orContinueWith.email'|langTranslate}}
+            <img
+              src="assets/images/email.png"
+              alt=""
+              class="icon"
+              style="top: 17px"
+            />
+            {{ "login.orContinueWith.email" | langTranslate }}
           </button>
         </div>
       </div>
 
-      <div class="col-6" *ngIf="loginWith!=='phone'">
+      <div class="col-6" *ngIf="loginWith !== 'phone'">
         <div class="col_selector">
           <button class="btn rounded-pill" (click)="onClickLoginWith('phone')">
             <img src="assets/images/phone.png" alt="" class="icon" />
-            {{'login.orContinueWith.phone'|langTranslate}}
+            {{ "login.orContinueWith.phone" | langTranslate }}
           </button>
         </div>
       </div>
@@ -100,7 +151,7 @@
         <div class="col_selector">
           <button class="btn rounded-pill">
             <img src="assets/images/facebook.png" alt="" class="icon" />
-            {{'login.orContinueWith.facebook'|langTranslate}}
+            {{ "login.orContinueWith.facebook" | langTranslate }}
           </button>
         </div>
       </div>
@@ -108,7 +159,7 @@
         <div class="col_selector">
           <button class="btn rounded-pill" (click)="logInWithGoogle()">
             <img src="assets/images/google.png" alt="" class="icon" />
-            {{'login.orContinueWith.google'|langTranslate}}
+            {{ "login.orContinueWith.google" | langTranslate }}
           </button>
         </div>
       </div>
@@ -116,7 +167,7 @@
         <div class="col_selector">
           <button class="btn rounded-pill">
             <img src="assets/images/apple.png" alt="" class="icon" />
-            {{'login.orContinueWith.apple'|langTranslate}}
+            {{ "login.orContinueWith.apple" | langTranslate }}
           </button>
         </div>
       </div>
@@ -132,8 +183,8 @@
 </div>
 
 <div *ngIf="isEnterOtp" class="otp_section">
-  <span class="medium_font" style="cursor: pointer;" (click)="backFromOtp()">
-    <img src="assets/images/arrowBack.svg" alt="go back">
+  <span class="medium_font" style="cursor: pointer" (click)="backFromOtp()">
+    <img src="assets/images/arrowBack.svg" alt="go back" />
   </span>
   <div class="otp_content">
     <app-otp [phoneNumber]="phoneNumber" [countryCode]="countryCode"></app-otp>
@@ -142,19 +193,31 @@
 
 <!-- sign up after verified phone  -->
 <div *ngIf="afterOtpVerified?.createAccount">
-  <app-sign-up [phoneNumber]="phoneNumber" [countryCode]="countryCode" [dialogRef]="$dialogRef" (backToLogin)="backFromSignUp($event)">
+  <app-sign-up
+    [phoneNumber]="phoneNumber"
+    [countryCode]="countryCode"
+    [dialogRef]="$dialogRef"
+    (backToLogin)="backFromSignUp($event)"
+  >
   </app-sign-up>
 </div>
 
 <!-- sign up with email  -->
 
 <div *ngIf="signUpWithEmail">
-  <app-sign-up [email]="email" [dialogRef]="$dialogRef" (backToLogin)="backFromSignUp($event)"></app-sign-up>
+  <app-sign-up
+    [email]="email"
+    [dialogRef]="$dialogRef"
+    (backToLogin)="backFromSignUp($event)"
+  ></app-sign-up>
 </div>
 
 <!-- log in with email welcome back  -->
-<div *ngIf="welcomeBack" style="width: 451px;">
-  <app-welcome-back [checkEmailResponse]="checkEmailResponse" (backToLogin)="backFromWelcomeBack($event)">
+<div *ngIf="welcomeBack" style="width: 451px">
+  <app-welcome-back
+    [checkEmailResponse]="checkEmailResponse"
+    (backToLogin)="backFromWelcomeBack($event)"
+  >
   </app-welcome-back>
 </div>
 
