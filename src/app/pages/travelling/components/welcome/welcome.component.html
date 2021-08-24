@@ -2,29 +2,31 @@
   <div class="">
     <div class="d-flex justify-content-between">
       <h3 class="fz24 mb-0 semi_font">&nbsp;</h3>
-      <span class="bold_font" style="cursor: pointer" (click)="closeDialog()">&#10005;</span>
+      <span class="bold_font" style="cursor: pointer" (click)="closeDialog()"
+        >&#10005;</span
+      >
     </div>
     <div class="">
       <div class="mb-5">
         <div class="mb-5 mt-5 text-center">
           <img src="assets/images/tick3.png" class="img-fluid" alt="" />
         </div>
-        <h3 class="mb_20 bold_font text-center fz24">
-          {{'welcome.welcomeToRoomz'|langTranslate}}
+        <h3 class="mb_20 semi_font text-center fz24">
+          {{ "welcome.welcomeToRoomz" | langTranslate }}
         </h3>
-        <p class="mb_20 text-center fz20">
-          {{'welcome.discoverThePlaces'|langTranslate}}
+        <p class="mb_20 text-center fz20 semi_font">
+          {{ "welcome.discoverThePlaces" | langTranslate }}
         </p>
         <p class="mb_20 text-center">
-         {{'welcome.clickTo'|langTranslate}}
-         &#8220; {{'welcome.continue'|langTranslate}} &#8221;
-         {{'welcome.line1'|langTranslate}}
+          {{ "welcome.clickTo" | langTranslate }}
+          &#8220; {{ "welcome.continue" | langTranslate }} &#8221;
+          {{ "welcome.line1" | langTranslate }}
           <br />
-         {{'welcome.completeProfileText'|langTranslate}}
+          {{ "welcome.completeProfileText" | langTranslate }}
         </p>
       </div>
       <button class="btn login_btn mb-3" (click)="onContinue()">
-        {{'welcome.continueBtnText'|langTranslate}}
+        {{ "welcome.continueBtnText" | langTranslate }}
       </button>
     </div>
   </div>

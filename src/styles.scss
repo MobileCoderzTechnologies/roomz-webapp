@@ -1,7 +1,7 @@
 @import "ng.theme";
 @import "core";
-@import '~ngx-owl-carousel-o/lib/styles/scss/owl.carousel';
-@import '~ngx-owl-carousel-o/lib/styles/scss/owl.theme.default';
+@import "~ngx-owl-carousel-o/lib/styles/scss/owl.carousel";
+@import "~ngx-owl-carousel-o/lib/styles/scss/owl.theme.default";
 /* You can add global styles to this file, and also import other style files */
 
 html,
@@ -239,6 +239,7 @@ body {
   padding: 21px 18px;
   font-size: 15px;
   line-height: 1;
+  font-family: "montserratmedium" !important;
 }
 
 .or_hr {
@@ -253,6 +254,7 @@ body {
   color: #fff;
   border-radius: 7px;
   padding: 17px;
+  font-family: "montserratsemibold" !important;
 }
 
 .login_section .social_login .btn {
