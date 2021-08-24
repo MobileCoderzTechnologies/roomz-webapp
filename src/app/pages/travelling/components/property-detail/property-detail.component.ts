@@ -84,6 +84,10 @@ export class PropertyDetailComponent implements OnInit {
 
   }
 
+  goBack(): void {
+    window.history.back();
+  }
+
 
   private getPropertyDetails(): void {
     this.isLoading = true;

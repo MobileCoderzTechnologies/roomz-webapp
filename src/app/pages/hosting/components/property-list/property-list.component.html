@@ -16,7 +16,7 @@
               <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav mx-auto mb-2 mb-lg-0">
                   <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" href="#">BOOKING</a>
+                    <a class="nav-link" aria-current="page" href="#">BOOKING</a>
                   </li>
                   <li class="nav-item">
                     <a class="nav-link" href="#">INBOX</a>
@@ -25,12 +25,13 @@
                     <a class="nav-link" href="#">CALENDAR</a>
                   </li>
                   <li class="nav-item">
-                    <a class="nav-link" href="#">LISTING</a>
+                    <a class="nav-link active" href="#">LISTING</a>
                   </li>
                 </ul>
                 <div class="d-flex align-items-center justify-content-end">
                   <div class="me-2">
-                    <img src="assets/images/profile2121.png" alt="" width="42" />
+                    <img [src]="user?.avatar" alt="" class="user-photo" />
+                    <!-- <img src="assets/images/profile2121.png" alt="" width="42" /> -->
                   </div>
                   <div>
                     <img src="assets/images/menu.png" alt="" />
@@ -188,8 +189,7 @@
               </div>
             </div>
             <div class="position-relative me-4" *ngIf="deletingProperties?.length">
-              <button class="btn btn-danger border rounded-pill fz13 px-5 py-2"
-                (click)="onDelete()">
+              <button class="btn btn-danger border rounded-pill fz13 px-5 py-2" (click)="onDelete()">
                 Delete
               </button>
             </div>
@@ -218,7 +218,8 @@
                     *ngFor="let property of properties|paginate: { itemsPerPage: pageSize, currentPage: page, totalItems: totalCount }">
                     <td>
                       <div class="form-check">
-                        <input class="form-check-input" type="checkbox" (change)="onChecked($event.target.checked, property?.id)" />
+                        <input class="form-check-input" type="checkbox"
+                          (change)="onChecked($event.target.checked, property?.id)" />
                       </div>
                     </td>
                     <td>

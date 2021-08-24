@@ -3,6 +3,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { fromEvent } from 'rxjs';
 import { debounceTime } from 'rxjs/operators';
 import { Amenity } from 'src/app/modals/amenity.modal';
+import { User } from 'src/app/modals/user.modal';
 import { AlertService } from 'src/app/modules/alert/alert.service';
 import { EncryptionService } from 'src/app/services/encryption.service';
 import Swal from 'sweetalert2';
@@ -62,6 +63,8 @@ export class PropertyListComponent implements OnInit, AfterViewInit {
   searchElement: any;
   deletingProperties: number[] = [];
 
+  user: User;
+
   constructor(
     private $ps: ProgressService,
     private $encryptionService: EncryptionService,
@@ -74,6 +77,7 @@ export class PropertyListComponent implements OnInit, AfterViewInit {
   ngOnInit(): void {
     this.getAmenities();
     this.getMyPropertyList();
+    this.getUser();
   }
 
   ngAfterViewInit(): void {
@@ -107,6 +111,12 @@ export class PropertyListComponent implements OnInit, AfterViewInit {
       this.amenities = data.data;
     }, err => {
       this.$alert.danger(err.message);
+    });
+  }
+
+  private getUser(): void {
+    this.$propertyListingService.getUser().subscribe(data => {
+      this.user = data.data[0];
     });
   }
 

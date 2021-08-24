@@ -85,18 +85,19 @@
         <div class="col_selector my-5">
           <div class="d-flex align-items-center justify-content-between border mb-5 rounded-pill py-2 px-3">
             <input type="text" name="" class="form-control text-center border-0 py-3 border-end" id=""
-              placeholder="Rishikesh" />
+              placeholder="{{searchTxt}}" />
             <input type="date" name="" class="form-control text-center border-0 py-3 border-end" id="" />
             <input type="text" name="" class="form-control text-center border-0 py-3" id="" placeholder="4 guest" />
           </div>
           <div>
             <p class="semi_font text-secondary mb-1">
-              133 stays . 16 Jul - 19 Jul . 4 guests
+              {{totalCount}} stays . {{currentDate|date:'MMM d'}} - {{nextDate|date:'MMM d'}} . 4 guests
             </p>
-            <h3 class="bold_font fz36">Stays in Rishikesh</h3>
+            <h3 class="bold_font fz36">Stays in {{searchTxt}}</h3>
           </div>
           <div class="d-flex mb-4">
-            <button class="btn fz14 regular_font border me-2 rounded-pill py-2 base_color border_red">
+            <!-- <button class="btn fz14 regular_font border me-2 rounded-pill py-2 base_color border_red"> -->
+            <button class="btn fz14 regular_font border me-2 rounded-pill py-2">
               Cancellation Flexibility
             </button>
             <button class="btn fz14 regular_font border me-2 rounded-pill py-2">

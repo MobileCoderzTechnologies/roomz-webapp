@@ -72,7 +72,7 @@
 </header> -->
 <app-header></app-header>
 <section class="position-relative" *ngIf="!isLoading">
-  <img src="assets/images/back.png" class="img-fluid preview_back" alt="" [routerLink]="[searchPageRoute.url]" />
+  <img src="assets/images/back.png" class="img-fluid preview_back" alt="" (click)="goBack()" />
 
   <div class="slider">
     <owl-carousel-o [options]="customOptions" (change)="onSlideChange($event)">

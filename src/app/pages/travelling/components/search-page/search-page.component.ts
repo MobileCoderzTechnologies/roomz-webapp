@@ -25,6 +25,9 @@ export class SearchPageComponent implements OnInit {
 
   markers: any[] = [];
 
+  currentDate: Date;
+  nextDate: Date;
+
   propertyImages: { image_url: string }[] = [];
 
   constructor(
@@ -43,6 +46,7 @@ export class SearchPageComponent implements OnInit {
 
     this.getProperties();
     this.getLocation();
+    this.setDates();
   }
 
 
@@ -51,6 +55,15 @@ export class SearchPageComponent implements OnInit {
       this.latitude = res.coords.latitude;
       this.longitude = res.coords.longitude;
     });
+  }
+
+
+  private setDates(): void {
+    this.currentDate = new Date();
+    const time = this.currentDate.getTime();
+    const next3Day = time + (3 * 24 * 60 * 60 * 1000);
+    this.nextDate = new Date(next3Day);
+
   }
 
 
