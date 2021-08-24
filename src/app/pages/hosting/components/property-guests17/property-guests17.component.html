@@ -1,74 +1,116 @@
 <section class="kind_of_place">
-    <div class="container">
-        <div class="row">
-            <div class="col-md-7">
-                <div class="bg-white">
-                    <div class="col_selector p-4">
-                        <h3 class="fz30 mb-4">Set your house rules</h3>
-                        <p class="medium_font mb-5 text-secondary">
-                            Guest must agree to your house rules before they book.
-                        </p>
-                        <div>
-                            <ng-container *ngFor="let rule of propertyHouseRules; let i=index">
-                                <div class="d-flex align-items-center justify-content-between mb-4"
-                                    *ngIf="!rule?.is_additional">
-                                    <h5 class="fz16 regular_font text-secondary mb-0">
-                                        {{houseRuleObj[rule.rule_id]}}
+  <div class="container">
+    <div class="row">
+      <div class="col-md-7">
+        <div class="bg-white">
+          <div class="col_selector p-4">
+            <h3 class="fz30 mb-4">Set your house rules</h3>
+            <p class="medium_font mb-5 text-secondary">
+              Guest must agree to your house rules before they book.
+            </p>
+            <div>
+              <ng-container
+                *ngFor="let rule of propertyHouseRules; let i = index"
+              >
+                <div
+                  class="d-flex align-items-center justify-content-between mb-4"
+                  *ngIf="!rule?.is_additional"
+                >
+                  <h5 class="fz16 regular_font text-secondary mb-0">
+                    {{ houseRuleObj[rule.rule_id] }}
 
-                                        <br /><span class="blue_color">
-                                            {{rule?.cancel_reason}}
-                                        </span>
-                                    </h5>
-                                    <div class="image-btns">
-                                        <img *ngIf="rule?.is_cancelled" src="assets/images/active-cross.png"
-                                            class="img-fluid me-4" alt="" />
-                                        <img *ngIf="!rule?.is_cancelled" src="assets/images/unactive-cross.png"
-                                            class="img-fluid me-4" alt="" (click)="cancelRule(rule)">
+                    <br /><span class="blue_color">
+                      {{ rule?.cancel_reason }}
+                    </span>
+                  </h5>
+                  <div class="image-btns">
+                    <img
+                      *ngIf="rule?.is_cancelled"
+                      src="assets/images/active-cross.png"
+                      class="img-fluid me-4"
+                      alt=""
+                    />
+                    <img
+                      *ngIf="!rule?.is_cancelled"
+                      src="assets/images/unactive-cross.png"
+                      class="img-fluid me-4"
+                      alt=""
+                      (click)="cancelRule(rule)"
+                    />
 
-                                        <img *ngIf="rule?.is_cancelled" src="assets/images/unactive-tick.png"
-                                            class="img-fluid" alt="" (click)="activeRule(rule)">
-                                        <img *ngIf="!rule?.is_cancelled" src="assets/images/active-tick.png"
-                                            class="img-fluid" alt="" />
-                                    </div>
-                                </div>
-                            </ng-container>
-                            <ng-container *ngFor="let rule of propertyHouseRules; let i=index">
-                                <div class="d-flex align-items-center justify-content-between mb-4"
-                                    *ngIf="rule.is_additional">
-                                    <h5 class="fz16 regular_font text-secondary mb-0">
-                                        <br /><span class="blue_color">
-                                            {{rule?.description}}
-                                        </span>
-                                    </h5>
-                                    <div class="image-btns">
-                                        <!-- <img *ngIf="rule?.is_cancelled" src="assets/images/active-cross.png"
+                    <img
+                      *ngIf="rule?.is_cancelled"
+                      src="assets/images/unactive-tick.png"
+                      class="img-fluid"
+                      alt=""
+                      (click)="activeRule(rule)"
+                    />
+                    <img
+                      *ngIf="!rule?.is_cancelled"
+                      src="assets/images/active-tick.png"
+                      class="img-fluid"
+                      alt=""
+                    />
+                  </div>
+                </div>
+              </ng-container>
+              <ng-container
+                *ngFor="let rule of propertyHouseRules; let i = index"
+              >
+                <div
+                  class="d-flex align-items-center justify-content-between mb-4"
+                  *ngIf="rule.is_additional"
+                >
+                  <h5 class="fz16 regular_font text-secondary mb-0">
+                    <br /><span class="blue_color">
+                      {{ rule?.description }}
+                    </span>
+                  </h5>
+                  <div class="image-btns">
+                    <!-- <img *ngIf="rule?.is_cancelled" src="assets/images/active-cross.png"
                                             class="img-fluid me-4" alt="" /> -->
-                                        <img src="assets/images/unactive-cross.png" class="img-fluid me-4" alt=""
-                                            (click)="removeAdditionalRule(i)">
+                    <img
+                      src="assets/images/unactive-cross.png"
+                      class="img-fluid me-4"
+                      alt=""
+                      (click)="removeAdditionalRule(i)"
+                    />
 
-                                        <!-- <img src="assets/images/unactive-tick.png"
+                    <!-- <img src="assets/images/unactive-tick.png"
                                             class="img-fluid" alt=""> -->
-                                        <img src="assets/images/active-tick.png" class="img-fluid" alt="" />
-                                    </div>
-                                </div>
-                            </ng-container>
-                            <div class="form-group">
-                                <div class="mb-3 d-flex justify-content-between">
-                                    <label for="" class="fz18 semi_font">Additional rules</label>
-                                    <a *ngIf="!additionalRuleInput.value" class="color-blue">Save</a>
-                                    <a *ngIf="additionalRuleInput.value" class="color-blue"
-                                        (click)="saveAdditionalRule()">Save</a>
-                                </div>
+                    <img
+                      src="assets/images/active-tick.png"
+                      class="img-fluid"
+                      alt=""
+                    />
+                  </div>
+                </div>
+              </ng-container>
+              <div class="form-group">
+                <div class="mb-3 d-flex justify-content-between">
+                  <label for="" class="fz18 semi_font">Additional rules</label>
+                  <a *ngIf="!additionalRuleInput.value" class="color-blue"
+                    >Save</a
+                  >
+                  <a
+                    *ngIf="additionalRuleInput.value"
+                    class="color-blue"
+                    (click)="saveAdditionalRule()"
+                    >Save</a
+                  >
+                </div>
 
-                                <div class="d-flex align-items-center">
-                                    <textarea [formControl]="additionalRuleInput" style="height:175px;width:100%"
-                                        class="form-control custom_form_control w-100 rounded-0"
-                                        placeholder="Quiet hours? No shoes in the house?  ">
-                                    </textarea>
-
-                                </div>
-                            </div>
-                            <!-- <div class="mt-4 d-flex">
+                <div class="d-flex align-items-center">
+                  <textarea
+                    [formControl]="additionalRuleInput"
+                    style="height: 175px; width: 100%"
+                    class="form-control custom_form_control w-100 rounded-0"
+                    placeholder="Quiet hours? No shoes in the house?  "
+                  >
+                  </textarea>
+                </div>
+              </div>
+              <!-- <div class="mt-4 d-flex">
                                 <button class="btn me-4 px-3 py-2 border border-secondary rounded-pill d-flex align-items-center">
                                 Example-01
                                 <img
@@ -87,7 +129,7 @@
                                 </button>
                             </div> -->
 
-                            <!-- <div class="detail-guest mt-5">
+              <!-- <div class="detail-guest mt-5">
                                 <div class="d-flex justify-content-between">
                                     <h4 class="fz18 medium_font mb-3">Details guest must know about your home</h4>
                                     <a href="" class="edit-text color-blue" data-toggle="modal"
@@ -96,31 +138,43 @@
                                 <p>Aspects of your home guests must acknowledge before booking
                                 </p>
                             </div> -->
-                            <div class="mb-4 p-4">
-                                <h4 class="fz25 semi_font text-secondary mb-3">
-                                    Details guests must know about your home
-                                </h4>
-                                <ng-container *ngFor="let detail of homeDetails">
-                                    <div class="custom_check mb-4">
-                                        <div class="form-group">
-                                            <input type="checkbox" [id]="detail.id"
-                                                (change)="selectDetail($event,detail)" [checked]="detail?.isChecked">
-                                            <label class="form-check-label fz15" for="{{detail.id}}">
-                                                {{detail.name}}
-                                            </label>
-                                        </div>
-                                    </div>
-                                    <div class="mb-4" *ngIf="detail.isChecked">
-                                        <p class="fz15 regular_font">
-                                            {{detail.description}}
-                                        </p>
-                                        <input #desc type="text" (blur)="addDetailDesc(detail, desc.value)"
-                                            class="form-control w-75" placeholder="Add your description"
-                                            [value]="detail?.explanation" />
-                                    </div>
-                                </ng-container>
+              <div class="mb-4 py-4">
+                <h4 class="fz25 semi_font text-secondary mb-3">
+                  Details guests must know about your home
+                </h4>
+                <ng-container *ngFor="let detail of homeDetails">
+                  <div class="custom_check mb-4">
+                    <div class="form-group">
+                      <input
+                        type="checkbox"
+                        [id]="detail.id"
+                        (change)="selectDetail($event, detail)"
+                        [checked]="detail?.isChecked"
+                      />
+                      <label
+                        class="form-check-label fz15"
+                        for="{{ detail.id }}"
+                      >
+                        {{ detail.name }}
+                      </label>
+                    </div>
+                  </div>
+                  <div class="mb-4" *ngIf="detail.isChecked">
+                    <p class="fz15 regular_font">
+                      {{ detail.description }}
+                    </p>
+                    <input
+                      #desc
+                      type="text"
+                      (blur)="addDetailDesc(detail, desc.value)"
+                      class="form-control w-75"
+                      placeholder="Add your description"
+                      [value]="detail?.explanation"
+                    />
+                  </div>
+                </ng-container>
 
-                                <!-- <div class="custom_check mb-4">
+                <!-- <div class="custom_check mb-4">
                                     <div class="form-group">
                                         <input type="checkbox" id="html2" checked />
                                         <label class="form-check-label fz15" for="html2">
@@ -184,42 +238,70 @@
                                         </label>
                                     </div>
                                 </div> -->
-                            </div>
-                        </div>
-                    </div>
+              </div>
+            </div>
+          </div>
 
-                    <div class="d-flex justify-content-between align-items-center mb-5 p-4 mt-0 back_next_part">
-                        <a *ngIf="isBack21" href="javascript:void(0);" class="blue_color d-flex align-items-center"
-                            [routerLink]="[step21Route.url, encryptedPropertyId]">
-                            <img src="assets/images/blue-left-arrow.png" class="me-2" alt="" /> Back
-                        </a>
-                        <a *ngIf="!isBack21" href="javascript:void(0);" class="blue_color d-flex align-items-center"
-                            [routerLink]="[step6Route.url, encryptedPropertyId]">
-                            <img src="assets/images/blue-left-arrow.png" class="me-2" alt="" /> Back
-                        </a>
-                        <button class="btn custom_btn" *ngIf="!isNextLoading" (click)="addHouseRule()">
-                            Next
-                        </button>
-                        <button class="btn custom_btn" *ngIf="isNextLoading">
-                            Next
-                            <div *ngIf="!isSavingExit" class="spinner-border text-info spinner-border-sm"></div>
-                        </button>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-5">
-                <div class="col_selector m-5 p-4 bg-white right_side_content">
-                    <div class="mb_20">
-                        <img src="assets/images/idea.png" alt="" />
-                    </div>
-                    <h5 class="fz18 mb-4">Welcome children and pets</h5>
-                    <p class="fz14 regular_font mb_20">
-                        175% more travellers are looking for places that allow children, infants, and pets. If it's
-                        right for you, mark your place as suitable for these guests to help you get booked. <br />
-                        <i>Based on recent booking trends in your area</i>
-                    </p>
-                </div>
-            </div>
+          <div
+            class="d-flex justify-content-between align-items-center mb-5 p-4 mt-0 back_next_part"
+          >
+            <a
+              *ngIf="isBack21"
+              href="javascript:void(0);"
+              class="blue_color d-flex align-items-center"
+              [routerLink]="[step21Route.url, encryptedPropertyId]"
+            >
+              <img
+                src="assets/images/blue-left-arrow.png"
+                class="me-2"
+                alt=""
+              />
+              Back
+            </a>
+            <a
+              *ngIf="!isBack21"
+              href="javascript:void(0);"
+              class="blue_color d-flex align-items-center"
+              [routerLink]="[step6Route.url, encryptedPropertyId]"
+            >
+              <img
+                src="assets/images/blue-left-arrow.png"
+                class="me-2"
+                alt=""
+              />
+              Back
+            </a>
+            <button
+              class="btn custom_btn"
+              *ngIf="!isNextLoading"
+              (click)="addHouseRule()"
+            >
+              Next
+            </button>
+            <button class="btn custom_btn" *ngIf="isNextLoading">
+              Next
+              <div
+                *ngIf="!isSavingExit"
+                class="spinner-border text-info spinner-border-sm"
+              ></div>
+            </button>
+          </div>
         </div>
+      </div>
+      <div class="col-md-5">
+        <div class="col_selector m-5 p-4 bg-white right_side_content">
+          <div class="mb_20">
+            <img src="assets/images/idea.png" alt="" />
+          </div>
+          <h5 class="fz18 mb-4">Welcome children and pets</h5>
+          <p class="fz14 regular_font mb_20">
+            175% more travellers are looking for places that allow children,
+            infants, and pets. If it's right for you, mark your place as
+            suitable for these guests to help you get booked. <br />
+            <i>Based on recent booking trends in your area</i>
+          </p>
+        </div>
+      </div>
     </div>
+  </div>
 </section>

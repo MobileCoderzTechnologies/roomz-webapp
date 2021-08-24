@@ -1,109 +1,145 @@
 <section class="kind_of_place">
-    <div class="container">
-        <div class="row">
-            <div class="col-md-7">
-                <div class="col_selector bg-white p-4">
-                    <h3 class="fz30 mb-4">What amenities do you offer?</h3>
-                    <p>
-                        You will be able to add more amenities after you publish your listing.
+  <div class="container">
+    <div class="row">
+      <div class="col-md-7">
+        <div class="col_selector bg-white p-4">
+          <h3 class="fz30 mb-4">What amenities do you offer?</h3>
+          <p>
+            You will be able to add more amenities after you publish your
+            listing.
+          </p>
+
+          <!-- amenities  -->
+          <ng-container *ngFor="let amenity of amenitiesNormal">
+            <div class="custom_check mb-4">
+              <div class="form-group">
+                <input
+                  type="checkbox"
+                  id="{{ amenity?.id }}"
+                  [value]="amenity.id"
+                  (change)="onCheckAmenity(amenity?.id, $event.target.checked)"
+                  [checked]="showCheckedAmenity(amenity?.id)"
+                />
+                <label class="form-check-label fz15" for="{{ amenity?.id }}">
+                  {{ amenity?.name }}
+                  <p
+                    *ngIf="amenity?.description"
+                    class="fz-12 regular_font ms-0"
+                  >
+                    {{ amenity?.description }}
+                  </p>
+                </label>
+              </div>
+            </div>
+          </ng-container>
+
+          <!-- Spaces amenities  -->
+          <div class="safety-wrapper">
+            <h4 class="mb-4">Spaces</h4>
+            <ng-container *ngFor="let amenity of amenitiesSpace">
+              <div class="custom_check mb-4">
+                <div class="form-group">
+                  <input
+                    type="checkbox"
+                    id="{{ amenity?.id }}"
+                    [value]="amenity.id"
+                    (change)="
+                      onCheckAmenity(amenity?.id, $event.target.checked)
+                    "
+                    [checked]="showCheckedAmenity(amenity?.id)"
+                  />
+                  <label class="form-check-label fz15" for="{{ amenity?.id }}">
+                    {{ amenity?.name }}
+                    <p
+                      *ngIf="amenity?.description"
+                      class="ms-0 fz-12 regular_font"
+                    >
+                      {{ amenity?.description }}
                     </p>
-
-                    <!-- amenities  -->
-                    <ng-container *ngFor="let amenity of amenitiesNormal">
-                        <div class="custom_check mb-4">
-                            <div class="form-group">
-                                <input type="checkbox" id="{{amenity?.id}}" [value]="amenity.id"
-                                    (change)="onCheckAmenity(amenity?.id, $event.target.checked)"
-                                    [checked]="showCheckedAmenity(amenity?.id)">
-                                <label class="form-check-label fz15" for="{{amenity?.id}}">
-                                    {{amenity?.name}}
-                                    <p *ngIf="amenity?.description" class="ms-5 fz-12">
-                                        {{amenity?.description}}
-                                    </p>
-                                </label>
-                            </div>
-                        </div>
-                    </ng-container>
-
-                    <!-- Spaces amenities  -->
-                    <div class="safety-wrapper">
-                        <h4 class="mb-4">Spaces</h4>
-                        <ng-container *ngFor="let amenity of amenitiesSpace">
-                            <div class="custom_check mb-4">
-                                <div class="form-group">
-                                    <input type="checkbox" id="{{amenity?.id}}" [value]="amenity.id"
-                                        (change)="onCheckAmenity(amenity?.id, $event.target.checked)"
-                                        [checked]="showCheckedAmenity(amenity?.id)">
-                                    <label class="form-check-label fz15" for="{{amenity?.id}}">
-                                        {{amenity?.name}}
-                                        <p *ngIf="amenity?.description" class="ms-5 fz-12">
-                                            {{amenity?.description}}
-                                        </p>
-                                    </label>
-                                </div>
-                            </div>
-                        </ng-container>
-                    </div>
-
-                    <!-- Safety amenities  -->
-                    <div class="safety-wrapper">
-                        <h4 class="mb-4">Safety amenities</h4>
-                        <ng-container *ngFor="let amenity of amenitiesSafety">
-                            <div class="custom_check mb-4">
-                                <div class="form-group">
-                                    <input type="checkbox" id="{{amenity?.id}}" [value]="amenity.id"
-                                        (change)="onCheckAmenity(amenity?.id, $event.target.checked)"
-                                        [checked]="showCheckedAmenity(amenity?.id)">
-                                    <label class="form-check-label fz15" for="{{amenity?.id}}">
-                                        {{amenity?.name}}
-                                        <p *ngIf="amenity?.description" class="ms-5 fz-12">
-                                            {{amenity?.description}}
-                                        </p>
-                                    </label>
-                                </div>
-                            </div>
-                        </ng-container>
-                    </div>
-                    <div class="d-flex justify-content-between align-items-center mb-5 p-4 mt-0 back_next_part">
-                        <a href="javascript:void(0);" class="blue_color d-flex align-items-center"
-                            [routerLink]="[step4Route.url, encryptedPropertyId]">
-                            <img src="assets/images/blue-left-arrow.png" class="me-2" alt="" /> Back
-                        </a>
-                        <button class="btn custom_btn" *ngIf="!isNextLoading" (click)="addAmenities()" [disabled]="selectedAmenity.length === 0">
-                            Next
-                        </button>
-                        <button class="btn custom_btn" *ngIf="isNextLoading">
-                            Next
-                            <div class="spinner-border text-info spinner-border-sm"></div>
-                        </button>
-                    </div>
+                  </label>
                 </div>
-                <!-- <div class="d-flex justify-content-between align-items-center mb-5 mt-0 bg-white back_next_part p-4">
+              </div>
+            </ng-container>
+          </div>
+
+          <!-- Safety amenities  -->
+          <div class="safety-wrapper">
+            <h4 class="mb-4">Safety amenities</h4>
+            <ng-container *ngFor="let amenity of amenitiesSafety">
+              <div class="custom_check mb-4">
+                <div class="form-group">
+                  <input
+                    type="checkbox"
+                    id="{{ amenity?.id }}"
+                    [value]="amenity.id"
+                    (change)="
+                      onCheckAmenity(amenity?.id, $event.target.checked)
+                    "
+                    [checked]="showCheckedAmenity(amenity?.id)"
+                  />
+                  <label class="form-check-label fz15" for="{{ amenity?.id }}">
+                    {{ amenity?.name }}
+                    <p
+                      *ngIf="amenity?.description"
+                      class="ms-0 fz-12 regular_font"
+                    >
+                      {{ amenity?.description }}
+                    </p>
+                  </label>
+                </div>
+              </div>
+            </ng-container>
+          </div>
+          <div
+            class="d-flex justify-content-between align-items-center mb-5 p-4 mt-0 back_next_part"
+          >
+            <a
+              href="javascript:void(0);"
+              class="blue_color d-flex align-items-center"
+              [routerLink]="[step4Route.url, encryptedPropertyId]"
+            >
+              <img
+                src="assets/images/blue-left-arrow.png"
+                class="me-2"
+                alt=""
+              />
+              Back
+            </a>
+            <button
+              class="btn custom_btn"
+              *ngIf="!isNextLoading"
+              (click)="addAmenities()"
+              [disabled]="selectedAmenity.length === 0"
+            >
+              Next
+            </button>
+            <button class="btn custom_btn" *ngIf="isNextLoading">
+              Next
+              <div class="spinner-border text-info spinner-border-sm"></div>
+            </button>
+          </div>
+        </div>
+        <!-- <div class="d-flex justify-content-between align-items-center mb-5 mt-0 bg-white back_next_part p-4">
                     <a href="javascript:void(0);" class="blue_color d-flex align-items-center" [routerLink]="[step4Route.url]">
                         <img src="assets/images/blue-left-arrow.png" class="me-2" alt="" /> Back
                     </a>
                     <button class="btn custom_btn" [routerLink]="[step6Route.url]">Next</button>
                 </div> -->
-
-
-
-
-
-            </div>
-            <div class="col-md-5">
-                <div class="col_selector m-5 p-4 bg-white right_side_content">
-                    <div class="mb_20">
-                        <img src="assets/images/idea.png" alt="" />
-                    </div>
-                    <h4 class="fz18 medium_font mb_20">Add wifi</h4>
-                    <p class="fz14">
-                        250% more guests want to stay connected while they travel. If your place has reliable wifi, let
-                        them know – it'll help you get booked.
-                        <br />
-                        <i>Based on recent booking trends in your area</i>
-                    </p>
-                </div>
-            </div>
+      </div>
+      <div class="col-md-5">
+        <div class="col_selector m-5 p-4 bg-white right_side_content">
+          <div class="mb_20">
+            <img src="assets/images/idea.png" alt="" />
+          </div>
+          <h4 class="fz18 medium_font mb_20">Add wifi</h4>
+          <p class="fz14">
+            250% more guests want to stay connected while they travel. If your
+            place has reliable wifi, let them know – it'll help you get booked.
+            <br />
+            <i>Based on recent booking trends in your area</i>
+          </p>
         </div>
+      </div>
     </div>
+  </div>
 </section>

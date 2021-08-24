@@ -216,6 +216,7 @@ a:hover {
 
 body {
   font-family: "montserratregular" !important;
+  word-break: break-all;
 }
 
 .mb_20 {
@@ -385,7 +386,7 @@ header {
 .custom_btn {
   background-color: #f9537b;
   color: #fff;
-  padding: 19px 50px;
+  padding: 17px 50px;
 }
 
 .setp_one_section {
@@ -410,6 +411,10 @@ header {
 
 .gray_color {
   color: #babdbe;
+}
+
+.gray_color2 {
+  color: #5e676a;
 }
 
 .custom_progress {
@@ -446,6 +451,8 @@ footer h3 {
   border: 1px solid #f9537b;
   color: #f9537b;
   border-radius: 5px;
+  display: flex;
+  align-items: center;
 }
 
 .upload_delete_icon {
@@ -477,6 +484,8 @@ hr {
 
 .right_side_content {
   margin-top: 186px !important;
+  box-shadow: 1px 1px 15px 6px #eae7e7;
+  border-radius: 5px;
 }
 
 .min_height88 {
@@ -502,10 +511,11 @@ hr {
   cursor: pointer;
   font-family: "montserratmedium" !important;
   color: #5e676a;
+  padding-left: 45px;
 }
 
 .custom_check .form-group label > p {
-  color: #a8a8a8;
+  color: #5e676a;
   font-family: "montserratregular" !important;
   margin-bottom: 0px;
   margin-left: 47px;
@@ -524,6 +534,9 @@ hr {
   margin-right: 15px;
   width: 28px;
   height: 28px;
+  position: absolute;
+  left: 0;
+  top: -4px;
   border-radius: 5px;
 }
 
@@ -535,7 +548,7 @@ hr {
   content: "";
   display: block;
   position: absolute;
-  top: 6px;
+  top: 2px;
   left: 12px;
   width: 6px;
   height: 14px;
@@ -608,7 +621,9 @@ hr {
   z-index: 999;
   background-color: #fff;
 }
-
+.box_shadow {
+  box-shadow: 1px 1px 15px 6px #eae7e7;
+}
 .Amenities_part {
   width: 450px;
 }
@@ -621,4 +636,7 @@ hr {
   position: absolute;
   right: 0;
   width: 555px;
+}
+.close:focus {
+  outline: none;
 }
