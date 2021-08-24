@@ -1,155 +1,251 @@
 <section class="kind_of_place">
-    <div class="container">
-        <div class="row">
-            <div class="col-md-7">
-                <div class="bg-white">
-                    <div class="col_selector p-4">
-                        <h3 class="fz30 mb-4">Add photos to your listing</h3>
-                        <p>
-                            Photos help guests imagine staying in your place. You can start with one and add more after
-                            you publish.
-                        </p>
+  <div class="container">
+    <div class="row">
+      <div class="col-md-7">
+        <div class="bg-white">
+          <div class="col_selector p-4">
+            <h3 class="fz30 mb-4">Add photos to your listing</h3>
+            <p>
+              Photos help guests imagine staying in your place. You can start
+              with one and add more after you publish.
+            </p>
 
-                        <!-- cover photo  -->
+            <!-- cover photo  -->
 
-                        <div class="border text-center p-5 rounded" *ngIf="!coverPhotoUrl">
-                            <label for="uplaod_img" class="mt-5">
-                                <p class="btn upload_btn" *ngIf="!isCoverPhotoUploading">
-                                    <img src="assets/images/upload-img.png" class="ms-2 fz15" alt="" />
-                                    Upload Cover Photo
-                                </p>
-                                <div class="btn upload_btn" *ngIf="isCoverPhotoUploading">
-                                    <!-- <img src="assets/images/upload-img.png" class="ms-2 fz15" alt="" /> -->
-                                    <div class="spinner-border text-info spinner-border-sm"></div>
-                                    Uploading
-                                </div>
-                            </label>
-                            <input type="file" name="" class="d-none" id="uplaod_img"
-                                (change)="selectCoverPhoto($event)" accept="image/*">
-                            <!-- <p class="fz14 medium_font text-secondary mb-5">
-                                or drag them in
-                            </p> -->
-                        </div>
-
-                        <div class="border text-center rounded" *ngIf="coverPhotoUrl" style="position: relative;">
-                            <img [src]="coverPhotoUrl" alt="cover photo" class="cover-photo">
-
-                            <!-- <img src="assets/images/delete-icon.png" class="cover-photo-remove-btn"  /> -->
-
-                            <label for="uplaod_img" class="cover-photo-change">
-                                Change
-                            </label>
-                            <input type="file" name="" class="d-none" id="uplaod_img"
-                                (change)="selectCoverPhoto($event)" accept="image/*">
-                            <!-- <p class="fz14 medium_font text-secondary mb-5">
-                                or drag them in
-                            </p> -->
-                        </div>
-
-                        <!-- property photos  -->
-                        <br>
-                        <div appImageDrag (files)="filesDropped($event)">
-                            <div class="border text-center p-5 rounded" *ngIf="propertyPhotos.length===0">
-                                <label for="upload_property_photos" class="mt-5">
-                                    <p class="btn upload_btn" *ngIf="!isPhotosUploading">
-                                        <img src="assets/images/upload-img.png" class="ms-2 fz15" alt="" />
-                                        Upload Photos
-                                    </p>
-
-                                    <div class="btn upload_btn" *ngIf="isPhotosUploading">
-                                        <!-- <img src="assets/images/upload-img.png" class="ms-2 fz15" alt="" /> -->
-                                        <div class="spinner-border text-info spinner-border-sm"></div>
-                                        Uploading
-                                    </div>
-                                </label>
-                                <input type="file" name="" class="d-none" id="upload_property_photos" multiple
-                                    (change)="selectPropertyPhotos($event)">
-                                <p class="fz14 medium_font text-secondary mb-5">
-                                    or drag them in
-                                </p>
-                            </div>
-                        </div>
-                        <!-- photos view  -->
-                        <ng-container *ngIf="propertyPhotos.length">
-                            <div class="drag" appImageDrag (files)="filesDropped($event)">
-                                <div class="border text-center p-3 pt-4 rounded">
-                                    <div class="row mb-4">
-                                        <ng-container *ngFor="let photo of propertyPhotos">
-                                            <div class="col-md-6">
-                                                <div class="col_selector position-relative">
-                                                    <img [src]="photo.image_url" class="property-photo">
-                                                    <img src="assets/images/delete-icon.png" class="upload_delete_icon"
-                                                        (click)="removePhoto(photo)" *ngIf="!image?.isDeleting">
-                                                    <div class="upload_delete_icon" *ngIf="image?.isDeleting">
-                                                        <div class="spinner-border text-info spinner-border-sm"></div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </ng-container>
-                                    </div>
-
-                                    <label for="upload_property_photos" class="">
-                                        <p class="btn upload_btn" *ngIf="!isPhotosUploading">
-                                            <img src="assets/images/upload-img.png" class="ms-2 fz15" alt="" />
-                                            Add another
-                                        </p>
-                                        <div class="btn upload_btn" *ngIf="isPhotosUploading">
-                                            <!-- <img src="assets/images/upload-img.png" class="ms-2 fz15" alt="" /> -->
-                                            <div class="spinner-border text-info spinner-border-sm"></div>
-                                            Uploading
-                                        </div>
-                                    </label>
-                                    <input type="file" name="" class="d-none" id="upload_property_photos" multiple
-                                        (change)="selectPropertyPhotos($event)" accept="image/*">
-
-                                    <p class="fz14 medium_font text-secondary mb-4">
-                                        or drag them in
-                                    </p>
-                                </div>
-                            </div>
-                        </ng-container>
-                    </div>
-
-                    <div class="d-flex justify-content-between align-items-center mb-5 p-4 mt-0 back_next_part">
-                        <a href="javascript:void(0);" class="blue_color d-flex align-items-center"
-                            [routerLink]="[step7Route.url, encryptedPropertyId]">
-                            <img src="assets/images/blue-left-arrow.png" class="me-2" alt="" accept="image/*"/> Back
-                        </a>
-                        <button class="btn custom_btn" *ngIf="!isNextLoading" (click)="addPropertyPhotos()"
-                            [disabled]="!coverPhotoUrl || !propertyPhotos.length">
-                            Next
-                        </button>
-                        <button class="btn custom_btn" *ngIf="isNextLoading">
-                            Next
-                            <div *ngIf="!isSavingExit" class="spinner-border text-info spinner-border-sm"></div>
-                        </button>
-                    </div>
+            <div class="border text-center p-5 rounded" *ngIf="!coverPhotoUrl">
+              <label for="uplaod_img" class="mt-5">
+                <p
+                  class="btn upload_btn semi_font fz15"
+                  *ngIf="!isCoverPhotoUploading"
+                >
+                  <img
+                    src="assets/images/upload-img.png"
+                    class="me-2 fz15"
+                    alt=""
+                  />
+                  Upload Cover Photo
+                </p>
+                <div
+                  class="btn upload_btn semi_font fz15"
+                  *ngIf="isCoverPhotoUploading"
+                >
+                  <!-- <img src="assets/images/upload-img.png" class="me-2 fz15" alt="" /> -->
+                  <div class="spinner-border text-info spinner-border-sm"></div>
+                  Uploading
                 </div>
+              </label>
+              <input
+                type="file"
+                name=""
+                class="d-none"
+                id="uplaod_img"
+                (change)="selectCoverPhoto($event)"
+                accept="image/*"
+              />
+              <!-- <p class="fz14 medium_font text-secondary mb-5">
+                                or drag them in
+                            </p> -->
+            </div>
 
+            <div
+              class="border text-center rounded"
+              *ngIf="coverPhotoUrl"
+              style="position: relative"
+            >
+              <img
+                [src]="coverPhotoUrl"
+                alt="cover photo"
+                class="cover-photo"
+              />
 
-                <!-- <div class="d-flex justify-content-between align-items-center mb-5 mt-0 bg-white back_next_part p-4">
+              <!-- <img src="assets/images/delete-icon.png" class="cover-photo-remove-btn"  /> -->
+
+              <label for="uplaod_img" class="cover-photo-change">
+                Change
+              </label>
+              <input
+                type="file"
+                name=""
+                class="d-none"
+                id="uplaod_img"
+                (change)="selectCoverPhoto($event)"
+                accept="image/*"
+              />
+              <!-- <p class="fz14 medium_font text-secondary mb-5">
+                                or drag them in
+                            </p> -->
+            </div>
+
+            <!-- property photos  -->
+            <br />
+            <div appImageDrag (files)="filesDropped($event)">
+              <div
+                class="border text-center p-5 rounded"
+                *ngIf="propertyPhotos.length === 0"
+              >
+                <label for="upload_property_photos" class="mt-5">
+                  <p
+                    class="btn upload_btn semi_font fz15"
+                    *ngIf="!isPhotosUploading"
+                  >
+                    <img
+                      src="assets/images/upload-img.png"
+                      class="me-2 fz15"
+                      alt=""
+                    />
+                    Upload Photos
+                  </p>
+
+                  <div
+                    class="btn upload_btn semi_font fz15"
+                    *ngIf="isPhotosUploading"
+                  >
+                    <!-- <img src="assets/images/upload-img.png" class="me-2 fz15" alt="" /> -->
+                    <div
+                      class="spinner-border text-info spinner-border-sm"
+                    ></div>
+                    Uploading
+                  </div>
+                </label>
+                <input
+                  type="file"
+                  name=""
+                  class="d-none"
+                  id="upload_property_photos"
+                  multiple
+                  (change)="selectPropertyPhotos($event)"
+                />
+                <p class="fz14 medium_font text-secondary mb-5">
+                  or drag them in
+                </p>
+              </div>
+            </div>
+            <!-- photos view  -->
+            <ng-container *ngIf="propertyPhotos.length">
+              <div class="drag" appImageDrag (files)="filesDropped($event)">
+                <div class="border text-center p-3 pt-4 rounded">
+                  <div class="row mb-4">
+                    <ng-container *ngFor="let photo of propertyPhotos">
+                      <div class="col-md-6">
+                        <div class="col_selector position-relative">
+                          <img [src]="photo.image_url" class="property-photo" />
+                          <img
+                            src="assets/images/delete-icon.png"
+                            class="upload_delete_icon"
+                            (click)="removePhoto(photo)"
+                            *ngIf="!image?.isDeleting"
+                          />
+                          <div
+                            class="upload_delete_icon"
+                            *ngIf="image?.isDeleting"
+                          >
+                            <div
+                              class="spinner-border text-info spinner-border-sm"
+                            ></div>
+                          </div>
+                        </div>
+                      </div>
+                    </ng-container>
+                  </div>
+
+                  <label for="upload_property_photos" class="">
+                    <p
+                      class="btn upload_btn semi_font fz15"
+                      *ngIf="!isPhotosUploading"
+                    >
+                      <img
+                        src="assets/images/upload-img.png"
+                        class="me-2 fz15"
+                        alt=""
+                      />
+                      Add another
+                    </p>
+                    <div
+                      class="btn upload_btn semi_font fz15"
+                      *ngIf="isPhotosUploading"
+                    >
+                      <!-- <img src="assets/images/upload-img.png" class="me-2 fz15" alt="" /> -->
+                      <div
+                        class="spinner-border text-info spinner-border-sm"
+                      ></div>
+                      Uploading
+                    </div>
+                  </label>
+                  <input
+                    type="file"
+                    name=""
+                    class="d-none"
+                    id="upload_property_photos"
+                    multiple
+                    (change)="selectPropertyPhotos($event)"
+                    accept="image/*"
+                  />
+
+                  <p class="fz14 medium_font text-secondary mb-4">
+                    or drag them in
+                  </p>
+                </div>
+              </div>
+            </ng-container>
+          </div>
+
+          <div
+            class="d-flex justify-content-between align-items-center mb-5 p-4 mt-0 back_next_part"
+          >
+            <a
+              href="javascript:void(0);"
+              class="blue_color d-flex align-items-center"
+              [routerLink]="[step7Route.url, encryptedPropertyId]"
+            >
+              <img
+                src="assets/images/blue-left-arrow.png"
+                class="me-2"
+                alt=""
+                accept="image/*"
+              />
+              Back
+            </a>
+            <button
+              class="btn custom_btn semi_font fz15"
+              *ngIf="!isNextLoading"
+              (click)="addPropertyPhotos()"
+              [disabled]="!coverPhotoUrl || !propertyPhotos.length"
+            >
+              Next
+            </button>
+            <button class="btn custom_btn semi_font fz15" *ngIf="isNextLoading">
+              Next
+              <div
+                *ngIf="!isSavingExit"
+                class="spinner-border text-info spinner-border-sm"
+              ></div>
+            </button>
+          </div>
+        </div>
+
+        <!-- <div class="d-flex justify-content-between align-items-center mb-5 mt-0 bg-white back_next_part p-4">
                     <a href="javascript:void(0);" class="blue_color d-flex align-items-center"><img
                             src="assets/images/blue-left-arrow.png" class="me-2" alt="" /> Back
                     </a>
                     <button class="btn custom_btn">Next</button>
                 </div> -->
-            </div>
-            <div class="col-md-5">
-                <div class="col_selector m-5 p-4 bg-white right_side_content">
-                    <div class="mb_20">
-                        <img src="assets/images/idea.png" alt="" />
-                    </div>
-                    <h4 class="fz18 medium_font mb_20">Tips for quality photos</h4>
-                    <ul class="fz14 text-secondary">
-                        <li>Declutter your space</li>
-                        <li>Use natural daylight and avoid flash</li>
-                        <li>Shoot from room corners in landscape mode</li>
-                        <li>Balance visible floor and ceiling space</li>
-                        <li>Highlight special decor and amenities</li>
-                        <li>Add photos of every room guests can access</li>
-                    </ul>
-                </div>
-            </div>
+      </div>
+      <div class="col-md-5">
+        <div class="col_selector m-5 p-4 bg-white right_side_content">
+          <div class="mb_20">
+            <img src="assets/images/idea.png" alt="" />
+          </div>
+          <h4 class="fz18 medium_font mb_20">Tips for quality photos</h4>
+          <ul class="fz14 text-secondary">
+            <li>Declutter your space</li>
+            <li>Use natural daylight and avoid flash</li>
+            <li>Shoot from room corners in landscape mode</li>
+            <li>Balance visible floor and ceiling space</li>
+            <li>Highlight special decor and amenities</li>
+            <li>Add photos of every room guests can access</li>
+          </ul>
         </div>
+      </div>
     </div>
+  </div>
 </section>

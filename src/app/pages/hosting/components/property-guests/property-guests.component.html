@@ -27,7 +27,7 @@
             </p>
           </div>
 
-          <div class="custom_check circle_check mb-4" *ngIf="isBeachHouseShow">
+          <div class="custom_check mb-4" *ngIf="isBeachHouseShow">
             <div class="form-group d-flex align-items-center">
               <input
                 type="checkbox"
@@ -88,13 +88,13 @@
                 />
                 <label class="form-check-label fz15" for="isPrivateIndividual0">
                   I’m hosting as part of a business
-                  <p class="fz14 regular_font mb-3">
+                  <p class="fz14 regular_font mb-3 ms-0">
                     You’re typically a business if hosting on Airbnb is your
                     primary profession or source of income, or if you’re part of
                     an established business, such as a boutique hotel or
                     property management company.
                   </p>
-                  <p class="fz14 regular_font mb-3">
+                  <p class="fz14 regular_font mb-3 ms-0">
                     Are you based in the European Economic Area (EEA)? To comply
                     with your legal obligations as a business, please fill in
                     the business details section in your account after you
@@ -114,7 +114,7 @@
                 />
                 <label class="form-check-label fz15" for="isPrivateIndividual1">
                   I’m hosting as a private individual
-                  <p class="fz14 regular_font mb-3">
+                  <p class="fz14 regular_font mb-3 ms-0">
                     You’re typically a private individual if hosting on Airbnb
                     isn’t your primary profession or source of income.
                   </p>
@@ -126,7 +126,7 @@
             <p class="fz14 regular_font text-secondary">
               This information helps you get the right features for how you host
               and helps Airbnb comply with consumer protection laws.
-              <a href="javascript:void(0);" class="blue_color"
+              <a href="javascript:void(0);" class="blue_color fz14 regular_font"
                 ><u>Learn more</u></a
               >
             </p>
@@ -137,20 +137,24 @@
         >
           <a
             href="javascript:void(0);"
-            class="blue_color d-flex align-items-center"
+            class="blue_color d-flex align-items-center medium_font fz18"
             routerLink="{{ startRoute.url }}"
           >
-            <img src="assets/images/blue-left-arrow.png" class="me-2" alt="" />
+            <img
+              src="assets/images/blue-left-arrow.png"
+              class="me-2 mb-1"
+              alt=""
+            />
             Back</a
           >
           <button
-            class="btn custom_btn"
+            class="btn custom_btn semi_font fz18"
             *ngIf="!isNextLoading"
             (click)="addPropertyTypes()"
           >
             Next
           </button>
-          <button class="btn custom_btn" *ngIf="isNextLoading">
+          <button class="btn custom_btn semi_font fz18" *ngIf="isNextLoading">
             Next
             <div
               *ngIf="!isSavingExit"
@@ -160,7 +164,9 @@
         </div>
       </div>
       <div class="col-md-5">
-        <div class="col_selector p-4 mx-4 bg-white right_side_content">
+        <div
+          class="col_selector p-4 mx-4 bg-white right_side_content box_shadow"
+        >
           <div class="mb_20">
             <img src="assets/images/idea.png" alt="" />
           </div>

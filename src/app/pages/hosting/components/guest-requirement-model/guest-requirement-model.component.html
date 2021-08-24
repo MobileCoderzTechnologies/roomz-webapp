@@ -1,69 +1,143 @@
 <div id="edit-popup">
   <div class="modal-dialog">
-    <div class="modal-content">
+    <div class="modal-content border-0 pt-0">
       <!-- <span></span>
       <button type="button" >
         <span aria-hidden="true">&times;</span>
       </button> -->
+      <button
+        type="button"
+        class="close fz20 me-0 pe-0 font-weight-bold"
+        (click)="closeDialog()"
+      >
+        <span aria-hidden="true" style="color: #b2b2b2">&#10005;</span>
+      </button>
       <div class="">
-        <h4 class="modal-title" id="myModalLabel">Add more guest requirements</h4>
-        <p>Only guests who meet your requirements can book instantly- everyone else must send a request.</p>
-        <div class="d-flex justify-content-between toggle-wrap" style=" border-bottom: 1px solid #f2f2f2;">
-          <p>Confirmed email address</p>
+        <h4 class="modal-title fz30 mb-3" id="myModalLabel">
+          Add more guest requirements
+        </h4>
+        <p class="fz16 regular_font">
+          Only guests who meet your requirements can book instantly- everyone
+          else must send a request.
+        </p>
+        <div
+          class="d-flex justify-content-between toggle-wrap align-items-center"
+        >
+          <p class="fz15 medium_font mb-0">Confirmed email address</p>
           <label class="switch">
-            <input type="checkbox" [checked]="guestRequirement.isEmailConfirmed" (change)="guestRequirement.isEmailConfirmed = !guestRequirement.isEmailConfirmed">
+            <input
+              type="checkbox"
+              [checked]="guestRequirement.isEmailConfirmed"
+              (change)="
+                guestRequirement.isEmailConfirmed = !guestRequirement.isEmailConfirmed
+              "
+            />
             <span class="slider round"></span>
           </label>
         </div>
+        <hr />
 
-        <div class="d-flex justify-content-between toggle-wrap" style=" border-bottom: 1px solid #f2f2f2;">
-          <p>Confirmed phone number</p>
+        <div
+          class="d-flex justify-content-between toggle-wrap align-items-center"
+        >
+          <p class="fz15 medium_font mb-0">Confirmed phone number</p>
           <label class="switch">
-            <input type="checkbox" [checked]="guestRequirement.isPhoneConfirmed" (change)="guestRequirement.isPhoneConfirmed = !guestRequirement.isPhoneConfirmed">
+            <input
+              type="checkbox"
+              [checked]="guestRequirement.isPhoneConfirmed"
+              (change)="
+                guestRequirement.isPhoneConfirmed = !guestRequirement.isPhoneConfirmed
+              "
+            />
             <span class="slider round"></span>
           </label>
         </div>
-        
+        <hr />
 
-        <div class="d-flex justify-content-between toggle-wrap" style=" border-bottom: 1px solid #f2f2f2;">
-          <p>Payment information</p>
+        <div
+          class="d-flex justify-content-between toggle-wrap align-items-center"
+        >
+          <p class="fz15 medium_font mb-0">Payment information</p>
           <label class="switch">
-            <input type="checkbox" [checked]="guestRequirement.isPaymentInformation" (change)="guestRequirement.isPaymentInformation = !guestRequirement.isPaymentInformation">
+            <input
+              type="checkbox"
+              [checked]="guestRequirement.isPaymentInformation"
+              (change)="
+                guestRequirement.isPaymentInformation = !guestRequirement.isPaymentInformation
+              "
+            />
             <span class="slider round"></span>
           </label>
         </div>
+        <hr />
 
-        <div class="d-flex justify-content-between toggle-wrap" style=" border-bottom: 1px solid #f2f2f2;">
-          <p>Agree to your House rules</p>
+        <div
+          class="d-flex justify-content-between toggle-wrap align-items-center"
+        >
+          <p class="fz15 medium_font mb-0">Agree to your House rules</p>
           <label class="switch">
-            <input type="checkbox" [checked]="guestRequirement.isAgreeHR" (change)="guestRequirement.isAgreeHR = !guestRequirement.isAgreeHR">
+            <input
+              type="checkbox"
+              [checked]="guestRequirement.isAgreeHR"
+              (change)="
+                guestRequirement.isAgreeHR = !guestRequirement.isAgreeHR
+              "
+            />
             <span class="slider round"></span>
           </label>
         </div>
+        <hr />
 
-        <div class="d-flex justify-content-between toggle-wrap" style=" border-bottom: 1px solid #f2f2f2;">
-          <p>Tell you their trip purpose</p>
+        <div
+          class="d-flex justify-content-between toggle-wrap align-items-center"
+        >
+          <p class="fz15 medium_font mb-0">Tell you their trip purpose</p>
           <label class="switch">
-            <input type="checkbox" [checked]="guestRequirement.isTripPurpose" (change)="guestRequirement.isTripPurpose= !guestRequirement.isTripPurpose">
+            <input
+              type="checkbox"
+              [checked]="guestRequirement.isTripPurpose"
+              (change)="
+                guestRequirement.isTripPurpose = !guestRequirement.isTripPurpose
+              "
+            />
             <span class="slider round"></span>
           </label>
         </div>
+        <hr />
 
-        <div class="d-flex justify-content-between toggle-wrap" style=" border-bottom: 1px solid #f2f2f2;">
-          <p>Government-issued ID</p>
+        <div
+          class="d-flex justify-content-between toggle-wrap align-items-center"
+        >
+          <p class="fz15 medium_font mb-0">Government-issued ID</p>
           <label class="switch">
-            <input type="checkbox" [checked]="guestRequirement.isIdSubmitted" (change)="guestRequirement.isIdSubmitted = !guestRequirement.isIdSubmitted">
+            <input
+              type="checkbox"
+              [checked]="guestRequirement.isIdSubmitted"
+              (change)="
+                guestRequirement.isIdSubmitted = !guestRequirement.isIdSubmitted
+              "
+            />
             <span class="slider round"></span>
           </label>
         </div>
+        <hr />
 
-        <div class="d-flex justify-content-between toggle-wrap">
-          <p>Recommendation from other host</p>
+        <div
+          class="d-flex justify-content-between toggle-wrap align-items-center"
+        >
+          <p class="fz15 medium_font mb-0">Recommendation from other host</p>
           <label class="switch">
-            <input type="checkbox" [checked]="guestRequirement.isRecommendedFromOH" (change)="guestRequirement.isRecommendedFromOH = !guestRequirement.isRecommendedFromOH">
+            <input
+              type="checkbox"
+              [checked]="guestRequirement.isRecommendedFromOH"
+              (change)="
+                guestRequirement.isRecommendedFromOH = !guestRequirement.isRecommendedFromOH
+              "
+            />
             <span class="slider round"></span>
           </label>
         </div>
+        <hr />
         <button class="btn custom_btn mt-5" (click)="onSave()">Save</button>
       </div>
     </div>

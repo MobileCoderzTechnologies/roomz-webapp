@@ -1,24 +1,39 @@
 <!-- popup  -->
 <div id="details-popup">
   <div class="modal-dialog">
-      <div class="modal-content">
-          <button type="button" class="close" (click)="closeDialog()">
-              <span aria-hidden="true">&times;</span>
+    <div class="modal-content border-0">
+      <button
+        type="button"
+        class="close fz20 me-0 pe-0 font-weight-bold"
+        (click)="closeDialog()"
+      >
+        <span aria-hidden="true" style="color: #b2b2b2">&#10005;</span>
+      </button>
+      <div class="">
+        <h4 class="modal-title mb-2 fz30" id="myModalLabel">
+          {{ ruleLineObj[rule?.rule_id] }}
+        </h4>
+        <p class="fz16 regular_font">
+          What features of your space might be dangerous to children or easily
+          damaged?
+        </p>
+        <div class="">
+          <textarea
+            class="w-100"
+            [formControl]="cancelReason"
+            style="height: 100px; border: 1px solid #ccc; border-radius: 10px"
+          ></textarea>
+          <p class="text-end fz15 blue_color regular_font">150 words</p>
+        </div>
+        <div class="bottom-wrap mt-5">
+          <button class="btn custom_btn semi_font fz18" (click)="onSubmit()">
+            Done
           </button>
-          <div class="">
-              <h4 class="modal-title mb-2" id="myModalLabel">{{ruleLineObj[rule?.rule_id]}}</h4>
-              <p>What features of your space might be dangerous to children or easily damaged?</p>
-              <div class="">
-                  <textarea class="w-100" [formControl]="cancelReason"
-                      style="height: 100px; border: 1px solid #ccc;border-radius: 10px;"></textarea>
-                  <p class="text-end fz15 blue_color">500 words</p>
-              </div>
-              <div class=" bottom-wrap">
-                  <button class="btn custom_btn mt-5" (click)="onSubmit()">Done</button>
-                  <button class="btn custom_btn mt-5" (click)="closeDialog()">Cancel</button>
-              </div>
-
-          </div>
+          <button class="btn custom_btn semi_font fz18" (click)="closeDialog()">
+            Cancel
+          </button>
+        </div>
       </div>
+    </div>
   </div>
 </div>

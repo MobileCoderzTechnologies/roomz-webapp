@@ -1,105 +1,163 @@
 <section class="kind_of_place price-your-space">
-    <div class="container">
-        <div class="row">
-            <div class="col-md-7">
-                <div class="bg-white">
-                    <div class="col_selector bg-white mt-5 p-4">
-                        <h3 class="fz30 mb-4 semi_font">Okay, now let's review your settings</h3>
-                        <p class="fz15 regular_font">
-                            You can also make changes to your listing after you publish.</p>
-                    </div>
-                    <div class="col_selector bg-white p-4 pt-0">
-                        <div class="inner-col">
-                            <h5 class="bold_font mb-3">Your listing</h5>
-                            <div class="">
-                                <!-- <img src="assets/images/herne-img.png" class="img-fluid"> -->
-                                <img [src]="coverImage" class="img-fluid">
-                            </div>
-                            <div class="d-flex justify-content-between mt-3">
-                                <h6 class="bold_font"> {{property?.name}} </h6>
-                                <a href="" class="blue_color" style="text-decoration: underline;"
-                                    [routerLink]="[step9Route.url, encryptedPropertyId]"
-                                    [queryParams]="{back: 21}">Preview listing</a>
-                            </div>
-                            <p> {{property?.type?.property_type}} </p>
-                        </div>
-                        <hr>
-                        <div class="inner-col">
-                            <h5 class="bold_font mb-3">Your Settings</h5>
-                            <div class="d-flex justify-content-between mt-3">
-                                <h6 class="bold_font">Guest requirements</h6>
-                                <a href="" class="blue_color" style="text-decoration: underline;"
-                                    [routerLink]="[step6Route.url, encryptedPropertyId]"
-                                    [queryParams]="{back: 21}">Edit</a>
-                            </div>
-                            <p *ngIf="property?.is_email_confirmed"> Confirmed email address</p>
-                            <p *ngIf="property?.is_phone_confirmed"> Confirmed phone number</p>
-                            <p *ngIf="property?.is_payment_information">Payment information</p>
-                            <p *ngIf="property?.is_agree_hr">Agree to your House rules</p>
-                            <p *ngIf="property?.is_trip_purpose">Tell you their trip purpose</p>
-                            <p *ngIf="property?.is_id_submitted">Government-issued ID submitted to Roomz</p>
-                            <p *ngIf="property?.is_recommended_from_oh">Recommendation from other hosts</p>
-                        </div>
-                        <hr>
-                        <div class="inner-col">
-                            <div class="d-flex justify-content-between mt-3">
-                                <h6 class="bold_font">House rules</h6>
-                                <a href="" class="blue_color" style="text-decoration: underline;"
-                                    [routerLink]="[step7Route.url, encryptedPropertyId]"
-                                    [queryParams]="{back: 21}">Edit</a>
-                            </div>
+  <div class="container">
+    <div class="row">
+      <div class="col-md-7">
+        <div class="bg-white">
+          <div class="col_selector bg-white mt-5 p-4">
+            <h3 class="fz30 mb-4 semi_font">
+              Okay, now let's review your settings
+            </h3>
+            <p class="fz15 regular_font">
+              You can also make changes to your listing after you publish.
+            </p>
+          </div>
+          <div class="col_selector bg-white p-4 pt-0">
+            <div class="inner-col">
+              <h5 class="bold_font mb-3">Your listing</h5>
+              <div class="">
+                <!-- <img src="assets/images/herne-img.png" class="img-fluid"> -->
+                <img [src]="coverImage" class="img-fluid" />
+              </div>
+              <div class="d-flex justify-content-between mt-3">
+                <h6 class="bold_font">{{ property?.name }}</h6>
+                <a
+                  href=""
+                  class="blue_color"
+                  style="text-decoration: underline"
+                  [routerLink]="[step9Route.url, encryptedPropertyId]"
+                  [queryParams]="{ back: 21 }"
+                  >Preview listing</a
+                >
+              </div>
+              <p>{{ property?.type?.property_type }}</p>
+            </div>
+            <hr />
+            <div class="inner-col">
+              <h5 class="bold_font mb-3">Your Settings</h5>
+              <div class="d-flex justify-content-between mt-3">
+                <h6 class="bold_font">Guest requirements</h6>
+                <a
+                  href=""
+                  class="blue_color"
+                  style="text-decoration: underline"
+                  [routerLink]="[step6Route.url, encryptedPropertyId]"
+                  [queryParams]="{ back: 21 }"
+                  >Edit</a
+                >
+              </div>
+              <p *ngIf="property?.is_email_confirmed">
+                Confirmed email address
+              </p>
+              <p *ngIf="property?.is_phone_confirmed">Confirmed phone number</p>
+              <p *ngIf="property?.is_payment_information">
+                Payment information
+              </p>
+              <p *ngIf="property?.is_agree_hr">Agree to your House rules</p>
+              <p *ngIf="property?.is_trip_purpose">
+                Tell you their trip purpose
+              </p>
+              <p *ngIf="property?.is_id_submitted">
+                Government-issued ID submitted to Roomz
+              </p>
+              <p *ngIf="property?.is_recommended_from_oh">
+                Recommendation from other hosts
+              </p>
+            </div>
+            <hr />
+            <div class="inner-col">
+              <div class="d-flex justify-content-between mt-3">
+                <h6 class="bold_font">House rules</h6>
+                <a
+                  href=""
+                  class="blue_color"
+                  style="text-decoration: underline"
+                  [routerLink]="[step7Route.url, encryptedPropertyId]"
+                  [queryParams]="{ back: 21 }"
+                  >Edit</a
+                >
+              </div>
 
-                            <ng-container *ngFor="let rule of property?.rules">
-                                <p *ngIf="(!rule?.is_cancelled && !rule.is_additional)|| rule?.is_additional">
-                                    {{rule?.rule?rule.rule?.rule: rule.description}}
-                                </p>
-                            </ng-container>
+              <ng-container *ngFor="let rule of property?.rules">
+                <p
+                  *ngIf="
+                    (!rule?.is_cancelled && !rule.is_additional) ||
+                    rule?.is_additional
+                  "
+                >
+                  {{ rule?.rule ? rule.rule?.rule : rule.description }}
+                </p>
+              </ng-container>
+            </div>
+            <hr />
+            <div class="inner-col">
+              <div class="d-flex justify-content-between mt-3">
+                <h6 class="bold_font">Availability</h6>
+                <a
+                  href=""
+                  class="blue_color"
+                  style="text-decoration: underline"
+                  [routerLink]="[step14Route.url, encryptedPropertyId]"
+                  [queryParams]="{ back: 21 }"
+                  >Edit</a
+                >
+              </div>
+              <ng-container *ngFor="let an of advanceNotice">
+                <p *ngIf="property?.advance_notice === an.value">
+                  Advance notice: {{ an.display }}
+                </p>
+              </ng-container>
 
-                        </div>
-                        <hr>
-                        <div class="inner-col">
-                            <div class="d-flex justify-content-between mt-3">
-                                <h6 class="bold_font">Availability</h6>
-                                <a href="" class="blue_color" style="text-decoration: underline;"
-                                    [routerLink]="[step14Route.url, encryptedPropertyId]"
-                                    [queryParams]="{back: 21}">Edit</a>
-                            </div>
-                            <ng-container *ngFor="let an of advanceNotice">
-                                <p *ngIf="property?.advance_notice === an.value">Advance notice: {{an.display}}</p>
-                            </ng-container>
-
-                            <ng-container *ngFor="let fr of futureReservation">
-                                <p *ngIf="property?.guests_book_time === fr.value">Future reservations: {{fr.display}}
-                                </p>
-                            </ng-container>
-                            <p>Check-in/checkout:{{property?.ci_arrive_before | formatTime}}/
-                                {{property?.ci_leave_before | formatTime}} </p>
-                            <p>Min night: {{property?.min_stay}}</p>
-                        </div>
-                        <hr>
-                        <div class="inner-col">
-                            <div class="d-flex justify-content-between mt-3">
-                                <h6 class="bold_font">Base price</h6>
-                                <a href="" class="blue_color" style="text-decoration: underline;"
-                                    [routerLink]="[step16Route.url, encryptedPropertyId]"
-                                    [queryParams]="{back: 21}">Edit</a>
-                            </div>
-                            <p>$ {{property?.base_price}} per night</p>
-                            <p>Roomz will deduct a 3% service free from your payout.<br> this helps provide services
-                                like payments processing,<br> liability insurance, and 24/7 support.</p>
-                        </div>
-                        <hr>
-                        <div class="inner-col">
-                            <div class="d-flex justify-content-between mt-3">
-                                <h6 class="bold_font">Additional pricing</h6>
-                                <a href="" data-toggle="modal" data-target="#discount-popup" class="blue_color"
-                                    style="text-decoration: underline;">Edit</a>
-                            </div>
-                            <p>Weekly discount: {{additionalPriceData.weekly_discount}}%</p>
-                            <p>Monthly discount: {{additionalPriceData.monthly_discount}}%</p>
-                        </div>
-                    </div>
-                    <!-- <hr>
+              <ng-container *ngFor="let fr of futureReservation">
+                <p *ngIf="property?.guests_book_time === fr.value">
+                  Future reservations: {{ fr.display }}
+                </p>
+              </ng-container>
+              <p>
+                Check-in/checkout:{{ property?.ci_arrive_before | formatTime }}/
+                {{ property?.ci_leave_before | formatTime }}
+              </p>
+              <p>Min night: {{ property?.min_stay }}</p>
+            </div>
+            <hr />
+            <div class="inner-col">
+              <div class="d-flex justify-content-between mt-3">
+                <h6 class="bold_font">Base price</h6>
+                <a
+                  href=""
+                  class="blue_color"
+                  style="text-decoration: underline"
+                  [routerLink]="[step16Route.url, encryptedPropertyId]"
+                  [queryParams]="{ back: 21 }"
+                  >Edit</a
+                >
+              </div>
+              <p>$ {{ property?.base_price }} per night</p>
+              <p>
+                Roomz will deduct a 3% service free from your payout.<br />
+                this helps provide services like payments processing,<br />
+                liability insurance, and 24/7 support.
+              </p>
+            </div>
+            <hr />
+            <div class="inner-col">
+              <div class="d-flex justify-content-between mt-3">
+                <h6 class="bold_font">Additional pricing</h6>
+                <a
+                  href=""
+                  data-toggle="modal"
+                  data-target="#discount-popup"
+                  class="blue_color"
+                  style="text-decoration: underline"
+                  >Edit</a
+                >
+              </div>
+              <p>Weekly discount: {{ additionalPriceData.weekly_discount }}%</p>
+              <p>
+                Monthly discount: {{ additionalPriceData.monthly_discount }}%
+              </p>
+            </div>
+          </div>
+          <!-- <hr>
                     <div class="d-flex justify-content-between align-items-center mb-5 mt-4 p-4">
                         <a href="javascript:void(0);" class="blue_color d-flex align-items-center"><img
                                 src="assets/images/blue-left-arrow.png" class="me-2" alt="" /> Back
@@ -107,62 +165,115 @@
                         <button class="btn custom_btn">Next</button>
                     </div> -->
 
-                    <div class="d-flex justify-content-between align-items-center mb-5 p-4 mt-0 back_next_part">
-                        <a href="javascript:void(0);" class="blue_color d-flex align-items-center"
-                            [routerLink]="[step20Route.url, encryptedPropertyId]">
-                            <img src="assets/images/blue-left-arrow.png" class="me-2" alt="" /> Back
-                        </a>
-                        <button class="btn custom_btn" *ngIf="!isNextLoading" (click)="onNext()">
-                            Next
-                        </button>
-                        <button class="btn custom_btn" *ngIf="isNextLoading">
-                            Next
-                            <div class="spinner-border text-info spinner-border-sm"></div>
-                        </button>
-                    </div>
-                </div>
-            </div>
+          <div
+            class="d-flex justify-content-between align-items-center mb-5 p-4 mt-0 back_next_part"
+          >
+            <a
+              href="javascript:void(0);"
+              class="blue_color d-flex align-items-center"
+              [routerLink]="[step20Route.url, encryptedPropertyId]"
+            >
+              <img
+                src="assets/images/blue-left-arrow.png"
+                class="me-2"
+                alt=""
+              />
+              Back
+            </a>
+            <button
+              class="btn custom_btn semi_font"
+              *ngIf="!isNextLoading"
+              (click)="onNext()"
+            >
+              Next
+            </button>
+            <button class="btn custom_btn semi_font" *ngIf="isNextLoading">
+              Next
+              <div class="spinner-border text-info spinner-border-sm"></div>
+            </button>
+          </div>
         </div>
+      </div>
     </div>
+  </div>
 </section>
 
-
-
 <!-- popup  -->
-<div class="modal fade" id="discount-popup" tabindex="-1" role="dialog" aria-labelledby="basicModal" aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                <span aria-hidden="true">&times;</span>
+<div
+  class="modal fade"
+  id="discount-popup"
+  tabindex="-1"
+  role="dialog"
+  aria-labelledby="basicModal"
+  aria-hidden="true"
+>
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <button
+        type="button"
+        class="close"
+        data-dismiss="modal"
+        aria-label="Close"
+      >
+        <span aria-hidden="true">&times;</span>
+      </button>
+      <div class="">
+        <Form [formGroup]="additionalPriceForm">
+          <h4 class="modal-title" id="myModalLabel">
+            Set up discounts for long-term stays
+          </h4>
+          <p>
+            Adding a weekly or monthly discount can help you get longer
+            reservations.
+          </p>
+          <div class="my-4">
+            <label for="" class="mb-2 fz18 medium_font"
+              >Weekly discount (7 days or more)</label
+            >
+            <input
+              type="number"
+              class="form-control custom_form_control mb-2 w-75"
+              placeholder="%"
+              formControlName="weekly_discount"
+              (input)="onSetDiscounts('weekly_discount', $event.target.value)"
+            />
+
+            <p class="fz14 regular_font mb-0">
+              Your average weekly price will be $350.
+            </p>
+            <p class="blue_color fz14 regular_font">Use tip: 21%</p>
+          </div>
+          <div class="my-4">
+            <label for="" class="mb-2 fz18 medium_font"
+              >Monthly discount (28 days or more)</label
+            >
+            <input
+              type="number"
+              class="form-control custom_form_control mb-2 w-75"
+              placeholder="%"
+              formControlName="monthly_discount"
+              (input)="onSetDiscounts('monthly_discount', $event.target.value)"
+            />
+
+            <p class="fz14 regular_font mb-0">
+              Your average monthly price will be $1,520.
+            </p>
+            <p class="blue_color fz14 regular_font">Use tip: 49%</p>
+          </div>
+          <div class="bottom-wrap mt-3">
+            <button
+              class="btn custom_btn me-3"
+              [disabled]="additionalPriceForm.invalid"
+              data-dismiss="modal"
+              aria-label="Close"
+              (click)="saveAdditionalData()"
+            >
+              Save
             </button>
-            <div class="">
-                <Form [formGroup]="additionalPriceForm">
-                    <h4 class="modal-title" id="myModalLabel">Set up discounts for long-term stays</h4>
-                    <p>Adding a weekly or monthly discount can help you get longer reservations.
-                    </p>
-                    <div class="my-4">
-                        <label for="" class="mb-2">Weekly discount (7 days or more)</label>
-                        <input type="number" class="form-control custom_form_control mb-2 w-75" placeholder="%"
-                            formControlName="weekly_discount" (input)="onSetDiscounts('weekly_discount', $event.target.value)">
-
-                        <p class="fz14 regular_font mb-0">Your average weekly price will be $350.</p>
-                        <p class="blue_color">Use tip: 21%</p>
-                    </div>
-                    <div class="my-4">
-                        <label for="" class="mb-2">Monthly discount (28 days or more)</label>
-                        <input type="number" class="form-control custom_form_control mb-2 w-75" placeholder="%"
-                            formControlName="monthly_discount"(input)="onSetDiscounts('monthly_discount', $event.target.value)">
-
-                        <p class="fz14 regular_font mb-0">Your average monthly price will be $1,520.</p>
-                        <p class="blue_color">Use tip: 49%</p>
-                    </div>
-                    <div class=" bottom-wrap mt-3">
-                        <button class="btn custom_btn" [disabled]="additionalPriceForm.invalid" data-dismiss="modal" aria-label="Close"
-                            (click)="saveAdditionalData()">Save</button>
-                        <!-- <button class="btn custom_btn">Cancel</button> -->
-                    </div>
-                </Form>
-            </div>
-        </div>
+            <button class="btn custom_btn">Cancel</button>
+          </div>
+        </Form>
+      </div>
     </div>
+  </div>
 </div>

@@ -1,30 +1,49 @@
 <section class="kind_of_place price-your-space">
-    <div class="container">
-        <div class="row">
-            <div class="col-md-7">
-                <div class="bg-white">
-                    <div class="col_selector bg-white mt-5 p-4">
-                        <div class="py-5">
-                            <img src="assets/images/roomz-logo.png">
-                        </div>
-                        <h3 class="fz30 mb-4 semi_font">You are ready to publish!</h3>
-                        <p class="fz15 regular_font mb-0">
-                            You will be able to welcome your first guest starting may 18,2021.</p>
-                        <p> if you'd like to update your calendar or house rules, you can easily do all that after you
-                            hit publish. </p>
-                    </div>
-                    <div class=" bottom-wrap p-4 pb-5 publish-btn-wrap mb-5">
-                        <p>
-                            <button *ngIf="!isNextLoading" class="btn custom_btn bg-pink" (click)="onPublish()">Publish</button>
-                            <button *ngIf="isNextLoading" class="btn custom_btn bg-pink">
-                                Publish
-                                <div class="spinner-border text-info spinner-border-sm"></div>
-                            </button>
-                        </p>
-                        <p><button class="btn custom_btn" [routerLink]="[step21Route.url, encryptedPropertyId]">Cancel</button></p>
-                    </div>
-                </div>
+  <div class="container">
+    <div class="row">
+      <div class="col-md-7">
+        <div class="bg-white">
+          <div class="col_selector bg-white mt-5 p-4">
+            <div class="py-5">
+              <img src="assets/images/roomz-logo.png" />
             </div>
+            <h3 class="fz30 mb-4 semi_font">You are ready to publish!</h3>
+            <p class="fz15 regular_font mb-0">
+              You will be able to welcome your first guest starting may 18,2021.
+            </p>
+            <p>
+              if you'd like to update your calendar or house rules, you can
+              easily do all that after you hit publish.
+            </p>
+          </div>
+          <div class="bottom-wrap p-4 pb-5 publish-btn-wrap mb-5">
+            <p>
+              <button
+                *ngIf="!isNextLoading"
+                class="btn custom_btn bg-pink fz18 px-2 semi_font"
+                (click)="onPublish()"
+              >
+                Publish listing
+              </button>
+              <button
+                *ngIf="isNextLoading"
+                class="btn custom_btn bg-pink fz18 px-2 semi_font"
+              >
+                Publish listing
+                <div class="spinner-border text-info spinner-border-sm"></div>
+              </button>
+            </p>
+            <p>
+              <button
+                class="btn custom_btn fz18 semi_font px-2"
+                [routerLink]="[step21Route.url, encryptedPropertyId]"
+              >
+                Make changes
+              </button>
+            </p>
+          </div>
         </div>
+      </div>
     </div>
+  </div>
 </section>
