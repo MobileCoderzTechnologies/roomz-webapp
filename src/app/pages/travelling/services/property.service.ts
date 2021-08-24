@@ -22,7 +22,7 @@ export class PropertyService {
     params = params.set('page', page.toString());
     params = params.set('pageSize', pageSize.toString());
     params = params.set('search', search);
-    return this.$http.get(SEARCH_PROPERTY);
+    return this.$http.get(SEARCH_PROPERTY, params);
   }
 
   getPropertyDetails(id: number): Observable<any> {

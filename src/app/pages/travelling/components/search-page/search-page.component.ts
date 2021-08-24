@@ -39,7 +39,6 @@ export class SearchPageComponent implements OnInit {
   ngOnInit(): void {
     this.$activatedRoute.queryParams.subscribe(data => {
       this.searchTxt = data.s;
-      console.log(this.searchTxt);
     });
 
     this.getProperties();

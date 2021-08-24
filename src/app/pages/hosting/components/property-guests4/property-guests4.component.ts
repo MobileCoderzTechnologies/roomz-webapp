@@ -174,6 +174,12 @@ export class PropertyGuests4Component implements OnInit, AfterViewInit, OnDestro
   }
 
 
+  setRequiredError(fieldName: string, value: string): void {
+    if (value && !value.trim()) {
+      this.addressForm.controls[fieldName].setErrors({ required: true });
+    }
+  }
+
   addAddress(): void {
     this.isNextLoading = true;
     const requestData = this.addressForm.value;
