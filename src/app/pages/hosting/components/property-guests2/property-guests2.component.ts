@@ -284,7 +284,7 @@ export class PropertyGuests2Component implements OnInit, AfterViewInit, OnDestro
       this.$ps.clearPropertyData();
       this.$ps.setPropertyData(this.propertyData);
       if (this.isSavingExit) {
-        this.$router.navigateByUrl(MY_LISTING_ROUTE.path);
+        this.$router.navigateByUrl(MY_LISTING_ROUTE.url);
         return;
       }
       this.$router.navigate([this.step3Route.url, this.encryptedPropertyId]);

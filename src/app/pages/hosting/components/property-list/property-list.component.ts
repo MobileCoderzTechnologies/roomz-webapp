@@ -7,7 +7,7 @@ import { User } from 'src/app/modals/user.modal';
 import { AlertService } from 'src/app/modules/alert/alert.service';
 import { EncryptionService } from 'src/app/services/encryption.service';
 import Swal from 'sweetalert2';
-import { LISTING_HOME_ROUTE, STEP_1_ROUTE } from '../../constants/route.constant';
+import { LISTING_HOME_ROUTE, START_ROUTE, STEP_1_ROUTE } from '../../constants/route.constant';
 import { ProgressService } from '../../services/progress.service';
 import { PropertyListingService } from '../../services/property-listing.service';
 
@@ -252,7 +252,7 @@ export class PropertyListComponent implements OnInit, AfterViewInit {
 
       const encryptedPropertyId = this.$encryptionService.encrypt(propertyId);
 
-      this.$router.navigate([STEP_1_ROUTE.url, encryptedPropertyId]);
+      this.$router.navigate([START_ROUTE.url, encryptedPropertyId]);
     },
       err => {
         this.$alert.danger(err.message);

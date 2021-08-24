@@ -10,23 +10,25 @@
               <li>
                 <label class="cust-chk">
                   <input type="checkbox" />
-                  <span class="txt">Location</span>
+                  <span class="txt" *ngIf="!encryptedPropertyId">Location</span>
+                  <span class="txt" *ngIf="encryptedPropertyId" (click)="onEditGoScreen('location')">Location</span>
 
                 </label>
               </li>
 
-              <li>
+              <!-- <li>
                 <label class="cust-chk">
                   <input type="checkbox" />
                   <span class="txt">Building</span>
 
                 </label>
-              </li>
+              </li> -->
 
               <li>
                 <label class="cust-chk">
                   <input type="checkbox" />
-                  <span class="txt">Amenities</span>
+                  <span class="txt" *ngIf="!encryptedPropertyId">Amenities</span>
+                  <span class="txt" *ngIf="encryptedPropertyId" (click)="onEditGoScreen('amenities')">Amenities</span>
 
                 </label>
               </li>
@@ -34,8 +36,8 @@
               <li>
                 <label class="cust-chk">
                   <input type="checkbox" />
-                  <span class="txt">House Rules</span>
-
+                  <span class="txt" *ngIf="!encryptedPropertyId">House Rules</span>
+                  <span class="txt" *ngIf="encryptedPropertyId" (click)="onEditGoScreen('houseRules')">House Rules</span>
                 </label>
               </li>
 
@@ -81,7 +83,7 @@
             </ul>
 
             <div class="button-wrap">
-              <button class="btn submit-btn" routerLink="{{step1Route.url}}">
+              <button class="btn submit-btn" [routerLink]="[step1Route.url, encryptedPropertyId]">
                 Continue
               </button>
             </div>

@@ -82,6 +82,10 @@ const routes: Routes = [
         component: StartComponent,
       },
       {
+        path: `${START_ROUTE.path}/:id`,
+        component: StartComponent,
+      },
+      {
         path: `${STEP_1_ROUTE.path}`,
         component: PropertyGuestsComponent,
       },

@@ -16,16 +16,16 @@
               <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav mx-auto mb-2 mb-lg-0">
                   <li class="nav-item">
-                    <a class="nav-link" aria-current="page" href="#">BOOKING</a>
+                    <a class="nav-link" aria-current="page">BOOKING</a>
                   </li>
                   <li class="nav-item">
-                    <a class="nav-link" href="#">INBOX</a>
+                    <a class="nav-link">INBOX</a>
                   </li>
                   <li class="nav-item">
-                    <a class="nav-link" href="#">CALENDAR</a>
+                    <a class="nav-link">CALENDAR</a>
                   </li>
                   <li class="nav-item">
-                    <a class="nav-link active" href="#">LISTING</a>
+                    <a class="nav-link active">LISTING</a>
                   </li>
                 </ul>
                 <div class="d-flex align-items-center justify-content-end">
@@ -229,17 +229,25 @@
                       </div>
                     </td>
                     <td class="text-center">
-                      <span *ngIf="property?.status === listingStatus.inProgress" class="text-center">
+                      <span *ngIf="property?.status === listingStatus.inProgress" class="text-center status-text"
+                        style="color: yellow;">
                         In Progress
                       </span>
-                      <span *ngIf="property?.status === listingStatus.pendingForApproval" class="text-center">
+                      <span *ngIf="property?.status === listingStatus.pendingForApproval"
+                        class="text-center status-text" style="color: yellow;">
                         Pending
                       </span>
-                      <span *ngIf="property?.status === listingStatus.listed" class="text-center">
+                      <span *ngIf="property?.status === listingStatus.listed" class="text-center status-text"
+                        style="color: green;">
                         Listed
                       </span>
-                      <span *ngIf="property?.status === listingStatus.unlisted" class="text-center">
+                      <span *ngIf="property?.status === listingStatus.unlisted" class="text-center status-text"
+                        style="color: orange;">
                         Unlisted
+                      </span>
+                      <span *ngIf="property?.status === listingStatus.blocked" class="text-center status-text"
+                        style="color: red;">
+                        Blocked
                       </span>
                     </td>
                     <td class="text-center">
@@ -247,10 +255,8 @@
                         class="btn btn-outline-secondary rounded-pill fz14">
                         Publish
                       </button>
-                      <button
-                        *ngIf="property?.status === listingStatus.inProgress|| property?.status === listingStatus.listed"
-                        type="button" class="btn btn-outline-secondary rounded-pill fz14"
-                        (click)="editProperty(property?.id)">
+                      <button *ngIf="property?.status !== listingStatus.unlisted" type="button"
+                        class="btn btn-outline-secondary rounded-pill fz14" (click)="editProperty(property?.id)">
                         Edit
                       </button>
                     </td>
