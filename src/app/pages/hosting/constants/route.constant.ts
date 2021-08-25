@@ -157,7 +157,7 @@ export const STEP_19_ROUTE = {
 };
 
 export const STEP_20_ROUTE = {
-  path: 'check-ins',
+  path: 'notice',
   get url(): string {
     return `${LISTING_HOME_ROUTE.url}/${this.path}`;
   }

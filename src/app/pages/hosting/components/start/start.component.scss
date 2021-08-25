@@ -72,13 +72,15 @@ ul.project-step-listing li label svg path {
 
 @keyframes chkAnim {
   0% {
-      transform: scale(0);
+    transform: scale(0);
   }
+
   50% {
-      transform: scale(0.6);
+    transform: scale(0.6);
   }
+
   90% {
-      transform: scale(1.2);
+    transform: scale(1.2);
   }
 }
 
@@ -94,4 +96,23 @@ ul.project-step-listing li label svg path {
   font-size: 18px;
   text-transform: uppercase;
   padding: 15px 20px;
+}
+
+
+
+.button-inlist {
+  background-color: #F9537B;
+  font-size: 18px;
+
+  button {
+    color: #fff !important;
+  }
+}
+.cust-chk{
+  align-items: center;
+}
+
+.list-item{
+  display: flex;
+  justify-content: space-between;
 }

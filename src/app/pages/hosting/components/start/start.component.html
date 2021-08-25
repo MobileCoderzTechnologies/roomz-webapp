@@ -7,44 +7,74 @@
           <h3>Let's set up your Listing</h3>
           <div class="step-first-row">
             <ul class="project-step-listing">
-              <li>
-                <label class="cust-chk">
-                  <input type="checkbox" />
-                  <span class="txt" *ngIf="!encryptedPropertyId">Location</span>
-                  <span class="txt" *ngIf="encryptedPropertyId" (click)="onEditGoScreen('location')">Location</span>
-
-                </label>
-              </li>
-
-              <!-- <li>
-                <label class="cust-chk">
-                  <input type="checkbox" />
-                  <span class="txt">Building</span>
-
-                </label>
-              </li> -->
 
               <li>
                 <label class="cust-chk">
                   <input type="checkbox" />
-                  <span class="txt" *ngIf="!encryptedPropertyId">Amenities</span>
-                  <span class="txt" *ngIf="encryptedPropertyId" (click)="onEditGoScreen('amenities')">Amenities</span>
+                  <!-- <span class="txt">Building</span> -->
+                  <span class="txt" *ngIf="!encryptedPropertyId || currentRouteIndex <= 1">Building</span>
 
+                  <span class="txt" *ngIf="encryptedPropertyId && currentRouteIndex > 1"
+                    (click)="onGoEditScreenCustom(1)">Building</span>
+                  <div class="button-inlist">
+                    <button *ngIf="!encryptedPropertyId" class="btn submit-btn" routerLink="{{step1Route.url}}">
+                      Continue
+                    </button>
+
+                    <button *ngIf="encryptedPropertyId && currentRouteIndex===0" class="btn submit-btn"
+                      (click)="onEditGoScreen()">
+                      Continue
+                    </button>
+                  </div>
                 </label>
               </li>
 
               <li>
                 <label class="cust-chk">
                   <input type="checkbox" />
-                  <span class="txt" *ngIf="!encryptedPropertyId">House Rules</span>
-                  <span class="txt" *ngIf="encryptedPropertyId" (click)="onEditGoScreen('houseRules')">House Rules</span>
+                  <span class="txt" *ngIf="!encryptedPropertyId || currentRouteIndex <= 2">Property and Guests</span>
+
+                  <span class="txt" *ngIf="encryptedPropertyId && currentRouteIndex > 2"
+                    (click)="onGoEditScreenCustom(2)">Property and Guests</span>
+                  <div class="button-inlist">
+                    <button *ngIf="encryptedPropertyId && currentRouteIndex === 2" class="btn submit-btn"
+                      (click)="onEditGoScreen()">
+                      Continue
+                    </button>
+                  </div>
                 </label>
               </li>
 
               <li>
                 <label class="cust-chk">
                   <input type="checkbox" />
-                  <span class="txt">Photos</span>
+                  <span class="txt" *ngIf="!encryptedPropertyId || currentRouteIndex<=3">Location</span>
+                  <span class="txt" *ngIf="encryptedPropertyId && currentRouteIndex > 3"
+                    (click)="onGoEditScreenCustom(3)">Location</span>
+                  <div class="button-inlist">
+                    <button *ngIf="encryptedPropertyId && currentRouteIndex === 3" class="btn submit-btn"
+                      (click)="onEditGoScreen()">
+                      Continue
+                    </button>
+                  </div>
+
+                </label>
+              </li>
+
+
+
+              <li>
+                <label class="cust-chk">
+                  <input type="checkbox" />
+                  <span class="txt" *ngIf="!encryptedPropertyId || currentRouteIndex<=4">Amenities</span>
+                  <span class="txt" *ngIf="encryptedPropertyId && currentRouteIndex > 4"
+                    (click)="onGoEditScreenCustom(4)">Amenities</span>
+                  <div class="button-inlist">
+                    <button *ngIf="encryptedPropertyId && currentRouteIndex === 4" class="btn submit-btn"
+                      (click)="onEditGoScreen()">
+                      Continue
+                    </button>
+                  </div>
 
                 </label>
               </li>
@@ -52,41 +82,172 @@
               <li>
                 <label class="cust-chk">
                   <input type="checkbox" />
-                  <span class="txt">Title</span>
-
-                </label>
-              </li>
-              <li>
-                <label class="cust-chk">
-                  <input type="checkbox" />
-                  <span class="txt">Availability</span>
-
-                </label>
-              </li>
-
-              <li>
-                <label class="cust-chk">
-                  <input type="checkbox" />
-                  <span class="txt">Pricing</span>
-
+                  <span class="txt" *ngIf="!encryptedPropertyId || currentRouteIndex<=5">Guests Requirements</span>
+                  <span class="txt" *ngIf="encryptedPropertyId && currentRouteIndex > 5"
+                    (click)="onGoEditScreenCustom(5)">Guests Requirements</span>
+                  <div class="button-inlist">
+                    <button *ngIf="encryptedPropertyId && currentRouteIndex === 5" class="btn submit-btn"
+                      (click)="onEditGoScreen()">
+                      Continue
+                    </button>
+                  </div>
                 </label>
               </li>
 
               <li>
                 <label class="cust-chk">
                   <input type="checkbox" />
-                  <span class="txt">Review</span>
+                  <span class="txt" *ngIf="!encryptedPropertyId || currentRouteIndex<=6">House Rules</span>
+                  <span class="txt" *ngIf="encryptedPropertyId && currentRouteIndex > 6"
+                    (click)="onGoEditScreenCustom(6)">House Rules</span>
+                  <div class="button-inlist">
+                    <button *ngIf="encryptedPropertyId && currentRouteIndex === 6" class="btn submit-btn"
+                      (click)="onEditGoScreen()">
+                      Continue
+                    </button>
+                  </div>
+                </label>
+              </li>
 
+              <li>
+                <label class="cust-chk">
+                  <input type="checkbox" />
+                  <span class="txt" *ngIf="!encryptedPropertyId || currentRouteIndex<=7">Photos</span>
+                  <span class="txt" *ngIf="encryptedPropertyId && currentRouteIndex > 7"
+                    (click)="onGoEditScreenCustom(7)">Photos</span>
+                  <div class="button-inlist">
+                    <button *ngIf="encryptedPropertyId && currentRouteIndex === 7" class="btn submit-btn"
+                      (click)="onEditGoScreen()">
+                      Continue
+                    </button>
+                  </div>
+
+                </label>
+              </li>
+
+              <li>
+                <label class="cust-chk">
+                  <input type="checkbox" />
+                  <span class="txt" *ngIf="!encryptedPropertyId || currentRouteIndex<=8">Describe Place</span>
+                  <span class="txt" *ngIf="encryptedPropertyId && currentRouteIndex > 8"
+                    (click)="onGoEditScreenCustom(8)">Describe Place</span>
+                  <div class="button-inlist">
+                    <button *ngIf="encryptedPropertyId && currentRouteIndex === 8" class="btn submit-btn"
+                      (click)="onEditGoScreen()">
+                      Continue
+                    </button>
+                  </div>
+
+                </label>
+              </li>
+
+              <li>
+                <label class="cust-chk">
+                  <input type="checkbox" />
+                  <span class="txt" *ngIf="!encryptedPropertyId || currentRouteIndex<=9">Title</span>
+                  <span class="txt" *ngIf="encryptedPropertyId && currentRouteIndex > 9"
+                    (click)="onGoEditScreenCustom(9)">Title</span>
+                  <div class="button-inlist">
+                    <button *ngIf="encryptedPropertyId && currentRouteIndex === 9" class="btn submit-btn"
+                      (click)="onEditGoScreen()">
+                      Continue
+                    </button>
+                  </div>
+
+                </label>
+              </li>
+
+              <li>
+                <label class="cust-chk">
+                  <input type="checkbox" />
+                  <span class="txt" *ngIf="!encryptedPropertyId || currentRouteIndex<=10">Availability</span>
+                  <span class="txt" *ngIf="encryptedPropertyId && currentRouteIndex > 10"
+                    (click)="onGoEditScreenCustom(10)">Availability</span>
+                  <div class="button-inlist">
+                    <button *ngIf="encryptedPropertyId && currentRouteIndex === 10" class="btn submit-btn"
+                      (click)="onEditGoScreen()">
+                      Continue
+                    </button>
+                  </div>
+
+                </label>
+              </li>
+
+
+
+              <li>
+                <label class="cust-chk">
+                  <input type="checkbox" />
+                  <span class="txt" *ngIf="!encryptedPropertyId || currentRouteIndex<=11">Pricing</span>
+                  <span class="txt" *ngIf="encryptedPropertyId && currentRouteIndex > 11"
+                    (click)="onGoEditScreenCustom(11)">Pricing</span>
+                  <div class="button-inlist">
+                    <button *ngIf="encryptedPropertyId && currentRouteIndex === 11" class="btn submit-btn"
+                      (click)="onEditGoScreen()">
+                      Continue
+                    </button>
+                  </div>
+                </label>
+              </li>
+
+              <li>
+                <label class="cust-chk">
+                  <input type="checkbox" />
+                  <span class="txt" *ngIf="!encryptedPropertyId || currentRouteIndex<=12">Questions</span>
+                  <span class="txt" *ngIf="encryptedPropertyId && currentRouteIndex > 12"
+                    (click)="onGoEditScreenCustom(12)">Questions</span>
+                  <div class="button-inlist">
+                    <button *ngIf="encryptedPropertyId && currentRouteIndex === 12" class="btn submit-btn"
+                      (click)="onEditGoScreen()">
+                      Continue
+                    </button>
+                  </div>
+                </label>
+              </li>
+
+              <li>
+                <label class="cust-chk">
+                  <input type="checkbox" />
+
+                  <span class="txt" *ngIf="!encryptedPropertyId || currentRouteIndex<=13">Notice</span>
+                  <span class="txt" *ngIf="encryptedPropertyId && currentRouteIndex > 13"
+                    (click)="onGoEditScreenCustom(13)">Notice</span>
+                  <div class="button-inlist">
+                    <button *ngIf="encryptedPropertyId && currentRouteIndex === 13" class="btn submit-btn"
+                      (click)="onEditGoScreen()">
+                      Continue
+                    </button>
+                  </div>
+
+                </label>
+              </li>
+
+              <li>
+                <label class="cust-chk">
+                  <input type="checkbox" />
+                  <span class="txt" *ngIf="!encryptedPropertyId || currentRouteIndex<=14">Review</span>
+                  <span class="txt" *ngIf="encryptedPropertyId && currentRouteIndex > 14"
+                    (click)="onGoEditScreenCustom(14)">Review</span>
+                  <div class="button-inlist">
+                    <button *ngIf="encryptedPropertyId && currentRouteIndex === 14" class="btn submit-btn"
+                      (click)="onEditGoScreen()">
+                      Continue
+                    </button>
+                  </div>
                 </label>
               </li>
 
             </ul>
 
-            <div class="button-wrap">
-              <button class="btn submit-btn" [routerLink]="[step1Route.url, encryptedPropertyId]">
+            <!-- <div class="button-wrap">
+              <button *ngIf="encryptedPropertyId" class="btn submit-btn"
+                [routerLink]="[step1Route.url, encryptedPropertyId]">
                 Continue
               </button>
-            </div>
+              <button *ngIf="!encryptedPropertyId" class="btn submit-btn" [routerLink]="[step1Route.url]">
+                Continue
+              </button>
+            </div> -->
           </div>
         </div>
       </div>

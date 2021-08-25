@@ -34,6 +34,7 @@ export class PropertyGuestsComponent implements OnInit, AfterViewInit, OnDestroy
   isNextLoading = false;
 
   propertyId: number;
+  encryptedPropertyId: string;
   propertyData: any;
   propertyDataSubs: Subscription;
 
@@ -58,6 +59,7 @@ export class PropertyGuestsComponent implements OnInit, AfterViewInit, OnDestroy
     this.$activatedRoute.params.subscribe(params => {
       const { id } = params;
       if (id) {
+        this.encryptedPropertyId = id;
         this.propertyId = Number(this.$encryptionService.decrypt(id));
         console.log(this.propertyId);
       }

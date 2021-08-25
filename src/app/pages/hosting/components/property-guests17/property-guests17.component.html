@@ -9,13 +9,8 @@
               Guest must agree to your house rules before they book.
             </p>
             <div>
-              <ng-container
-                *ngFor="let rule of propertyHouseRules; let i = index"
-              >
-                <div
-                  class="d-flex align-items-center justify-content-between mb-4"
-                  *ngIf="!rule?.is_additional"
-                >
+              <ng-container *ngFor="let rule of propertyHouseRules; let i = index">
+                <div class="d-flex align-items-center justify-content-between mb-4" *ngIf="!rule?.is_additional">
                   <h5 class="fz16 regular_font text-secondary mb-0">
                     {{ houseRuleObj[rule.rule_id] }}
 
@@ -24,43 +19,19 @@
                     </span>
                   </h5>
                   <div class="image-btns">
-                    <img
-                      *ngIf="rule?.is_cancelled"
-                      src="assets/images/active-cross.png"
-                      class="img-fluid me-4"
-                      alt=""
-                    />
-                    <img
-                      *ngIf="!rule?.is_cancelled"
-                      src="assets/images/unactive-cross.png"
-                      class="img-fluid me-4"
-                      alt=""
-                      (click)="cancelRule(rule)"
-                    />
+                    <img *ngIf="rule?.is_cancelled" src="assets/images/active-cross.png" class="img-fluid me-4"
+                      alt="" />
+                    <img *ngIf="!rule?.is_cancelled" src="assets/images/unactive-cross.png" class="img-fluid me-4"
+                      alt="" (click)="cancelRule(rule)" />
 
-                    <img
-                      *ngIf="rule?.is_cancelled"
-                      src="assets/images/unactive-tick.png"
-                      class="img-fluid"
-                      alt=""
-                      (click)="activeRule(rule)"
-                    />
-                    <img
-                      *ngIf="!rule?.is_cancelled"
-                      src="assets/images/active-tick.png"
-                      class="img-fluid"
-                      alt=""
-                    />
+                    <img *ngIf="rule?.is_cancelled" src="assets/images/unactive-tick.png" class="img-fluid" alt=""
+                      (click)="activeRule(rule)" />
+                    <img *ngIf="!rule?.is_cancelled" src="assets/images/active-tick.png" class="img-fluid" alt="" />
                   </div>
                 </div>
               </ng-container>
-              <ng-container
-                *ngFor="let rule of propertyHouseRules; let i = index"
-              >
-                <div
-                  class="d-flex align-items-center justify-content-between mb-4"
-                  *ngIf="rule.is_additional"
-                >
+              <ng-container *ngFor="let rule of propertyHouseRules; let i = index">
+                <div class="d-flex align-items-center justify-content-between mb-4" *ngIf="rule.is_additional">
                   <h5 class="fz16 regular_font text-secondary mb-0">
                     <br /><span class="blue_color">
                       {{ rule?.description }}
@@ -69,44 +40,26 @@
                   <div class="image-btns">
                     <!-- <img *ngIf="rule?.is_cancelled" src="assets/images/active-cross.png"
                                             class="img-fluid me-4" alt="" /> -->
-                    <img
-                      src="assets/images/unactive-cross.png"
-                      class="img-fluid me-4"
-                      alt=""
-                      (click)="removeAdditionalRule(i)"
-                    />
+                    <img src="assets/images/unactive-cross.png" class="img-fluid me-4" alt=""
+                      (click)="removeAdditionalRule(i)" />
 
                     <!-- <img src="assets/images/unactive-tick.png"
                                             class="img-fluid" alt=""> -->
-                    <img
-                      src="assets/images/active-tick.png"
-                      class="img-fluid"
-                      alt=""
-                    />
+                    <img src="assets/images/active-tick.png" class="img-fluid" alt="" />
                   </div>
                 </div>
               </ng-container>
               <div class="form-group">
                 <div class="mb-3 d-flex justify-content-between">
                   <label for="" class="fz18 semi_font">Additional rules</label>
-                  <a *ngIf="!additionalRuleInput.value" class="color-blue"
-                    >Save</a
-                  >
-                  <a
-                    *ngIf="additionalRuleInput.value"
-                    class="color-blue"
-                    (click)="saveAdditionalRule()"
-                    >Save</a
-                  >
+                  <a *ngIf="!additionalRuleInput.value" class="color-blue">Save</a>
+                  <a *ngIf="additionalRuleInput.value" class="color-blue" (click)="saveAdditionalRule()">Save</a>
                 </div>
 
                 <div class="d-flex align-items-center">
-                  <textarea
-                    [formControl]="additionalRuleInput"
-                    style="height: 175px; width: 100%"
+                  <textarea [formControl]="additionalRuleInput" style="height: 175px; width: 100%"
                     class="form-control custom_form_control w-100 rounded-0"
-                    placeholder="Quiet hours? No shoes in the house?  "
-                  >
+                    placeholder="Quiet hours? No shoes in the house?  ">
                   </textarea>
                 </div>
               </div>
@@ -145,16 +98,9 @@
                 <ng-container *ngFor="let detail of homeDetails">
                   <div class="custom_check mb-4">
                     <div class="form-group">
-                      <input
-                        type="checkbox"
-                        [id]="detail.id"
-                        (change)="selectDetail($event, detail)"
-                        [checked]="detail?.isChecked"
-                      />
-                      <label
-                        class="form-check-label fz15"
-                        for="{{ detail.id }}"
-                      >
+                      <input type="checkbox" [id]="detail.id" (change)="selectDetail($event, detail)"
+                        [checked]="detail?.isChecked" />
+                      <label class="form-check-label fz15" for="{{ detail.id }}">
                         {{ detail.name }}
                       </label>
                     </div>
@@ -163,14 +109,11 @@
                     <p class="fz15 regular_font">
                       {{ detail.description }}
                     </p>
-                    <input
-                      #desc
-                      type="text"
-                      (blur)="addDetailDesc(detail, desc.value)"
-                      class="form-control w-75"
-                      placeholder="Add your description"
-                      [value]="detail?.explanation"
-                    />
+                    <input #desc type="text" [style.borderColor]="detail.isError?'red':''"
+                      (focus)="onTouchDetail(detail)" (blur)="addDetailDesc(detail, desc.value)"
+                      class="form-control w-75" placeholder="Add your description" [value]="detail?.explanation" />
+                    <small *ngIf="detail.isTouched && detail.isError" class="text-danger">Description is
+                      required.</small>
                   </div>
                 </ng-container>
 
@@ -242,48 +185,23 @@
             </div>
           </div>
 
-          <div
-            class="d-flex justify-content-between align-items-center mb-5 p-4 mt-0 back_next_part"
-          >
-            <a
-              *ngIf="isBack21"
-              href="javascript:void(0);"
-              class="blue_color d-flex align-items-center"
-              [routerLink]="[step21Route.url, encryptedPropertyId]"
-            >
-              <img
-                src="assets/images/blue-left-arrow.png"
-                class="me-2"
-                alt=""
-              />
+          <div class="d-flex justify-content-between align-items-center mb-5 p-4 mt-0 back_next_part">
+            <a *ngIf="isBack21" href="javascript:void(0);" class="blue_color d-flex align-items-center"
+              [routerLink]="[step21Route.url, encryptedPropertyId]">
+              <img src="assets/images/blue-left-arrow.png" class="me-2" alt="" />
               Back
             </a>
-            <a
-              *ngIf="!isBack21"
-              href="javascript:void(0);"
-              class="blue_color d-flex align-items-center"
-              [routerLink]="[step6Route.url, encryptedPropertyId]"
-            >
-              <img
-                src="assets/images/blue-left-arrow.png"
-                class="me-2"
-                alt=""
-              />
+            <a *ngIf="!isBack21" href="javascript:void(0);" class="blue_color d-flex align-items-center"
+              [routerLink]="[step6Route.url, encryptedPropertyId]">
+              <img src="assets/images/blue-left-arrow.png" class="me-2" alt="" />
               Back
             </a>
-            <button
-              class="btn custom_btn"
-              *ngIf="!isNextLoading"
-              (click)="addHouseRule()"
-            >
+            <button class="btn custom_btn" *ngIf="!isNextLoading" (click)="addHouseRule()">
               Next
             </button>
             <button class="btn custom_btn" *ngIf="isNextLoading">
               Next
-              <div
-                *ngIf="!isSavingExit"
-                class="spinner-border text-info spinner-border-sm"
-              ></div>
+              <div *ngIf="!isSavingExit" class="spinner-border text-info spinner-border-sm"></div>
             </button>
           </div>
         </div>

@@ -3,4 +3,5 @@ export interface PropertyHomeDetail {
   property_id?: number;
   explanation?: string | null;
   isChecked?: boolean | null;
+  isError?: boolean;
 }

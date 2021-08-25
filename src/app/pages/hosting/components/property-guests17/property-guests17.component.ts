@@ -51,6 +51,8 @@ export class PropertyGuests17Component implements OnInit, AfterViewInit, OnDestr
   isSavingExit = false;
   saveExitSubs: Subscription;
 
+  isDetailError = false;
+
   constructor(
     private $ps: ProgressService,
     private $encryptionService: EncryptionService,
@@ -201,15 +203,25 @@ export class PropertyGuests17Component implements OnInit, AfterViewInit, OnDestr
     }
   }
 
+  onTouchDetail(detail: HomeDetail): void {
+    detail.isTouched = true;
+  }
+
   addDetailDesc(detail: HomeDetail, description: string): void {
+    this.isDetailError = false;
+    if (!description) {
+      detail.isError = true;
+      this.isDetailError = true;
+      return;
+    }
     this.selectedPropertyDetails = this.selectedPropertyDetails.map(item => {
       if (item.detail_id === detail.id) {
         item.explanation = description;
+        detail.isError = false;
+        this.isDetailError = false;
       }
       return item;
     });
-
-    console.log(detail, description);
   }
 
   saveAdditionalRule(): void {

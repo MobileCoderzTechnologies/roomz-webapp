@@ -5,4 +5,6 @@ export interface HomeDetail {
   description: string | null;
   isChecked: boolean | null;
   explanation?: string | null;
+  isError?: boolean;
+  isTouched?: boolean;
 }
