@@ -192,6 +192,7 @@ export class PropertyGuests17Component implements OnInit, AfterViewInit, OnDestr
   selectDetail(event: any, detail: HomeDetail): void {
     const isChecked = event.target.checked;
     if (isChecked) {
+      this.isDetailError = true;
       detail.isChecked = true;
       const selectedDetail: PropertyHomeDetail = {
         detail_id: detail.id,
