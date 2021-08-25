@@ -495,6 +495,9 @@ hr {
 .back_next_part {
   margin-top: 250px;
   border-top: 1px solid #babdbe38;
+  position: sticky;
+  bottom: 0%;
+  background-color: #fff;
 }
 
 .custom_check .form-group input {

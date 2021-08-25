@@ -98,6 +98,7 @@ export class PropertyGuests28Component implements OnInit, OnDestroy, AfterViewIn
     this.$propertyListingService.publishProperty(this.propertyId, { status: this.propertyStatus }).subscribe(res => {
       this.$ps.clearPropertyData();
       this.isNextLoading = false;
+      console.log(res);
       this.$alert.success(res.message);
       this.$router.navigate([this.myListingRoute.url]);
     }, err => {

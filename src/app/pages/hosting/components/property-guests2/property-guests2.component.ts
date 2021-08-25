@@ -206,7 +206,7 @@ export class PropertyGuests2Component implements OnInit, AfterViewInit, OnDestro
   }
 
   countBedsInRoom(bedId: number, roomNo: number, type: 'inc' | 'dec'): void {
-    if (this.bedGroup[roomNo].beds.length === 1 && this.bedGroup[roomNo].beds[0].count === 1) {
+    if (this.bedGroup[roomNo].beds.length === 1 && this.bedGroup[roomNo].beds[0].count === 1 && type === 'dec') {
       if (roomNo === 0) {
         // this.$alert.info('Should be 1 bed in common space');
       }
