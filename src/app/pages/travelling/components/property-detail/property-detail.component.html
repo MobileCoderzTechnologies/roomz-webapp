@@ -460,10 +460,10 @@
             <div class="d-flex align-items-center justify-content-between mb-3">
               <h2 class="bold_font">
                 <del class="me-3 text-secondary">
-                  ${{deletedPrice}}
+                  {{deletedPrice}} SAR
                 </del>
                 <span class="base_color">
-                  ${{property?.base_price}}
+                  {{property?.base_price}} SAR
                 </span>
                 <span class="fz18 text-secondary"> / night</span>
               </h2>
@@ -495,20 +495,20 @@
             </div>
             <div>
               <div class="d-flex align-items-center justify-content-between mb-2">
-                <p class="mb-0 regular_font fz18"><u>${{property?.base_price}} x 3 nights</u></p>
+                <p class="mb-0 regular_font fz18"><u>{{property?.base_price}} x 3 SAR nights</u></p>
                 <p class="mb-0 regular_font fz18">
-                  ${{property?.base_price * 3}}
+                  {{property?.base_price * 3}} SAR
                 </p>
               </div>
               <div class="d-flex align-items-center justify-content-between mb-2">
                 <p class="mb-0 regular_font fz18"><u>cleaning fee</u></p>
-                <p class="mb-0 regular_font fz18">$9</p>
+                <p class="mb-0 regular_font fz18">9 SAR</p>
               </div>
               <hr class="my-3" />
               <div class="d-flex align-items-center justify-content-between mb-2">
-                <p class="mb-0 bold_font fz20"><u>$Total</u></p>
+                <p class="mb-0 bold_font fz20"><u>Total</u></p>
                 <p class="mb-0 bold_font fz20">
-                  ${{(property?.base_price*3)+10}}
+                  {{(property?.base_price*3)+10}} SAR
                 </p>
               </div>
             </div>
@@ -557,7 +557,7 @@
                       </button>
                     </div>
                   </div> -->
-                  <app-slider-third [photos]="place?.images"></app-slider-third>
+                  <app-slider-third [photos]="place?.images" [coverPhoto]="place?.cover_photo"></app-slider-third>
                   <div class="card-body custom_body">
                     <h5 class="card-title fz18 bold_font mb-0">
                       {{place?.name}}

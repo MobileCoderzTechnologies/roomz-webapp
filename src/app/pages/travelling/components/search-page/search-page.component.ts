@@ -84,7 +84,7 @@ export class SearchPageComponent implements OnInit {
           const marker = {
             lat: item.latitude,
             lng: item.longitude,
-            mark: `$ ${item.base_price}`
+            mark: `${item.base_price} SAR`
           };
           this.markers.push(marker);
 

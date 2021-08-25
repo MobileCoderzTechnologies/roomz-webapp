@@ -87,11 +87,11 @@
             <input type="text" name="" class="form-control text-center border-0 py-3 border-end" id=""
               placeholder="{{searchTxt}}" />
             <input type="date" name="" class="form-control text-center border-0 py-3 border-end" id="" />
-            <input type="text" name="" class="form-control text-center border-0 py-3" id="" placeholder="4 guest" />
+            <input type="text" name="" class="form-control text-center border-0 py-3" id="" placeholder="1 guest" />
           </div>
           <div>
             <p class="semi_font text-secondary mb-1">
-              {{totalCount}} stays . {{currentDate|date:'MMM d'}} - {{nextDate|date:'MMM d'}} . 4 guests
+              {{totalCount}} stays . {{currentDate|date:'MMM d'}} - {{nextDate|date:'MMM d'}} . 1 guests
             </p>
             <h3 class="bold_font fz36">Stays in {{searchTxt}}</h3>
           </div>
@@ -120,7 +120,8 @@
                 <div class="row">
                   <div class="col-md-5">
                     <div class="col_selector">
-                      <app-slider-third [photos]="property.images"></app-slider-third>
+                      <app-slider-third [coverPhoto]="property?.cover_photo" [photos]="property.images">
+                      </app-slider-third>
                       <!-- <div class="col">
                         <div class="card h-100 border-0">
                           <div class="card_carousel">
@@ -203,7 +204,7 @@
                       <div>
                         <div>
                           <h4 class="mb-0 fz18 semi_font d-flex align-items-center mb-1">
-                            <span class="blue_color"> ${{property?.base_price}} </span>
+                            <span class="blue_color"> {{property?.base_price}} SAR </span>
                             <span class="fz16 text-secondary"> / night</span>
                           </h4>
                           <div class="d-flex align-items-center justify-content-between">

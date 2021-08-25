@@ -94,10 +94,16 @@ export class PropertyDetailComponent implements OnInit {
     this.$propertyService.getPropertyDetails(this.propertyId).subscribe(data => {
       this.isLoading = false;
       this.property = data.data[0];
-      const { images, beds } = this.property;
+      const { images, beds, cover_photo } = this.property;
       this.groupBeds(this.property?.beds);
       console.log(this.property);
       this.deletedPrice = this.deletedPriceCal(this.property?.base_price);
+      const cImageUrl = cover_photo;
+      const cImageUrlArr = cImageUrl.split('/');
+      cImageUrlArr.pop();
+      const cImg = `${cImageUrlArr.join('/')}/1366x460.jpeg`;
+      this.propertyImages.push({ image_url: cImg });
+
       images.forEach(item => {
         const imageUrl = item.image_url;
         const imageUrlArr = imageUrl.split('/');
