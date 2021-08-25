@@ -53,10 +53,19 @@ export class PropertyGuests22Component implements OnInit, AfterViewInit, OnDestr
   ) { }
 
   ngOnInit(): void {
-    this.$ps.header.next({
-      progress: 35,
-      heading: 'Property and guests'
+    this.$activatedRoute.queryParams.subscribe(data => {
+      const back = data.back;
+      if (Number(back) === 21) {
+        this.isBack21 = true;
+      }
     });
+
+    if (!this.isBack21) {
+      this.$ps.header.next({
+        progress: 35,
+        heading: 'Property and guests'
+      });
+    }
 
     this.$activatedRoute.params.subscribe(params => {
       const { id } = params;
@@ -64,12 +73,7 @@ export class PropertyGuests22Component implements OnInit, AfterViewInit, OnDestr
       this.propertyId = Number(this.$encryptionService.decrypt(id));
     });
 
-    this.$activatedRoute.queryParams.subscribe(data => {
-      const back = data.back;
-      if (Number(back) === 21) {
-        this.isBack21 = true;
-      }
-    });
+
 
     this.saveExitSubs = this.$ps.saveExit.subscribe(data => {
       if (data === 'done') {
@@ -163,6 +167,11 @@ export class PropertyGuests22Component implements OnInit, AfterViewInit, OnDestr
       this.$ps.setPropertyData(this.propertyData);
       if (this.isSavingExit) {
         this.$router.navigateByUrl(MY_LISTING_ROUTE.url);
+        return;
+      }
+
+      if (this.isBack21) {
+        this.$router.navigate([STEP_21_ROUTE.url, this.encryptedPropertyId]);
         return;
       }
       this.$router.navigate([this.step7Route.url, this.encryptedPropertyId]);

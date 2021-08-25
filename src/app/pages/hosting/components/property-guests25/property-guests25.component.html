@@ -13,12 +13,14 @@
                         <div class="my-4">
                             <label for="" class="mb-2">Base price</label>
                             <input type="number" [formControl]="basePrice" class="form-control custom_form_control mb-2"
-                                placeholder="$" (input)="onBasePrice($event.target.value)">
-
+                                placeholder="SAR" (input)="onBasePrice($event.target.value)">
+                            <small class="text-danger" *ngIf="basePrice.touched && basePrice.errors?.required">
+                                Base price is required
+                            </small>
                             <p class="fz14 regular_font">This will be your default nighty price</p>
                         </div>
 
-                        <p class="color-blue mb-4">Use tip: $10</p>
+                        <p class="color-blue mb-4">Use tip: 10 SAR</p>
                         <p class="color-blue">You are always in control of your nightly price.</p>
                         <div class="d-flex justify-content-between toggle-wrap">
                             <p>Offer 20% off to your first guests</p>
@@ -49,7 +51,7 @@
                             </a>
                             <button class="btn custom_btn" *ngIf="!isNextLoading" (click)="setPropertyPrice()"
                                 [disabled]="basePrice.invalid">
-                                Next
+                                {{isBack21?'Save': 'Next'}}
                             </button>
                             <button class="btn custom_btn" *ngIf="isNextLoading">
                                 Next

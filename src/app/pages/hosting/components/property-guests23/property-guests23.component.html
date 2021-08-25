@@ -10,16 +10,10 @@
 
               <div class="my-4">
                 <label for="" class="medium_font fz18">Advance notice</label>
-                <select
-                  class="form-select custom_form_control"
-                  aria-label="Default select example"
-                  formControlName="advance_notice"
-                >
-                  <option
-                    *ngFor="let anTime of advanceNotice"
-                    [value]="anTime.value"
-                    [selected]="selectedAdvanceNotice === anTime.value"
-                  >
+                <select class="form-select custom_form_control" aria-label="Default select example"
+                  formControlName="advance_notice">
+                  <option *ngFor="let anTime of advanceNotice" [value]="anTime.value"
+                    [selected]="selectedAdvanceNotice === anTime.value">
                     {{ anTime.display }}
                   </option>
                 </select>
@@ -28,19 +22,11 @@
                 </p>
               </div>
               <div class="my-4">
-                <label for="" class="medium_font fz18"
-                  >Same day cut-off time</label
-                >
-                <select
-                  class="form-select custom_form_control"
-                  aria-label="Default select example"
-                  formControlName="cut_off_time"
-                >
-                  <option
-                    *ngFor="let coTime of sameDayCutOff"
-                    [value]="coTime"
-                    [selected]="selectedCutOffTime === coTime"
-                  >
+                <label for="" class="medium_font fz18">Same day cut-off time</label>
+                <select class="form-select custom_form_control" aria-label="Default select example"
+                  formControlName="cut_off_time">
+                  <option *ngFor="let coTime of sameDayCutOff" [value]="coTime"
+                    [selected]="selectedCutOffTime === coTime">
                     {{ coTime | formatTime }}
                   </option>
                 </select>
@@ -49,19 +35,11 @@
                 </p>
               </div>
               <div class="my-4">
-                <label for="" class="medium_font fz18"
-                  >Availability window</label
-                >
-                <select
-                  class="form-select custom_form_control"
-                  aria-label="Default select example"
-                  formControlName="guests_book_time"
-                >
-                  <option
-                    *ngFor="let av of availabilityWindow"
-                    [value]="av.value"
-                    [selected]="selectedAvailabilityWindow === av.value"
-                  >
+                <label for="" class="medium_font fz18">Availability window</label>
+                <select class="form-select custom_form_control" aria-label="Default select example"
+                  formControlName="guests_book_time">
+                  <option *ngFor="let av of availabilityWindow" [value]="av.value"
+                    [selected]="selectedAvailabilityWindow === av.value">
                     {{ av.display }}
                   </option>
                 </select>
@@ -74,49 +52,27 @@
 
               <div class="my-4">
                 <label for="" class="medium_font fz18">Arrive after</label>
-                <select
-                  class="form-select custom_form_control"
-                  aria-label="Default select example"
-                  formControlName="ci_arrive_after"
-                  (change)="onSelectArriveAfter($event.target.value)"
-                >
-                  <option
-                    *ngFor="let cit of ciArriveAfter"
-                    [value]="cit"
-                    [selected]="selectedCiArriveAfter === cit"
-                  >
+                <select class="form-select custom_form_control" aria-label="Default select example"
+                  formControlName="ci_arrive_after" (change)="onSelectArriveAfter($event.target.value)">
+                  <option *ngFor="let cit of ciArriveAfter" [value]="cit" [selected]="selectedCiArriveAfter === cit">
                     {{ cit | formatTime }}
                   </option>
                 </select>
               </div>
               <div class="my-4">
                 <label for="" class="medium_font fz18">Arrive before</label>
-                <select
-                  class="form-select custom_form_control"
-                  aria-label="Default select example"
-                  formControlName="ci_arrive_before"
-                >
-                  <option
-                    *ngFor="let cit of ciArriveBefore"
-                    [value]="cit"
-                    [selected]="selectedCiArriveBefore === cit"
-                  >
+                <select class="form-select custom_form_control" aria-label="Default select example"
+                  formControlName="ci_arrive_before">
+                  <option *ngFor="let cit of ciArriveBefore" [value]="cit" [selected]="selectedCiArriveBefore === cit">
                     {{ cit | formatTime }}
                   </option>
                 </select>
               </div>
               <div class="my-4">
                 <label for="" class="medium_font fz18">Leave before</label>
-                <select
-                  class="form-select custom_form_control"
-                  aria-label="Default select example"
-                  formControlName="ci_leave_before"
-                >
-                  <option
-                    *ngFor="let cit of ciLeaveBefore"
-                    [value]="cit"
-                    [selected]="selectedCiLeaveBefore === cit"
-                  >
+                <select class="form-select custom_form_control" aria-label="Default select example"
+                  formControlName="ci_leave_before">
+                  <option *ngFor="let cit of ciLeaveBefore" [value]="cit" [selected]="selectedCiLeaveBefore === cit">
                     {{ cit | formatTime }}
                   </option>
                 </select>
@@ -126,35 +82,19 @@
             <h3 class="fz30 mb-4 semi_font">Trip length</h3>
 
             <div class="my-4">
-              <label for="" class="medium_font fz18"
-                >Minimum stay (nights)</label
-              >
-              <select
-                class="form-select custom_form_control"
-                aria-label="Default select example"
-                (change)="onSelectTripLengthMin($event.target.value)"
-              >
-                <option
-                  *ngFor="let tl of tripLengthMin"
-                  [selected]="selectedTripMin === tl"
-                >
+              <label for="" class="medium_font fz18">Minimum stay (nights)</label>
+              <select class="form-select custom_form_control" aria-label="Default select example"
+                (change)="onSelectTripLengthMin($event.target.value)">
+                <option *ngFor="let tl of tripLengthMin" [selected]="selectedTripMin === tl">
                   {{ tl }}
                 </option>
               </select>
             </div>
             <div class="my-4">
-              <label for="" class="medium_font fz18"
-                >Maximum stay (nights)</label
-              >
-              <select
-                class="form-select custom_form_control"
-                aria-label="Default select example"
-                (change)="onSelectTripLengthMax($event.target.value)"
-              >
-                <option
-                  *ngFor="let tl of tripLengthMax"
-                  [selected]="selectedTripMax === tl"
-                >
+              <label for="" class="medium_font fz18">Maximum stay (nights)</label>
+              <select class="form-select custom_form_control" aria-label="Default select example"
+                (change)="onSelectTripLengthMax($event.target.value)">
+                <option *ngFor="let tl of tripLengthMax" [selected]="selectedTripMax === tl">
                   {{ tl }}
                 </option>
               </select>
@@ -166,50 +106,25 @@
                         </a>
                         <button class="btn custom_btn">Next</button>
                     </div> -->
-          <div
-            class="d-flex justify-content-between align-items-center mb-5 p-4 mt-0 back_next_part"
-          >
-            <a
-              *ngIf="isBack21"
-              href="javascript:void(0);"
-              class="blue_color d-flex align-items-center"
-              [routerLink]="[step21Route.url, encryptedPropertyId]"
-            >
-              <img
-                src="assets/images/blue-left-arrow.png"
-                class="me-2"
-                alt=""
-              />
+          <div class="d-flex justify-content-between align-items-center mb-5 p-4 mt-0 back_next_part">
+            <a *ngIf="isBack21" href="javascript:void(0);" class="blue_color d-flex align-items-center"
+              [routerLink]="[step21Route.url, encryptedPropertyId]">
+              <img src="assets/images/blue-left-arrow.png" class="me-2" alt="" />
               Back
             </a>
 
-            <a
-              *ngIf="!isBack21"
-              href="javascript:void(0);"
-              class="blue_color d-flex align-items-center"
-              [routerLink]="[step13Route.url, encryptedPropertyId]"
-            >
-              <img
-                src="assets/images/blue-left-arrow.png"
-                class="me-2"
-                alt=""
-              />
+            <a *ngIf="!isBack21" href="javascript:void(0);" class="blue_color d-flex align-items-center"
+              [routerLink]="[step13Route.url, encryptedPropertyId]">
+              <img src="assets/images/blue-left-arrow.png" class="me-2" alt="" />
               Back
             </a>
-            <button
-              class="btn custom_btn"
-              *ngIf="!isNextLoading"
-              (click)="setPropertyAvailability()"
-              [disabled]="availabilityForm.disabled"
-            >
-              Next
+            <button class="btn custom_btn" *ngIf="!isNextLoading" (click)="setPropertyAvailability()"
+              [disabled]="availabilityForm.disabled">
+              {{isBack21?'Save': 'Next'}}
             </button>
             <button class="btn custom_btn" *ngIf="isNextLoading">
               Next
-              <div
-                *ngIf="!isSavingExit"
-                class="spinner-border text-info spinner-border-sm"
-              ></div>
+              <div *ngIf="!isSavingExit" class="spinner-border text-info spinner-border-sm"></div>
             </button>
           </div>
         </div>

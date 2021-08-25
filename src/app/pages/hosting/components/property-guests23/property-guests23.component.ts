@@ -85,16 +85,6 @@ export class PropertyGuests23Component implements OnInit, AfterViewInit, OnDestr
   }
 
   ngOnInit(): void {
-    this.$ps.header.next({
-      progress: 70,
-      heading: 'Property and guests'
-    });
-
-    this.$activatedRoute.params.subscribe(params => {
-      const { id } = params;
-      this.encryptedPropertyId = id;
-      this.propertyId = Number(this.$encryptionService.decrypt(id));
-    });
 
     this.$activatedRoute.queryParams.subscribe(data => {
       const back = data?.back;
@@ -102,6 +92,21 @@ export class PropertyGuests23Component implements OnInit, AfterViewInit, OnDestr
         this.isBack21 = true;
       }
     });
+
+    if (!this.isBack21) {
+      this.$ps.header.next({
+        progress: 70,
+        heading: 'Property and guests'
+      });
+    }
+
+    this.$activatedRoute.params.subscribe(params => {
+      const { id } = params;
+      this.encryptedPropertyId = id;
+      this.propertyId = Number(this.$encryptionService.decrypt(id));
+    });
+
+
 
 
     this.saveExitSubs = this.$ps.saveExit.subscribe(data => {
@@ -146,8 +151,8 @@ export class PropertyGuests23Component implements OnInit, AfterViewInit, OnDestr
 
 
           this.selectedAdvanceNotice = advance_notice || 0;
-          this.selectedCutOffTime = cut_off_time || 22;
-          this.selectedAvailabilityWindow = guests_book_time || 1;
+          this.selectedCutOffTime = cut_off_time || 10;
+          this.selectedAvailabilityWindow = guests_book_time || 3;
           this.selectedCiArriveAfter = ci_arrive_after || 10;
           this.selectedCiArriveBefore = ci_arrive_before || 22;
           this.selectedCiLeaveBefore = ci_leave_before || 12;
@@ -222,6 +227,11 @@ export class PropertyGuests23Component implements OnInit, AfterViewInit, OnDestr
 
       if (this.isSavingExit) {
         this.$router.navigateByUrl(MY_LISTING_ROUTE.url);
+        return;
+      }
+
+      if (this.isBack21) {
+        this.$router.navigate([STEP_21_ROUTE.url, this.encryptedPropertyId]);
         return;
       }
 

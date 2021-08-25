@@ -197,7 +197,7 @@
               Back
             </a>
             <button class="btn custom_btn" *ngIf="!isNextLoading" (click)="addHouseRule()" [disabled]="isDetailError">
-              Next
+              {{isBack21?'Save': 'Next'}}
             </button>
             <button class="btn custom_btn" *ngIf="isNextLoading">
               Next
