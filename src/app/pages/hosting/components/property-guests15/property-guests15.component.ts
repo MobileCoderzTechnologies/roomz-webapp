@@ -39,7 +39,7 @@ export class PropertyGuests15Component implements OnInit, AfterViewInit, OnDestr
   });
 
   secPhoneNumberForm = new FormGroup({
-    country_code: new FormControl('+91'),
+    country_code: new FormControl('+966'),
     sec_phone_number: new FormControl('')
   });
 
@@ -124,11 +124,11 @@ export class PropertyGuests15Component implements OnInit, AfterViewInit, OnDestr
         console.log(this.propertyData);
         if (this.propertyData) {
           let {
-            country_code = '+91',
+            country_code = '+966',
             sec_phone_number = ''
           } = this.propertyData.property;
 
-          country_code = country_code || '+91';
+          country_code = country_code || '+966';
           sec_phone_number = sec_phone_number || '';
           this.secPhoneNumberForm.setValue({
             country_code,
@@ -146,7 +146,7 @@ export class PropertyGuests15Component implements OnInit, AfterViewInit, OnDestr
 
       if (this.user.phone_number && this.user.phone_number !== 'null') {
         this.isOtpVerified = true;
-        const country_code = this.user.country_code || '+91';
+        const country_code = this.user.country_code || '+966';
         const phone_number = this.user.phone_number || '' ;
         this.userPhoneNumberForm.setValue({
           country_code,

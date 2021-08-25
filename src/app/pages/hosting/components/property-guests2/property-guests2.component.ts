@@ -37,41 +37,11 @@ export class PropertyGuests2Component implements OnInit, AfterViewInit, OnDestro
 
   propertyBeds: PropertyBed[] = [
     {
-      bed_id: 4,
-      bedroom_name: 'Common Space',
-      count: 2,
-      serial_number: 0
-    },
-    {
-      bed_id: 7,
-      bedroom_name: 'Common Space',
-      count: 3,
-      serial_number: 0
-    },
-    {
-      bed_id: 9,
-      bedroom_name: 'Common Space',
-      count: 1,
-      serial_number: 0
-    },
-    {
-      bed_id: 1,
+      bed_id: 5,
       bedroom_name: 'Bedroom 1',
-      count: 2,
-      serial_number: 1
-    },
-    {
-      bed_id: 2,
-      bedroom_name: 'Bedroom 2',
-      count: 3,
-      serial_number: 1
-    },
-    {
-      bed_id: 3,
-      bedroom_name: 'Bedroom 3',
       count: 1,
       serial_number: 1
-    }
+    },
   ];
 
   bedGroup: {
@@ -148,6 +118,13 @@ export class PropertyGuests2Component implements OnInit, AfterViewInit, OnDestro
 
   private groupBeds(beds: PropertyBed[]): void {
     this.bedGroup = {};
+    if (!this.bedGroup[0]) {
+      this.bedGroup[0] = {
+        beds: [],
+        isEdit: true,
+        done: false,
+      };
+    }
     beds.forEach((bed) => {
       const keys = Object.keys(this.bedGroup);
       if (keys.includes(`${bed.serial_number}`)) {
@@ -230,13 +207,13 @@ export class PropertyGuests2Component implements OnInit, AfterViewInit, OnDestro
 
   countBedsInRoom(bedId: number, roomNo: number, type: 'inc' | 'dec'): void {
     if (this.bedGroup[roomNo].beds.length === 1 && this.bedGroup[roomNo].beds[0].count === 1) {
-      if(roomNo === 0){
-        this.$alert.info('Should be 1 bed in common space');
+      if (roomNo === 0) {
+        // this.$alert.info('Should be 1 bed in common space');
       }
-      else{
+      else {
         this.$alert.info('Should be 1 bed in a bedroom');
+        return;
       }
-      return;
     }
     this.bedGroup[roomNo].beds = this.bedGroup[roomNo].beds.map(item => {
       if (item.bed_id === bedId) {
@@ -306,21 +283,9 @@ export class PropertyGuests2Component implements OnInit, AfterViewInit, OnDestro
 
 const bedroom = [
   {
-    bed_id: 3,
-    bedroom_name: 'Bedroom 1',
-    count: 2,
-    serial_number: 1
-  },
-  {
     bed_id: 5,
-    bedroom_name: 'Bedroom 2',
-    count: 2,
-    serial_number: 1
-  },
-  {
-    bed_id: 9,
-    bedroom_name: 'Bedroom 3',
+    bedroom_name: 'Bedroom 1',
     count: 1,
     serial_number: 1
-  }
+  },
 ];
