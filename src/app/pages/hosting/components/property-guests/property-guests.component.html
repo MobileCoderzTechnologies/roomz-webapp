@@ -5,19 +5,10 @@
         <div class="col_selector bg-white p-4">
           <h3 class="fz30 mb-4">Which of these sounds most like your place?</h3>
           <div class="form-group w-75">
-            <label for="" class="fz18 medium_font mb-3"
-              >Choose a property type</label
-            >
-            <select
-              class="form-select custom_form_control"
-              aria-label="Default select example"
-              (change)="onSelectPropertyType($event.target.value)"
-            >
-              <option
-                *ngFor="let type of propertyTypes"
-                [value]="type.id"
-                [selected]="type.id == selectedPropertyType"
-              >
+            <label for="" class="fz18 medium_font mb-3">Choose a property type</label>
+            <select class="form-select custom_form_control" aria-label="Default select example"
+              (change)="onSelectPropertyType($event.target.value)">
+              <option *ngFor="let type of propertyTypes" [value]="type.id" [selected]="type.id == selectedPropertyType">
                 {{ type.property_type | titlecase }}
               </option>
             </select>
@@ -27,15 +18,23 @@
             </p>
           </div>
 
+
+          <div class="form-group w-75 property-area">
+            <label for="" class="fz18 medium_font mb-3">
+              Property Area
+            </label>
+            <input type="text" name="" class="form-control custom_form_control" placeholder="eg 200" [formControl]="propertyArea"
+              oninput="this.value=this.value.replace(/\D/g,'')" />
+            <p class="area-hint"><small>in sq.fit</small></p>
+            <small class="text-danger" *ngIf="propertyArea.touched && propertyArea.errors?.required">Property area is required.</small>
+          </div>
+
           <div class="custom_check mb-4" *ngIf="isBeachHouseShow">
+            <br>
+            <br>
             <div class="form-group d-flex align-items-center">
-              <input
-                type="checkbox"
-                id="beachHouse"
-                name="beachHouse"
-                (change)="isBeachHouse = !isBeachHouse"
-                [checked]="isBeachHouse"
-              />
+              <input type="checkbox" id="beachHouse" name="beachHouse" (change)="isBeachHouse = !isBeachHouse"
+                [checked]="isBeachHouse" />
               <label class="form-check-label fz15 mb-0" for="beachHouse">
                 is this a beach house
               </label>
@@ -48,13 +47,8 @@
             </p>
             <div class="custom_check circle_check mb-4">
               <div class="form-group">
-                <input
-                  type="radio"
-                  id="isDedicatedSpace1"
-                  name="isDedicatedSpace"
-                  (change)="onDedicatedGuestSpace(true)"
-                  [checked]="isDedicatedGuestsSpace"
-                />
+                <input type="radio" id="isDedicatedSpace1" name="isDedicatedSpace"
+                  (change)="onDedicatedGuestSpace(true)" [checked]="isDedicatedGuestsSpace" />
                 <label class="form-check-label fz15" for="isDedicatedSpace1">
                   Yes, it’s primarily set up for guests
                 </label>
@@ -62,13 +56,8 @@
             </div>
             <div class="custom_check circle_check mb-4">
               <div class="form-group">
-                <input
-                  type="radio"
-                  id="isDedicatedSpace0"
-                  name="isDedicatedSpace"
-                  (change)="onDedicatedGuestSpace(false)"
-                  [checked]="!isDedicatedGuestsSpace"
-                />
+                <input type="radio" id="isDedicatedSpace0" name="isDedicatedSpace"
+                  (change)="onDedicatedGuestSpace(false)" [checked]="!isDedicatedGuestsSpace" />
                 <label class="form-check-label fz15" for="isDedicatedSpace0">
                   No, I keep my personal belongings here
                 </label>
@@ -79,13 +68,8 @@
             <p class="fz18 medium_font">Which best describes how you host?</p>
             <div class="custom_check circle_check mb-4">
               <div class="form-group">
-                <input
-                  type="radio"
-                  id="isPrivateIndividual0"
-                  name="hostType"
-                  [checked]="!isHostPrivate"
-                  (change)="isHostPrivate = false"
-                />
+                <input type="radio" id="isPrivateIndividual0" name="hostType" [checked]="!isHostPrivate"
+                  (change)="isHostPrivate = false" />
                 <label class="form-check-label fz15" for="isPrivateIndividual0">
                   I’m hosting as part of a business
                   <p class="fz14 regular_font mb-3 ms-0">
@@ -105,13 +89,8 @@
             </div>
             <div class="custom_check circle_check mb-4">
               <div class="form-group">
-                <input
-                  type="radio"
-                  id="isPrivateIndividual1"
-                  name="hostType"
-                  [checked]="isHostPrivate"
-                  (change)="isHostPrivate = true"
-                />
+                <input type="radio" id="isPrivateIndividual1" name="hostType" [checked]="isHostPrivate"
+                  (change)="isHostPrivate = true" />
                 <label class="form-check-label fz15" for="isPrivateIndividual1">
                   I’m hosting as a private individual
                   <p class="fz14 regular_font mb-3 ms-0">
@@ -126,59 +105,31 @@
             <p class="fz14 regular_font text-secondary">
               This information helps you get the right features for how you host
               and helps Airbnb comply with consumer protection laws.
-              <a href="javascript:void(0);" class="blue_color fz14 regular_font"
-                ><u>Learn more</u></a
-              >
+              <a href="javascript:void(0);" class="blue_color fz14 regular_font"><u>Learn more</u></a>
             </p>
           </div>
         </div>
-        <div
-          class="d-flex justify-content-between align-items-center mb-5 p-4 mt-0 back_next_part bg-white"
-        >
-          <a *ngIf="!encryptedPropertyId"
-            href="javascript:void(0);"
+        <div class="d-flex justify-content-between align-items-center mb-5 p-4 mt-0 back_next_part bg-white">
+          <a *ngIf="!encryptedPropertyId" href="javascript:void(0);"
+            class="blue_color d-flex align-items-center medium_font fz18" routerLink="{{ startRoute.url }}">
+            <img src="assets/images/blue-left-arrow.png" class="me-2 mb-1" alt="" />
+            Back</a>
+          <a *ngIf="encryptedPropertyId" href="javascript:void(0);"
             class="blue_color d-flex align-items-center medium_font fz18"
-            routerLink="{{ startRoute.url }}"
-          >
-            <img
-              src="assets/images/blue-left-arrow.png"
-              class="me-2 mb-1"
-              alt=""
-            />
-            Back</a
-          >
-          <a *ngIf="encryptedPropertyId"
-            href="javascript:void(0);"
-            class="blue_color d-flex align-items-center medium_font fz18"
-            [routerLink]="[startRoute.url, encryptedPropertyId]"
-          >
-            <img
-              src="assets/images/blue-left-arrow.png"
-              class="me-2 mb-1"
-              alt=""
-            />
-            Back</a
-          >
-          <button
-            class="btn custom_btn semi_font fz18"
-            *ngIf="!isNextLoading"
-            (click)="addPropertyTypes()"
-          >
+            [routerLink]="[startRoute.url, encryptedPropertyId]">
+            <img src="assets/images/blue-left-arrow.png" class="me-2 mb-1" alt="" />
+            Back</a>
+          <button class="btn custom_btn semi_font fz18" *ngIf="!isNextLoading" (click)="addPropertyTypes()" [disabled]="propertyArea.invalid">
             Next
           </button>
           <button class="btn custom_btn semi_font fz18" *ngIf="isNextLoading">
             Next
-            <div
-              *ngIf="!isSavingExit"
-              class="spinner-border text-info spinner-border-sm"
-            ></div>
+            <div *ngIf="!isSavingExit" class="spinner-border text-info spinner-border-sm"></div>
           </button>
         </div>
       </div>
       <div class="col-md-5">
-        <div
-          class="col_selector p-4 mx-4 bg-white right_side_content box_shadow"
-        >
+        <div class="col_selector p-4 mx-4 bg-white right_side_content box_shadow">
           <div class="mb_20">
             <img src="assets/images/idea.png" alt="" />
           </div>

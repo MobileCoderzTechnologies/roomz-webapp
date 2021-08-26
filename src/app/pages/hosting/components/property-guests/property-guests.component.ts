@@ -1,4 +1,5 @@
 import { AfterViewInit, Component, OnDestroy, OnInit } from '@angular/core';
+import { FormControl, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { $ } from 'protractor';
 import { Subscription } from 'rxjs';
@@ -32,6 +33,8 @@ export class PropertyGuestsComponent implements OnInit, AfterViewInit, OnDestroy
   isBeachHouseShow = true;
 
   isNextLoading = false;
+
+  propertyArea = new FormControl('', Validators.required);
 
   propertyId: number;
   encryptedPropertyId: string;
@@ -95,6 +98,10 @@ export class PropertyGuestsComponent implements OnInit, AfterViewInit, OnDestroy
         this.propertyData = data;
         console.log(this.propertyData);
         if (this.propertyData) {
+          const propertyArea = this.propertyData.property?.area || '';
+          if (propertyArea) {
+            this.propertyArea.setValue(propertyArea);
+          }
           this.isDedicatedGuestsSpace = this.propertyData.property.is_dedicated_guest_space ? true : false;
           this.selectedPropertyType = this.propertyData.property.property_type || 1;
           console.log(this.selectedPropertyType);
@@ -138,7 +145,8 @@ export class PropertyGuestsComponent implements OnInit, AfterViewInit, OnDestroy
       property_type: this.selectedPropertyType,
       is_beach_house: this.isBeachHouse,
       is_dedicated_guest_space: this.isDedicatedGuestsSpace,
-      is_business_hosting: this.isHostPrivate
+      is_business_hosting: this.isHostPrivate,
+      area: this.propertyArea.value
     };
     this.$propertyListingService.addPropertyType(dataObj, this.propertyId)
       .subscribe(data => {
@@ -153,6 +161,7 @@ export class PropertyGuestsComponent implements OnInit, AfterViewInit, OnDestroy
           this.propertyData.property.is_beach_house = respData.is_beach_house;
           this.propertyData.property.is_dedicated_guest_space = respData.is_dedicated_guest_space;
           this.propertyData.property.is_business_hosting = respData.is_business_hosting;
+          this.propertyData.property.area = respData.area;
 
           this.$ps.clearPropertyData();
           this.$ps.setPropertyData(this.propertyData);
