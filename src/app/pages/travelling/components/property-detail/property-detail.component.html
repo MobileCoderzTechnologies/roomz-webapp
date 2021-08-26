@@ -215,12 +215,13 @@
               <h4 class="mb-0 fz18 semi_font d-flex align-items-center mb-1">
                 Cancellation policy
               </h4>
-              <p class="mb-1 fz14">
-                Non-refundable: Cancel before check-in and get back only the
-                cleaning fee, if you paid one.
-              </p>
+              <ng-container *ngFor="let policy of cancellationPolicy; let i=index">
+                <p class="mb-1 fz14" *ngIf="i===0">
+                  {{policy}}
+                </p>
+              </ng-container>
               <p class="mb-0">
-                <a href="javascript:void(0);" class="blue_color bold_font"><u>See more</u></a>
+                <a href="javascript:void(0);" class="blue_color bold_font" (click)="seeMorePolicies()"><u>See more</u></a>
               </p>
             </div>
           </div>
@@ -232,10 +233,10 @@
               <h4 class="mb-0 fz18 semi_font d-flex align-items-center mb-1">
                 House rules
               </h4>
-              <p class="mb-1 fz14" *ngIf="!expandedHouseRules">
+              <p class="mb-1 fz14">
                 {{property?.rules[0].rule?.rule}}
               </p>
-              <ng-container *ngIf="expandedHouseRules">
+              <!-- <ng-container *ngIf="expandedHouseRules">
                 <ng-container *ngFor="let rule of property?.rules">
                   <div class="mb1 fz14" *ngIf="!rule.is_additional">
                     {{rule?.rule?.rule}}
@@ -247,16 +248,16 @@
                     {{rule?.description}}
                   </p>
                 </ng-container>
-              </ng-container>
+              </ng-container> -->
 
-              <p class="mb-0" *ngIf="!expandedHouseRules">
-                <a href="javascript:void(0);" class="blue_color bold_font" (click)="expandedHouseRules = true"><u>See
+              <p class="mb-0">
+                <a href="javascript:void(0);" class="blue_color bold_font" (click)="seeMoreRules()"><u>See
                     more</u></a>
               </p>
-              <p class="mb-0" *ngIf="expandedHouseRules">
+              <!-- <p class="mb-0" *ngIf="expandedHouseRules">
                 <a href="javascript:void(0);" class="blue_color bold_font" (click)="expandedHouseRules = false"><u>See
                     less</u></a>
-              </p>
+              </p> -->
             </div>
           </div>
           <hr class="my-4" />
@@ -436,11 +437,11 @@
                       <img src="assets/images/angle-left.png" class="img-fluid" alt="" />
                     </div>
                   </div>
-                  <div class="d-flex align-items-center justify-content-between mb-4">
+                  <div class="d-flex align-items-center justify-content-between mb-4" (click)="seeMoreSafety()" style="cursor: pointer;">
                     <div>
-                      <h3 class="fz16 semi_font mb-1">Availability</h3>
+                      <h3 class="fz16 semi_font mb-1">Safety</h3>
                       <p class="fz14 medium_font mb-0 text-secondary">
-                        Lorem ipsum dolor sit, amet consectetur adipisicing.
+                        Limit social gatherings and time spent in crowded places
                       </p>
                     </div>
                     <div>

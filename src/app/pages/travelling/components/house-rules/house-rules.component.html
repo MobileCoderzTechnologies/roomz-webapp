@@ -2,7 +2,7 @@
   <div class="p-3 pb-0">
     <div class="d-flex align-items-center justify-content-between">
       <h2 class="fz22 semi_font">House rules</h2>
-      <button type="button" class="btn close fz20 me-0 pe-0 font-weight-bold">
+      <button type="button" class="btn close fz20 me-0 pe-0 font-weight-bold" (click)="closeDialog()">
         <img src="assets/images/cross.png" alt="" />
       </button>
     </div>
@@ -11,48 +11,51 @@
   <div class="p-3 pb-0">
     <div>
       <p class="fz15 medium_font d-flex align-items-center mb-1">
-        <img
-          src="assets/images/clock.webp"
-          class="me-2 mb-1"
-          width="15"
-          alt=""
-        />
-        Check-in: 2:00 pm - 7:00 pm
+        <img src="assets/images/clock.webp" class="me-2 mb-1" width="15" alt="" />
+        Check-in: {{data.checkIn|formatTime}}
       </p>
       <p class="fz15 medium_font d-flex align-items-center mb-1">
-        <img
-          src="assets/images/clock.webp"
-          class="me-2 mb-1"
-          width="15"
-          alt=""
-        />
-        Check out: 11:00 am
+        <img src="assets/images/clock.webp" class="me-2 mb-1" width="15" alt="" />
+        Check out: {{data.checkOut|formatTime}}
       </p>
-      <p class="fz15 medium_font d-flex align-items-center mb-1">
-        <img
-          src="assets/images/clock.webp"
-          class="me-2 mb-1"
-          width="15"
-          alt=""
-        />
-        Pets are allowed
-      </p>
-      <p class="fz15 medium_font d-flex align-items-center">
-        <img
-          src="assets/images/clock.webp"
-          class="me-2 mb-1"
-          width="15"
-          alt=""
-        />No smoking
-      </p>
+      <ng-container *ngFor="let rule of rules">
+        <!-- <p class="fz15 medium_font d-flex align-items-center mb-1">
+          <img
+            src="assets/images/clock.webp"
+            class="me-2 mb-1"
+            width="15"
+            alt=""
+          />
+          Pets are allowed
+        </p> -->
+        <p class="fz15 medium_font d-flex align-items-center">
+          <img src="assets/images/clock.webp" class="me-2 mb-1" width="15" alt="" />
+          {{rule?.rule?.rule}}
+        </p>
+      </ng-container>
+
+      <!-- <ng-container *ngIf="expandedHouseRules">
+                <ng-container *ngFor="let rule of property?.rules">
+                  <div class="mb1 fz14" *ngIf="!rule.is_additional">
+                    {{rule?.rule?.rule}}
+                    <p *ngIf="rule?.is_cancelled" class="mb1 fz14">
+                      {{rule.cancel_reason}}
+                    </p>
+                  </div>
+                  <p class="mb1 fz14" *ngIf="rule.is_additional">
+                    {{rule?.description}}
+                  </p>
+                </ng-container>
+              </ng-container> -->
     </div>
-    <p class="fz19 semi_font">Additional rules</p>
+    <p class="fz19 semi_font" *ngIf="additionalRules?.length">Additional rules</p>
     <div>
-      <p class="fz15 medium_font mb-0">
-        Number of Guests: The prices given per night are based on maximum 2
-        guests.
-      </p>
-      <p class="fz15 medium_font mb-4">
+      <ng-container *ngFor="let ar of additionalRules">
+        <p class="fz15 medium_font mb-0">
+          {{ar?.description}}
+        </p>
+      </ng-container>
+      <!-- <p class="fz15 medium_font mb-4">
         Additional fees is applicable for additional guests. Maximum occupancy
         is 6 guests. No charge for infants.
       </p>
@@ -72,7 +75,7 @@
       <p class="fz15 medium_font">
         Smoking: Smoking is possible only in the open air terrace garden area of
         the patio. Rest of the property is completely no smoking zone.
-      </p>
+      </p> -->
     </div>
   </div>
 </div>

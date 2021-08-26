@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { MatDialogRef } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-safety',
@@ -7,9 +8,15 @@ import { Component, OnInit } from '@angular/core';
 })
 export class SafetyComponent implements OnInit {
 
-  constructor() { }
+  constructor(
+    private $dialogRef: MatDialogRef<SafetyComponent>
+  ) { }
 
   ngOnInit(): void {
+  }
+
+  closeDialog(): void {
+    this.$dialogRef.close(null);
   }
 
 }

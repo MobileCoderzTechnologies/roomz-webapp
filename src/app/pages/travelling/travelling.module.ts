@@ -23,6 +23,7 @@ import { SliderThirdComponent } from './components/slider-third/slider-third.com
 import { CancellationPolicyComponent } from './components/cancellation-policy/cancellation-policy.component';
 import { SafetyComponent } from './components/safety/safety.component';
 import { HouseRulesComponent } from './components/house-rules/house-rules.component';
+import { FormatTimePipe } from './pipes/format-time.pipe';
 
 
 @NgModule({
@@ -44,6 +45,7 @@ import { HouseRulesComponent } from './components/house-rules/house-rules.compon
     CancellationPolicyComponent,
     SafetyComponent,
     HouseRulesComponent,
+    FormatTimePipe,
   ],
   imports: [
     CommonModule,

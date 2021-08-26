@@ -3,25 +3,27 @@
     <div class="d-flex align-items-center justify-content-between">
       <h2 class="fz22 semi_font">Cancellation policy</h2>
       <button type="button" class="btn close fz20 me-0 pe-0 font-weight-bold">
-        <img src="assets/images/cross.png" alt="" />
+        <img src="assets/images/cross.png" alt="" (click)="closeDialog()"/>
       </button>
     </div>
   </div>
   <hr />
   <div class="p-3 pb-0">
     <p class="fz19 semi_font">Note</p>
-    <div class="d-flex mb-2">
-      <div>
-        <img src="assets/images/arrow_right_new.png" class="me-2 mb-2" alt="" />
+    <ng-container *ngFor="let policy of cancellationPolicy">
+      <div class="d-flex mb-2">
+        <div>
+          <img src="assets/images/arrow_right_new.png" class="me-2 mb-2" alt="" />
+        </div>
+        <div>
+          <p class="mb-0 fz15 medium_font">
+            {{policy}}
+          </p>
+        </div>
       </div>
-      <div>
-        <p class="mb-0 fz15 medium_font">
-          Free cancellation until 24 hours before check-in (time shown in the
-          confirmation email).
-        </p>
-      </div>
-    </div>
-    <div class="d-flex mb-2">
+    </ng-container>
+   
+    <!-- <div class="d-flex mb-2">
       <div>
         <img src="assets/images/arrow_right_new.png" class="me-2 mb-2" alt="" />
       </div>
@@ -31,6 +33,6 @@
           first night and service fee.
         </p>
       </div>
-    </div>
+    </div> -->
   </div>
 </div>

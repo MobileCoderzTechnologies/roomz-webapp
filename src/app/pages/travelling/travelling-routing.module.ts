@@ -24,19 +24,7 @@ const routes: Routes = [
   {
     path: `${PROPERTY_DETAIL_ROUTE.path}/:id`,
     component: PropertyDetailComponent,
-  },
-  {
-    path: 'Safety',
-    component: SafetyComponent,
-  },
-  {
-    path: 'cancellation-policy',
-    component: CancellationPolicyComponent,
-  },
-  {
-    path: 'house-rule',
-    component: HouseRulesComponent,
-  },
+  }
 ];
 
 @NgModule({

@@ -1,10 +1,15 @@
 import { Component, OnInit } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
 import { ActivatedRoute } from '@angular/router';
 import { OwlOptions } from 'ngx-owl-carousel-o';
+import { CANCELLATION_POLICY } from 'src/app/constants/cancellation-policy.constant';
 import { AlertService } from 'src/app/modules/alert/alert.service';
 import { EncryptionService } from 'src/app/services/encryption.service';
 import { SEARCH_PAGE_ROUTE } from '../../constants/route.constant';
 import { PropertyService } from '../../services/property.service';
+import { CancellationPolicyComponent } from '../cancellation-policy/cancellation-policy.component';
+import { HouseRulesComponent } from '../house-rules/house-rules.component';
+import { SafetyComponent } from '../safety/safety.component';
 
 @Component({
   selector: 'app-property-detail',
@@ -12,7 +17,7 @@ import { PropertyService } from '../../services/property.service';
   styleUrls: ['./property-detail.component.scss']
 })
 export class PropertyDetailComponent implements OnInit {
-
+  cancellationPolicy: any[] = [];
   searchPageRoute = SEARCH_PAGE_ROUTE;
   propertyId: number;
   isLoading = false;
@@ -60,7 +65,8 @@ export class PropertyDetailComponent implements OnInit {
     private $encryptionService: EncryptionService,
     private $propertyService: PropertyService,
     private $activateRoute: ActivatedRoute,
-    private $alert: AlertService
+    private $alert: AlertService,
+    private $dialog: MatDialog
   ) { }
 
   ngOnInit(): void {
@@ -94,7 +100,7 @@ export class PropertyDetailComponent implements OnInit {
     this.$propertyService.getPropertyDetails(this.propertyId).subscribe(data => {
       this.isLoading = false;
       this.property = data.data[0];
-      const { images, beds, cover_photo } = this.property;
+      const { images, beds, cover_photo, cancellation_policy } = this.property;
       this.groupBeds(this.property?.beds);
       console.log(this.property);
       this.deletedPrice = this.deletedPriceCal(this.property?.base_price);
@@ -114,6 +120,8 @@ export class PropertyDetailComponent implements OnInit {
 
         console.log(this.propertyImages);
       });
+      this.cancellationPolicy = CANCELLATION_POLICY[cancellation_policy];
+
     },
       err => {
         this.isLoading = false;
@@ -142,5 +150,39 @@ export class PropertyDetailComponent implements OnInit {
 
   onSlideChange(event): void {
     this.currentSlide = event.startPosition + 1;
+  }
+
+  seeMorePolicies(): void {
+    this.$dialog.open(CancellationPolicyComponent, {
+      data: this.cancellationPolicy,
+      autoFocus: false,
+      width: '50%',
+      minWidth: '400px'
+    });
+  }
+
+
+  seeMoreSafety(): void {
+    this.$dialog.open(SafetyComponent, {
+      data: this.property?.amenities,
+      autoFocus: false,
+      width: '50%',
+      minWidth: '400px'
+    });
+  }
+
+  seeMoreRules(): void {
+    this.$dialog.open(HouseRulesComponent, {
+      data: {
+        rules: this.property.rules,
+        checkIn: this.property.guest_ci_from,
+        checkOut: this.property.guest_ci_to,
+      },
+      autoFocus: false,
+      width: '70%',
+      minWidth: '400px',
+      height: 'auto',
+      maxHeight: '90vh'
+    });
   }
 }

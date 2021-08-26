@@ -37,38 +37,51 @@
 }
 
 
-.user-photo{
+.user-photo {
   height: 60px;
   width: 60px;
   border-radius: 100%;
 }
 
-.amenity-icon{
+.amenity-icon {
   height: 20px;
   width: 30px;
 }
 
-agm-map{
+agm-map {
   height: 160px;
   width: auto;
   max-width: 641px;
 }
 
-.loader{
+.loader {
   height: 90vh;
   width: 100%;
   display: grid;
   place-items: center;
 }
 
-.bedroom{
+.bedroom {
   border: 1px solid #888;
   padding: 5px;
   border-radius: 12px;
   margin: 0% 5px;
 }
 
-.price-box{
+.price-box {
   position: sticky;
   top: 0%;
+}
+
+::ng-deep .mat-dialog-container {
+  padding: 0% !important;
+  border-radius: 7px !important;
+
+  &::-webkit-scrollbar {
+    width: 2px !important;
+  }
+
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+  overflow: -moz-scrollbars-none;
 }
