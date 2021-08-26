@@ -212,6 +212,15 @@
   ></app-sign-up>
 </div>
 
+<div *ngIf="signUpWithGoogle">
+  <app-sign-up
+    [logInType]="'GOOGLE'"
+    [email]="email"
+    [dialogRef]="$dialogRef"
+    (backToLogin)="backFromSignUp($event)"
+  ></app-sign-up>
+</div>
+
 <!-- log in with email welcome back  -->
 <div *ngIf="welcomeBack" style="width: 451px">
   <app-welcome-back

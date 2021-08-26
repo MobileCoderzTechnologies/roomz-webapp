@@ -17,6 +17,7 @@ export class SignUpComponent implements OnInit, AfterViewInit, OnChanges {
   isSubmitting = false;
 
   loginType = 'EMAIL';
+
   minDate: Date;
   maxDate: Date;
 
@@ -29,6 +30,7 @@ export class SignUpComponent implements OnInit, AfterViewInit, OnChanges {
   @Input() phoneNumber: string;
   @Input() countryCode: string;
   @Input() email: string;
+  @Input() logInType: string;
   readonlyEmail = false;
 
   @Input() dialogRef: any;
@@ -43,6 +45,8 @@ export class SignUpComponent implements OnInit, AfterViewInit, OnChanges {
     const date = new Date();
     const currentYear = date.getTime();
     this.maxDate = new Date(currentYear - (13 * 365 * 24 * 60 * 60 * 1000) - (3 * 24 * 60 * 60 * 1000));
+
+
   }
 
   ngOnInit(): void {
@@ -101,6 +105,9 @@ export class SignUpComponent implements OnInit, AfterViewInit, OnChanges {
     this.isSubmitting = true;
     const date = new Date(userData.dob);
     userData.dob = `${date.getDay()}-${date.getMonth()}-${date.getFullYear()}`;
+    if (this.logInType) {
+      this.loginType = this.logInType;
+    }
     userData.login_type = this.loginType;
     console.log(userData);
     this.$signUpService.register(userData).subscribe(data => {

@@ -54,7 +54,7 @@ const routes: Routes = [
         providers: [
           {
             id: GoogleLoginProvider.PROVIDER_ID,
-            provider: new GoogleLoginProvider(GOOGLE_KEY.googleWebClientId)
+            provider: new GoogleLoginProvider(GOOGLE_KEY.clientId)
           }
         ],
       } as SocialAuthServiceConfig

@@ -1,9 +1,10 @@
+import { isPlatformBrowser } from '@angular/common';
 import { HttpResponse } from '@angular/common/http';
-import { AfterViewInit, Component, Inject, OnDestroy, OnInit } from '@angular/core';
+import { AfterViewInit, Component, Inject, OnDestroy, OnInit, PLATFORM_ID } from '@angular/core';
 import { inject } from '@angular/core/testing';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
-import { SocialAuthService } from 'angularx-social-login';
+import { GoogleLoginProvider, SocialAuthService } from 'angularx-social-login';
 import { pipe, Subscription } from 'rxjs';
 import { delay } from 'rxjs/operators';
 import { COUNTRIES_CODES } from 'src/app/constants/country-code.constant';
@@ -37,6 +38,7 @@ export class LoginComponent implements OnInit, OnDestroy, AfterViewInit {
   isAccountSetup = false;
 
   signUpWithEmail = false;
+  signUpWithGoogle = false;
   email = '';
 
   checkEmailResponse: any;
@@ -55,7 +57,8 @@ export class LoginComponent implements OnInit, OnDestroy, AfterViewInit {
     private $signUpService: SignUpService,
     public $dialogRef: MatDialogRef<LoginComponent>,
     private $alert: AlertService,
-    private $socialAuthService: SocialAuthService
+    private $socialAuthService: SocialAuthService,
+    @Inject(PLATFORM_ID) private platformId: any
   ) {
 
   }
@@ -205,6 +208,7 @@ export class LoginComponent implements OnInit, OnDestroy, AfterViewInit {
     this.isLoginForm = true;
     if (data.email) {
       this.signUpWithEmail = false;
+      this.signUpWithGoogle = false;
       this.onClickLoginWith('email');
       this.loginForm.controls.email.setValue(data.email);
     }
@@ -284,7 +288,48 @@ export class LoginComponent implements OnInit, OnDestroy, AfterViewInit {
 
 
   logInWithGoogle(): void {
-    this.$socialAuthService.signIn(GOOGLE_KEY.googleWebClientId);
+    this.$socialAuthService.signIn(GoogleLoginProvider.PROVIDER_ID).then(user => {
+      const social_id = user.idToken;
+      const social_token = user.authToken;
+      const email = user.email;
+      const login_type = 'GOOGLE';
+
+      // this.isSubmitting = true;
+      this.$loginService.onGoogleLogin({ social_token, social_id, email, login_type }).subscribe(data => {
+
+        if (data.status === 209) {
+          this.pageTitle = 'signUp.addYourInfo';
+          this.isBackBtn = true;
+          this.isCloseBtn = true;
+          this.signUpWithGoogle = true;
+          this.isLoginForm = false;
+          this.email = email;
+        }
+
+        if (data.status === 200) {
+          console.log(data);
+          const token = data.body.data.accessToken.token;
+          const user = {
+            name: `${data.body.data.user.first_name} ${data.body.data.user.last_name}`,
+            profile: data.body.data.user.avatar
+          };
+          if (isPlatformBrowser(this.platformId)) {
+            localStorage.setItem('accessToken', token);
+            localStorage.setItem('currentUser', JSON.stringify(user));
+          }
+          this.$alert.success(data.body.message);
+          this.$loginService.isLoggedIn.next(true);
+          this.isSubmitting = false;
+          this.$dialogRef.close(null);
+        }
+      }, err => {
+        this.isSubmitting = false;
+        this.$alert.danger(err.message);
+      });
+    })
+      .catch(err => {
+        console.log(err);
+      });
   }
 
 }

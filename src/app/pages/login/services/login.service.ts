@@ -56,6 +56,12 @@ export class LoginService {
       this.isLoggedIn.next(false);
     }
   }
+
+  onGoogleLogin(data: any): Observable<any> {
+    return this.$http.post('auth/social-login', data, {
+      observe: 'response' as 'body'
+    });
+  }
 }
 
 interface LoginResp {
