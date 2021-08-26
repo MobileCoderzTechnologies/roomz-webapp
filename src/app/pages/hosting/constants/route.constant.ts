@@ -178,4 +178,11 @@ export const STEP_22_ROUTE = {
   }
 };
 
+export const STEP_23_ROUTE = {
+  path: 'cancellation-policy',
+  get url(): string {
+    return `${LISTING_HOME_ROUTE.url}/${this.path}`;
+  }
+};
+
 

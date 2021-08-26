@@ -4,7 +4,7 @@ import { Subscription } from 'rxjs';
 import { delay } from 'rxjs/operators';
 import { AlertService } from 'src/app/modules/alert/alert.service';
 import { EncryptionService } from 'src/app/services/encryption.service';
-import { MY_LISTING_ROUTE, STEP_16_ROUTE, STEP_18_ROUTE } from '../../constants/route.constant';
+import { MY_LISTING_ROUTE, STEP_16_ROUTE, STEP_18_ROUTE, STEP_23_ROUTE } from '../../constants/route.constant';
 import { ProgressService } from '../../services/progress.service';
 import { PropertyListingService } from '../../services/property-listing.service';
 
@@ -17,6 +17,7 @@ export class PropertyGuests26Component implements OnInit, AfterViewInit, OnDestr
 
   step18Route = STEP_18_ROUTE;
   step16Route = STEP_16_ROUTE;
+  step23Route = STEP_23_ROUTE;
 
   propertyId: number;
   encryptedPropertyId: string;
@@ -104,7 +105,7 @@ export class PropertyGuests26Component implements OnInit, AfterViewInit, OnDestr
         return;
       }
 
-      this.$router.navigate([this.step18Route.url, this.encryptedPropertyId]);
+      this.$router.navigate([this.step23Route.url, this.encryptedPropertyId]);
     }, err => {
       this.isNextLoading = false;
       this.$alert.danger(err.message);

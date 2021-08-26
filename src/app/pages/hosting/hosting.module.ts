@@ -45,6 +45,7 @@ import { GoogleMapModule } from 'src/app/modules/google-map/google-map.module';
 import { DragDropModule } from 'src/app/modules/drag-drop/drag-drop.module';
 import { NgxPaginationModule } from 'ngx-pagination';
 import { CarouselModule } from 'ngx-owl-carousel-o';
+import { CancellationPolicyComponent } from './components/cancellation-policy/cancellation-policy.component';
 
 
 
@@ -87,7 +88,8 @@ import { CarouselModule } from 'ngx-owl-carousel-o';
     PropertyCheckInsComponent,
     GuestRequirementModelComponent,
     RuleReasonModelComponent,
-    FormatTimePipe
+    FormatTimePipe,
+    CancellationPolicyComponent
   ],
   imports: [
     CommonModule,

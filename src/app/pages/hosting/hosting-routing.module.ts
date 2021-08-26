@@ -45,6 +45,7 @@ import {
   STEP_20_ROUTE,
   STEP_21_ROUTE,
   STEP_22_ROUTE,
+  STEP_23_ROUTE,
   STEP_2_ROUTE,
   STEP_3_ROUTE,
   STEP_4_ROUTE,
@@ -57,6 +58,7 @@ import {
 import { PropertyViewComponent } from './components/property-view/property-view.component';
 import { PropertyListComponent } from './components/property-list/property-list.component';
 import { PropertyPreviewComponent } from './components/property-preview/property-preview.component';
+import { CancellationPolicyComponent } from './components/cancellation-policy/cancellation-policy.component';
 
 const routes: Routes = [
   {
@@ -177,119 +179,11 @@ const routes: Routes = [
         path: `${STEP_22_ROUTE.path}/:id`,
         component: PropertyGuests28Component,
       },
+      {
+        path: `${STEP_23_ROUTE.path}/:id`,
+        component: CancellationPolicyComponent
+      }
     ],
-  },
-  // {
-  //   path: 'property-guests',
-  //   component: PropertyGuestsComponent,
-  // },
-  {
-    path: 'property-guests2',
-    component: PropertyGuests2Component,
-  },
-  {
-    path: 'property-guests4',
-    component: PropertyGuests4Component,
-  },
-  {
-    path: 'property-guests5',
-    component: PropertyGuests5Component,
-  },
-  {
-    path: 'property-guests6',
-    component: PropertyGuests6Component,
-  },
-  {
-    path: 'property-guests8',
-    component: PropertyGuests8Component,
-  },
-  {
-    path: 'property-guests9',
-    component: PropertyGuests9Component,
-  },
-  {
-    path: 'property-guests10',
-    component: PropertyGuests10Component,
-  },
-  {
-    path: 'property-guests11',
-    component: PropertyGuests11Component,
-  },
-  {
-    path: 'property-guests12',
-    component: PropertyGuests12Component,
-  },
-  {
-    path: 'property-guests13',
-    component: PropertyGuests13Component,
-  },
-  {
-    path: 'property-guests14',
-    component: PropertyGuests14Component,
-  },
-  {
-    path: 'property-guests15',
-    component: PropertyGuests15Component,
-  },
-  {
-    path: 'property-guests16',
-    component: PropertyGuests16Component,
-  },
-  {
-    path: 'property-guests17',
-    component: PropertyGuests17Component,
-  },
-  {
-    path: 'property-guests19',
-    component: PropertyGuests19Component,
-  },
-  {
-    path: 'property-guests20',
-    component: PropertyGuests20Component,
-  },
-  {
-    path: 'property-guests21',
-    component: PropertyGuests21Component,
-  },
-  {
-    path: 'property-guests22',
-    component: PropertyGuests22Component,
-  },
-  {
-    path: 'property-guests23',
-    component: PropertyGuests23Component,
-  },
-  {
-    path: 'property-guests24',
-    component: PropertyGuests24Component,
-  },
-  {
-    path: 'property-guests25',
-    component: PropertyGuests25Component,
-  },
-  {
-    path: 'property-guests26',
-    component: PropertyGuests26Component,
-  },
-  {
-    path: 'property-guests27',
-    component: PropertyGuests27Component,
-  },
-  {
-    path: 'property-guests28',
-    component: PropertyGuests28Component,
-  },
-  {
-    path: 'property-view',
-    component: PropertyViewComponent,
-  },
-  {
-    path: 'property-list',
-    component: PropertyListComponent,
-  },
-  {
-    path: 'property-preview',
-    component: PropertyPreviewComponent,
   },
 ];
 

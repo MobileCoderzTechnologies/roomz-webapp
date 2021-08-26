@@ -4,19 +4,18 @@ import { Subscription } from 'rxjs';
 import { delay } from 'rxjs/operators';
 import { AlertService } from 'src/app/modules/alert/alert.service';
 import { EncryptionService } from 'src/app/services/encryption.service';
-import { STEP_19_ROUTE, STEP_17_ROUTE, MY_LISTING_ROUTE, STEP_23_ROUTE } from '../../constants/route.constant';
+import { MY_LISTING_ROUTE, STEP_16_ROUTE, STEP_18_ROUTE, STEP_23_ROUTE } from '../../constants/route.constant';
 import { ProgressService } from '../../services/progress.service';
 import { PropertyListingService } from '../../services/property-listing.service';
 
 @Component({
-  selector: 'app-property-guests19',
-  templateUrl: './property-guests19.component.html',
-  styleUrls: ['./property-guests19.component.scss']
+  selector: 'app-cancellation-policy',
+  templateUrl: './cancellation-policy.component.html',
+  styleUrls: ['./cancellation-policy.component.scss']
 })
-export class PropertyGuests19Component implements OnInit, AfterViewInit, OnDestroy {
-
-  step19Route = STEP_19_ROUTE;
-  step23Route = STEP_23_ROUTE;
+export class CancellationPolicyComponent implements OnInit, AfterViewInit, OnDestroy {
+  step16Route = STEP_16_ROUTE;
+  step18Route = STEP_18_ROUTE;
 
   propertyId: number;
   encryptedPropertyId: string;
@@ -26,7 +25,7 @@ export class PropertyGuests19Component implements OnInit, AfterViewInit, OnDestr
 
   isNextLoading = false;
 
-  isUpdatedCalender = true;
+  cancellation_policy: 'flexible' | 'moderate' | 'strict' = 'flexible';
 
   isSavingExit = false;
   saveExitSubs: Subscription;
@@ -42,8 +41,8 @@ export class PropertyGuests19Component implements OnInit, AfterViewInit, OnDestr
 
   ngOnInit(): void {
     this.$ps.header.next({
-      progress: 87,
-      heading: 'Calendar and availability'
+      progress: 83,
+      heading: 'Cancellation Policy'
     });
 
     this.$activatedRoute.params.subscribe(params => {
@@ -55,7 +54,7 @@ export class PropertyGuests19Component implements OnInit, AfterViewInit, OnDestr
     this.saveExitSubs = this.$ps.saveExit.subscribe(data => {
       if (data === 'done') {
         this.isSavingExit = true;
-        this.propertyUpdatedCalender();
+        this.onNext();
       }
     });
 
@@ -64,9 +63,6 @@ export class PropertyGuests19Component implements OnInit, AfterViewInit, OnDestr
   ngAfterViewInit(): void {
     this.setDataForUpdate();
   }
-
-
-
   private setDataForUpdate(): void {
     this.propertyDataSubs = this.$ps.propertyData
       .pipe(
@@ -76,27 +72,33 @@ export class PropertyGuests19Component implements OnInit, AfterViewInit, OnDestr
         this.propertyData = data;
         console.log(this.propertyData);
         if (this.propertyData) {
-          const { is_updated_calender = true } = this.propertyData.property;
-          this.isUpdatedCalender = is_updated_calender ? true : false;
+          const { cancellation_policy = 'flexible' } = this.propertyData.property;
+          this.cancellation_policy = cancellation_policy || 'flexible';
         }
 
       });
   }
 
-  onMarkUpdatedCalender(status: boolean): void {
-    this.isUpdatedCalender = status;
+  onCheck(isChecked: boolean, policy: 'flexible' | 'moderate' | 'strict'): void {
+    console.log(isChecked);
+    if (isChecked) {
+      this.cancellation_policy = policy;
+    }
+    else {
+      this.cancellation_policy = null;
+    }
   }
 
-  propertyUpdatedCalender(): void {
+  onNext(): void {
     this.isNextLoading = true;
     const requestData = {
-      is_updated_calender: this.isUpdatedCalender,
+      cancellation_policy: this.cancellation_policy,
     };
 
     this.$propertyListingService.lawsAndCalenderMark(this.propertyId, requestData).subscribe(res => {
       const respData = res.data[0];
 
-      this.propertyData.property.is_local_laws = respData.is_local_laws;
+      this.propertyData.property.cancellation_policy = respData.cancellation_policy;
       this.$ps.clearPropertyData();
       this.$ps.setPropertyData(this.propertyData);
       this.isNextLoading = false;
@@ -106,7 +108,7 @@ export class PropertyGuests19Component implements OnInit, AfterViewInit, OnDestr
         return;
       }
 
-      this.$router.navigate([this.step19Route.url, this.encryptedPropertyId]);
+      this.$router.navigate([this.step18Route.url, this.encryptedPropertyId]);
     }, err => {
       this.isNextLoading = false;
       this.$alert.danger(err.message);

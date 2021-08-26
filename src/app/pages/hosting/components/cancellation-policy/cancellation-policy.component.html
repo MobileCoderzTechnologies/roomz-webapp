@@ -1,0 +1,94 @@
+<section class="kind_of_place">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-7">
+        <div class="bg-white">
+          <div class="col_selector p-4">
+            <h3 class="fz30 mb-4 semi_font">
+              Cancellation policy
+            </h3>
+
+            <div class="custom_check circle_check mb-4">
+              <div class="form-group policy-group p-4">
+                <input type="radio" name="policy" [checked]="cancellation_policy === 'flexible'"
+                  (change)="onCheck($event.target.checked, 'flexible')" id="flexible" />
+                <label class="form-check-label label-txt fz15" for="flexible">
+                  Flexible
+                </label>
+                <ul class="ul">
+                  <li>
+                    Free cancellation until 24 hours before check-in (time shown in the confirmation email).
+                  </li>
+                  <li>
+                    After that, cancel before check-in and get a full refund, minus the first night and service fee.
+                  </li>
+                </ul>
+              </div>
+            </div>
+            <div class="custom_check circle_check mb-4">
+              <div class="form-group policy-group p-4">
+                <input type="radio" name="policy" [checked]="cancellation_policy === 'moderate'"
+                  (change)="onCheck($event.target.checked, 'moderate')" id="moderate" />
+                <label class="form-check-label label-txt fz15" for="moderate">
+                  Moderate
+                </label>
+                <ul class="ul">
+                  <li>
+                    Free cancellation until 5 days before check-in (time shown in the confirmation email).
+
+                  </li>
+                  <li>
+                    After that, cancel before check-in and get a 50% refund, minus the first night and service fee.
+
+                  </li>
+                </ul>
+              </div>
+            </div>
+            <div class="custom_check circle_check mb-4">
+              <div class="form-group policy-group p-4">
+                <input type="radio" name="policy" [checked]="cancellation_policy==='strict'"
+                  (change)="onCheck($event.target.checked, 'strict')" id="strict" />
+                <label class="form-check-label label-txt fz15" for="strict">
+                  Strict
+                </label>
+                <ul class="ul">
+                  <li>
+                    Free cancellation for 48 hours, as long as the guest cancels at least 14 days before check-in (time
+                    shown in the confirmation email)
+
+                  </li>
+                  <li>
+                    After that, guests can cancel up to 7 days before check-in and get a 50% refund of the nightly rate,
+                    and the cleaning fee, but not the service fee.
+                  </li>
+                </ul>
+              </div>
+            </div>
+
+          </div>
+          <!-- <hr />
+                  <div class="d-flex justify-content-between align-items-center mb-5 mt-4 p-4">
+                      <a href="javascript:void(0);" class="blue_color d-flex align-items-center"><img
+                              src="assets/images/blue-left-arrow.png" class="me-2" alt="" /> Back
+                      </a>
+                      <button class="btn custom_btn">Next</button>
+                  </div> -->
+
+          <div class="d-flex justify-content-between align-items-center mb-5 p-4 mt-0 back_next_part">
+            <a href="javascript:void(0);" class="blue_color d-flex align-items-center"
+              [routerLink]="[step16Route.url, encryptedPropertyId]">
+              <img src="assets/images/blue-left-arrow.png" class="me-2" alt="" /> Back
+            </a>
+            <button class="btn custom_btn" *ngIf="!isNextLoading" (click)="onNext()" [disabled]="!cancellation_policy">
+              Next
+            </button>
+            <button class="btn custom_btn" *ngIf="isNextLoading">
+              Next
+              <div *ngIf="!isSavingExit" class="spinner-border text-info spinner-border-sm"></div>
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
