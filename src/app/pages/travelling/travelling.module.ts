@@ -20,6 +20,9 @@ import { GoogleMapModule } from 'src/app/modules/google-map/google-map.module';
 import { NgxPaginationModule } from 'ngx-pagination';
 import { CarouselModule } from 'ngx-owl-carousel-o';
 import { SliderThirdComponent } from './components/slider-third/slider-third.component';
+import { CancellationPolicyComponent } from './components/cancellation-policy/cancellation-policy.component';
+import { SafetyComponent } from './components/safety/safety.component';
+import { HouseRulesComponent } from './components/house-rules/house-rules.component';
 
 
 @NgModule({
@@ -38,6 +41,9 @@ import { SliderThirdComponent } from './components/slider-third/slider-third.com
     PropertyDetailComponent,
     HeaderComponent,
     SliderThirdComponent,
+    CancellationPolicyComponent,
+    SafetyComponent,
+    HouseRulesComponent,
   ],
   imports: [
     CommonModule,
