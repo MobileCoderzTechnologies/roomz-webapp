@@ -121,6 +121,8 @@ export class StartComponent implements OnInit, AfterViewInit, OnDestroy {
     if (this.propertyId) {
       this.setDataForUpdate();
     }
+
+    this.$ps.isSaveExitShow.next(false);
   }
 
   ngAfterViewInit(): void {
@@ -198,6 +200,7 @@ export class StartComponent implements OnInit, AfterViewInit, OnDestroy {
   }
 
   ngOnDestroy(): void {
+    this.$ps.isSaveExitShow.next(true);
     if (this.propertyDataSubs) {
       this.propertyDataSubs.unsubscribe();
     }

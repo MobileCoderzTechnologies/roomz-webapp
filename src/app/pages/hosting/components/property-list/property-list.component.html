@@ -282,6 +282,11 @@
                     </td>
                   </tr>
                 </ng-container>
+                <tr *ngIf="!isLoading && !totalCount">
+                  <td colspan="10" style="text-align: center;">
+                    There are no property listed by you
+                  </td>
+                </tr>
               </tbody>
             </table>
             <div class="row" *ngIf="!isLoading">

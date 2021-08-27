@@ -1,6 +1,6 @@
 <section class="heading_progress d-flex align-items-center justify-content-between">
   <h4 class="fz16 medium_font mb-0"> {{heading}} </h4>
-  <div *ngIf="!isSaving" class="fz16 medium_font blue_color mb-0" style="cursor: pointer;" (click)="onSaveExit()">
+  <div *ngIf="!isSaving && isShow" class="fz16 medium_font blue_color mb-0" style="cursor: pointer;" (click)="onSaveExit()">
     Save and Exit
   </div>
   <div *ngIf="isSaving" class="fz16 medium_font blue_color mb-0" style="cursor: pointer;">

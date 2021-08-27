@@ -16,6 +16,9 @@ export class ProgressService {
 
   public saveExit = new BehaviorSubject(null);
   public isSaveExit = new BehaviorSubject(false);
+
+  public isSaveExitShow = new BehaviorSubject(true);
+  
   constructor(
     @Inject(PLATFORM_ID) private platformId: any
   ) {

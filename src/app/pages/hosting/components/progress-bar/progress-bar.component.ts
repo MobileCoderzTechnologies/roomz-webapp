@@ -17,6 +17,10 @@ export class ProgressBarComponent implements OnInit, AfterViewInit, OnDestroy {
   isSaving = false;
 
   isSaveExitSubs: Subscription;
+
+  isShow = true;
+  isShowSubs: Subscription;
+
   constructor(
     private $ps: ProgressService
   ) { }
@@ -43,6 +47,14 @@ export class ProgressBarComponent implements OnInit, AfterViewInit, OnDestroy {
       .subscribe(isSaving => {
         this.isSaving = isSaving;
       });
+
+    this.$ps.isSaveExitShow
+      .pipe(
+        delay(0)
+      )
+      .subscribe(isShow => {
+        this.isShow = isShow;
+      });
   }
 
   ngOnDestroy(): void {
@@ -50,7 +62,12 @@ export class ProgressBarComponent implements OnInit, AfterViewInit, OnDestroy {
     this.$ps.saveExit.next(null);
     this.isSaving = false;
     this.$ps.isSaveExit.next(false);
-    this.isSaveExitSubs.unsubscribe();
+    if (this.isSaveExitSubs) {
+      this.isSaveExitSubs.unsubscribe();
+    }
+    if (this.isShowSubs) {
+      this.isShowSubs.unsubscribe();
+    }
   }
 
 }
