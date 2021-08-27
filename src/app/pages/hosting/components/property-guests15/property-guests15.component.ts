@@ -35,12 +35,12 @@ export class PropertyGuests15Component implements OnInit, AfterViewInit, OnDestr
 
   userPhoneNumberForm = new FormGroup({
     country_code: new FormControl('+91'),
-    phone_number: new FormControl('', [Validators.required])
+    phone_number: new FormControl('', [Validators.minLength(9), Validators.maxLength(14), Validators.required])
   });
 
   secPhoneNumberForm = new FormGroup({
     country_code: new FormControl('+966'),
-    sec_phone_number: new FormControl('')
+    sec_phone_number: new FormControl('', [Validators.minLength(9), Validators.maxLength(14)])
   });
 
   isOtpSend = false;
@@ -64,7 +64,9 @@ export class PropertyGuests15Component implements OnInit, AfterViewInit, OnDestr
   };
   @ViewChild('ngOtpInput', { static: false }) ngOtpInput: any;
   otp = '';
-
+  displayPhoneNumber = '';
+  isOtpSubmitting = false;
+  isOtpSending = false;
   isSavingExit = false;
   saveExitSubs: Subscription;
 
@@ -147,7 +149,7 @@ export class PropertyGuests15Component implements OnInit, AfterViewInit, OnDestr
       if (this.user.phone_number && this.user.phone_number !== 'null') {
         this.isOtpVerified = true;
         const country_code = this.user.country_code || '+966';
-        const phone_number = this.user.phone_number || '' ;
+        const phone_number = this.user.phone_number || '';
         this.userPhoneNumberForm.setValue({
           country_code,
           phone_number
@@ -158,6 +160,7 @@ export class PropertyGuests15Component implements OnInit, AfterViewInit, OnDestr
     });
   }
 
+
   onPhoneNumberChange(phoneNumber: string): void {
     if (this.user.phone_number === phoneNumber) {
       this.isOtpVerified = true;
@@ -167,13 +170,19 @@ export class PropertyGuests15Component implements OnInit, AfterViewInit, OnDestr
     }
   }
   sendOtp(): void {
+    this.isOtpSending = true;
     const requestData = this.userPhoneNumberForm.value;
     this.$propertyListingService.resendOtp(requestData).subscribe(res => {
       this.isOtpSend = true;
-      console.log(res);
+      this.$alert.success(res.message);
+      const phoneNumber = this.userPhoneNumberForm.controls.phone_number.value;
+      const lastTwo = phoneNumber.slice(-2);
+      this.displayPhoneNumber = `${''.padStart(phoneNumber.length - 2, 'x')}${lastTwo}`;
+      this.isOtpSending = false;
     },
       err => {
         this.$alert.danger(err.message);
+        this.isOtpSending = false;
       });
   }
 
@@ -186,6 +195,7 @@ export class PropertyGuests15Component implements OnInit, AfterViewInit, OnDestr
   }
 
   private updateUserPhoneNumber(otp: string): void {
+    this.isOtpSubmitting = true;
     const requestData = this.userPhoneNumberForm.value;
     requestData.otp = otp;
     this.$propertyListingService.userPhoneNumber(requestData).subscribe(res => {
@@ -194,9 +204,14 @@ export class PropertyGuests15Component implements OnInit, AfterViewInit, OnDestr
       this.user = respData;
       this.isOtpSend = false;
       this.isOtpVerified = true;
+      this.isOtpSubmitting = false;
     },
       err => {
+        this.isOtpSubmitting = false;
+        this.ngOtpInput.setValue(null);
         this.$alert.danger(err.message);
+        this.ngOtpInput.otpForm.enable();
+        this.config.disableAutoFocus = true;
       });
   }
 

@@ -94,6 +94,16 @@ export class PropertyGuests12Component implements OnInit, AfterViewInit, OnDestr
       });
   }
 
+
+  onInputName(value: string): void {
+    if (value && !value.trim()) {
+      this.nameOfListing.setErrors({ required: true });
+    }
+    if (value && value.split(' ').length > 50) {
+      this.nameOfListing.setErrors({ maxlength: true });
+    }
+  }
+
   addPropertyName(): void {
     this.isNextLoading = true;
     const requestData = {

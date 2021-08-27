@@ -33,14 +33,14 @@ export class PropertyGuests10Component implements OnInit, AfterViewInit, OnDestr
   saveExitSubs: Subscription;
 
   descForm = new FormGroup({
-    description: new FormControl(null, [Validators.required, Validators.minLength(20), Validators.maxLength(500)]),
+    description: new FormControl(null, [Validators.required, Validators.minLength(20)]),
   });
 
 
-  desc_getting_around = new FormControl(null, [Validators.minLength(20), Validators.maxLength(500)]);
-  desc_your_space = new FormControl(null, [Validators.minLength(20), Validators.maxLength(500)]);
-  desc_interaction_guests = new FormControl(null, [Validators.minLength(20), Validators.maxLength(500)]);
-  desc_neighbourhood = new FormControl(null, [Validators.minLength(20), Validators.maxLength(500)]);
+  desc_getting_around = new FormControl(null, [Validators.minLength(20)]);
+  desc_your_space = new FormControl(null, [Validators.minLength(20)]);
+  desc_interaction_guests = new FormControl(null, [Validators.minLength(20)]);
+  desc_neighbourhood = new FormControl(null, [Validators.minLength(20)]);
 
 
   constructor(
@@ -110,6 +110,43 @@ export class PropertyGuests10Component implements OnInit, AfterViewInit, OnDestr
           this.desc_neighbourhood.setValue(desc_neighbourhood);
         }
       });
+  }
+
+  onAddDescription(control: string, value: string): void {
+    if (value && value.split(' ').length > 50) {
+      if (control === 'description') {
+        this.descForm.controls.description.setErrors({ maxlength: true });
+      }
+      if (control === 'desc_getting_around') {
+        this.desc_getting_around.setErrors({ maxlength: true });
+      }
+      if (control === 'desc_interaction_guests') {
+        this.desc_interaction_guests.setErrors({ maxlength: true });
+      }
+      if (control === 'desc_your_space') {
+        this.desc_your_space.setErrors({ maxlength: true });
+      }
+      if (control === 'desc_neighbourhood') {
+        this.desc_neighbourhood.setErrors({ maxlength: true });
+      }
+    }
+    if (value && !value.trim()) {
+      if (control === 'description') {
+        this.descForm.controls.description.setErrors({ required: true });
+      }
+      // if (control === 'desc_getting_around') {
+      //   this.desc_getting_around.setErrors({ maxlength: true });
+      // }
+      // if (control === 'desc_interaction_guests') {
+      //   this.desc_interaction_guests.setErrors({ maxlength: true });
+      // }
+      // if (control === 'desc_your_space') {
+      //   this.desc_your_space.setErrors({ maxlength: true });
+      // }
+      // if (control === 'desc_neighbourhood') {
+      //   this.desc_neighbourhood.setErrors({ maxlength: true });
+      // }
+    }
   }
 
 

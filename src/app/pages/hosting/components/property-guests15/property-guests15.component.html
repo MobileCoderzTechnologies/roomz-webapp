@@ -27,22 +27,33 @@
                     <option value="3">India(+91)</option>
                   </select>| -->
                   <input type="text" class="form-control custom_form_control border-0 w-90 pe-0" name="" id=""
-                    formControlName="phone_number" (input)="onPhoneNumberChange($event.target.value)" oninput="this.value=this.value.replace(/\D/g,'')"/>
+                    formControlName="phone_number" (input)="onPhoneNumberChange($event.target.value)"
+                    oninput="this.value=this.value.replace(/\D/g,'')" />
                   <span class="blue_color w-10" (click)="sendOtp()"
-                    *ngIf="!isOtpSend && !isOtpVerified">Verify</span>
+                    *ngIf="!isOtpSend && !isOtpVerified && userPhoneNumberForm.controls.phone_number.value && !isOtpSending && userPhoneNumberForm.valid"
+                    style="cursor: pointer;">Verify</span>
+                  <div *ngIf="isOtpSending && !isOtpSend">
+                    <div class="spinner-border text-info spinner-border"></div>
+                  </div>
                   <span class="blue_color" style="width: 13%;" *ngIf="isOtpVerified">Verified</span>
                 </div>
+                <small class="text-danger" *ngIf="userPhoneNumberForm.controls.phone_number.touched">
+                  {{
+                  userPhoneNumberForm.controls.phone_number.errors
+                  | validateError: 'Phone number'
+                  }}
+                </small>
               </div>
             </form>
             <ng-container *ngIf="isOtpSend">
               <div class="text-secondary">
                 <h3 class="fz25 mb-3 semi_font">Enter your security code</h3>
                 <p class="fz15 regular_font">
-                  We texted your code to +91 89XX-XXXX-XX. It may take a minute to
+                  We texted your code to {{displayPhoneNumber}}. It may take a minute to
                   arrive.
                 </p>
               </div>
-              <div class="d-flex w-50">
+              <div class="d-flex w-50 otp-box">
                 <!-- <input type="text" name=""
                   class="form-control me-3 border-0 border-bottom rounded-0 text-center security_input" id="" />
                 <input type="text" name=""
@@ -53,6 +64,9 @@
                   class="form-control me-3 border-0 border-bottom rounded-0 text-center security_input" id="" /> -->
 
                 <ng-otp-input #ngOtpInput (onInputChange)="onOtpChange($event)" [config]="config"></ng-otp-input>
+                <div *ngIf="isOtpSubmitting" class="loader">
+                  <div class="spinner-border text-info spinner-border"></div>
+                </div>
               </div>
               <div class="mt-4">
                 <p class="fz15 medium_font text-secondary">
@@ -75,8 +89,14 @@
               <div class="form-group mb-4">
                 <div class="d-flex border align-items-center">
                   <input type="text" class="form-control custom_form_control border-0 w-100 pe-0" name="" id=""
-                    formControlName="sec_phone_number" oninput="this.value=this.value.replace(/\D/g,'')"/>
+                    formControlName="sec_phone_number" oninput="this.value=this.value.replace(/\D/g,'')" />
                 </div>
+                <small class="text-danger" *ngIf="secPhoneNumberForm.controls.sec_phone_number.touched">
+                  {{
+                  secPhoneNumberForm.controls.sec_phone_number.errors
+                  | validateError: 'Phone number'
+                  }}
+                </small>
               </div>
             </form>
 
@@ -88,7 +108,7 @@
               <img src="assets/images/blue-left-arrow.png" class="me-2" alt="" /> Back
             </a>
             <button class="btn custom_btn" *ngIf="!isNextLoading" (click)="addSecPhoneNumber()"
-              [disabled]="userPhoneNumberForm.invalid || !isOtpVerified">
+              [disabled]="userPhoneNumberForm.invalid || !isOtpVerified || secPhoneNumberForm.invalid">
               Next
             </button>
             <button class="btn custom_btn" *ngIf="isNextLoading">

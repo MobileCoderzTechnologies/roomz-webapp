@@ -164,10 +164,10 @@
                       </div> -->
                     </div>
                   </div>
-                  <div class="col-md-7">
+                  <div class="col-md-7" (click)="onPropertyDetail(property?.id)" style="cursor: pointer;">
                     <div class="col_selector">
                       <div class="d-flex justify-content-between">
-                        <div (click)="onPropertyDetail(property?.id)" class="property-name">
+                        <div class="property-name">
                           <p class="mb-0">Entire {{property?.type?.property_type}} in {{property?.city}} </p>
                           <h3 class="fz18 semi_font">
                             {{property?.name}}

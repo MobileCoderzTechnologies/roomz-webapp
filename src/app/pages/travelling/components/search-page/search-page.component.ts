@@ -78,7 +78,7 @@ export class SearchPageComponent implements OnInit {
         this.isLoading = false;
         this.properties = data?.properties?.data;
         this.totalCount = data?.meta?.total;
-        console.log(this.properties);
+        // console.log(this.properties);
 
         this.properties.forEach(item => {
           const marker = {
@@ -88,7 +88,7 @@ export class SearchPageComponent implements OnInit {
           };
           this.markers.push(marker);
 
-          item.images = this.setShowingPhotos(item.images);
+          // item.images = this.setShowingPhotos(item.images);
         });
 
         // console.log(this.markers);

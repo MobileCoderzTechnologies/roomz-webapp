@@ -13,16 +13,16 @@
                             </p>
                             <div class="">
                                 <textarea name="" id="" class="form-control b_radius_15" cols="30" rows="10"
-                                    formControlName="description"></textarea>
+                                    formControlName="description" (input)="onAddDescription('description', $event.target.value)"></textarea>
                                 <small class="text-danger"
                                     *ngIf="descForm.controls.description.touched && descForm.controls.description.errors?.required">Description
                                     is Required</small>
                                 <small class="text-danger"
                                     *ngIf="descForm.controls.description.touched && descForm.controls.description.errors?.minlength">Description
                                     should be minimum 20 characters</small>
-                                <!-- <small class="text-danger"
+                                <small class="text-danger"
                                     *ngIf="descForm.controls.description.touched && descForm.controls.description.errors?.maxlength">Description
-                                    should be maximum 500 characters</small> -->
+                                    should be maximum 50 words</small>
                                 <p class="text-end fz15 blue_color">50 words</p>
                                 <p class="blue_color" *ngIf="!isOptionalExtended" (click)="isOptionalExtended = true"
                                     style="cursor: pointer;">
@@ -41,14 +41,14 @@
                             </p>
                             <div class="">
                                 <textarea name="" id="" class="form-control b_radius_15" cols="30" rows="10"
-                                    [formControl]="desc_your_space"></textarea>
+                                    [formControl]="desc_your_space" (input)="onAddDescription('desc_your_space', $event.target.value)"></textarea>
                             </div>
                             <small class="text-danger"
                                 *ngIf="desc_your_space.touched && desc_your_space.errors?.minlength">Description
                                 should be minimum 20 characters</small>
-                            <!-- <small class="text-danger"
+                            <small class="text-danger"
                                 *ngIf="desc_your_space.touched && desc_your_space.errors?.maxlength">Description
-                                should be maximum 500 characters</small> -->
+                                should be maximum 50 words </small>
                         </div>
 
                         <div class="mb-4">
@@ -62,13 +62,13 @@
                             </p>
                             <div class="">
                                 <textarea name="" id="" class="form-control b_radius_15" cols="30" rows="10"
-                                    [formControl]="desc_interaction_guests"></textarea>
+                                    [formControl]="desc_interaction_guests" (input)="onAddDescription('desc_interaction_guests', $event.target.value)"></textarea>
                                 <small class="text-danger"
                                     *ngIf="desc_interaction_guests.touched && desc_interaction_guests.errors?.minlength">Description
                                     should be minimum 20 characters</small>
-                                <!-- <small class="text-danger"
+                                <small class="text-danger"
                                     *ngIf="desc_interaction_guests.touched && desc_interaction_guests.errors?.maxlength">Description
-                                    should be maximum 500 characters</small> -->
+                                    should be maximum 50 words </small>
                             </div>
                         </div>
                         <div class="mb-4">
@@ -80,13 +80,13 @@
                             </p>
                             <div class="">
                                 <textarea name="" id="" class="form-control b_radius_15" cols="30" rows="10"
-                                    [formControl]="desc_neighbourhood "></textarea>
+                                    [formControl]="desc_neighbourhood " (input)="onAddDescription('desc_neighbourhood', $event.target.value)"></textarea>
                                 <small class="text-danger"
                                     *ngIf="desc_neighbourhood.touched && desc_neighbourhood.errors?.minlength">Description
                                     should be minimum 20 characters</small>
-                                <!-- <small class="text-danger"
+                                <small class="text-danger"
                                     *ngIf="desc_neighbourhood.touched && desc_neighbourhood.errors?.maxlength">Description
-                                    should be maximum 500 characters</small> -->
+                                    should be maximum 50 words </small>
                             </div>
                         </div>
                         <div class="mb-4">
@@ -97,14 +97,14 @@
                             </p>
                             <div class="">
                                 <textarea name="" id="" class="form-control b_radius_15" cols="30" rows="10"
-                                    [formControl]="desc_getting_around"></textarea>
+                                    [formControl]="desc_getting_around" (input)="onAddDescription('desc_getting_around', $event.target.value)"></textarea>
 
                                 <small class="text-danger"
                                     *ngIf="desc_getting_around.touched && desc_getting_around.errors?.minlength">Description
                                     should be minimum 20 characters</small>
-                                <!-- <small class="text-danger"
+                                <small class="text-danger"
                                     *ngIf="desc_getting_around.touched && desc_getting_around.errors?.maxlength">Description
-                                    should be maximum 500 characters</small> -->
+                                    should be maximum 50 words</small>
                             </div>
                         </div>
                         <a href="javascript:void(0);" class="d-inline-block blue_color" *ngIf="isOptionalExtended"

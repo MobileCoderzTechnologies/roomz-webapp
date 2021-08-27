@@ -40,6 +40,10 @@ export class SignUpService {
   register(data: any): Observable<SignUpResp> {
     return this.$http.post('auth/register', data);
   }
+
+  updateProfilePhoto(data: FormData): Observable<any> {
+    return this.$http.post('user/profile-photo', data);
+  }
 }
 interface SignUpResp {
   message: string;

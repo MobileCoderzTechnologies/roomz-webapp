@@ -9,10 +9,16 @@
                             Attract guests with a listing title that highlights what makes your place special.
                         </p>
                         <div class="">
-                            <textarea [formControl]="nameOfListing" class="form-control b_radius_15" cols="30" rows="5"></textarea>
+                            <textarea [formControl]="nameOfListing" class="form-control b_radius_15" cols="30" rows="5" (input)="onInputName($event.target.value)"></textarea>
                             <small class="text-danger" *ngIf="nameOfListing.touched && nameOfListing.errors?.required">
                                 Name is Required
                             </small>
+                            <small class="text-danger" *ngIf="nameOfListing.touched && nameOfListing.errors?.maxlength">
+                                Name should be max 50 words
+                            </small>
+                            <!-- <small class="text-danger" *ngIf="nameOfListing.touched && nameOfListing.errors?.minlength">
+                                Name should be max 50 words
+                            </small> -->
                             <p class="text-end fz15 blue_color">50 words</p>
 
                         </div>

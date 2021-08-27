@@ -75,6 +75,7 @@
               class="btn custom_btn semi_font fz15"
               *ngIf="!isNextLoading"
               (click)="updateProfilePhoto()"
+              [disabled]="!selectedProfilePhoto && !profilePhotoUrl"
             >
               Next
             </button>
