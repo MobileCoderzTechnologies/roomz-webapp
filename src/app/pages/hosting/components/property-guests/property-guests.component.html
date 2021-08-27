@@ -25,7 +25,7 @@
             </label>
             <input type="text" name="" class="form-control custom_form_control" placeholder="eg 200" [formControl]="propertyArea"
               oninput="this.value=this.value.replace(/\D/g,'')" />
-            <p class="area-hint"><small>in sq.fit</small></p>
+            <p class="area-hint"><small>in sq.ft</small></p>
             <small class="text-danger" *ngIf="propertyArea.touched && propertyArea.errors?.required">Property area is required.</small>
           </div>
 

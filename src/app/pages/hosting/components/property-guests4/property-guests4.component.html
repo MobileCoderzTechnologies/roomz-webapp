@@ -109,7 +109,7 @@
                 {{ "listProperty.address.zipCode" | langTranslate }}
               </label>
               <input type="text" name="" class="form-control custom_form_control" placeholder="e.g. 94103"
-                formControlName="zip_code" (input)="setRequiredError('zip_code', $event.target.value)" />
+                formControlName="zip_code" (input)="setRequiredError('zip_code', $event.target.value)" id="pincode"/>
 
               <small class="text-danger" *ngIf="addressForm.controls.zip_code.touched">
                 {{

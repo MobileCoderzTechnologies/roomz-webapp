@@ -14,12 +14,15 @@
                                 Name is Required
                             </small>
                             <small class="text-danger" *ngIf="nameOfListing.touched && nameOfListing.errors?.maxlength">
-                                Name should be max 50 words
+                                Name should be max 50 characters
+                            </small>
+                            <small class="text-danger" *ngIf="nameOfListing.touched && nameOfListing.errors?.minlength">
+                                Name should be minimum 5 characters
                             </small>
                             <!-- <small class="text-danger" *ngIf="nameOfListing.touched && nameOfListing.errors?.minlength">
                                 Name should be max 50 words
                             </small> -->
-                            <p class="text-end fz15 blue_color">50 words</p>
+                            <p class="text-end fz15 blue_color">50 characters</p>
 
                         </div>
                     </div>

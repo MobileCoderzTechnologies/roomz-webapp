@@ -13,13 +13,14 @@
             {{ "signUp.addPhoto.line1" | langTranslate }}
           </p>
           <div class="mb-5 pb-5 mt-5 text-center">
-            <img *ngIf="!selectedProfilePhoto" src="assets/images/profile2121.png" class="img-fluid" alt="" />
+            <img *ngIf="!selectedProfilePhoto" src="assets/images/profile2121.png" class="img-fluid" alt=""
+              (click)="photo.click()" style="cursor: pointer;" />
             <img *ngIf="selectedProfilePhoto" [src]="selectedProfilePhoto" class="img-fluid profile-photo" alt="" />
           </div>
         </div>
         <input type="file" accept="image/png, image/jpeg" #photo style="display: none;"
           (change)="selectProfilePhoto($event)">
-        <button *ngIf="!selectedProfilePhoto" class="btn login_btn mb-3 semi_font fz16" (click)="photo.click()">
+        <button *ngIf="!selectedProfilePhoto" class="btn login_btn mb-3 semi_font fz16" disabled>
           {{ "signUp.addPhoto.continueBtnText" | langTranslate }}
         </button>
         <button *ngIf="selectedProfilePhoto" class="btn login_btn mb-3 semi_font fz16" (click)="updateProfilePhoto()">

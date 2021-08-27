@@ -68,7 +68,7 @@ export class OtpComponent implements OnInit, OnChanges, AfterViewInit {
         if (this.timerTime < 1) {
           this.timerSubs.unsubscribe();
           this.isTimerShow = false;
-          this.ngOtpInput.otpForm.disable();
+          // this.ngOtpInput.otpForm.disable();
         }
       });
   }

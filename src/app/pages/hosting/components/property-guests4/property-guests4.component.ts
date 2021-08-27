@@ -2,8 +2,8 @@ import { MapsAPILoader } from '@agm/core';
 import { AfterViewInit, Component, ElementRef, NgZone, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
-import { Subscription } from 'rxjs';
-import { delay } from 'rxjs/operators';
+import { fromEvent, Subscription } from 'rxjs';
+import { debounceTime, delay } from 'rxjs/operators';
 import { AlertService } from 'src/app/modules/alert/alert.service';
 import { EncryptionService } from 'src/app/services/encryption.service';
 import { MY_LISTING_ROUTE, STEP_2_ROUTE, STEP_4_ROUTE } from '../../constants/route.constant';
@@ -61,7 +61,9 @@ export class PropertyGuests4Component implements OnInit, AfterViewInit, OnDestro
     private $alert: AlertService,
     private $mapsApiLoader: MapsAPILoader,
     private $ngZone: NgZone
-  ) { }
+  ) {
+
+  }
 
   ngOnInit(): void {
     this.$ps.header.next({
@@ -91,6 +93,7 @@ export class PropertyGuests4Component implements OnInit, AfterViewInit, OnDestro
 
 
   ngAfterViewInit(): void {
+    this.onChangePinCode();
     this.setDataForUpdate();
   }
 
@@ -161,6 +164,20 @@ export class PropertyGuests4Component implements OnInit, AfterViewInit, OnDestro
       });
     });
 
+  }
+
+
+  private onChangePinCode(): void {
+    const pincode = document.getElementById('pincode');
+
+    fromEvent<any>(pincode, 'keyup')
+      .pipe(
+        debounceTime(500)
+      )
+      .subscribe(res => {
+        const searchValue = res.target.value;
+
+      });
   }
 
 

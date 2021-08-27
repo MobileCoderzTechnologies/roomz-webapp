@@ -31,7 +31,7 @@ export class PropertyGuests12Component implements OnInit, AfterViewInit, OnDestr
 
 
 
-  nameOfListing = new FormControl(null, [Validators.required]);
+  nameOfListing = new FormControl(null, [Validators.required, Validators.maxLength(50), Validators.minLength(5)]);
 
   isSavingExit = false;
   saveExitSubs: Subscription;
@@ -98,9 +98,6 @@ export class PropertyGuests12Component implements OnInit, AfterViewInit, OnDestr
   onInputName(value: string): void {
     if (value && !value.trim()) {
       this.nameOfListing.setErrors({ required: true });
-    }
-    if (value && value.split(' ').length > 50) {
-      this.nameOfListing.setErrors({ maxlength: true });
     }
   }
 

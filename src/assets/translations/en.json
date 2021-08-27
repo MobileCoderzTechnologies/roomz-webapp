@@ -134,7 +134,7 @@
       "streetHint": "House name/number + street/road",
       "optional": "Apt, suite, etc.(optional)",
       "optionalHint": "Flat, suite, building access code",
-      "city": "city",
+      "city": "City",
       "state": "State",
       "zipCode": "Zip/Postal Code"
     }

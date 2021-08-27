@@ -1,5 +1,5 @@
 import { isPlatformBrowser } from '@angular/common';
-import { AfterViewInit, Component, EventEmitter, Inject, Input, OnChanges, OnInit, Output, PLATFORM_ID } from '@angular/core';
+import { AfterViewInit, Component, EventEmitter, Inject, Input, OnChanges, OnInit, Output, PLATFORM_ID, ViewChild } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import { User } from 'src/app/modals/user.modal';
 import { AlertService } from 'src/app/modules/alert/alert.service';
@@ -35,6 +35,8 @@ export class SignUpComponent implements OnInit, AfterViewInit, OnChanges {
 
   @Input() dialogRef: any;
 
+  @ViewChild('picker') picker;
+
   @Output() backToLogin = new EventEmitter();
   constructor(
     private $signUpService: SignUpService,
@@ -69,6 +71,10 @@ export class SignUpComponent implements OnInit, AfterViewInit, OnChanges {
     if (!value) {
       this.signUpForm.controls[fieldName].setErrors({ required: true });
     }
+  }
+
+  openCalender(): void {
+    this.picker.open();
   }
 
 

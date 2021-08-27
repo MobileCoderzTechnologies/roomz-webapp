@@ -22,8 +22,8 @@
                                     should be minimum 20 characters</small>
                                 <small class="text-danger"
                                     *ngIf="descForm.controls.description.touched && descForm.controls.description.errors?.maxlength">Description
-                                    should be maximum 50 words</small>
-                                <p class="text-end fz15 blue_color">50 words</p>
+                                    should be maximum 500 characters</small>
+                                <p class="text-end fz15 blue_color">500 characters</p>
                                 <p class="blue_color" *ngIf="!isOptionalExtended" (click)="isOptionalExtended = true"
                                     style="cursor: pointer;">
                                     <u>Add more details (optional)</u>
@@ -48,7 +48,7 @@
                                 should be minimum 20 characters</small>
                             <small class="text-danger"
                                 *ngIf="desc_your_space.touched && desc_your_space.errors?.maxlength">Description
-                                should be maximum 50 words </small>
+                                should be maximum 500 characters </small>
                         </div>
 
                         <div class="mb-4">
@@ -68,7 +68,7 @@
                                     should be minimum 20 characters</small>
                                 <small class="text-danger"
                                     *ngIf="desc_interaction_guests.touched && desc_interaction_guests.errors?.maxlength">Description
-                                    should be maximum 50 words </small>
+                                    should be maximum 500 characters </small>
                             </div>
                         </div>
                         <div class="mb-4">
@@ -86,7 +86,7 @@
                                     should be minimum 20 characters</small>
                                 <small class="text-danger"
                                     *ngIf="desc_neighbourhood.touched && desc_neighbourhood.errors?.maxlength">Description
-                                    should be maximum 50 words </small>
+                                    should be maximum 500 characters </small>
                             </div>
                         </div>
                         <div class="mb-4">
@@ -104,7 +104,7 @@
                                     should be minimum 20 characters</small>
                                 <small class="text-danger"
                                     *ngIf="desc_getting_around.touched && desc_getting_around.errors?.maxlength">Description
-                                    should be maximum 50 words</small>
+                                    should be maximum 500 characters</small>
                             </div>
                         </div>
                         <a href="javascript:void(0);" class="d-inline-block blue_color" *ngIf="isOptionalExtended"

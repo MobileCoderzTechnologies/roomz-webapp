@@ -112,6 +112,10 @@ export class PropertyGuests15Component implements OnInit, AfterViewInit, OnDestr
 
   ngAfterViewInit(): void {
     this.setDataForUpdate();
+
+    this.userPhoneNumberForm.controls.phone_number.valueChanges.subscribe(data => {
+      this.isOtpSend = false;
+    });
   }
 
 
