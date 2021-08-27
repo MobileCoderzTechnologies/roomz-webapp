@@ -1,5 +1,5 @@
 import { MapsAPILoader } from '@agm/core';
-import { AfterViewInit, Component, NgZone, OnDestroy, OnInit } from '@angular/core';
+import { AfterViewInit, Component, ElementRef, NgZone, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Subscription } from 'rxjs';
@@ -46,6 +46,10 @@ export class PropertyGuests4Component implements OnInit, AfterViewInit, OnDestro
 
   private geoCoder;
   address: any;
+
+  @ViewChild('search')
+  public searchElementRef: ElementRef;
+
 
 
   constructor(
@@ -139,6 +143,22 @@ export class PropertyGuests4Component implements OnInit, AfterViewInit, OnDestro
     this.$mapsApiLoader.load().then(() => {
       // this.setCurrentLocation();
       this.geoCoder = new google.maps.Geocoder;
+
+      const autocomplete = new google.maps.places.Autocomplete(this.searchElementRef.nativeElement);
+      autocomplete.addListener('place_changed', () => {
+        this.$ngZone.run(() => {
+          const place: google.maps.places.PlaceResult = autocomplete.getPlace();
+
+          if (place.geometry === undefined || place.geometry === null) {
+            return;
+          }
+
+          this.latitude = place.geometry.location.lat();
+          this.longitude = place.geometry.location.lng();
+
+          this.getAddress(this.latitude, this.longitude);
+        });
+      });
     });
 
   }
@@ -151,16 +171,36 @@ export class PropertyGuests4Component implements OnInit, AfterViewInit, OnDestro
           this.location = results[0].formatted_address;
           console.log(this.location);
           this.address = results[0].address_components;
-          const zipCode = this.address[4].long_name;
-          const country = this.address[3].long_name;
-          const state = this.address[2].long_name;
-          const city = this.address[1].long_name;
+          console.log(this.address);
+          let zipCode = '';
+          let state = '';
+          let country = '';
+          let city = '';
+          let street = '';
+          this.address.forEach(element => {
+            if (element.types[0] === 'postal_code') {
+              zipCode = element.long_name;
+            }
+            if (element.types[0] === 'administrative_area_level_1') {
+              state = element.long_name;
+            }
+            if (element.types[0] === 'country') {
+              country = element.long_name;
+            }
+            if (element.types[0] === 'locality') {
+              city = element.long_name;
+            }
+            if (element.types[1] === 'sublocality') {
+              street = element.long_name;
+            }
+          });
 
           this.addressForm.patchValue({
             zip_code: zipCode,
             country,
             state,
-            city
+            city,
+            street
           });
 
         } else {

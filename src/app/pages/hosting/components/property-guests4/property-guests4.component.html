@@ -9,10 +9,7 @@
           <p class="fz15 regular_font">
             {{ "listProperty.address.subHeadline" | langTranslate }}
           </p>
-          <button
-            class="btn add_btn my-4 d-flex align-items-center"
-            (click)="getCurrentLocation()"
-          >
+          <button class="btn add_btn my-4 d-flex align-items-center" (click)="getCurrentLocation()">
             <img src="assets/images/pin.png" class="me-2" alt="" />
             {{ "listProperty.address.useCurrentLocation" | langTranslate }}
           </button>
@@ -21,22 +18,13 @@
               <label for="" class="medium_font fz18">
                 {{ "listProperty.address.country" | langTranslate }}
               </label>
-              <input
-                type="text"
-                name=""
-                class="form-control custom_form_control"
-                placeholder="United State"
-                formControlName="country"
-                (input)="setRequiredError('country', $event.target.value)"
-              />
-              <small
-                class="text-danger"
-                *ngIf="addressForm.controls.country.touched"
-              >
+              <input type="text" name="" class="form-control custom_form_control" placeholder="United State"
+                formControlName="country" (input)="setRequiredError('country', $event.target.value)" />
+              <small class="text-danger" *ngIf="addressForm.controls.country.touched">
                 {{
-                  addressForm.controls.country.errors
-                    | validateError
-                      : ("listProperty.address.country" | langTranslate)
+                addressForm.controls.country.errors
+                | validateError
+                : ("listProperty.address.country" | langTranslate)
                 }}
               </small>
             </div>
@@ -44,26 +32,18 @@
               <label for="" class="medium_font fz18">
                 {{ "listProperty.address.street" | langTranslate }}
               </label>
-              <input
-                type="text"
-                name=""
-                class="form-control custom_form_control"
-                formControlName="street"
-                (input)="setRequiredError('street', $event.target.value)"
-              />
+              <input type="text" name="" class="form-control custom_form_control" formControlName="street"
+                (input)="setRequiredError('street', $event.target.value)" />
               <p class="fz14 regular_font">
                 {{ "listProperty.address.streetHint" | langTranslate }}
               </p>
 
               <p>
-                <small
-                  class="text-danger"
-                  *ngIf="addressForm.controls.street.touched"
-                >
+                <small class="text-danger" *ngIf="addressForm.controls.street.touched">
                   {{
-                    addressForm.controls.street.errors
-                      | validateError
-                        : ("listProperty.address.street" | langTranslate)
+                  addressForm.controls.street.errors
+                  | validateError
+                  : ("listProperty.address.street" | langTranslate)
                   }}
                 </small>
               </p>
@@ -73,28 +53,19 @@
               <label for="" class="medium_font fz18">
                 {{ "listProperty.address.optional" | langTranslate }}
               </label>
-              <input
-                type="text"
-                name=""
-                class="form-control custom_form_control"
-                placeholder="e.g. Apt #7"
-                formControlName="address_optional"
-                (input)="
+              <input type="text" name="" class="form-control custom_form_control" placeholder="e.g. Apt #7"
+                formControlName="address_optional" (input)="
                   setRequiredError('address_optional', $event.target.value)
-                "
-              />
+                " />
               <p class="fz14 regular_font">
                 {{ "listProperty.address.optionalHint" | langTranslate }}
               </p>
 
-              <small
-                class="text-danger"
-                *ngIf="addressForm.controls.address_optional.touched"
-              >
+              <small class="text-danger" *ngIf="addressForm.controls.address_optional.touched">
                 {{
-                  addressForm.controls.address_optional.errors
-                    | validateError
-                      : ("listProperty.address.optional" | langTranslate)
+                addressForm.controls.address_optional.errors
+                | validateError
+                : ("listProperty.address.optional" | langTranslate)
                 }}
               </small>
             </div>
@@ -103,23 +74,16 @@
               <label for="" class="medium_font fz18">
                 {{ "listProperty.address.city" | langTranslate }}
               </label>
-              <input
-                type="text"
-                name=""
-                class="form-control custom_form_control"
-                placeholder="e.g. San Francisco"
-                formControlName="city"
-                (input)="setRequiredError('city', $event.target.value)"
-              />
+              <input type="text" name="" class="form-control custom_form_control" placeholder="e.g. San Francisco"
+                formControlName="city" (input)="setRequiredError('city', $event.target.value)"
+                (keydown.enter)="$event.preventDefault()" autocorrect="off" autocapitalize="off" spellcheck="off"
+                #search />
 
-              <small
-                class="text-danger"
-                *ngIf="addressForm.controls.city.touched"
-              >
+              <small class="text-danger" *ngIf="addressForm.controls.city.touched">
                 {{
-                  addressForm.controls.city.errors
-                    | validateError
-                      : ("listProperty.address.city" | langTranslate)
+                addressForm.controls.city.errors
+                | validateError
+                : ("listProperty.address.city" | langTranslate)
                 }}
               </small>
             </div>
@@ -128,23 +92,14 @@
               <label for="" class="medium_font fz18">
                 {{ "listProperty.address.state" | langTranslate }}
               </label>
-              <input
-                type="text"
-                name=""
-                class="form-control custom_form_control"
-                placeholder="e.g. CA"
-                formControlName="state"
-                (input)="setRequiredError('state', $event.target.value)"
-              />
+              <input type="text" name="" class="form-control custom_form_control" placeholder="e.g. CA"
+                formControlName="state" (input)="setRequiredError('state', $event.target.value)" />
 
-              <small
-                class="text-danger"
-                *ngIf="addressForm.controls.state.touched"
-              >
+              <small class="text-danger" *ngIf="addressForm.controls.state.touched">
                 {{
-                  addressForm.controls.state.errors
-                    | validateError
-                      : ("listProperty.address.state" | langTranslate)
+                addressForm.controls.state.errors
+                | validateError
+                : ("listProperty.address.state" | langTranslate)
                 }}
               </small>
             </div>
@@ -153,45 +108,26 @@
               <label for="" class="medium_font fz18">
                 {{ "listProperty.address.zipCode" | langTranslate }}
               </label>
-              <input
-                type="text"
-                name=""
-                class="form-control custom_form_control"
-                placeholder="e.g. 94103"
-                formControlName="zip_code"
-                (input)="setRequiredError('zip_code', $event.target.value)"
-              />
+              <input type="text" name="" class="form-control custom_form_control" placeholder="e.g. 94103"
+                formControlName="zip_code" (input)="setRequiredError('zip_code', $event.target.value)" />
 
-              <small
-                class="text-danger"
-                *ngIf="addressForm.controls.zip_code.touched"
-              >
+              <small class="text-danger" *ngIf="addressForm.controls.zip_code.touched">
                 {{
-                  addressForm.controls.zip_code.errors
-                    | validateError
-                      : ("listProperty.address.zipCode" | langTranslate)
+                addressForm.controls.zip_code.errors
+                | validateError
+                : ("listProperty.address.zipCode" | langTranslate)
                 }}
               </small>
             </div>
           </form>
         </div>
-        <div
-          class="d-flex justify-content-between align-items-center mb-5 p-4 mt-0 back_next_part"
-        >
-          <a
-            href="javascript:void(0);"
-            class="blue_color d-flex align-items-center"
-            [routerLink]="[step2Route.url, encryptedPropertyId]"
-          >
+        <div class="d-flex justify-content-between align-items-center mb-5 p-4 mt-0 back_next_part">
+          <a href="javascript:void(0);" class="blue_color d-flex align-items-center"
+            [routerLink]="[step2Route.url, encryptedPropertyId]">
             <img src="assets/images/blue-left-arrow.png" class="me-2" alt="" />
             Back
           </a>
-          <button
-            class="btn custom_btn"
-            *ngIf="!isNextLoading"
-            (click)="addAddress()"
-            [disabled]="addressForm.invalid"
-          >
+          <button class="btn custom_btn" *ngIf="!isNextLoading" (click)="addAddress()" [disabled]="addressForm.invalid">
             Next
           </button>
           <button class="btn custom_btn" *ngIf="isNextLoading">

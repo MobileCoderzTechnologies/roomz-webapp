@@ -23,7 +23,7 @@ export class HeaderComponent implements OnInit, AfterViewInit {
   isLoggedIn = false;
   currentUser: { name: string, profile: string };
 
-  ListingStatus = true;
+  ListingStatus = false;
 
   constructor(
     private $translate: LangTranslateService,
@@ -57,6 +57,7 @@ export class HeaderComponent implements OnInit, AfterViewInit {
         }
       } else {
         this.isLoggedIn = false;
+        this.ListingStatus = false;
       }
     });
   }

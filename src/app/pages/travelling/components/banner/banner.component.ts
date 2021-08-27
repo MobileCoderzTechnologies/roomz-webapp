@@ -26,7 +26,7 @@ export class BannerComponent implements OnInit, AfterViewInit {
   isLoggedIn = false;
   currentUser: { name: string, profile: string };
 
-  ListingStatus = true;
+  ListingStatus = false;
 
   search = new FormControl('');
 
@@ -67,6 +67,7 @@ export class BannerComponent implements OnInit, AfterViewInit {
         }
       } else {
         this.isLoggedIn = false;
+        this.ListingStatus = false;
       }
     });
   }
