@@ -97,7 +97,7 @@
       "birthdayHintMessage": "To sign up, you need to at least 13. It won't be shown to others.",
       "password": "Password",
       "passwordPlaceholder": "Enter Password",
-      "passwordPatternErrorMessage": "Password should be contain at least one uppercase, one lowercase, one specialcharacter and one number",
+      "passwordPatternErrorMessage": "Password should be contain at least one uppercase, one lowercase, one special character and one number",
       "confirmPassword": "Confirm Password",
       "confirmPasswordError": "Confirm password",
       "tosLineText1": "By Clicking",

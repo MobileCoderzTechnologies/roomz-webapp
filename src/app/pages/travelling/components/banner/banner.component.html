@@ -43,10 +43,11 @@
                 </div>
               </li>
               <li class="nav-item">
-                <a *ngIf="!ListingStatus" class="nav-link border" style="cursor: pointer;" (click)="onSwitching()">{{'header.btnListARoom'|langTranslate}} </a>
+                <a *ngIf="!ListingStatus" class="nav-link border" style="cursor: pointer;"
+                  (click)="onSwitching()">{{'header.btnListARoom'|langTranslate}} </a>
 
                 <a *ngIf="ListingStatus" class="nav-link border" style="cursor: pointer;"
-                (click)="onSwitching()">{{'header.btnSwitchingToHosting'|langTranslate}} </a>
+                  (click)="onSwitching()">{{'header.btnSwitchingToHosting'|langTranslate}} </a>
               </li>
 
               <li class="nav-item dropdown" *ngIf="!isLoggedIn">
@@ -139,7 +140,9 @@
                       </div>
                     </div>
                     <div class="mt-4">
-                      <button class="btn w-100" (click)="onSearch()">{{'bannerSlider.form.searchBtn'|langTranslate}}</button>
+                      <button class="btn w-100" (click)="onSearch()" [disabled]="search.invalid">
+                        {{'bannerSlider.form.searchBtn'|langTranslate}}
+                      </button>
                     </div>
                   </div>
                 </div>

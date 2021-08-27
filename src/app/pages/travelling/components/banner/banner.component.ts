@@ -12,7 +12,7 @@ import { ListingStatusService } from '../../services/listing-status.service';
 import { Router } from '@angular/router';
 import { HOSTING_ROUTE } from 'src/app/constants/route.constants';
 import { LISTING_HOME_ROUTE } from 'src/app/pages/hosting/constants/route.constant';
-import { FormControl } from '@angular/forms';
+import { FormControl, Validators } from '@angular/forms';
 import { SEARCH_PAGE_ROUTE } from '../../constants/route.constant';
 
 @Component({
@@ -28,7 +28,7 @@ export class BannerComponent implements OnInit, AfterViewInit {
 
   ListingStatus = false;
 
-  search = new FormControl('');
+  search = new FormControl('', Validators.required);
 
   constructor(
     private $translate: LangTranslateService,

@@ -13,9 +13,14 @@
             {{ "signUp.addPhoto.line1" | langTranslate }}
           </p>
           <div class="mb-5 pb-5 mt-5 text-center">
-            <img *ngIf="!selectedProfilePhoto" src="assets/images/profile2121.png" class="img-fluid" alt=""
+            <div class="user-profile-box">
+              <img *ngIf="!selectedProfilePhoto" src="assets/images/profile2121.png" class="img-fluid" alt=""
               (click)="photo.click()" style="cursor: pointer;" />
-            <img *ngIf="selectedProfilePhoto" [src]="selectedProfilePhoto" class="img-fluid profile-photo" alt="" />
+              <img *ngIf="selectedProfilePhoto" [src]="selectedProfilePhoto" class="img-fluid profile-photo" alt="" />
+              <button *ngIf="selectedProfilePhoto" mat-mini-fab color="primary" (click)="photo.click()" class="edit-btn">
+                <mat-icon>edit</mat-icon>
+              </button>
+            </div>
           </div>
         </div>
         <input type="file" accept="image/png, image/jpeg" #photo style="display: none;"

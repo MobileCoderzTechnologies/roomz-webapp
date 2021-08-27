@@ -8,6 +8,7 @@ import {
   PROPERTY_DETAIL_ROUTE,
   SEARCH_PAGE_ROUTE,
 } from './constants/route.constant';
+import { AddPhotoComponent } from '../sign-up/components/add-photo/add-photo.component';
 
 
 const routes: Routes = [
@@ -22,7 +23,7 @@ const routes: Routes = [
   {
     path: `${PROPERTY_DETAIL_ROUTE.path}/:id`,
     component: PropertyDetailComponent,
-  },
+  }
   // {
   //   path: 'test',
   //   component: AddPhotoComponent

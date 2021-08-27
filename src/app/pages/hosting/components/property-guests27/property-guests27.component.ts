@@ -41,8 +41,8 @@ export class PropertyGuests27Component implements OnInit, AfterViewInit, OnDestr
   futureReservation = AVAILABILITY_WINDOW;
 
   additionalPriceForm = new FormGroup({
-    monthly_discount: new FormControl(0, Validators.min(0)),
-    weekly_discount: new FormControl(0, Validators.min(0)),
+    monthly_discount: new FormControl(0, [Validators.min(0), Validators.max(90)]),
+    weekly_discount: new FormControl(0, [Validators.min(0),Validators.max(90)]),
   });
 
   additionalPriceData = {
@@ -142,6 +142,9 @@ export class PropertyGuests27Component implements OnInit, AfterViewInit, OnDestr
   onSetDiscounts(controlName: string, value: number): void {
     if (value && Number(value) < 0) {
       this.additionalPriceForm.controls[controlName].setValue(0);
+    }
+    if (value && Number(value) > 90) {
+      this.additionalPriceForm.controls[controlName].setValue(90);
     }
   }
 
