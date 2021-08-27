@@ -51,6 +51,8 @@ export class LoginComponent implements OnInit, OnDestroy, AfterViewInit {
   });
   isSubmitting = false;
 
+  welcomeBackFromSignUpSubs: Subscription;
+
   countryCodes = COUNTRIES_CODES;
   constructor(
     private $loginService: LoginService,
@@ -100,10 +102,35 @@ export class LoginComponent implements OnInit, OnDestroy, AfterViewInit {
           this.pageTitleShow = false;
         }
       });
+
+    this.welcomeBackFromSignUp();
   }
 
   closeDialog(): void {
     this.$dialogRef.close(null);
+  }
+
+
+  private welcomeBackFromSignUp(): void {
+    this.welcomeBackFromSignUpSubs = this.$loginService.welcomeBackFromSignUp
+      .pipe(
+        delay(0)
+      )
+      .subscribe(data => {
+        if (data) {
+          this.checkEmailResponse = {
+            email: data.email,
+            message: data.message,
+          };
+          this.welcomeBack = true;
+          this.pageTitleShow = false;
+          this.isEnterOtp = false;
+          this.isCloseBtn = false;
+          this.isBackBtn = true;
+          this.isLoginForm = false;
+          this.afterOtpVerified = null;
+        }
+      });
   }
 
   onClickLoginWith(loginType: string): void {
@@ -190,7 +217,7 @@ export class LoginComponent implements OnInit, OnDestroy, AfterViewInit {
         this.isLoginForm = false;
         this.email = loginData.email;
       }
-      this.$alert.info(data.body.message);
+      // this.$alert.info(data.body.message);
       this.isSubmitting = false;
     }, err => {
       this.isSubmitting = false;
@@ -242,6 +269,7 @@ export class LoginComponent implements OnInit, OnDestroy, AfterViewInit {
       this.welcomeBack = false;
       this.pageTitle = 'login.pageTitleLoginOrSignUp';
       this.loginForm.reset();
+      this.loginWith = 'email';
     }
   }
 
@@ -263,6 +291,10 @@ export class LoginComponent implements OnInit, OnDestroy, AfterViewInit {
     this.photoSubs.unsubscribe();
     this.$loginService.afterOtpVerified.next(null);
     this.$signUpService.isAddProfilePhoto.next(false);
+    this.$loginService.welcomeBackFromSignUp.next(null);
+    if (this.welcomeBackFromSignUpSubs) {
+      this.welcomeBackFromSignUpSubs.unsubscribe();
+    }
   }
 
 

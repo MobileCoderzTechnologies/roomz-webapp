@@ -37,8 +37,10 @@ export class SignUpService {
 
 
 
-  register(data: any): Observable<SignUpResp> {
-    return this.$http.post('auth/register', data);
+  register(data: any): Observable<any> {
+    return this.$http.post('auth/register', data, {
+      observe: 'response' as 'body'
+    });
   }
 
   updateProfilePhoto(data: FormData): Observable<any> {

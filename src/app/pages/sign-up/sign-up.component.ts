@@ -150,20 +150,32 @@ export class SignUpComponent implements OnInit, AfterViewInit, OnChanges {
     userData.login_type = this.loginType;
     console.log(userData);
     this.$signUpService.register(userData).subscribe(data => {
-      const token = data.data.accessToken.token;
-      const user = {
-        name: `${data.data.user.first_name} ${data.data.user.last_name}`,
-        profile: data.data.user.avatar
-      };
-      if (isPlatformBrowser(this.platformId)) {
-        localStorage.setItem('accessToken', token);
-        localStorage.setItem('currentUser', JSON.stringify(user));
+
+      if (data.status === 202) {
+        this.$alert.info('Account already exists with this email, please login');
+        this.$loginService.welcomeBackFromSignUp.next({
+          back: true,
+          email: data.body.email,
+          message: data.body.message
+        });
+        this.isSubmitting = false;
       }
-      this.$loginService.isLoggedIn.next(true);
-      this.isSubmitting = false;
-      this.$alert.success(data.message);
-      this.$signUpService.isAddProfilePhoto.next(true);
-      this.addProfilePhoto = true;
+      if (data.status === 200) {
+        const token = data.body.data.accessToken.token;
+        const user = {
+          name: `${data.body.data.user.first_name} ${data.body.data.user.last_name}`,
+          profile: data.body.data.user.avatar
+        };
+        if (isPlatformBrowser(this.platformId)) {
+          localStorage.setItem('accessToken', token);
+          localStorage.setItem('currentUser', JSON.stringify(user));
+        }
+        this.$loginService.isLoggedIn.next(true);
+        this.isSubmitting = false;
+        this.$alert.success(data.message);
+        this.$signUpService.isAddProfilePhoto.next(true);
+        this.addProfilePhoto = true;
+      }
     }, err => {
       this.isSubmitting = false;
       this.$alert.danger(err.message);
