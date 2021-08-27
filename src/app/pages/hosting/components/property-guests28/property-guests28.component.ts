@@ -80,6 +80,9 @@ export class PropertyGuests28Component implements OnInit, OnDestroy, AfterViewIn
           if (status && status === PROPERTY_STATUS.inProgress) {
             this.propertyStatus = PROPERTY_STATUS.pendingForApproval;
           }
+          if (status && status === PROPERTY_STATUS.pendingForApproval) {
+            this.propertyStatus = PROPERTY_STATUS.pendingForApproval;
+          }
           if (status && status === PROPERTY_STATUS.listed) {
             this.propertyStatus = PROPERTY_STATUS.listed;
           }

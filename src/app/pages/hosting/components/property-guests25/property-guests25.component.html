@@ -14,8 +14,8 @@
                             <label for="" class="mb-2">Base price</label>
                             <input type="number" [formControl]="basePrice" class="form-control custom_form_control mb-2"
                                 placeholder="SAR" (input)="onBasePrice($event.target.value)">
-                            <small class="text-danger" *ngIf="basePrice.touched && basePrice.errors?.required">
-                                Base price is required
+                            <small class="text-danger" *ngIf="basePrice.touched && basePrice.errors">
+                                {{basePrice.errors|validateError:'Base price'}}
                             </small>
                             <p class="fz14 regular_font">This will be your default nighty price</p>
                         </div>

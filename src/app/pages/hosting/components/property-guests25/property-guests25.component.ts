@@ -28,7 +28,7 @@ export class PropertyGuests25Component implements OnInit, AfterViewInit, OnDestr
 
   isNextLoading = false;
 
-  basePrice = new FormControl(1, [Validators.required, Validators.min(1)]);
+  basePrice = new FormControl(1, [Validators.required, Validators.min(1), Validators.max(999999)]);
   isDiscount20 = true;
 
   isBack21 = false;
