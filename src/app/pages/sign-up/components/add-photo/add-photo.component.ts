@@ -53,7 +53,7 @@ export class AddPhotoComponent implements OnInit {
       this.$signUpService.updateProfilePhoto(formData).subscribe(res => {
         this.isLoading = false;
         console.log(res);
-
+        this.goCongratulations();
       }, err => {
         this.isLoading = false;
         this.$alert.danger(err.message);

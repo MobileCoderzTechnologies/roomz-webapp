@@ -13,16 +13,20 @@
             {{ "signUp.addPhoto.line1" | langTranslate }}
           </p>
           <div class="mb-5 pb-5 mt-5 text-center">
-            <img src="assets/images/profile2121.png" class="img-fluid" alt="" />
+            <img *ngIf="!selectedProfilePhoto" src="assets/images/profile2121.png" class="img-fluid" alt="" />
+            <img *ngIf="selectedProfilePhoto" [src]="selectedProfilePhoto" class="img-fluid profile-photo" alt="" />
           </div>
         </div>
-        <button class="btn login_btn mb-3 semi_font fz16">
+        <input type="file" accept="image/png, image/jpeg" #photo style="display: none;"
+          (change)="selectProfilePhoto($event)">
+        <button *ngIf="!selectedProfilePhoto" class="btn login_btn mb-3 semi_font fz16" (click)="photo.click()">
           {{ "signUp.addPhoto.continueBtnText" | langTranslate }}
         </button>
-        <button
-          class="btn login_btn mb_20 border bg-transparent text-secondary"
-          (click)="goCongratulations()"
-        >
+        <button *ngIf="selectedProfilePhoto" class="btn login_btn mb-3 semi_font fz16" (click)="updateProfilePhoto()">
+          {{ "signUp.addPhoto.continueBtnText" | langTranslate }}
+          <div *ngIf="isLoading" class="spinner-border text-info spinner-border-sm"></div>
+        </button>
+        <button class="btn login_btn mb_20 border bg-transparent text-secondary" (click)="goCongratulations()">
           {{ "signUp.addPhoto.skipForNowBtnText" | langTranslate }}
         </button>
       </div>

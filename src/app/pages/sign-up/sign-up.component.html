@@ -55,7 +55,7 @@
         <label class="form-label">{{'signUp.form.birthday'|langTranslate}}</label>
         <div class="date-picker">
           <input type="text" class="form-control custom_form_control" formControlName="dob" placeholder="mm/dd/yyyy"
-            [max]="maxDate" [matDatepicker]="picker">
+            [max]="maxDate" [matDatepicker]="picker" (input)="ageValidation()">
           <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
           <mat-datepicker #picker></mat-datepicker>
         </div>

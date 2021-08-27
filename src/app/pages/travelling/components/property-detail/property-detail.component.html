@@ -282,7 +282,7 @@
               {{property?.desc_interaction_guests}}
             </p>
 
-            <a *ngIf="!expendedDesc" href="javascript:void(0);" class="blue_color bold_font"
+            <a *ngIf="!expendedDesc && isOptionalDesc" href="javascript:void(0);" class="blue_color bold_font"
               (click)="expendedDesc = true"><u>See more</u></a>
             <a *ngIf="expendedDesc" href="javascript:void(0);" class="blue_color bold_font"
               (click)="expendedDesc = false"><u>See less</u></a>

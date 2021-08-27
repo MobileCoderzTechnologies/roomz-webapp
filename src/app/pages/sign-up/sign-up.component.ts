@@ -72,6 +72,39 @@ export class SignUpComponent implements OnInit, AfterViewInit, OnChanges {
   }
 
 
+  ageValidation(): void {
+    const control = this.signUpForm.controls.dob;
+    const tDate = Date.now();
+    if (control.value) {
+      const inputDate = new Date(control.value);
+      const minDob = new Date(tDate - 18 * 1000 * 24 * 60 * 60 * 365);
+      const year = inputDate.getFullYear();
+      if (`${year}`.length !== 4) {
+        const errorObj = {
+          age: true,
+          minDob
+        };
+        control.setErrors(errorObj);
+        return;
+      }
+      const userDateTime = inputDate.getTime();
+      let ageDiff = tDate - userDateTime;
+      ageDiff = Math.floor(ageDiff / (1000 * 60 * 60 * 24 * 365));
+      console.log(ageDiff);
+      const ageDiffShouldBe = 18;
+
+      if (ageDiff > ageDiffShouldBe) {
+        control.setErrors(null);
+      } else {
+        const errorObj = {
+          age: true,
+          minDob
+        };
+        control.setErrors(errorObj);
+      }
+    }
+  }
+
 
   // passwordPatternError(password): void {
   //   // const password: string = this.signUpForm.controls.password.value;

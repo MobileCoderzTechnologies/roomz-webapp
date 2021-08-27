@@ -49,6 +49,7 @@ export class PropertyDetailComponent implements OnInit {
   expandedHouseRules = false;
   expendedDesc = false;
   expandedAmenities = false;
+  isOptionalDesc = false;
 
   currentDate: Date;
   nextDate: Date;
@@ -121,6 +122,11 @@ export class PropertyDetailComponent implements OnInit {
         console.log(this.propertyImages);
       });
       this.cancellationPolicy = CANCELLATION_POLICY[cancellation_policy];
+
+      // tslint:disable-next-line: max-line-length
+      if (this.property?.desc_your_space || this.property?.desc_getting_around || this.property?.desc_neighbourhood || this.property?.desc_interaction_guests) {
+        this.isOptionalDesc = true;
+      }
 
     },
       err => {

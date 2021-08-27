@@ -8,9 +8,7 @@ import {
   PROPERTY_DETAIL_ROUTE,
   SEARCH_PAGE_ROUTE,
 } from './constants/route.constant';
-import { SafetyComponent } from './components/safety/safety.component';
-import { CancellationPolicyComponent } from './components/cancellation-policy/cancellation-policy.component';
-import { HouseRulesComponent } from './components/house-rules/house-rules.component';
+
 
 const routes: Routes = [
   {
@@ -24,7 +22,11 @@ const routes: Routes = [
   {
     path: `${PROPERTY_DETAIL_ROUTE.path}/:id`,
     component: PropertyDetailComponent,
-  }
+  },
+  // {
+  //   path: 'test',
+  //   component: AddPhotoComponent
+  // }
 ];
 
 @NgModule({
