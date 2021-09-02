@@ -22,14 +22,21 @@
 
                         <p class="color-blue mb-4">Use tip: 10 SAR</p>
                         <p class="color-blue">You are always in control of your nightly price.</p>
-                        <div class="d-flex justify-content-between toggle-wrap">
-                            <p>Offer 20% off to your first guests</p>
-                            <label class="switch">
+
+                        <p>Offer discount of your first guests</p>
+                        <div class="my-4">
+                            <label for="" class="mb-2">Discount (%) </label>
+                            <input type="number" [formControl]="discountPercent" class="form-control custom_form_control mb-2"
+                                placeholder="eg 21" (input)="onDiscountPercent($event.target.value)">
+                            <small class="text-danger" *ngIf="discountPercent.touched && discountPercent.errors">
+                                {{basePrice.errors|validateError:'Discount'}}
+                            </small>
+                        </div>
+                        <!-- <label class="switch">
                                 <input type="checkbox" (change)="onDiscount20($event.target.checked)"
                                     [checked]="isDiscount20">
                                 <span class="slider round"></span>
-                            </label>
-                        </div>
+                            </label> -->
                         <p class="w-75">Offering a discount will help you attract your first guests and get your first
                             reviews.</p>
                         <!-- <hr class="mt-5">

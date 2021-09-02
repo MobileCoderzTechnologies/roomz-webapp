@@ -6,7 +6,7 @@ import { delay } from 'rxjs/operators';
 import { ADVANCE_NOTICE, AVAILABILITY_WINDOW } from 'src/app/constants/availability.constant';
 import { AlertService } from 'src/app/modules/alert/alert.service';
 import { EncryptionService } from 'src/app/services/encryption.service';
-import { MY_LISTING_ROUTE, STEP_14_ROUTE, STEP_16_ROUTE, STEP_20_ROUTE, STEP_22_ROUTE, STEP_6_ROUTE, STEP_7_ROUTE, STEP_9_ROUTE } from '../../constants/route.constant';
+import { MY_LISTING_ROUTE, STEP_14_ROUTE, STEP_16_ROUTE, STEP_19_ROUTE, STEP_20_ROUTE, STEP_22_ROUTE, STEP_6_ROUTE, STEP_7_ROUTE, STEP_9_ROUTE } from '../../constants/route.constant';
 import { ProgressService } from '../../services/progress.service';
 import { PropertyListingService } from '../../services/property-listing.service';
 
@@ -18,7 +18,8 @@ import { PropertyListingService } from '../../services/property-listing.service'
 export class PropertyGuests27Component implements OnInit, AfterViewInit, OnDestroy {
 
   step22Route = STEP_22_ROUTE;
-  step20Route = STEP_20_ROUTE;
+  // step20Route = STEP_20_ROUTE;
+  step19Route = STEP_19_ROUTE;
 
   step9Route = STEP_9_ROUTE;
   step6Route = STEP_6_ROUTE;

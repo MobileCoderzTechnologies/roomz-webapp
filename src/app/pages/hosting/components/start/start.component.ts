@@ -6,7 +6,7 @@ import { AlertService } from 'src/app/modules/alert/alert.service';
 import { EncryptionService } from 'src/app/services/encryption.service';
 import {
   // tslint:disable-next-line: max-line-length
-  MY_LISTING_ROUTE, STEP_10_ROUTE, STEP_11_ROUTE, STEP_14_ROUTE, STEP_16_ROUTE, STEP_19_ROUTE, STEP_1_ROUTE, STEP_20_ROUTE, STEP_21_ROUTE, STEP_2_ROUTE, STEP_3_ROUTE, STEP_4_ROUTE, STEP_5_ROUTE, STEP_6_ROUTE, STEP_7_ROUTE, STEP_8_ROUTE
+  MY_LISTING_ROUTE, STEP_10_ROUTE, STEP_11_ROUTE, STEP_14_ROUTE, STEP_16_ROUTE, STEP_19_ROUTE, STEP_1_ROUTE, STEP_20_ROUTE, STEP_21_ROUTE, STEP_23_ROUTE, STEP_2_ROUTE, STEP_3_ROUTE, STEP_4_ROUTE, STEP_5_ROUTE, STEP_6_ROUTE, STEP_7_ROUTE, STEP_8_ROUTE
 } from '../../constants/route.constant';
 import { ProgressService } from '../../services/progress.service';
 
@@ -75,11 +75,11 @@ export class StartComponent implements OnInit, AfterViewInit, OnDestroy {
     },
     {
       index: 12,
-      route: STEP_19_ROUTE,
+      route: STEP_23_ROUTE
     },
     {
       index: 13,
-      route: STEP_20_ROUTE
+      route: STEP_19_ROUTE,
     },
     {
       index: 14,
@@ -173,12 +173,15 @@ export class StartComponent implements OnInit, AfterViewInit, OnDestroy {
           if (this.propertyData.property?.base_price !== null) {
             this.currentRouteIndex = 11;
           }
-          if (this.propertyData.property?.rented_before !== null) {
+          if (this.propertyData.property?.cancellation_policy !== null) {
             this.currentRouteIndex = 12;
           }
-          if (this.propertyData.property?.notice_guest_ba !== null) {
+          if (this.propertyData.property?.rented_before !== null) {
             this.currentRouteIndex = 13;
           }
+          // if (this.propertyData.property?.notice_guest_ba !== null) {
+          //   this.currentRouteIndex = 13;
+          // }
           if (this.propertyData.property?.weekly_discount !== null) {
             this.currentRouteIndex = 14;
           }

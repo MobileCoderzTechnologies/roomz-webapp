@@ -5,7 +5,7 @@ import { delay } from 'rxjs/operators';
 import { HAVE_GUESTS, RENTED_BEFORE } from 'src/app/constants/property-ques.constant';
 import { AlertService } from 'src/app/modules/alert/alert.service';
 import { EncryptionService } from 'src/app/services/encryption.service';
-import { STEP_20_ROUTE, STEP_18_ROUTE, MY_LISTING_ROUTE } from '../../constants/route.constant';
+import { STEP_20_ROUTE, STEP_18_ROUTE, MY_LISTING_ROUTE, STEP_21_ROUTE } from '../../constants/route.constant';
 import { ProgressService } from '../../services/progress.service';
 import { PropertyListingService } from '../../services/property-listing.service';
 
@@ -17,6 +17,7 @@ import { PropertyListingService } from '../../services/property-listing.service'
 export class PropertyGuests20Component implements OnInit, AfterViewInit, OnDestroy {
 
   step20Route = STEP_20_ROUTE;
+  step21Route = STEP_21_ROUTE;
   step18Route = STEP_18_ROUTE;
 
   propertyId: number;
@@ -135,7 +136,7 @@ export class PropertyGuests20Component implements OnInit, AfterViewInit, OnDestr
         return;
       }
 
-      this.$router.navigate([this.step20Route.url, this.encryptedPropertyId]);
+      this.$router.navigate([this.step21Route.url, this.encryptedPropertyId]);
     }, err => {
       this.isNextLoading = false;
       this.$alert.danger(err.message);

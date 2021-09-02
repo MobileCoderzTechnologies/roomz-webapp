@@ -193,9 +193,9 @@
               <li>
                 <label class="cust-chk">
                   <input type="checkbox" />
-                  <span class="txt" *ngIf="!encryptedPropertyId || currentRouteIndex<=12">Questions</span>
+                  <span class="txt" *ngIf="!encryptedPropertyId || currentRouteIndex<=12">Cancellation Policy</span>
                   <span class="txt" *ngIf="encryptedPropertyId && currentRouteIndex > 12"
-                    (click)="onGoEditScreenCustom(12)">Questions</span>
+                    (click)="onGoEditScreenCustom(12)">Cancellation Policy</span>
                   <div class="button-inlist">
                     <button *ngIf="encryptedPropertyId && currentRouteIndex === 12" class="btn submit-btn"
                       (click)="onEditGoScreen()">
@@ -209,9 +209,9 @@
                 <label class="cust-chk">
                   <input type="checkbox" />
 
-                  <span class="txt" *ngIf="!encryptedPropertyId || currentRouteIndex<=13">Notice</span>
+                  <span class="txt" *ngIf="!encryptedPropertyId || currentRouteIndex<=13">Questions</span>
                   <span class="txt" *ngIf="encryptedPropertyId && currentRouteIndex > 13"
-                    (click)="onGoEditScreenCustom(13)">Notice</span>
+                    (click)="onGoEditScreenCustom(13)">Questions</span>
                   <div class="button-inlist">
                     <button *ngIf="encryptedPropertyId && currentRouteIndex === 13" class="btn submit-btn"
                       (click)="onEditGoScreen()">

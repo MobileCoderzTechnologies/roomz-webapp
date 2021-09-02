@@ -29,6 +29,8 @@ export class PropertyGuests25Component implements OnInit, AfterViewInit, OnDestr
   isNextLoading = false;
 
   basePrice = new FormControl(1, [Validators.required, Validators.min(1), Validators.max(999999)]);
+
+  discountPercent = new FormControl(0, [Validators.required, Validators.max(90), Validators.min(0)])
   isDiscount20 = true;
 
   isBack21 = false;
@@ -96,16 +98,21 @@ export class PropertyGuests25Component implements OnInit, AfterViewInit, OnDestr
         this.propertyData = data;
         console.log(this.propertyData);
         if (this.propertyData) {
-          const { base_price = 1, is_discount_20 = true } = this.propertyData.property;
+          const { base_price = 1, discount_percent = 0 } = this.propertyData.property;
           this.basePrice.setValue(base_price);
-          this.isDiscount20 = is_discount_20;
+          this.discountPercent.setValue(discount_percent);
         }
 
       });
   }
 
-  onDiscount20(status: boolean): void {
-    this.isDiscount20 = status;
+  onDiscountPercent(value): void {
+    if (value && Number(value) < 0) {
+      this.discountPercent.setValue(0);
+    }
+    if (value && Number(value) > 90) {
+      this.discountPercent.setValue(90);
+    }
   }
 
 
@@ -114,14 +121,14 @@ export class PropertyGuests25Component implements OnInit, AfterViewInit, OnDestr
     this.isNextLoading = true;
     const requestData = {
       base_price: this.basePrice.value,
-      is_discount_20: this.isDiscount20
+      discount_percent: this.discountPercent.value,
     };
 
     this.$propertyListingService.addSecPropertyPrice(this.propertyId, requestData).subscribe(res => {
       const respData = res.data[0];
 
       this.propertyData.property.base_price = respData.base_price;
-      this.propertyData.property.is_discount_20 = respData.is_discount_20;
+      this.propertyData.property.discount_percent = respData.discount_percent;
 
       this.$ps.clearPropertyData();
       this.$ps.setPropertyData(this.propertyData);

@@ -96,7 +96,7 @@ export class PropertyGuests19Component implements OnInit, AfterViewInit, OnDestr
     this.$propertyListingService.lawsAndCalenderMark(this.propertyId, requestData).subscribe(res => {
       const respData = res.data[0];
 
-      this.propertyData.property.is_local_laws = respData.is_local_laws;
+      this.propertyData.property.is_updated_calender = respData.is_updated_calender;
       this.$ps.clearPropertyData();
       this.$ps.setPropertyData(this.propertyData);
       this.isNextLoading = false;
