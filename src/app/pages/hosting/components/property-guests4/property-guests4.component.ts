@@ -33,7 +33,7 @@ export class PropertyGuests4Component implements OnInit, AfterViewInit, OnDestro
     street: new FormControl('', Validators.required),
     address_optional: new FormControl(''),
     state: new FormControl('', Validators.required),
-    zip_code: new FormControl('', [Validators.required, Validators.minLength(6), Validators.maxLength(6)])
+    zip_code: new FormControl('')
   });
 
   latitude: number;

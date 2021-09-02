@@ -103,7 +103,7 @@ export class PropertyGuests22Component implements OnInit, AfterViewInit, OnDestr
           this.isPhoneConfirmed = this.propertyData.property.is_phone_confirmed || false;
           this.isIdSubmitted = this.propertyData.property.is_id_submitted || false;
           this.isRecommendedFromOH = this.propertyData.property.is_recommended_from_oh || false;
-          this.isTripPurpose = this.propertyData.property.is_trip_purpose || false;
+          // this.isTripPurpose = this.propertyData.property.is_trip_purpose || false;
         }
       });
   }
@@ -146,7 +146,7 @@ export class PropertyGuests22Component implements OnInit, AfterViewInit, OnDestr
       is_phone_confirmed: this.isPhoneConfirmed,
       is_payment_information: this.isPaymentInformation,
       is_agree_hr: this.isAgreeHR,
-      is_trip_purpose: this.isTripPurpose,
+      // is_trip_purpose: this.isTripPurpose,
       is_id_submitted: this.isIdSubmitted,
       is_recommended_from_oh: this.isRecommendedFromOH
     };
@@ -159,7 +159,7 @@ export class PropertyGuests22Component implements OnInit, AfterViewInit, OnDestr
       this.propertyData.property.is_phone_confirmed = respData.is_phone_confirmed;
       this.propertyData.property.is_payment_information = respData.is_payment_information;
       this.propertyData.property.is_agree_hr = respData.is_agree_hr;
-      this.propertyData.property.is_trip_purpose = respData.is_trip_purpose;
+      // this.propertyData.property.is_trip_purpose = respData.is_trip_purpose;
       this.propertyData.property.is_id_submitted = respData.is_id_submitted;
       this.propertyData.property.is_recommended_from_oh = respData.is_recommended_from_oh;
 

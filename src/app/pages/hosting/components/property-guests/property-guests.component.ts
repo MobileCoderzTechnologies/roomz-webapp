@@ -76,6 +76,10 @@ export class PropertyGuestsComponent implements OnInit, AfterViewInit, OnDestroy
     this.saveExitSubs = this.$ps.saveExit.subscribe(data => {
       if (data === 'done') {
         this.isSavingExit = true;
+        if (this.propertyArea.invalid) {
+          this.$router.navigateByUrl(this.myListingRoute.url);
+          return;
+        }
         this.addPropertyTypes();
       }
     });
