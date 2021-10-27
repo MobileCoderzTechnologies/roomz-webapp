@@ -105,21 +105,21 @@ export class PropertyDetailComponent implements OnInit {
       this.groupBeds(this.property?.beds);
       console.log(this.property);
       this.deletedPrice = this.deletedPriceCal(this.property?.base_price);
-      // const cImageUrl = cover_photo;
-      // const cImageUrlArr = cImageUrl.split('/');
-      // cImageUrlArr.pop();
-      // const cImg = `${cImageUrlArr.join('/')}/1366x460.jpeg`;
-      this.propertyImages.push({ image_url: cover_photo });
+      const cImageUrl = cover_photo;
+      const cImageUrlArr = cImageUrl.split('/');
+      cImageUrlArr.pop();
+      const cImg = `${cImageUrlArr.join('/')}/1366x460.jpeg`;
+      this.propertyImages.push({ image_url: cImg });
 
       images.forEach(item => {
-        // const imageUrl = item.image_url;
-        // const imageUrlArr = imageUrl.split('/');
-        // imageUrlArr.pop();
-        // const imgUrl = `${imageUrlArr.join('/')}/1366x460.jpeg`;
-        // item.image_url = imgUrl;
+        const imageUrl = item.image_url;
+        const imageUrlArr = imageUrl.split('/');
+        imageUrlArr.pop();
+        const imgUrl = `${imageUrlArr.join('/')}/1366x460.jpeg`;
+        item.image_url = imgUrl;
         this.propertyImages.push({ ...item });
 
-        console.log(this.propertyImages);
+        // console.log(this.propertyImages);
       });
       this.cancellationPolicy = CANCELLATION_POLICY[cancellation_policy];
 

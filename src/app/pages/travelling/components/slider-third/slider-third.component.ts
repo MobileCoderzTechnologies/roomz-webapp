@@ -43,14 +43,14 @@ export class SliderThirdComponent implements OnInit, OnChanges {
 
   ngOnChanges(): void {
     this.images = this.photos;
-    console.log(this.images);
-    this.images.push({image_url: this.coverPhoto});
-    // const cImageUrl = this.coverPhoto;
-    // const cImageUrlArr = cImageUrl.split('/');
-    // cImageUrlArr.pop();
-    // const cImg = `${cImageUrlArr.join('/')}/235x158.jpeg`;
-    // this.images.push({ image_url: cImg });
     // console.log(this.images);
+    this.images.push({image_url: this.coverPhoto});
+    const cImageUrl = this.coverPhoto;
+    const cImageUrlArr = cImageUrl.split('/');
+    cImageUrlArr.pop();
+    const cImg = `${cImageUrlArr.join('/')}/235x158.jpeg`;
+    this.images.push({ image_url: cImg });
+    console.log(this.images);
   }
 
 }
